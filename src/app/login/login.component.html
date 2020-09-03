@@ -1,0 +1,51 @@
+<div id="container">
+  <img id="background-img" src="../../../assets/img/background-mobile-dots.png" alt="background_purple">
+  <img id="background-img-tablet" src="../../../assets/img/background-tablet-dots.png" alt="background_purple_tablet">
+  <img id="background-img-desktop" src="../../../assets/img/background-desktop-dots.png" alt="background_purple_desktop">
+  <header>
+    <div class="menu-wrapper">
+      <div class="menu-header">
+        <a href="" class="logo logo-no-text"><img src="../../../assets/icons/logo.svg" alt="page_logo"></a>
+        <a href="" class="logo logo-text"><img src="../../../assets/icons/logo-with-text.svg" alt="page_logo_with_text"></a>
+        <input class="menu-btn" type="checkbox" id="menu-btn"/>
+        <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+        <ul class="menu">
+          <li><a href="">About</a></li>
+          <li><a href="">Blog</a></li>
+          <li><a href="">FAQ</a></li>
+        </ul>
+        <div class="desktop-menu-buttons">
+          <button class="button" id="menu-button-sign-up" onclick="location.href='#'">Sign up</button>
+          <button class="button" id="menu-button-login" onclick="location.href='#'">Log in</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="content-container">
+    <div class="login-text-mobile">
+      <h1 id="login-label-mobile">Log in:</h1>
+    </div>
+    <div id="login-text">
+      <h1>We’re glad to see you back!</h1>
+      <p>Making saving a habit is a key to succeed in controlling your money.</p>
+      <p class="login-text-desktop">So don’t wait - your statistics and accounts need you!</p>
+      <p>You don’t have an account?</p>
+      <button class="button" id="button-sign-up-tablet" onclick="location.href='#'">Sign up. It's free</button>
+    </div>
+    <form id="login-form">
+      <h1>Log in:</h1>
+      <div class="login-input">
+        <img src="../../../assets/icons/login-email.svg" alt="login_icon">
+        <input placeholder="Your email">
+      </div>
+      <div class="login-input">
+        <img src="../../../assets/icons/login-password.svg" alt="password_icon">
+        <input placeholder="Your password">
+      </div>
+      <a id="forgot-password" href="#forgot-password">forgot your password?</a>
+      <button class="button" id="button-login" type="submit">Ready to go!</button>
+      <button class="button" id="button-sign-up" onclick="location.href='#'">No account? Sign up!</button>
+    </form>
+  </div>
+</div>
