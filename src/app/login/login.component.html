@@ -31,20 +31,21 @@
       <p>Making saving a habit is a key to succeed in controlling your money.</p>
       <p class="login-text-desktop">So don’t wait - your statistics and accounts need you!</p>
       <p>You don’t have an account?</p>
-      <button class="button" id="button-sign-up-tablet" onclick="location.href='#'">Sign up. It's free</button>
+      <button class="button" id="button-sign-up-tablet" type="button" onclick="location.href='#'">Sign up. It's free</button>
     </div>
-    <form id="login-form">
+    <form id="login-form" #userForm="ngForm">
       <h1>Log in:</h1>
       <div class="login-input">
         <img src="../../../assets/icons/login-email.svg" alt="login_icon">
-        <input placeholder="Your email">
+        <input placeholder="Your email" [(ngModel)]="email" name="email">
       </div>
       <div class="login-input">
         <img src="../../../assets/icons/login-password.svg" alt="password_icon">
-        <input placeholder="Your password">
+        <input placeholder="Your password" [(ngModel)]="password" name="password">
       </div>
+      <div class="warning" *ngIf="message">{{message}}</div>
       <a id="forgot-password" href="#forgot-password">forgot your password?</a>
-      <button class="button" id="button-login" type="submit">Ready to go!</button>
+      <button class="button" id="button-login" type="button" (click)="onSubmit()">Ready to go!</button>
       <button class="button" id="button-sign-up" onclick="location.href='#'">No account? Sign up!</button>
     </form>
   </div>
