@@ -16,9 +16,10 @@ const routes: Routes = [
   // {rooms : PrefectchRoomsService, users: PrefectchUsersService}, canActivate : [AuthRouteGuardService]},
   // {path : 'addBooking', component: EditBookingComponent, resolve :
   // {rooms : PrefectchRoomsService, users: PrefectchUsersService}, canActivate : [AuthRouteGuardService]},
-  {path: 'login', component: LoginComponent}
+  {path: 'login', component: LoginComponent},
+  {path: 'dashboard', component: DashboardComponent},
   // {path : '404', component : PageNotFoundComponent},
-  // {path : '**', redirectTo : '/404'}
+  {path : '**', redirectTo : '/login'}
 ];
 
 @NgModule({
