@@ -16,23 +16,21 @@ export class LoginComponent implements OnInit, OnDestroy {
   subscription: Subscription;
 
   constructor(private authService: AuthService,
-              private route: Router,
-              private activatedRoute: ActivatedRoute) { }
+              private route: Router) { }
 
   ngOnInit(): void{
     this.subscription = this.authService.authenticationResultEvent.subscribe(
       result => {
         if (result) {
-          console.log("udało się zalogować.");
+          console.log('Log in has been successfully');
           this.route.navigate(['dashboard']);
         }
         else {
-          console.log('test3');
+          console.log('Log in has not been successfully');
           this.message = 'Your username or password was not recognised - try again.';
         }
       }
     );
-    // this.authService.checkIfAlreadyAuthenticated();
   }
 
   ngOnDestroy(): void{
@@ -40,7 +38,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(): void{
-    console.log(this.email, this.password);
     this.authService.authenticate(this.email, this.password);
   }
 
