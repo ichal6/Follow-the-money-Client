@@ -1,27 +1,22 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
-import { AppComponent } from './app.component';
-import { LoginComponent } from './pages/login/login.component';
+import {AppComponent} from './app.component';
+import {LoginComponent} from './login/login.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {RouterModule, Routes} from '@angular/router';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { MenuComponent } from './components-shared/menu/menu.component';
-import { HeaderComponent } from './components-shared/header/header.component';
+import {DashboardComponent} from './portal/pages/dashboard/dashboard.component';
+import {MenuComponent} from './portal/shared-components/menu/menu.component';
+import {HeaderComponent} from './portal/shared-components/header/header.component';
+import {MainPortalLayoutComponent} from './portal/shared-components/main-portal-layout/main-portal-layout.component';
+import { PortalComponent } from './portal/portal.component';
 
 const routes: Routes = [
-  // {path : 'admin/users', component : UsersComponent, canActivate : [AuthRouteGuardService]},
-  // {path : 'admin/rooms', component: RoomsComponent, canActivate : [AuthRouteGuardService]},
-  // {path : '', component: CalendarComponent},
-  // {path : 'editBooking', component: EditBookingComponent, resolve :
-  // {rooms : PrefectchRoomsService, users: PrefectchUsersService}, canActivate : [AuthRouteGuardService]},
-  // {path : 'addBooking', component: EditBookingComponent, resolve :
-  // {rooms : PrefectchRoomsService, users: PrefectchUsersService}, canActivate : [AuthRouteGuardService]},
   {path: 'login', component: LoginComponent},
-  {path: 'dashboard', component: DashboardComponent},
+  {path: 'portal', component: PortalComponent},
   // {path : '404', component : PageNotFoundComponent},
-  {path : '**', redirectTo : '/login'}
+  {path: '**', redirectTo: '/login'}
 ];
 
 @NgModule({
@@ -31,6 +26,8 @@ const routes: Routes = [
     DashboardComponent,
     MenuComponent,
     HeaderComponent,
+    MainPortalLayoutComponent,
+    PortalComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,4 +39,5 @@ const routes: Routes = [
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

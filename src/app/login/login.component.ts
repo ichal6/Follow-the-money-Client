@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {ActivatedRoute, Router} from '@angular/router';
-import {AuthService} from '../../service/auth.service';
+import {AuthService} from '../service/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       result => {
         if (result) {
           console.log('Log in has been successfully');
-          this.route.navigate(['dashboard']);
+          this.route.navigate(['portal']);
         }
         else {
           console.log('Log in has not been successfully');
