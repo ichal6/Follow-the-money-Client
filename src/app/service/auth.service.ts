@@ -24,6 +24,15 @@ export class AuthService {
     );
   }
 
+  checkIfAlreadyAuthenticated(): void {
+    this.dataService.isLogin().subscribe(
+      next => {
+        this.isAuthenticated = true;
+        this.authenticationResultEvent.emit(true);
+      }
+    );
+  }
+
   logout(): void {
     this.dataService.logout().subscribe();
     this.isAuthenticated = false;

@@ -18,6 +18,10 @@ export class DataService {
     return this.http.get<any>(environment.restUrl + '/api/user/jan@kowalski@gmail.com', {withCredentials: true});
   }
 
+  isLogin(): Observable<any>{
+    return this.http.get<any>(environment.restUrl + '/isLogin', {withCredentials: true});
+  }
+
   logout(): Observable<any> {
     return this.http.get<any>(environment.restUrl + '/logoutUser', {withCredentials: true});
   }
