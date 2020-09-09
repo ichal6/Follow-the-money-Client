@@ -7,17 +7,11 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {RouterModule, Routes} from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import {AuthRouteGuardService} from './service/auth-route-guard.service';
 
 const routes: Routes = [
-  // {path : 'admin/users', component : UsersComponent, canActivate : [AuthRouteGuardService]},
-  // {path : 'admin/rooms', component: RoomsComponent, canActivate : [AuthRouteGuardService]},
-  // {path : '', component: CalendarComponent},
-  // {path : 'editBooking', component: EditBookingComponent, resolve :
-  // {rooms : PrefectchRoomsService, users: PrefectchUsersService}, canActivate : [AuthRouteGuardService]},
-  // {path : 'addBooking', component: EditBookingComponent, resolve :
-  // {rooms : PrefectchRoomsService, users: PrefectchUsersService}, canActivate : [AuthRouteGuardService]},
   {path: 'login', component: LoginComponent},
-  {path: 'dashboard', component: DashboardComponent},
+  {path: 'dashboard', component: DashboardComponent, canActivate: [AuthRouteGuardService]},
   // {path : '404', component : PageNotFoundComponent},
   {path : '**', redirectTo : '/login'}
 ];

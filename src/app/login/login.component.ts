@@ -16,14 +16,22 @@ export class LoginComponent implements OnInit, OnDestroy {
   subscription: Subscription;
 
   constructor(private authService: AuthService,
-              private route: Router) { }
+              private route: Router,
+              private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void{
     this.subscription = this.authService.authenticationResultEvent.subscribe(
       result => {
         if (result) {
           console.log('Log in has been successfully');
-          this.route.navigate(['dashboard']);
+          const url = this.activatedRoute.snapshot.queryParams.requested;
+          if (url != null){
+            console.log('To jest url - ', url);
+            this.route.navigateByUrl(url);
+          }else {
+            console.log('nie ma url :-(');
+            this.route.navigate(['dashboard']);
+          }
         }
         else {
           console.log('Log in has not been successfully');
