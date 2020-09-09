@@ -6,6 +6,7 @@ import {DashboardComponent} from './pages/dashboard/dashboard.component';
 import {MenuComponent} from './shared-components/menu/menu.component';
 import {HeaderComponent} from './shared-components/header/header.component';
 import { AccountsComponent } from './pages/accounts/accounts.component';
+import { HeaderMobileComponent } from './shared-components/header-mobile/header-mobile.component';
 
 const routes: Routes = [
   {
@@ -35,6 +36,7 @@ const routes: Routes = [
     HeaderComponent,
     MainPortalLayoutComponent,
     AccountsComponent,
+    HeaderMobileComponent,
   ],
   imports: [
     CommonModule,

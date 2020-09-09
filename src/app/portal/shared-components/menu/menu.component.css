@@ -26,6 +26,14 @@ nav {
   transform: scale(1.05);
 }
 
+.logo-mobile {
+  display: none;
+}
+
+.logo .logo-mobile img {
+  height: 50px;
+}
+
 .menu-items {
   margin-top: 55px;
   align-self: flex-start;
@@ -61,4 +69,22 @@ li a img {
 li a p {
   display: inline-block;
   margin-bottom: 15px;
+}
+
+@media only screen and (max-width: 800px) {
+  nav {
+    width: 80px;
+  }
+
+  li a p {
+    visibility: hidden;
+  }
+
+  .logo-desktop {
+    display: none;
+  }
+
+  .logo-mobile {
+    display: inline-block;
+  }
 }
