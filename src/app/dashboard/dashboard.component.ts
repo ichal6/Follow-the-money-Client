@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {DataService} from '../service/data.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,7 +10,8 @@ import {DataService} from '../service/data.service';
 export class DashboardComponent implements OnInit {
   text: string;
 
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.exampleMethod();
@@ -23,5 +25,10 @@ export class DashboardComponent implements OnInit {
         this.text = 'problem with backend' + error;
       }
     );
+  }
+
+  logout(): void{
+    this.dataService.logout().subscribe();
+    this.router.navigate(['']);
   }
 }
