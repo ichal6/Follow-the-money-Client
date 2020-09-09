@@ -15,7 +15,7 @@ export class DataService {
   }
 
   getSomething(): Observable<any> {
-    return this.http.get<any>(environment.restUrl + '/user/jan@kowalski@gmail.com', {withCredentials: true});
+    return this.http.get<any>(environment.restUrl + '/api/user/jan@kowalski@gmail.com', {withCredentials: true});
   }
 
   logout(): Observable<any> {
