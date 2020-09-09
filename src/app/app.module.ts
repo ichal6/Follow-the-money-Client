@@ -11,7 +11,6 @@ import {MenuComponent} from './portal/shared-components/menu/menu.component';
 import {HeaderComponent} from './portal/shared-components/header/header.component';
 import {MainPortalLayoutComponent} from './portal/shared-components/main-portal-layout/main-portal-layout.component';
 import { PortalComponent } from './portal/portal.component';
-import { PortalRoutingModule } from './portal/portal-routing.module';
 import { PortalModule } from './portal/portal.module';
 
 const routes: Routes = [
@@ -25,11 +24,7 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     LoginComponent,
-    DashboardComponent,
-    MenuComponent,
-    HeaderComponent,
-    MainPortalLayoutComponent,
-    PortalComponent,
+    PortalComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +32,6 @@ const routes: Routes = [
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forRoot(routes),
-    PortalRoutingModule,
     PortalModule
   ],
   providers: [],
