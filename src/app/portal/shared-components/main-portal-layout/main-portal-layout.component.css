@@ -1,0 +1,9 @@
+.page {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  flex-direction: row;
+  margin: 0;
+}

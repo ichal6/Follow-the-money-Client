@@ -1,3 +1,19 @@
-.menu {
-  background-color: red;
+nav {
+  background-color: #FFFFFF;
+  height: 100%;
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.logo a img {
+  height: 55px;
+  margin-top: 15px;
+}
+
+.menu-items {
+  margin-top: 55px;
+  align-self: flex-start;
 }
