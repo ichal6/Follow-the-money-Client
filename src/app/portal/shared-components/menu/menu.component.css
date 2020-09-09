@@ -13,11 +13,17 @@ nav {
   align-items: center;
   font-family: "Poppins Regular", sans-serif;
   font-size: 18px;
+  box-shadow: 4px 0px 5px rgba(0, 0, 0, 0.02);
 }
 
 .logo a img {
   height: 55px;
   margin-top: 15px;
+  transition: all .4s ease-out;
+}
+
+.logo a img:hover {
+  transform: scale(1.05);
 }
 
 .menu-items {
@@ -32,6 +38,11 @@ ul {
 
 li {
   margin-bottom: 10px;
+  transition: all .2s ease-out;
+}
+
+li:hover {
+  transform: scale(1.05);
 }
 
 a {

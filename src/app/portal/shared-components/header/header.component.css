@@ -1,3 +1,35 @@
-.header {
-  background-color: blue;
+header {
+  background-color: #ffffff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.02);
+  height: 70px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 40px;
 }
+
+.header-data {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  transition: all .2s ease-out;
+}
+
+.header-data:hover {
+  transform: scale(1.05);
+}
+
+.header-data p {
+  margin: 0 10px 0 30px;
+  font-size: 18px;
+  color: #404040;
+}
+
+.header-data a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+
+
