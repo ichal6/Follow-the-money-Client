@@ -1,0 +1,69 @@
+h1{
+  font-size: 20px;
+}
+
+#popular-accounts{
+  display: grid;
+  grid-template-columns: auto auto;
+  /*grid-template-rows: 25% 100px auto;*/
+}
+
+.box-account{
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  color: #FFFFFF;
+  padding: 10px;
+  margin: 10px;
+}
+
+.box-account p{
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+}
+
+.box-account-top{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.box-account-top a{
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.balance-value{
+  font-family: "Poppins Bold", serif;
+  font-size: 20px !important;
+}
+
+.dropdown-content{
+  /*width: 170px;*/
+  /*height: 80px;*/
+  padding: 10px;
+  display: none;
+  float: right;
+  position: fixed;
+  top: 74px;
+  right: 22px;
+  background-color: #FFFFFF;
+  z-index: 300;
+  border-radius: 10px;
+}
+
+.dropdown-content ul{
+  list-style-type: none;
+}
+
+.dropdown-content li{
+  margin-bottom: 20px;
+  text-align: right;
+}
+
+.dropdown-content a{
+  color: #545759;
+  text-decoration: none;
+}
