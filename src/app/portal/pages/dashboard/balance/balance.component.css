@@ -1,0 +1,31 @@
+#balance{
+  background-color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+#currency{
+  display: flex;
+  justify-content: space-between;
+}
+
+#currency h1{
+  font-family: "Poppins Regular", serif;
+  margin-bottom: 0;
+}
+
+#difference{
+  align-self: flex-end;
+  margin: 5px 0 0;
+  font-size: 20px;
+  color: #0BD1B8;
+  font-family: "Poppins Bold", serif;
+}
+
+#days-info{
+  align-self: flex-end;
+  margin: 0;
+  font-size: 12px;
+}

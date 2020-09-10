@@ -7,6 +7,10 @@ import {MenuComponent} from './shared-components/menu/menu.component';
 import {HeaderComponent} from './shared-components/header/header.component';
 import { AccountsComponent } from './pages/accounts/accounts.component';
 import { HeaderMobileComponent } from './shared-components/header-mobile/header-mobile.component';
+import { BalanceComponent } from './pages/dashboard/balance/balance.component';
+import { ChartComponent } from './pages/dashboard/chart/chart.component';
+import { ActivityComponent } from './pages/dashboard/activity/activity.component';
+import { AccountsPopularComponent } from './pages/dashboard/accounts-popular/accounts-popular.component';
 
 const routes: Routes = [
   {
@@ -37,6 +41,10 @@ const routes: Routes = [
     MainPortalLayoutComponent,
     AccountsComponent,
     HeaderMobileComponent,
+    BalanceComponent,
+    ChartComponent,
+    ActivityComponent,
+    AccountsPopularComponent,
   ],
   imports: [
     CommonModule,
