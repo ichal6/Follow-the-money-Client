@@ -33,6 +33,7 @@ h1{
 .box-account-top a{
   font-size: 36px;
   margin-bottom: 20px;
+  cursor: pointer;
 }
 
 .balance-value{
@@ -41,14 +42,12 @@ h1{
 }
 
 .dropdown-content{
-  /*width: 170px;*/
-  /*height: 80px;*/
-  padding: 10px;
+  width: 122px;
+  height: 86px;
+  padding: 10px 10px 0;
   display: none;
-  float: right;
-  position: fixed;
-  top: 74px;
-  right: 22px;
+  float: left;
+  position: absolute;
   background-color: #FFFFFF;
   z-index: 300;
   border-radius: 10px;
@@ -56,14 +55,22 @@ h1{
 
 .dropdown-content ul{
   list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
 
 .dropdown-content li{
-  margin-bottom: 20px;
+  margin: 0;
   text-align: right;
 }
 
 .dropdown-content a{
   color: #545759;
+  font-size: 12px;
   text-decoration: none;
+  cursor: pointer;
+}
+
+.delete-text {
+  color: #F31259 !important;
 }
