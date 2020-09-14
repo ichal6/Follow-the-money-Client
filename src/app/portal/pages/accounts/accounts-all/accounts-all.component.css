@@ -1,3 +1,13 @@
+@font-face {
+  font-family: "Poppins Regular";
+  src: url("src/assets/fonts/Poppins-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Poppins Semibold";
+  src: url("src/assets/fonts/Poppins-SemiBold.ttf");
+}
+
 h1 {
   font-size: 24px;
 }
@@ -7,12 +17,13 @@ h1 {
   flex-direction: row;
   justify-content: flex-start;
   flex-wrap: wrap;
+  font-family: "Poppins Regular", sans-serif;
 }
 
 .box-account {
-  width: 100%;
-  max-width: 250px;
-  height: 220px;
+  width: 25%;
+  min-width: 200px;
+  height: 200px;
   margin-right: 20px;
   margin-bottom: 20px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.01);
@@ -21,6 +32,7 @@ h1 {
   justify-content: space-between;
   flex-direction: column;
   padding: 15px 15px 0;
+  color: #ffffff;
 }
 
 .box-account-top {
@@ -31,4 +43,40 @@ h1 {
 
 .box-account-top img {
   height: 30px;
+}
+
+.box-account-top a {
+  font-size: 40px;
+  line-height: 0.2;
+}
+
+.box-account-bottom p {
+  font-family: "Poppins Regular", sans-serif;
+  font-size: 14px;
+  line-height: 0.8;
+}
+
+.box-account-bottom .balance-value {
+  font-family: "Poppins Semibold", sans-serif;
+  font-size: 24px;
+}
+
+@media only screen and (max-width: 1550px) {
+  .box-account {
+    width: 40%;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .box-account {
+    min-width: 150px;
+  }
+}
+
+@media only screen and (max-width: 850px) {
+  .box-account {
+    width: 100%;
+    margin-right: 0;
+    height: 150px;
+  }
 }

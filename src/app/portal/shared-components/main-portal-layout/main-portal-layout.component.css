@@ -49,4 +49,8 @@ app-header-mobile {
   app-header-mobile {
     display: block;
   }
+
+  .content-container {
+    padding: 20px;
+  }
 }

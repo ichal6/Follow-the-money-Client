@@ -11,3 +11,13 @@ app-accounts-all {
 app-accounts-form {
   flex: 1;
 }
+
+@media only screen and (max-width: 1200px) {
+  .accounts-content {
+    flex-direction: column;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+
+}
