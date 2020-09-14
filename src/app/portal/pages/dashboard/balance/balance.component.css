@@ -1,23 +1,31 @@
-#balance{
+h1 {
+  font-family: "Poppins Regular", sans-serif;
+  font-size: 24px;
+  color: #404040;
+}
+
+#balance {
   background-color: #FFFFFF;
   display: flex;
   flex-direction: column;
   padding: 20px;
   border-radius: 10px;
-  width: 98%;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-#currency{
+#currency {
   display: flex;
   justify-content: space-between;
+  margin-top: 0;
 }
 
-#currency h1{
+#currency h1, #currency p {
   font-family: "Poppins Regular", serif;
-  margin-bottom: 0;
+  margin-top: 0;
 }
 
-#difference{
+#difference {
   align-self: flex-end;
   margin: 5px 0 0;
   font-size: 20px;
@@ -25,8 +33,18 @@
   font-family: "Poppins Bold", serif;
 }
 
-#days-info{
+#days-info {
   align-self: flex-end;
   margin: 0;
   font-size: 12px;
+}
+
+#balance-label {
+  margin-top: 0;
+}
+
+@media only screen and (max-width: 1200px) {
+  #net-worth {
+    display: none;
+  }
 }

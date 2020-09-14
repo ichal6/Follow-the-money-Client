@@ -1,38 +1,44 @@
-.main-page-content {
-  background-color: green;
-}
-
-.dashboard-content{
+.dashboard-content {
   display: flex;
   flex-direction: column;
 }
 
-app-balance{
-  width: 90%;
+.upper-container, .bottom-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%
 }
 
-@media only screen and (min-width: 1140px) {
-  .dashboard-content{
+@media only screen and (min-width: 1200px) {
+  .upper-container {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  app-balance {
+    flex: 1;
+    margin-right: 40px;
+  }
+
+  app-accounts-popular {
+    flex:1.8;
+  }
+
+  .bottom-container {
+    margin-top: 20px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    flex-wrap: wrap;
   }
 
-  app-balance{
-    width: 30%;
-    float: left;
-  }
-
-  app-accounts-popular{
-    align-self: flex-end;
-  }
-
-  app-chart{
+  app-chart {
     width: 55%;
   }
 
-  app-activity{
+  app-activity {
     width: 40%;
   }
+
+
+
 }
