@@ -16,13 +16,26 @@ export class AuthService {
         this.isAuthenticated = true;
         this.authenticationResultEvent.emit(true);
       },
-      error =>
-      {
+      error => {
         console.log(error);
         this.isAuthenticated = false;
         this.authenticationResultEvent.emit(false);
       }
     );
+  }
 
+  checkIfAlreadyAuthenticated(): void {
+    this.dataService.isLogin().subscribe(
+      next => {
+        this.isAuthenticated = true;
+        this.authenticationResultEvent.emit(true);
+      }
+    );
+  }
+
+  logout(): void {
+    this.dataService.logout().subscribe();
+    this.isAuthenticated = false;
+    this.authenticationResultEvent.emit(false);
   }
 }
