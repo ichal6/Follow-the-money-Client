@@ -11,7 +11,7 @@ export class HeaderComponent implements OnInit {
   userName = 'Please wait...';
 
   constructor(private dataService: DataService,
-              private route: Router,) { }
+              private route: Router) { }
 
   ngOnInit(): void {
     this.dataService.getUser().subscribe(
