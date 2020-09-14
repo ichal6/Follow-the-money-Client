@@ -1,0 +1,44 @@
+.dashboard-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.upper-container, .bottom-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%
+}
+
+@media only screen and (min-width: 1200px) {
+  .upper-container {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  app-balance {
+    flex: 1;
+    margin-right: 40px;
+  }
+
+  app-accounts-popular {
+    flex:1.8;
+  }
+
+  .bottom-container {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  app-chart {
+    width: 55%;
+  }
+
+  app-activity {
+    width: 40%;
+  }
+
+
+
+}

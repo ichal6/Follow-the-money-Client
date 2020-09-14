@@ -1,0 +1,105 @@
+h1 {
+  font-family: "Poppins Regular", sans-serif;
+  font-size: 24px;
+  color: #404040;
+}
+
+#popular-accounts {
+  display: grid;
+  grid-template-columns: auto auto;
+}
+
+.box-account {
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  color: #FFFFFF;
+  padding: 10px;
+  margin: 10px;
+}
+
+.box-account p {
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+}
+
+.box-account-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.box-account-top a {
+  font-size: 36px;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.balance-value {
+  font-family: "Poppins Bold", serif;
+  font-size: 20px !important;
+}
+
+.dropdown-content {
+  width: 122px;
+  height: 86px;
+  padding: 10px 10px 0;
+  display: none;
+  float: left;
+  position: absolute;
+  background-color: #FFFFFF;
+  z-index: 300;
+  border-radius: 10px;
+}
+
+.dropdown-content ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.dropdown-content li {
+  margin: 0;
+  text-align: right;
+}
+
+.dropdown-content a {
+  color: #545759;
+  font-size: 12px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.delete-text {
+  color: #F31259 !important;
+}
+
+@media only screen and (min-width: 800px) {
+  .main-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+  }
+
+  input {
+    height: 50%;
+  }
+
+  #popular-accounts {
+    width: 100%;
+    height: 100%;
+    grid-template-columns: 25% 25% 25% 25%;
+  }
+
+  .box-account {
+    margin: 0 10px 0;
+  }
+}

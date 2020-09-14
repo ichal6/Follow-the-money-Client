@@ -1,6 +1,6 @@
 @font-face {
   font-family: "Poppins Medium";
-  src: url("../../assets/fonts/Poppins-Medium.ttf");
+  src: url("src/assets/fonts/Poppins-Medium.ttf");
 }
 
 .menu-header {
@@ -234,17 +234,17 @@
 }
 @font-face {
   font-family: "Poppins Medium";
-  src: url("../../assets/fonts/Poppins-Medium.ttf");
+  src: url("src/assets/fonts/Poppins-Medium.ttf");
 }
 
 @font-face {
   font-family: "Poppins Semibold";
-  src: url("../../assets/fonts/Poppins-SemiBold.ttf");
+  src: url("src/assets/fonts/Poppins-SemiBold.ttf");
 }
 
 @font-face {
   font-family: "Poppins Bold";
-  src: url("../../assets/fonts/Poppins-Bold.ttf");
+  src: url("src/assets/fonts/Poppins-Bold.ttf");
 }
 
 #container {

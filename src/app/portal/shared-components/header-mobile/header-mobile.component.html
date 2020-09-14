@@ -1,0 +1,22 @@
+<header>
+  <div class="logo-container">
+    <a href="#" class="logo-mobile"><img src="../../../../assets/icons/logo.svg" alt="logo-mobile"></a>
+  </div>
+  <div class="burger-container">
+    <input class="menu-btn" type="checkbox" id="menu-btn"/>
+    <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+    <div class="menu-container">
+      <ul class="menu">
+        <li><a (click)="navigateTo('portal')">Dashboard</a></li>
+        <li><a (click)="navigateTo('portal')">Accounts</a></li>
+        <li><a (click)="navigateTo('portal')">Categories</a></li>
+        <li><a (click)="navigateTo('portal')">Payees</a></li>
+        <li><a (click)="navigateTo('portal')">Payments</a></li>
+        <li><a (click)="navigateTo('portal')">Charts</a></li>
+        <li><a (click)="navigateTo('portal')">Settings</a></li>
+        <li><a (click)="logout()">Log out</a></li>
+      </ul>
+    </div>
+  </div>
+</header>
+

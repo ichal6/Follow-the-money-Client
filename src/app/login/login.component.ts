@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit, OnDestroy {
             this.route.navigateByUrl(url);
           }else {
             console.log('nie ma url :-(');
-            this.route.navigate(['dashboard']);
+            this.route.navigate(['portal']);
           }
         }
         else {

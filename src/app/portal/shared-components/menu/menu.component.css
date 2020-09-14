@@ -1,0 +1,91 @@
+@font-face {
+  font-family: "Poppins Regular";
+  src: url("src/assets/fonts/Poppins-Regular.ttf");
+}
+
+nav {
+  background-color: #FFFFFF;
+  height: 100%;
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  font-family: "Poppins Regular", sans-serif;
+  font-size: 18px;
+  box-shadow: 4px 0px 5px rgba(0, 0, 0, 0.02);
+}
+
+.logo a img {
+  height: 55px;
+  margin-top: 15px;
+  transition: all .4s ease-out;
+}
+
+.logo a img:hover {
+  transform: scale(1.05);
+}
+
+.logo-mobile {
+  display: none;
+}
+
+.logo .logo-mobile img {
+  height: 50px;
+}
+
+.menu-items {
+  margin-top: 55px;
+  align-self: flex-start;
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 30px;
+}
+
+li {
+  margin-bottom: 10px;
+  transition: all .2s ease-out;
+}
+
+li:hover {
+  transform: scale(1.05);
+}
+
+a {
+  text-decoration: none;
+  color: #404040;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+}
+
+li a img {
+  width: 25px;
+  margin-right: 25px;
+}
+
+li a p {
+  display: inline-block;
+  margin-bottom: 15px;
+}
+
+@media only screen and (max-width: 800px) {
+  nav {
+    width: 80px;
+  }
+
+  li a p {
+    visibility: hidden;
+  }
+
+  .logo-desktop {
+    display: none;
+  }
+
+  .logo-mobile {
+    display: inline-block;
+  }
+}
