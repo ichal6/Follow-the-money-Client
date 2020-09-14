@@ -1,49 +1,51 @@
 <h1>Popular accounts</h1>
-<input type="image" src="assets/icons/dashboard/plus-button.png" alt="plus-button"/>
-<div id="popular-accounts">
-  <div class="box-account" [ngStyle]="{'background-color': '#F4BB4A'}">
-    <div class="box-account-top">
-      <img src="assets/icons/dashboard/wallet-type.png" alt="icon bank/wallet">
-      <a (click)="displayPopup($event)">...</a>
+<div class="container">
+  <input type="image" src="assets/icons/dashboard/plus-button.png" alt="plus-button"/>
+  <div id="popular-accounts">
+    <div class="box-account" [ngStyle]="{'background-color': '#F4BB4A'}">
+      <div class="box-account-top">
+        <img src="assets/icons/dashboard/wallet-type.png" alt="icon bank/wallet">
+        <a (click)="displayPopup($event)">...</a>
+      </div>
+      <p>Portfel Elżbieta</p>
+      <p class="balance-value">$3005.00</p>
     </div>
-    <p>Portfel Elżbieta</p>
-    <p class="balance-value">$3005.00</p>
-  </div>
-  <div class="box-account" [ngStyle]="{'background-color': '#F31259'}">
-    <div class="box-account-top">
-      <img src="assets/icons/dashboard/bank-type.png" alt="icon bank/wallet">
-      <a (click)="displayPopup($event)">...</a>
+    <div class="box-account" [ngStyle]="{'background-color': '#F31259'}">
+      <div class="box-account-top">
+        <img src="assets/icons/dashboard/bank-type.png" alt="icon bank/wallet">
+        <a (click)="displayPopup($event)">...</a>
+      </div>
+      <p>Portfel Elżbieta</p>
+      <p class="balance-value">$3005.00</p>
     </div>
-    <p>Portfel Elżbieta</p>
-    <p class="balance-value">$3005.00</p>
-  </div>
-  <div class="box-account" [ngStyle]="{'background-color': '#FF7D44'}">
-    <div class="box-account-top">
-      <img src="assets/icons/dashboard/bank-type.png" alt="icon bank/wallet">
-      <a (click)="displayPopup($event)">...</a>
+    <div class="box-account" [ngStyle]="{'background-color': '#FF7D44'}">
+      <div class="box-account-top">
+        <img src="assets/icons/dashboard/bank-type.png" alt="icon bank/wallet">
+        <a (click)="displayPopup($event)">...</a>
+      </div>
+      <p>Portfel Elżbieta</p>
+      <p class="balance-value">$3005.00</p>
     </div>
-    <p>Portfel Elżbieta</p>
-    <p class="balance-value">$3005.00</p>
-  </div>
-  <div class="box-account" [ngStyle]="{'background-color': '#564193'}">
-    <div class="box-account-top">
-      <img src="assets/icons/dashboard/bank-type.png" alt="icon bank/wallet">
-      <a (click)="displayPopup($event)">...</a>
+    <div class="box-account" [ngStyle]="{'background-color': '#564193'}">
+      <div class="box-account-top">
+        <img src="assets/icons/dashboard/bank-type.png" alt="icon bank/wallet">
+        <a (click)="displayPopup($event)">...</a>
+      </div>
+      <p>Portfel Elżbieta</p>
+      <p class="balance-value">$3005.00</p>
     </div>
-    <p>Portfel Elżbieta</p>
-    <p class="balance-value">$3005.00</p>
-  </div>
-  <div class="dropdown-content" [style.display]="modeDisplayPopup" [style.top]="coordinates[0]" [style.left]="coordinates[1]" #dropdown>
-    <ul>
-      <li>
-        <a>See transactions</a>
-      </li>
-      <li>
-        <a>Rename</a>
-      </li>
-      <li>
-        <a class="delete-text">Delete</a>
-      </li>
-    </ul>
+    <div class="dropdown-content" [style.display]="modeDisplayPopup" [style.top]="coordinates[0]" [style.left]="coordinates[1]" #dropdown>
+      <ul>
+        <li>
+          <a>See transactions</a>
+        </li>
+        <li>
+          <a>Rename</a>
+        </li>
+        <li>
+          <a class="delete-text">Delete</a>
+        </li>
+      </ul>
+    </div>
   </div>
 </div>

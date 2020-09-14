@@ -8,6 +8,20 @@ h1{
   /*grid-template-rows: 25% 100px auto;*/
 }
 
+@media only screen and (min-width: 550px) {
+  .container{
+    display: flex;
+  }
+
+  input{
+    height: 100%;
+  }
+
+  #popular-accounts{
+    grid-template-columns: auto auto auto auto;
+  }
+}
+
 .box-account{
   display: flex;
   flex-direction: column;
