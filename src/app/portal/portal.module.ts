@@ -13,6 +13,7 @@ import { ActivityComponent } from './pages/dashboard/activity/activity.component
 import { AccountsPopularComponent } from './pages/dashboard/accounts-popular/accounts-popular.component';
 import { AccountsAllComponent } from './pages/accounts/accounts-all/accounts-all.component';
 import { AccountsFormComponent } from './pages/accounts/accounts-form/accounts-form.component';
+import {ChartsModule} from 'ng2-charts';
 
 const routes: Routes = [
   {
@@ -52,7 +53,8 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    ChartsModule
   ],
   exports: [RouterModule]
 })

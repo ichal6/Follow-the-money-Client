@@ -8,6 +8,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {RouterModule, Routes} from '@angular/router';
 import { PortalComponent } from './portal/portal.component';
 import { PortalModule } from './portal/portal.module';
+import { ChartsModule } from 'ng2-charts';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -27,7 +28,8 @@ const routes: Routes = [
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forRoot(routes),
-    PortalModule
+    PortalModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

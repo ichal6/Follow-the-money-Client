@@ -20,6 +20,7 @@ header {
   font-size: 20px;
   color: #404040;
   margin: 20px;
+  cursor: pointer;
 }
 
 .logo-container, .logo-mobile img, .logo-mobile {

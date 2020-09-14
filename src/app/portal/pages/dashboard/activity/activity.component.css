@@ -1,26 +1,27 @@
-h1{
+h1 {
+  font-family: "Poppins Regular", sans-serif;
+  font-size: 24px;
   color: #404040;
-  font-size: 20px;
   margin-bottom: 25px;
 }
 
-p, h2{
+p, h2 {
   margin: 0 0 5px;
 }
 
-p{
+p {
   font-size: 10px;
 }
 
-.activity:nth-child(2){
+.activity:first-child {
   border-radius: 10px 10px 0 0;
 }
 
-.activity:last-child{
+.activity:last-of-type {
   border-radius: 0 0 10px 10px;
 }
 
-.activity{
+.activity {
   display: flex;
   flex-direction: column;
   background-color: #FFFFFF;
@@ -28,30 +29,30 @@ p{
   /*border-radius: 10px;*/
 }
 
-.activity-top{
+.activity-top {
   display: flex;
   justify-content: space-between;
 }
 
-.activity-top h2{
+.activity-top h2 {
   font-size: 12px;
   margin-top: 12px;
 }
 
-.activity-top p{
+.activity-top p {
   font-size: 12px;
 }
 
-.cost{
+.cost {
   align-self: flex-end;
 }
 
-.activity-addresses{
+.activity-addresses {
   display: flex;
   flex-direction: row;
 }
 
-button{
+button {
   width: 100%;
   font-family: "Poppins Medium", sans-serif;
   font-size: 16px;
@@ -60,4 +61,17 @@ button{
   border: none;
   border-radius: 10px;
   padding: 20px;
+}
+
+@media only screen and (min-width: 550px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  button {
+    width: auto;
+    margin-top: 20px;
+    align-self: flex-end;
+  }
 }
