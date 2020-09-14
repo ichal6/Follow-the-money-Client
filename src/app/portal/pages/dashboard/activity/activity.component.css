@@ -12,11 +12,11 @@ p{
   font-size: 10px;
 }
 
-.activity:nth-child(2){
+.activity:first-child{
   border-radius: 10px 10px 0 0;
 }
 
-.activity:last-child{
+.activity:last-of-type{
   border-radius: 0 0 10px 10px;
 }
 
@@ -60,4 +60,17 @@ button{
   border: none;
   border-radius: 10px;
   padding: 20px;
+}
+
+@media only screen and (min-width: 550px) {
+  .container{
+    display: flex;
+    flex-direction: column;
+  }
+
+  button{
+    width: auto;
+    margin-top: 20px;
+    align-self: flex-end;
+  }
 }
