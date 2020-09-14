@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-chart',
@@ -19,7 +19,8 @@ export class ChartComponent implements OnInit {
   public chartType = 'line';
   public chartLegend = true;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
