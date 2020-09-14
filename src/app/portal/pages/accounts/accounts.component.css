@@ -1,0 +1,13 @@
+.accounts-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+app-accounts-all {
+  flex: 1.6;
+}
+
+app-accounts-form {
+  flex: 1;
+}
