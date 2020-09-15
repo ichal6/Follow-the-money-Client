@@ -4,11 +4,6 @@
 }
 
 @font-face {
-  font-family: "Poppins Medium";
-  src: url("src/assets/fonts/Poppins-Medium.ttf");
-}
-
-@font-face {
   font-family: "Poppins Semibold";
   src: url("src/assets/fonts/Poppins-SemiBold.ttf");
 }
@@ -26,35 +21,7 @@
   display: none;
 }
 
-#background-img {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-}
-
-#background-img-desktop, #background-img-tablet {
-  display: none;
-}
-
-app-header {
-  height: max-content;
-  min-height: 60px;
-  width: 100%;
-  background-color: transparent;
-}
-
-.content-container {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  z-index: 2;
-}
-
-.login-text-mobile {
+.register-text-mobile {
   font-family: "Poppins Bold", sans-serif;
   font-size: 26px;
   color: #FFFFFF;
@@ -62,61 +29,8 @@ app-header {
   justify-content: center;
 }
 
-#login-text, .login-text-desktop {
+#register-text, .login-text-desktop {
   display: none;
-}
-
-#login-form {
-  min-height: 55vh;
-  display: flex;
-  bottom: 0;
-  width: 86%;
-  margin-left: 6%;
-  margin-right: 6%;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
-}
-
-.login-input {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  padding-bottom: 10px;
-  border-bottom: 2px solid #CAC9CE !important;
-}
-
-.login-input input {
-  margin-left: 15px;
-  margin-right: 15px;
-  border: none;
-  background-color: transparent;
-}
-
-#login-form .login-input input, #login-form .login-input input::placeholder {
-  font-family: "Poppins Medium", sans-serif;
-  font-size: 14px;
-  line-height: 21px;
-  color: #CAC9CE !important;
-}
-
-#login-form h1 {
-  display: none;
-}
-
-.login-input img {
-  width: 25px;
-}
-
-#forgot-password {
-  color: #F37944;
-  text-decoration: none;
-  font-family: "Poppins Semibold", serif;
-  font-size: 16px;
-  line-height: 23px;
-  margin: 20px 20px 35px;
 }
 
 .button {
@@ -146,7 +60,7 @@ app-header {
 }
 
 #button-sign-up,
-#button-sign-up-tablet {
+#button-log-in-tablet {
   background-color: #0BD1B8;
   transition: all 0.2s;
 }
@@ -158,37 +72,29 @@ app-header {
 }
 
 @media only screen and (min-width: 650px) {
-  .login-text-mobile, #background-img {
+  .register-text-mobile {
     display: none;
   }
 
-  #background-img-tablet {
-    display: inline-block;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-  }
-
-  #login-text {
+  #register-text {
     display: inline-block;
     width: 100%;
   }
 
-  #login-text h1 {
+  #register-text h1 {
     font-family: "Poppins Bold", serif;
     font-size: 36px;
     color: #FFFFFF;
   }
 
-  #login-text p {
+  #register-text p {
     font-family: "Poppins Medium", serif;
     font-size: 14px;
     line-height: 21px;
     color: #FFFFFF;
   }
 
-  #login-text button {
+  #register-text button {
     font-family: "Poppins Semibold", serif;
     font-size: 16px;
     line-height: 24px;
@@ -198,27 +104,10 @@ app-header {
     transition: all 0.2s;
   }
 
-  #login-text button:hover {
+  #register-text button:hover {
     background-color: #12dcc3;
     font-size: 17px;
     cursor: pointer;
-  }
-
-  #login-form {
-    width: 78%;
-  }
-
-  #login-form h1 {
-    display: inline-block;
-    font-family: "Poppins Bold", serif;
-    font-size: 36px;
-    color: #4B486E;
-    align-self: flex-start;
-  }
-
-  #forgot-password {
-    align-self: flex-end;
-    margin-right: 0;
   }
 
   #button-sign-up {
@@ -241,19 +130,7 @@ app-header {
 }
 
 @media only screen and (min-width: 900px) {
-  #background-img, #background-img-tablet {
-    display: none;
-  }
-
-  #background-img-desktop {
-    display: inline-block;
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-  }
-
-  #login-text {
+  #register-text {
     max-width: 300px;
     margin-left: 6%;
     margin-right: 8%;
@@ -262,10 +139,6 @@ app-header {
 
   .register-text-desktop {
     display: inline-block;
-  }
-
-  .content-container {
-    flex-direction: row;
   }
 
   .register-text-tablet{
