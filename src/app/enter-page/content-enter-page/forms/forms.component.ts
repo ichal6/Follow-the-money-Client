@@ -14,7 +14,6 @@ export class FormsComponent implements OnInit {
   }
 
   getUrl(): string{
-    console.log(this.router.url);
     return this.router.url;
   }
 
