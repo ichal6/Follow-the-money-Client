@@ -26,6 +26,6 @@ export class RegisterFormComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(): void {
-
+    this.message = 'You provide incorrect data.';
   }
 }

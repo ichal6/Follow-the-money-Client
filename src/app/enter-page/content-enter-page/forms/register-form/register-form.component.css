@@ -55,13 +55,17 @@
   width: 25px;
 }
 
-#forgot-password {
+#forgot-password, .warning {
   color: #F37944;
   text-decoration: none;
   font-family: "Poppins Semibold", serif;
   font-size: 16px;
   line-height: 23px;
   margin: 20px 20px 35px;
+}
+
+.warning{
+  color: #F31259;
 }
 
 .button {
