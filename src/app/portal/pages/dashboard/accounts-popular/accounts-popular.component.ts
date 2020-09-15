@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {PopupService} from '../../../../service/popup.service';
 
 @Component({
   selector: 'app-accounts-popular',
@@ -10,15 +11,22 @@ export class AccountsPopularComponent implements OnInit {
   colorsArray = ['#F4BB4A', '#F31259', '#FF7D44', '#564193'];
   modeDisplayPopup: string;
   coordinates = [];
-  widthOfPopUp = 125;
 
-  constructor() {
-  }
+  constructor(private popupService: PopupService) { }
 
   ngOnInit(): void {
     this.modeDisplayPopup = 'none';
-    this.coordinates.push('0px');
-    this.coordinates.push('0px');
+  }
+
+  displayPopup(event): void{
+    const coordinates = [];
+    this.popupService.displayPopup(event, coordinates);
+    this.coordinates = coordinates;
+    if (this.modeDisplayPopup === 'none') {
+      this.modeDisplayPopup = 'block';
+    } else {
+      this.modeDisplayPopup = 'none';
+    }
   }
 
   getColor(): string {
@@ -29,23 +37,4 @@ export class AccountsPopularComponent implements OnInit {
       return this.colorsArray[this.count];
     }
   }
-
-  displayPopup(event): void {
-    const position = this.getPosition(event);
-    this.coordinates[0] = position.offsetTop + 50 + 'px';
-    this.coordinates[1] = position.offsetLeft - this.widthOfPopUp + 'px';
-    if (this.modeDisplayPopup === 'none') {
-      this.modeDisplayPopup = 'block';
-    } else {
-      this.modeDisplayPopup = 'none';
-    }
-  }
-
-  getPosition(event): any {
-    const el = event.target;
-    const offsetLeft = el.offsetLeft;
-    const offsetTop = el.offsetTop;
-    return {offsetTop, offsetLeft};
-  }
-
 }

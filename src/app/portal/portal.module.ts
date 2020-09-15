@@ -11,6 +11,8 @@ import { BalanceComponent } from './pages/dashboard/balance/balance.component';
 import { ChartComponent } from './pages/dashboard/chart/chart.component';
 import { ActivityComponent } from './pages/dashboard/activity/activity.component';
 import { AccountsPopularComponent } from './pages/dashboard/accounts-popular/accounts-popular.component';
+import { AccountsAllComponent } from './pages/accounts/accounts-all/accounts-all.component';
+import { AccountsFormComponent } from './pages/accounts/accounts-form/accounts-form.component';
 import {ChartsModule} from 'ng2-charts';
 
 const routes: Routes = [
@@ -46,6 +48,8 @@ const routes: Routes = [
     ChartComponent,
     ActivityComponent,
     AccountsPopularComponent,
+    AccountsAllComponent,
+    AccountsFormComponent,
   ],
   imports: [
     CommonModule,
