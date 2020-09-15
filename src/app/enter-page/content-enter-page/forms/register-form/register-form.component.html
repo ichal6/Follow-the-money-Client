@@ -1,1 +1,19 @@
-<p>register-form works!</p>
+<form id="login-form" #userForm="ngForm">
+  <h1>Sign up:</h1>
+  <div class="login-input">
+    <img src="../../assets/icons/login-email.svg" alt="login_icon">
+    <input placeholder="Your name" [(ngModel)]="name" name="name">
+  </div>
+  <div class="login-input">
+    <img src="../../assets/icons/login-email.svg" alt="login_icon">
+    <input placeholder="Your email" [(ngModel)]="email" name="email">
+  </div>
+  <div class="login-input">
+    <img src="../../assets/icons/login-password.svg" alt="password_icon">
+    <input placeholder="Your password" [(ngModel)]="password" name="password">
+  </div>
+  <div class="warning" *ngIf="message">{{message}}</div>
+  <a id="forgot-password" href="#forgot-password">forgot your password?</a>
+  <button class="button" id="button-login" type="button" (click)="onSubmit()">Ready to go!</button>
+  <button class="button" id="button-sign-up" onclick="location.href='#'">Already registered? Log in!</button>
+</form>
