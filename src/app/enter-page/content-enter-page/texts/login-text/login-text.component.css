@@ -13,7 +13,7 @@
   src: url("src/assets/fonts/Poppins-Bold.ttf");
 }
 
-.register-text-mobile {
+.login-text-mobile {
   font-family: "Poppins Bold", sans-serif;
   font-size: 26px;
   color: #FFFFFF;
@@ -21,7 +21,7 @@
   justify-content: center;
 }
 
-#register-text, .login-text-desktop {
+#login-text, .login-text-desktop {
   display: none;
 }
 
@@ -41,7 +41,7 @@
 }
 
 #button-sign-up,
-#button-log-in-tablet {
+#button-sign-up-tablet {
   background-color: #0BD1B8;
   transition: all 0.2s;
 }
@@ -53,29 +53,29 @@
 }
 
 @media only screen and (min-width: 650px) {
-  .register-text-mobile {
+  .login-text-mobile {
     display: none;
   }
 
-  #register-text {
+  #login-text {
     display: inline-block;
     width: 100%;
   }
 
-  #register-text h1 {
+  #login-text h1 {
     font-family: "Poppins Bold", serif;
     font-size: 36px;
     color: #FFFFFF;
   }
 
-  #register-text p {
+  #login-text p {
     font-family: "Poppins Medium", serif;
     font-size: 14px;
     line-height: 21px;
     color: #FFFFFF;
   }
 
-  #register-text button {
+  #login-text button {
     font-family: "Poppins Semibold", serif;
     font-size: 16px;
     line-height: 24px;
@@ -85,7 +85,7 @@
     transition: all 0.2s;
   }
 
-  #register-text button:hover {
+  #login-text button:hover {
     background-color: #12dcc3;
     font-size: 17px;
     cursor: pointer;
@@ -97,7 +97,7 @@
 }
 
 @media only screen and (min-width: 900px) {
-  #register-text {
+  #login-text {
     max-width: 300px;
     margin-left: 6%;
     margin-right: 8%;
