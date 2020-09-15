@@ -135,6 +135,10 @@
     padding: 15px;
     border-bottom: 1px dotted #F4F3F9;
   }
+
+  .menu-header{
+    top: 0;
+  }
 }
 
 @media only screen and (min-width: 900px) {

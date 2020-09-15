@@ -4,11 +4,6 @@
 }
 
 @font-face {
-  font-family: "Poppins Medium";
-  src: url("src/assets/fonts/Poppins-Medium.ttf");
-}
-
-@font-face {
   font-family: "Poppins Semibold";
   src: url("src/assets/fonts/Poppins-SemiBold.ttf");
 }
@@ -77,9 +72,15 @@ app-enter-page-content {
   }
 }
 
+@media only screen and (min-width: 650px){
+  #container{
+    justify-content: space-between;
+  }
+}
+
 @media only screen and (min-width: 650px) and (min-height: 900px){
   #container{
-    justify-content: space-around;
+    justify-content: space-between;
   }
 
   #background-img {
