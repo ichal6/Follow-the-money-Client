@@ -8,9 +8,15 @@ import {CookieService} from 'ngx-cookie-service';
   providedIn: 'root'
 })
 export class DataService {
+  private email: string;
 
   constructor(private http: HttpClient,
-              private cookieService: CookieService) { }
+              private cookieService: CookieService) {
+  }
+
+  setEmailFromCookie(): void{
+    this.email = this.cookieService.get('e-mail');
+  }
 
   validateUser(email: string, password: string): Observable<{result: string}> {
     return this.http.post<{result: string}>(environment.restUrl + '/login', {email, password}, {withCredentials: true});
@@ -25,12 +31,10 @@ export class DataService {
   }
 
   getUser(): Observable<any>{
-    const email = this.cookieService.get('e-mail');
-    return this.http.get<any>(environment.restUrl + '/api/user/' + email, {withCredentials: true});
+    return this.http.get<any>(environment.restUrl + '/api/user/' + this.email, {withCredentials: true});
   }
 
   getDashboard(): Observable<any>{
-    const email = this.cookieService.get('e-mail');
-    return this.http.get<any>(environment.restUrl + '/api/dashboard/' + email, {withCredentials: true});
+    return this.http.get<any>(environment.restUrl + '/api/dashboard/' + this.email, {withCredentials: true});
   }
 }

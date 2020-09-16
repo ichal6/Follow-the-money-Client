@@ -15,6 +15,7 @@ export class AuthService {
       next => {
         this.isAuthenticated = true;
         this.authenticationResultEvent.emit(true);
+        this.dataService.setEmailFromCookie();
       },
       error => {
         console.log(error);
