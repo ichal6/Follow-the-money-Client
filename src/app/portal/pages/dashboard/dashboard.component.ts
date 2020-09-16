@@ -8,23 +8,11 @@ import {DataService} from '../../../service/data.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  text: string;
 
   constructor(private dataService: DataService,
               private router: Router) { }
 
   ngOnInit(): void {
-    this.exampleMethod();
-  }
-
-  exampleMethod(): void{
-    this.dataService.getSomething().subscribe(
-      next => {
-        this.text = next.name;
-      }, error => {
-        this.text = 'problem with backend' + error;
-      }
-    );
   }
 
   logout(): void{

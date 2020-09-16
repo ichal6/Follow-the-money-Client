@@ -16,10 +16,6 @@ export class DataService {
     return this.http.post<{result: string}>(environment.restUrl + '/login', {email, password}, {withCredentials: true});
   }
 
-  getSomething(): Observable<any> {
-    return this.http.get<any>(environment.restUrl + '/api/user/jan@kowalski@gmail.com', {withCredentials: true});
-  }
-
   isLogin(): Observable<any>{
     return this.http.get<any>(environment.restUrl + '/isLogin', {withCredentials: true});
   }
