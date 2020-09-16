@@ -1,0 +1,110 @@
+@font-face {
+  font-family: "Poppins Medium";
+  src: url("src/assets/fonts/Poppins-Medium.ttf");
+}
+
+@font-face {
+  font-family: "Poppins Semibold";
+  src: url("src/assets/fonts/Poppins-SemiBold.ttf");
+}
+
+@font-face {
+  font-family: "Poppins Bold";
+  src: url("src/assets/fonts/Poppins-Bold.ttf");
+}
+
+.login-text-mobile {
+  font-family: "Poppins Bold", sans-serif;
+  font-size: 26px;
+  color: #FFFFFF;
+  display: flex;
+  justify-content: center;
+}
+
+#login-text, .login-text-desktop {
+  display: none;
+}
+
+.button {
+  width: 100%;
+  height: 60px;
+  margin-bottom: 28px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 10px;
+  border: none;
+  font-family: "Poppins Semibold", serif;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 24px;
+  color: #FFFFFF;
+}
+
+#button-sign-up,
+#button-sign-up-tablet {
+  background-color: #0BD1B8;
+  transition: all 0.2s;
+}
+
+#button-sign-up:hover {
+  background-color: #12dcc3;
+  font-size: 17px;
+  cursor: pointer;
+}
+
+@media only screen and (min-width: 650px) {
+  .login-text-mobile {
+    display: none;
+  }
+
+  #login-text {
+    display: inline-block;
+    width: 100%;
+  }
+
+  #login-text h1 {
+    font-family: "Poppins Bold", serif;
+    font-size: 36px;
+    color: #FFFFFF;
+  }
+
+  #login-text p {
+    font-family: "Poppins Medium", serif;
+    font-size: 14px;
+    line-height: 21px;
+    color: #FFFFFF;
+  }
+
+  #login-text button {
+    font-family: "Poppins Semibold", serif;
+    font-size: 16px;
+    line-height: 24px;
+    color: #FFFFFF;
+    margin-top: 25px;
+    width: 200px;
+    transition: all 0.2s;
+  }
+
+  #login-text button:hover {
+    background-color: #12dcc3;
+    font-size: 17px;
+    cursor: pointer;
+  }
+
+  h1{
+    margin-top: 0;
+  }
+}
+
+@media only screen and (min-width: 900px) {
+  #login-text {
+    max-width: 300px;
+    margin-left: 6%;
+    margin-right: 8%;
+    margin-top: 0;
+  }
+
+  .login-text-desktop {
+    display: inline-block;
+  }
+}

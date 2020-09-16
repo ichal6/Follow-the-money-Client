@@ -1,14 +1,14 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
+import {AuthService} from '../../../../service/auth.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {AuthService} from '../service/auth.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-login-form',
+  templateUrl: './login-form.component.html',
+  styleUrls: ['./login-form.component.css']
 })
-export class LoginComponent implements OnInit, OnDestroy {
+export class LoginFormComponent implements OnInit, OnDestroy {
 
   message = '';
   email: string;
