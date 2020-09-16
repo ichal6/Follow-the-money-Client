@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {DataService} from '../../../../service/data.service';
 
 @Component({
   selector: 'app-balance',
@@ -6,11 +7,20 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./balance.component.css']
 })
 export class BalanceComponent implements OnInit {
+  totalBalance: number;
 
-  constructor() {
+  constructor(private dataService: DataService) {
   }
 
   ngOnInit(): void {
+    this.dataService.getDashboard().subscribe(
+      next => {
+        this.totalBalance = next.totalBalance;
+      },
+      error => {
+        console.log('problem with server side', error);
+      }
+    );
   }
 
 }

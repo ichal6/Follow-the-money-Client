@@ -32,4 +32,9 @@ export class DataService {
     const email = this.cookieService.get('e-mail');
     return this.http.get<any>(environment.restUrl + '/api/user/' + email, {withCredentials: true});
   }
+
+  getDashboard(): Observable<any>{
+    const email = this.cookieService.get('e-mail');
+    return this.http.get<any>(environment.restUrl + '/api/dashboard/' + email, {withCredentials: true});
+  }
 }
