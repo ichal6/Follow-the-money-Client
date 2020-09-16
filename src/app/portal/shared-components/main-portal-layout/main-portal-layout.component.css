@@ -27,6 +27,7 @@
   justify-content: space-between;
   flex-direction: row;
   margin: 0;
+  background-color: #F4F3F9;
 }
 
 .header-and-content-container {
