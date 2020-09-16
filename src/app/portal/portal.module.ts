@@ -14,6 +14,7 @@ import { AccountsPopularComponent } from './pages/dashboard/accounts-popular/acc
 import { AccountsAllComponent } from './pages/accounts/accounts-all/accounts-all.component';
 import { AccountsFormComponent } from './pages/accounts/accounts-form/accounts-form.component';
 import {ChartsModule} from 'ng2-charts';
+import { SingleAccountComponent } from './pages/dashboard/accounts-popular/single-account/single-account.component';
 
 const routes: Routes = [
   {
@@ -50,6 +51,7 @@ const routes: Routes = [
     AccountsPopularComponent,
     AccountsAllComponent,
     AccountsFormComponent,
+    SingleAccountComponent,
   ],
   imports: [
     CommonModule,
