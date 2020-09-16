@@ -2,11 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import {PopupService} from '../../../../../service/popup.service';
 
 @Component({
-  selector: 'app-account-box',
-  templateUrl: './account-box.component.html',
-  styleUrls: ['./account-box.component.css']
+  selector: 'app-popular-account-box',
+  templateUrl: './popular-account-box.component.html',
+  styleUrls: ['./popular-account-box.component.css']
 })
-export class AccountBoxComponent implements OnInit {
+export class PopularAccountBoxComponent implements OnInit {
   modeDisplayPopup: string;
   coordinates = [];
   count = 0;
