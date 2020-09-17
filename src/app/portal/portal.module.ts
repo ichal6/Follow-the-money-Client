@@ -16,6 +16,7 @@ import { AccountsFormComponent } from './pages/accounts/accounts-form/accounts-f
 import {ChartsModule} from 'ng2-charts';
 import { SingleAccountComponent } from './pages/dashboard/accounts-popular/single-account/single-account.component';
 import { SingleActivityComponent } from './pages/dashboard/activity/single-activity/single-activity.component';
+import {PrefetchDashboardService} from '../service/prefetch-dashboard.service';
 
 const routes: Routes = [
   {
@@ -25,7 +26,8 @@ const routes: Routes = [
       {
         path: '',
         component: DashboardComponent }
-    ]
+    ],
+    resolve: {dashboard: PrefetchDashboardService}
   },
   {
     path: 'accounts',

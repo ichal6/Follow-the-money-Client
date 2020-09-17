@@ -1,10 +1,11 @@
 <h1 id="net-worth">Net worth</h1>
 <div id="balance">
   <div id="currency">
-    <h1>${{totalBalance}}</h1>
+    <h1>${{dashboard.totalBalance}}</h1>
     <p>USD</p>
   </div>
   <p id="balance-label">Total Balance</p>
-  <p id="difference" [ngStyle]="{color: difference >= 0 ? '#0BD1B8': '#F31259'}">{{difference}}</p>
+  <p id="difference" [ngStyle]="{color: dashboard.difference >= 0 ? '#0BD1B8': '#F31259'}">
+    {{dashboard.difference}}</p>
   <p id="days-info">Last 30 days</p>
 </div>

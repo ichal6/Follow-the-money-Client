@@ -3,6 +3,8 @@ import {Observable} from 'rxjs';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {CookieService} from 'ngx-cookie-service';
+import {map} from 'rxjs/operators';
+import {Dashboard} from '../model/Dashboard';
 
 @Injectable({
   providedIn: 'root'
@@ -37,7 +39,14 @@ export class DataService {
     return this.http.get<any>(environment.restUrl + '/api/user/' + this.email, {withCredentials: true});
   }
 
-  getDashboard(): Observable<any>{
-    return this.http.get<any>(environment.restUrl + '/api/dashboard/' + this.email, {withCredentials: true});
+  getDashboard(): Observable<Dashboard>{
+    return this.http.get<any>(environment.restUrl + '/api/dashboard/' + this.email, {withCredentials: true})
+      .pipe(
+        map(
+          data => {
+            return Dashboard.fromHttp(data);
+          }
+        )
+      );
   }
 }
