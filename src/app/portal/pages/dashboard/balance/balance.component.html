@@ -5,6 +5,6 @@
     <p>USD</p>
   </div>
   <p id="balance-label">Total Balance</p>
-  <p id="difference">+230.30</p>
+  <p id="difference" [ngStyle]="{color: difference >= 0 ? '#0BD1B8': '#F31259'}">{{difference}}</p>
   <p id="days-info">Last 30 days</p>
 </div>

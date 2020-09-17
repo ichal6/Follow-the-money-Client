@@ -12,10 +12,13 @@ export class DataService {
 
   constructor(private http: HttpClient,
               private cookieService: CookieService) {
+    this.setEmailFromCookie();
   }
 
   setEmailFromCookie(): void{
-    this.email = this.cookieService.get('e-mail');
+    if (this.cookieService.check('e-mail')){
+      this.email = this.cookieService.get('e-mail');
+    }
   }
 
   validateUser(email: string, password: string): Observable<{result: string}> {
