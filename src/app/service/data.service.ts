@@ -40,7 +40,7 @@ export class DataService {
   }
 
   getDashboard(): Observable<Dashboard>{
-    return this.http.get<any>(environment.restUrl + '/api/dashboard/' + this.email, {withCredentials: true})
+    return this.http.get<Dashboard>(environment.restUrl + '/api/dashboard/' + this.email, {withCredentials: true})
       .pipe(
         map(
           data => {

@@ -3,9 +3,10 @@ export class Dashboard{
   difference = 0.0;
 
   static fromHttp(dashboard: Dashboard): Dashboard {
-    const newUser = new Dashboard();
-    newUser.totalBalance = dashboard.totalBalance;
-    newUser.difference = dashboard.difference;
-    return newUser;
+    // zmienić nazwy zmiennych
+    const newDashboard = new Dashboard();
+    newDashboard.totalBalance = dashboard.totalBalance;
+    newDashboard.difference = dashboard.difference;
+    return newDashboard;
   }
 }
