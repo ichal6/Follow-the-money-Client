@@ -9,23 +9,44 @@ import {ActivatedRoute, Router} from '@angular/router';
   styleUrls: ['./register-form.component.css']
 })
 export class RegisterFormComponent implements OnInit, OnDestroy {
-
   message = '';
   email: string;
   password: string;
+  subscription: Subscription;
   name: string;
 
-  constructor() {
+  constructor(private authService: AuthService,
+              private route: Router,
+              private activatedRoute: ActivatedRoute) { }
+
+  ngOnInit(): void{
+    this.subscription = this.authService.register().subscribe(
+      result => {
+        if (result) {
+          console.log('Register has been successfully');
+          const url = this.activatedRoute.snapshot.queryParams.requested;
+          if (url != null){
+            console.log('To jest url - ', url);
+            this.route.navigateByUrl(url);
+          }else {
+            console.log('nie ma url :-(');
+            this.route.navigate(['portal']);
+          }
+        }
+        else {
+          console.log('Register has not been successfully');
+          this.message = 'Your username or password was not recognised - try again.';
+        }
+      }
+    );
+    this.authService.checkIfAlreadyAuthenticated();
   }
 
-  ngOnInit(): void {
-
+  ngOnDestroy(): void{
+    this.subscription.unsubscribe();
   }
 
-  ngOnDestroy(): void {
-  }
-
-  onSubmit(): void {
-    this.message = 'You provide incorrect data.';
+  onSubmit(): void{
+    this.authService.authenticate(this.email, this.password);
   }
 }

@@ -49,4 +49,8 @@ export class DataService {
         )
       );
   }
+
+  register(): Observable<any>{
+    return null;
+  }
 }
