@@ -5,6 +5,7 @@ import {environment} from '../../environments/environment';
 import {CookieService} from 'ngx-cookie-service';
 import {map} from 'rxjs/operators';
 import {Dashboard} from '../model/Dashboard';
+import {User} from '../model/User';
 
 @Injectable({
   providedIn: 'root'
@@ -50,7 +51,8 @@ export class DataService {
       );
   }
 
-  register(): Observable<any>{
-    return null;
+  register(user: User, password: string): Observable<any>{
+    const userWithPassword = {name: user.name, email: user.email, password};
+    return this.http.post<any>(environment.restUrl + '/register', userWithPassword, {withCredentials: true});
   }
 }

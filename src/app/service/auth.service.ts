@@ -41,7 +41,4 @@ export class AuthService {
     this.authenticationResultEvent.emit(false);
   }
 
-  register(): Observable<any>{
-    return this.dataService.register();
-  }
 }
