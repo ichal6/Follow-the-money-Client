@@ -19,7 +19,7 @@ h1 {
   .container {
     display: flex;
     width: 100%;
-    height: 100%;
+    height: 100% !important;
   }
 
   input {
@@ -30,9 +30,5 @@ h1 {
     width: 100%;
     height: 100%;
     grid-template-columns: 25% 25% 25% 25%;
-  }
-
-  .box-account {
-    margin: 0 10px 0;
   }
 }
