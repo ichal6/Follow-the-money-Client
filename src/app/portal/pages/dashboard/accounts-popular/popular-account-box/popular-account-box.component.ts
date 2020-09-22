@@ -25,7 +25,6 @@ export class PopularAccountBoxComponent implements OnInit {
   }
 
   urlToImage(): string{
-    console.log(this.account);
     if (this.account.accountType === AccountType.CASH){
      return 'wallet-type.png';
     }

@@ -10,7 +10,6 @@ export class Dashboard{
     newDashboard.totalBalance = dashboard.totalBalance;
     newDashboard.difference = dashboard.difference;
     newDashboard.popularAccounts = this.fillPopularAccounts(dashboard);
-    console.log(dashboard, newDashboard);
     return newDashboard;
   }
 
