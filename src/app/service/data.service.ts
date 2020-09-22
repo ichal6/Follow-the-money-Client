@@ -51,8 +51,8 @@ export class DataService {
       );
   }
 
-  register(user: User, password: string): Observable<any>{
+  register(user: User, password: string): Observable<User>{
     const userWithPassword = {name: user.name, email: user.email, password};
-    return this.http.post<any>(environment.restUrl + '/register', userWithPassword, {withCredentials: true});
+    return this.http.post<User>(environment.restUrl + '/register', userWithPassword);
   }
 }
