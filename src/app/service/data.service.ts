@@ -5,7 +5,7 @@ import {environment} from '../../environments/environment';
 import {CookieService} from 'ngx-cookie-service';
 import {map} from 'rxjs/operators';
 import {Dashboard} from '../model/Dashboard';
-import {Account} from '../model/Account';
+import {User} from '../model/User';
 
 @Injectable({
   providedIn: 'root'
@@ -41,7 +41,7 @@ export class DataService {
   }
 
   getDashboard(): Observable<Dashboard>{
-    return this.http.get<any>(environment.restUrl + '/api/dashboard/' + this.email, {withCredentials: true})
+    return this.http.get<Dashboard>(environment.restUrl + '/api/dashboard/' + this.email, {withCredentials: true})
       .pipe(
         map(
           data => {
@@ -49,5 +49,10 @@ export class DataService {
           }
         )
       );
+  }
+
+  register(user: User, password: string): Observable<User>{
+    const userWithPassword = {name: user.name, email: user.email, password};
+    return this.http.post<User>(environment.restUrl + '/register', userWithPassword);
   }
 }
