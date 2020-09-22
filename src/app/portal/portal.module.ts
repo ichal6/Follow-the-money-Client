@@ -14,6 +14,9 @@ import { AccountsPopularComponent } from './pages/dashboard/accounts-popular/acc
 import { AccountsAllComponent } from './pages/accounts/accounts-all/accounts-all.component';
 import { AccountsFormComponent } from './pages/accounts/accounts-form/accounts-form.component';
 import {ChartsModule} from 'ng2-charts';
+import { SingleAccountComponent } from './pages/dashboard/accounts-popular/single-account/single-account.component';
+import { SingleActivityComponent } from './pages/dashboard/activity/single-activity/single-activity.component';
+import {PrefetchDashboardService} from '../service/prefetch-dashboard.service';
 
 const routes: Routes = [
   {
@@ -23,7 +26,8 @@ const routes: Routes = [
       {
         path: '',
         component: DashboardComponent }
-    ]
+    ],
+    resolve: {dashboard: PrefetchDashboardService}
   },
   {
     path: 'accounts',
@@ -50,6 +54,8 @@ const routes: Routes = [
     AccountsPopularComponent,
     AccountsAllComponent,
     AccountsFormComponent,
+    SingleAccountComponent,
+    SingleActivityComponent,
   ],
   imports: [
     CommonModule,

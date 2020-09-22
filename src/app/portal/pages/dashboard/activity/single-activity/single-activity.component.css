@@ -1,0 +1,37 @@
+p, h2 {
+  margin: 0 0 5px;
+}
+
+p {
+  font-size: 10px;
+}
+
+.activity {
+  display: flex;
+  flex-direction: column;
+  background-color: #FFFFFF;
+  padding: 10px 10px 10px 20px;
+}
+
+.activity-top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.activity-top h2 {
+  font-size: 12px;
+  margin-top: 12px;
+}
+
+.activity-top p {
+  font-size: 12px;
+}
+
+.cost {
+  align-self: flex-end;
+}
+
+.activity-addresses {
+  display: flex;
+  flex-direction: row;
+}

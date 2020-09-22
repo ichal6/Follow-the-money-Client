@@ -1,5 +1,6 @@
 import {EventEmitter, Injectable } from '@angular/core';
 import {DataService} from './data.service';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,7 @@ export class AuthService {
       next => {
         this.isAuthenticated = true;
         this.authenticationResultEvent.emit(true);
+        this.dataService.setEmailFromCookie();
       },
       error => {
         console.log(error);
@@ -38,4 +40,5 @@ export class AuthService {
     this.isAuthenticated = false;
     this.authenticationResultEvent.emit(false);
   }
+
 }

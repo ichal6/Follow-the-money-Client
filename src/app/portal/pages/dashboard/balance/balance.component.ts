@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {DataService} from '../../../../service/data.service';
+import {Component, Input, OnInit} from '@angular/core';
+import {Dashboard} from '../../../../model/Dashboard';
 
 @Component({
   selector: 'app-balance',
@@ -7,20 +7,13 @@ import {DataService} from '../../../../service/data.service';
   styleUrls: ['./balance.component.css']
 })
 export class BalanceComponent implements OnInit {
-  totalBalance: number;
+  @Input()
+  dashboard: Dashboard;
 
-  constructor(private dataService: DataService) {
+  constructor() {
   }
 
   ngOnInit(): void {
-    this.dataService.getDashboard().subscribe(
-      next => {
-        this.totalBalance = next.totalBalance;
-      },
-      error => {
-        console.log('problem with server side', error);
-      }
-    );
   }
 
 }
