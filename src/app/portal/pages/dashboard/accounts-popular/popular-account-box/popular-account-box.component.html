@@ -1,11 +1,11 @@
 <div class="box-account" [style.background-color]="currentColor">
   <div class="box-account-top">
-    <img src="assets/icons/dashboard/wallet-type.png" alt="icon bank/wallet">
+    <img src="assets/icons/dashboard/{{urlToImage()}}" alt="icon bank/wallet">
     <a (click)="displayPopup($event)">...</a>
   </div>
   <div class="box-account-bottom">
-    <p>Portfel Elżbieta</p>
-    <p class="balance-value">$3005.00</p>
+    <p>{{account.name}}</p>
+    <p class="balance-value">${{account.currentBalance}}</p>
   </div>
 </div>
 <div class="dropdown-content" [style.display]="modeDisplayPopup" [style.top]="coordinates[0]"

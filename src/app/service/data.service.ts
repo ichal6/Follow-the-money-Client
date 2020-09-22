@@ -5,6 +5,7 @@ import {environment} from '../../environments/environment';
 import {CookieService} from 'ngx-cookie-service';
 import {map} from 'rxjs/operators';
 import {Dashboard} from '../model/Dashboard';
+import {Account} from '../model/Account';
 
 @Injectable({
   providedIn: 'root'
