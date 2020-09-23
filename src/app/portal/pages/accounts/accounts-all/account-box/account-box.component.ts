@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {PopupService} from '../../../../../service/popup.service';
-import {Account} from '../../../../../model/Account';
+import {Account, AccountType} from '../../../../../model/Account';
 
 @Component({
   selector: 'app-account-box',
@@ -8,11 +8,11 @@ import {Account} from '../../../../../model/Account';
   styleUrls: ['./account-box.component.css']
 })
 export class AccountBoxComponent implements OnInit {
+  static count = 0;
   @Input()
   account: Account;
   modeDisplayPopup: string;
   coordinates = [];
-  count = 0;
   colorsArray = ['#F4BB4A', '#F31259', '#FF7D44', '#564193'];
   currentColor: string;
 
@@ -20,7 +20,16 @@ export class AccountBoxComponent implements OnInit {
 
   ngOnInit(): void {
     this.modeDisplayPopup = 'none';
-    this.currentColor = this.getRandomColor();
+    this.currentColor = this.getColor();
+  }
+
+  urlToImage(): string{
+    if (this.account.accountType === AccountType.CASH){
+      return 'wallet-type.png';
+    }
+    else{
+      return 'bank-type.png';
+    }
   }
 
   displayPopup(event): void {
@@ -34,7 +43,10 @@ export class AccountBoxComponent implements OnInit {
     }
   }
 
-  getRandomColor(): string {
-    return this.colorsArray[Math.floor(Math.random() * this.colorsArray.length)];
+  getColor(): string {
+    if (AccountBoxComponent.count >= this.colorsArray.length){
+      AccountBoxComponent.count = 0;
+    }
+    return this.colorsArray[AccountBoxComponent.count++];
   }
 }
