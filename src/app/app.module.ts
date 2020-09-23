@@ -10,10 +10,11 @@ import { PortalComponent } from './portal/portal.component';
 import { PortalModule } from './portal/portal.module';
 import { ChartsModule } from 'ng2-charts';
 import {EnterPageModule} from './enter-page/enter-page.module';
+import {AuthRouteGuardService} from './service/auth-route-guard.service';
 
 const routes: Routes = [
   {path: 'login', component: EnterPageComponent},
-  {path: 'portal', component: PortalComponent},
+  {path: 'portal', component: PortalComponent, canActivate : [AuthRouteGuardService]},
   {path: '**', redirectTo: '/login'}
 ];
 

@@ -18,6 +18,8 @@ import {SingleActivityComponent} from './pages/dashboard/activity/single-activit
 import {PrefetchDashboardService} from '../service/prefetch-dashboard.service';
 import {PopularAccountBoxComponent} from './pages/dashboard/accounts-popular/popular-account-box/popular-account-box.component';
 import {AccountBoxComponent} from './pages/accounts/accounts-all/account-box/account-box.component';
+import {PortalComponent} from './portal.component';
+import {AuthRouteGuardService} from '../service/auth-route-guard.service';
 
 const routes: Routes = [
   {
@@ -29,7 +31,8 @@ const routes: Routes = [
         component: DashboardComponent
       }
     ],
-    resolve: {dashboard: PrefetchDashboardService}
+    resolve: {dashboard: PrefetchDashboardService},
+    canActivate : [AuthRouteGuardService]
   },
   {
     path: 'accounts',
@@ -39,7 +42,8 @@ const routes: Routes = [
         path: '',
         component: AccountsComponent
       }
-    ]
+    ],
+    canActivate : [AuthRouteGuardService]
   }
 ];
 
