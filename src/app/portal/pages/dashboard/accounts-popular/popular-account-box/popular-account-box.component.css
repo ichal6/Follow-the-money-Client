@@ -1,11 +1,12 @@
-
 .box-account {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   border-radius: 10px;
   color: #FFFFFF;
-  padding: 10px;
+  padding: 0 10px 0;
   margin: 10px;
+  height: 100%;
 }
 
 .box-account p {
@@ -21,6 +22,10 @@
   margin-bottom: 10px;
 }
 
+.box-account-bottom {
+  margin-bottom: 15px;
+}
+
 .box-account-top a {
   font-size: 36px;
   margin-bottom: 20px;
@@ -31,7 +36,6 @@
   font-family: "Poppins Bold", serif;
   font-size: 20px !important;
 }
-
 
 .dropdown-content {
   width: 122px;

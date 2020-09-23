@@ -3,7 +3,7 @@
   <div class="container">
     <input type="image" src="assets/icons/dashboard/plus-button.png" alt="plus-button"/>
     <div id="popular-accounts">
-      <app-single-account [backgroundColor] = "colorsArray[0]"></app-single-account>
+      <app-popular-account-box *ngFor="let account of dashboard.popularAccounts" [account] = account></app-popular-account-box>
     </div>
   </div>
 </div>

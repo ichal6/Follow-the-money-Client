@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {PopupService} from '../../../../service/popup.service';
+import {Component, Input, OnInit} from '@angular/core';
+import {Dashboard} from '../../../../model/Dashboard';
 
 @Component({
   selector: 'app-accounts-popular',
@@ -7,8 +7,8 @@ import {PopupService} from '../../../../service/popup.service';
   styleUrls: ['./accounts-popular.component.css']
 })
 export class AccountsPopularComponent implements OnInit {
-  count = 0;
-  colorsArray = ['#F4BB4A', '#F31259', '#FF7D44', '#564193'];
+  @Input()
+  dashboard: Dashboard;
 
   constructor() { }
 

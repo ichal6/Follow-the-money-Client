@@ -1,10 +1,12 @@
-<div class="box-account" [ngStyle]="{'background-color': backgroundColor}">
+<div class="box-account" [style.background-color]="currentColor">
   <div class="box-account-top">
-    <img src="assets/icons/dashboard/bank-type.png" alt="icon bank/wallet">
+    <img src="assets/icons/dashboard/{{urlToImage()}}" alt="icon bank/wallet">
     <a (click)="displayPopup($event)">...</a>
   </div>
-  <p>Portfel Elżbieta</p>
-  <p class="balance-value">$3005.00</p>
+  <div class="box-account-bottom">
+    <p>{{account.name}}</p>
+    <p class="balance-value">${{account.currentBalance}}</p>
+  </div>
 </div>
 <div class="dropdown-content" [style.display]="modeDisplayPopup" [style.top]="coordinates[0]"
      [style.left]="coordinates[1]" #dropdown>
@@ -20,4 +22,3 @@
     </li>
   </ul>
 </div>
-

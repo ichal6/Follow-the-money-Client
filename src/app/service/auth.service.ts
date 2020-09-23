@@ -1,6 +1,5 @@
 import {EventEmitter, Injectable } from '@angular/core';
 import {DataService} from './data.service';
-import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -40,5 +39,4 @@ export class AuthService {
     this.isAuthenticated = false;
     this.authenticationResultEvent.emit(false);
   }
-
 }
