@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {PopupService} from '../../../../../service/popup.service';
+import {Account} from '../../../../../model/Account';
 
 @Component({
   selector: 'app-account-box',
@@ -7,6 +8,8 @@ import {PopupService} from '../../../../../service/popup.service';
   styleUrls: ['./account-box.component.css']
 })
 export class AccountBoxComponent implements OnInit {
+  @Input()
+  account: Account;
   modeDisplayPopup: string;
   coordinates = [];
   count = 0;

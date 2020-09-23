@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Dashboard} from '../../../../model/Dashboard';
 
 @Component({
   selector: 'app-accounts-all',
@@ -6,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./accounts-all.component.css']
 })
 export class AccountsAllComponent implements OnInit {
+
+  @Input()
+  accounts: Array<Account>;
 
   constructor() { }
 
