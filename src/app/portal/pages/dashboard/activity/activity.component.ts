@@ -1,4 +1,5 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Dashboard} from '../../../../model/Dashboard';
 
 @Component({
   selector: 'app-activity',
@@ -6,6 +7,8 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./activity.component.css']
 })
 export class ActivityComponent implements OnInit {
+  @Input()
+  dashboard: Dashboard;
 
   constructor() {
   }

@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {Activity} from '../../../../../model/Activity';
 
 @Component({
   selector: 'app-single-activity',
@@ -11,6 +12,8 @@ export class SingleActivityComponent implements OnInit {
   border: string;
   @Input()
   backgroundColor: string;
+  @Input()
+  activity: Activity;
   constructor() { }
 
   ngOnInit(): void {
