@@ -1,4 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Dashboard} from '../../../../model/Dashboard';
+import {EventService} from '../../../../service/event.service';
 
 @Component({
   selector: 'app-chart',
@@ -6,6 +8,8 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./chart.component.css']
 })
 export class ChartComponent implements OnInit {
+  @Input()
+  dashboard = new Dashboard();
 
   public chartOptions = {
     scaleShowVerticalLines: false,
@@ -13,16 +17,49 @@ export class ChartComponent implements OnInit {
   };
   public chartLabels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   public chartData = [
-    {data: [2000, 2500, 1800, 2100, 2300, 500, 200, 2000, 1000, 4000, 200, 4000], label: 'Income', fill: false},
-    {data: [1500, 1200, 2000, 2000, 1000, 2000, 300, 1000, 1000, 3000, 200, 250], label: 'Expenses', fill: false}
+    {data: [], label: 'Expenses', fill: false},
+    {data: [], label: 'Income', fill: false}
   ];
   public chartType = 'line';
   public chartLegend = true;
 
-  constructor() {
+  constructor(private eventService: EventService) {
   }
 
   ngOnInit(): void {
+    this.eventService.dashboardChangedEvent.subscribe(
+        next => {
+          this.dashboard = next;
+          this.chartData = [
+            {data: [
+                this.dashboard.expenseFunds.get('JANUARY'),
+                this.dashboard.expenseFunds.get('FEBRUARY'),
+                this.dashboard.expenseFunds.get('MARCH'),
+                this.dashboard.expenseFunds.get('APRIL'),
+                this.dashboard.expenseFunds.get('MAY'),
+                this.dashboard.expenseFunds.get('JUNE'),
+                this.dashboard.expenseFunds.get('JULY'),
+                this.dashboard.expenseFunds.get('AUGUST'),
+                this.dashboard.expenseFunds.get('SEPTEMBER'),
+                this.dashboard.expenseFunds.get('OCTOBER'),
+                this.dashboard.expenseFunds.get('NOVEMBER'),
+                this.dashboard.expenseFunds.get('DECEMBER'),
+              ], label: 'Expenses', fill: false},
+            {data: [this.dashboard.incomeFunds.get('JANUARY'),
+                this.dashboard.incomeFunds.get('FEBRUARY'),
+                this.dashboard.incomeFunds.get('MARCH'),
+                this.dashboard.incomeFunds.get('APRIL'),
+                this.dashboard.incomeFunds.get('MAY'),
+                this.dashboard.incomeFunds.get('JUNE'),
+                this.dashboard.incomeFunds.get('JULY'),
+                this.dashboard.incomeFunds.get('AUGUST'),
+                this.dashboard.incomeFunds.get('SEPTEMBER'),
+                this.dashboard.incomeFunds.get('OCTOBER'),
+                this.dashboard.incomeFunds.get('NOVEMBER'),
+                this.dashboard.incomeFunds.get('DECEMBER'),
+              ], label: 'Income', fill: false},
+          ];
+        });
   }
 
 }

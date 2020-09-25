@@ -1,8 +1,11 @@
 <h1>Recent Activity</h1>
 <div class="container">
-  <app-single-activity [border] = "'10px 10px 0 0'" [backgroundColor]="'#F6F6F6'"></app-single-activity>
-  <app-single-activity [border] = "'0 0 0 0'"></app-single-activity>
-  <app-single-activity [border] = "'0 0 0 0'" [backgroundColor]="'#F6F6F6'"></app-single-activity>
-  <app-single-activity [border] = "'0 0 10px 10px'"></app-single-activity>
+  <app-single-activity
+    *ngFor="let activity of dashboard.recentActivities; first as isFirst; last as isLast; even as isEven"
+    [activity]="activity"
+    [first] = isFirst
+    [last] = isLast
+    [even] = isEven >
+  </app-single-activity>
   <button type="button">New payment</button>
 </div>
