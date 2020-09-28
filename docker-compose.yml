@@ -1,0 +1,7 @@
+version: '3'
+services:
+  ftm-client:
+    container_name: ftm_client
+    build: ./
+    ports:
+      - '8888:80'
