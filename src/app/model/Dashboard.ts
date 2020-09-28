@@ -9,6 +9,7 @@ export class Dashboard{
   incomeFunds = new Map<string, number>();
   expenseFunds = new Map<string, number>();
 
+
   static fromHttp(dashboard: Dashboard): Dashboard {
     const newDashboard = new Dashboard();
     newDashboard.totalBalance = dashboard.totalBalance;
@@ -17,6 +18,7 @@ export class Dashboard{
     newDashboard.recentActivities = this.fillRecentActivity(dashboard);
     newDashboard.expenseFunds = this.fillMap(dashboard.expenseFunds);
     newDashboard.incomeFunds = this.fillMap(dashboard.incomeFunds);
+
     return newDashboard;
   }
 
