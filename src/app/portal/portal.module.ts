@@ -21,6 +21,7 @@ import {AccountBoxComponent} from './pages/accounts/accounts-all/account-box/acc
 import {PortalComponent} from './portal.component';
 import {AuthRouteGuardService} from '../service/auth-route-guard.service';
 import { AccountsFormAddComponent } from './pages/accounts/accounts-form-add/accounts-form-add.component';
+import {FormsModule} from '@angular/forms';
 
 const routes: Routes = [
   {
@@ -70,7 +71,8 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    ChartsModule
+    ChartsModule,
+    FormsModule
   ],
   exports:
     [RouterModule]

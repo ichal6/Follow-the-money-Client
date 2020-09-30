@@ -55,6 +55,11 @@ h1 {
   cursor: pointer;
 }
 
+.message {
+  font-family: "Poppins Semibold", sans-serif;
+  color: red;
+}
+
 @media only screen and (max-width: 550px) {
   .form-button {
     width: 100%;
