@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AccountsFormEditComponent } from './accounts-form-edit.component';
 
-describe('AccountsFormComponent', () => {
+describe('AccountsFormEditComponent', () => {
   let component: AccountsFormEditComponent;
   let fixture: ComponentFixture<AccountsFormEditComponent>;
 

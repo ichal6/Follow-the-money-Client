@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {PopupService} from '../../../../../service/popup.service';
 import {Account, AccountType} from '../../../../../model/Account';
+import {FormChangeService} from '../../../../../service/form-change.service';
 
 @Component({
   selector: 'app-account-box',
@@ -16,7 +17,7 @@ export class AccountBoxComponent implements OnInit {
   colorsArray = ['#F4BB4A', '#F31259', '#FF7D44', '#564193'];
   currentColor: string;
 
-  constructor(private popupService: PopupService) { }
+  constructor(private popupService: PopupService, public formChangeService: FormChangeService) { }
 
   ngOnInit(): void {
     this.modeDisplayPopup = 'none';
@@ -41,6 +42,10 @@ export class AccountBoxComponent implements OnInit {
     } else {
       this.modeDisplayPopup = 'none';
     }
+  }
+
+  changeFormToEdit(): void {
+    this.formChangeService.changeFormToEdit(this.account);
   }
 
   getColor(): string {
