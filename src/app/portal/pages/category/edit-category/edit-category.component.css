@@ -1,0 +1,49 @@
+@font-face {
+  font-family: "Poppins Medium";
+  src: url("src/assets/fonts/Poppins-Medium.ttf");
+}
+
+@font-face {
+  font-family: "Poppins Semibold";
+  src: url("src/assets/fonts/Poppins-SemiBold.ttf");
+}
+
+div h1{
+  color: #404040;
+  font-family: "Poppins Medium", sans-serif;
+  font-size: 20px;
+}
+
+form{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+form input, form select{
+  font-family: "Poppins Medium", sans-serif;
+  font-size: 14px;
+  background-color: transparent;
+  padding-bottom: 10px;
+  border: none;
+  border-bottom: solid #CAC9CE 2px !important;
+  color: #CAC9CE;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+form select{
+  appearance: none;       /* Remove default arrow */
+  background: transparent url("../../../../../assets/icons/arrow-select.svg") no-repeat right;
+}
+
+form button {
+  width: 100%;
+  font-family: "Poppins Semibold", sans-serif;
+  font-size: 16px;
+  background-color: #0BD1B8;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 10px;
+  padding: 20px;
+}
