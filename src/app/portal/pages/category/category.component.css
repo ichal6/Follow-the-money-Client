@@ -1,0 +1,21 @@
+@font-face {
+  font-family: "Poppins Regular";
+  src: url("src/assets/fonts/Poppins-Regular.ttf");
+}
+
+div h1{
+  color: #404040;
+  font-family: "Poppins Regular", sans-serif;
+}
+
+#category-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#categories{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

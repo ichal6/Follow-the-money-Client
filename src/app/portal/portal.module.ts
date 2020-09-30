@@ -21,6 +21,9 @@ import {AccountBoxComponent} from './pages/accounts/accounts-all/account-box/acc
 import {PortalComponent} from './portal.component';
 import {AuthRouteGuardService} from '../service/auth-route-guard.service';
 import { CategoryComponent } from './pages/category/category.component';
+import { IncomeComponent } from './pages/category/income/income.component';
+import { ExpenseComponent } from './pages/category/expense/expense.component';
+import { EditCategoryComponent } from './pages/category/edit-category/edit-category.component';
 
 const routes: Routes = [
   {
@@ -76,7 +79,10 @@ const routes: Routes = [
     SingleActivityComponent,
     PopularAccountBoxComponent,
     AccountBoxComponent,
-    CategoryComponent
+    CategoryComponent,
+    IncomeComponent,
+    ExpenseComponent,
+    EditCategoryComponent
   ],
   imports: [
     CommonModule,
