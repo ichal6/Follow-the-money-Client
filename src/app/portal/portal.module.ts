@@ -20,6 +20,7 @@ import {PopularAccountBoxComponent} from './pages/dashboard/accounts-popular/pop
 import {AccountBoxComponent} from './pages/accounts/accounts-all/account-box/account-box.component';
 import {PortalComponent} from './portal.component';
 import {AuthRouteGuardService} from '../service/auth-route-guard.service';
+import { CategoryComponent } from './pages/category/category.component';
 
 const routes: Routes = [
   {
@@ -44,6 +45,17 @@ const routes: Routes = [
       }
     ],
     canActivate : [AuthRouteGuardService]
+  },
+  {
+    path: 'category',
+    component: MainPortalLayoutComponent,
+    children: [
+      {
+        path: '',
+        component: CategoryComponent
+      }
+    ],
+    canActivate : [AuthRouteGuardService]
   }
 ];
 
@@ -63,7 +75,8 @@ const routes: Routes = [
     AccountsFormComponent,
     SingleActivityComponent,
     PopularAccountBoxComponent,
-    AccountBoxComponent
+    AccountBoxComponent,
+    CategoryComponent
   ],
   imports: [
     CommonModule,
