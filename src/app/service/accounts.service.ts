@@ -43,4 +43,10 @@ export class AccountsService {
 
     return accountsTS;
   }
+
+  addAccount(newAccount: Account): Observable<Account> {
+    const accountToAdd = {name: newAccount.name, accountType: newAccount.accountType,
+      currentBalance: newAccount.startingBalance, startingBalance: newAccount.startingBalance, userEmail: this.email};
+    return this.http.post<any>(environment.restUrl + '/api/account', accountToAdd , {withCredentials : true});
+  }
 }
