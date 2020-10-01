@@ -6,7 +6,7 @@ import {Account} from '../model/Account';
 })
 export class FormChangeService {
   public formAction = 'add';
-  private account: Account;
+  public account: Account;
 
   constructor() { }
 

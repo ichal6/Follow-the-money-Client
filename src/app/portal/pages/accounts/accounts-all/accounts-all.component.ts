@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Dashboard} from '../../../../model/Dashboard';
+import {Account} from '../../../../model/Account';
 
 @Component({
   selector: 'app-accounts-all',

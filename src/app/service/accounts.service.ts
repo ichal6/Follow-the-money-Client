@@ -49,4 +49,10 @@ export class AccountsService {
       currentBalance: newAccount.startingBalance, startingBalance: newAccount.startingBalance, userEmail: this.email};
     return this.http.post<any>(environment.restUrl + '/api/account', accountToAdd , {withCredentials : true});
   }
+
+  updateAccount(updatedAccount: Account): Observable<Account> {
+    const accountToUpdate = {id: updatedAccount.id, name: updatedAccount.name, accountType: updatedAccount.accountType,
+      currentBalance: updatedAccount.currentBalance, startingBalance: updatedAccount.startingBalance, userEmail: this.email};
+    return this.http.put<any>(environment.restUrl + '/api/account', accountToUpdate , {withCredentials : true});
+  }
 }

@@ -50,6 +50,7 @@ export class AccountsFormAddComponent implements OnInit, OnDestroy {
       },
       (error) => {
         this.message = error.error;
+        console.log(error);
       }
     );
   }
