@@ -15,7 +15,7 @@ export class EditCategoryComponent implements OnInit {
   }
 
   onSubmit(): void{
-    this.categoryService.createNewCategory(new Category('nowaCategoria', GeneralType.INCOME )).subscribe(
+    this.categoryService.updateCategory(new Category('nowaCategoria', GeneralType.INCOME )).subscribe(
       category => {
         console.log(category);
       }
