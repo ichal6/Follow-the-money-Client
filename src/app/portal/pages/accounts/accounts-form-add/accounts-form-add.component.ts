@@ -14,7 +14,6 @@ export class AccountsFormAddComponent implements OnInit, OnDestroy {
   newAccount: Account;
   message: string;
 
-  @Output()
   dataChangedEvent = new EventEmitter();
 
   isNameValid = false;
@@ -46,7 +45,7 @@ export class AccountsFormAddComponent implements OnInit, OnDestroy {
     this.accountsService.addAccount(this.newAccount).subscribe(
       (account) => {
         this.dataChangedEvent.emit();
-        this.router.navigate(['portal', 'pages', 'accounts']);
+        this.redirectTo('accounts');
       },
       (error) => {
         this.message = error.error;
@@ -72,5 +71,10 @@ export class AccountsFormAddComponent implements OnInit, OnDestroy {
     this.isBalanceValid = ((this.newAccount.startingBalance != null) &&
       (this.newAccount.startingBalance.toString() !== '') &&
       !isNaN(Number(this.newAccount.startingBalance.toString())));
+  }
+
+  redirectTo(uri: string): void {
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
+      this.router.navigate([uri]));
   }
 }
