@@ -25,7 +25,7 @@ export class CategoryService {
   }
 
   getCategoriesByIncome(): Observable<Array<Category>>{
-    return this.http.get<Array<Category>>(environment.restUrl + '/api/Category/income' + this.email, {withCredentials: true})
+    return this.http.get<Array<Category>>(environment.restUrl + '/api/Category/income/' + this.email, {withCredentials: true})
       .pipe(
         map(
           data => {
@@ -40,7 +40,7 @@ export class CategoryService {
   }
 
   getCategoriesByExpense(): Observable<Array<Category>>{
-    return this.http.get<Array<Category>>(environment.restUrl + '/api/Category/expense' + this.email, {withCredentials: true})
+    return this.http.get<Array<Category>>(environment.restUrl + '/api/Category/expense/' + this.email, {withCredentials: true})
       .pipe(
         map(
           data => {
@@ -52,5 +52,10 @@ export class CategoryService {
           }
         )
       );
+  }
+
+  createNewCategory(newCategory: Category): Observable<Category>{
+    const categoryJSON = {name: newCategory.name, type: newCategory.type, subcategories: []};
+    return this.http.post<Category>(environment.restUrl + '/api/category/' + this.email, categoryJSON, {withCredentials : true});
   }
 }

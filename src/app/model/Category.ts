@@ -6,6 +6,11 @@ export class Category{
   type: GeneralType;
   subcategories: Array<Subcategory>;
 
+  constructor(name?: string, type?: GeneralType) {
+    this.name = name;
+    this.type = type;
+  }
+
   static fromHttp(category: Category): Category {
     const newCategory = new Category();
     newCategory.name = category.name;
