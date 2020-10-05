@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {PopupService} from '../../../../service/popup.service';
+import {CategoryService} from '../../../../service/category.service';
+import {Category} from '../../../../model/Category';
 
 @Component({
   selector: 'app-category-income',
@@ -9,12 +11,23 @@ import {PopupService} from '../../../../service/popup.service';
 export class IncomeComponent implements OnInit {
   modeDisplayPopup: string;
   coordinates = [];
+  categories = new Array<Category>();
 
-  constructor(private popupService: PopupService) {
+  constructor(private popupService: PopupService,
+              private categoryService: CategoryService) {
   }
 
   ngOnInit(): void {
     this.modeDisplayPopup = 'none';
+    this.categoryService.getCategoriesByIncome().subscribe(
+      categoriesFromServer => {
+        this.categories = categoriesFromServer;
+        console.log(categoriesFromServer);
+      },
+      errors => {
+        console.log('Problem with server side ', errors);
+      }
+    );
   }
 
   displayPopup(event): void {
