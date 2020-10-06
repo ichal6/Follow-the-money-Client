@@ -69,6 +69,10 @@ div h1{
   font-family: "Poppins Medium", sans-serif !important;
 }
 
+app-income-box{
+  width: 100%;
+}
+
 .dropdown-content {
   width: 125px;
   height: 57px;
