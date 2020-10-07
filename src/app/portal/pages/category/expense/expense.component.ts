@@ -15,7 +15,7 @@ export class ExpenseComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.categoryService.getCategoriesByIncome().subscribe(
+    this.categoryService.getCategoriesByExpense().subscribe(
       categoriesFromServer => {
         this.categories = categoriesFromServer;
         console.log(categoriesFromServer);
