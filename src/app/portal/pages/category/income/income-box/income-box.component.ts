@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Category} from '../../../../../model/Category';
 import {PopupService} from '../../../../../service/popup.service';
+import {CategoryService} from '../../../../../service/category.service';
 
 @Component({
   selector: 'app-income-box',
@@ -14,7 +15,8 @@ export class IncomeBoxComponent implements OnInit {
   @Input()
   category = new Category();
 
-  constructor(private popupService: PopupService) {
+  constructor(private popupService: PopupService,
+              private categoryService: CategoryService) {
   }
 
   ngOnInit(): void {
@@ -31,5 +33,16 @@ export class IncomeBoxComponent implements OnInit {
       this.modeDisplayPopup = 'none';
     }
   }
+    deleteButton(id): void{
+      this.categoryService.deleteCategory(id).subscribe(
+        next => {
+          console.log('Delete category');
+        },
+        error => {
+          console.log('Problem with server side');
+        }
+      );
+    }
+
 
 }

@@ -54,6 +54,11 @@ export class CategoryService {
       );
   }
 
+  deleteCategory(id): Observable<Category>{
+    return this.http.delete<null>(environment.restUrl + '/api/category/' + this.email + '/' + id,
+      {withCredentials: true});
+  }
+
   createNewCategory(newCategory: Category): Observable<Category>{
     const categoryJSON = {name: newCategory.name, type: newCategory.type, subcategories: []};
     return this.http.post<Category>(environment.restUrl + '/api/category/' + this.email, categoryJSON, {withCredentials : true});
