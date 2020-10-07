@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {PopupService} from '../../../../service/popup.service';
 import {Category} from '../../../../model/Category';
 import {CategoryService} from '../../../../service/category.service';
 

@@ -95,7 +95,8 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    ChartsModule
+    ChartsModule,
+    RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' })
   ],
   exports:
     [RouterModule]
