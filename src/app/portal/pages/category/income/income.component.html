@@ -1,10 +1,13 @@
 <div id="container">
   <h1>Income</h1>
   <ul class="main-list" *ngFor="let category of categories">
-    <li class="item"><app-income-box [category]="category"></app-income-box></li>
+    <li class="item">
+      <app-income-box [category]="category"></app-income-box>
+    </li>
     <ul class="sub-list" *ngIf="category.subcategories.length != 0">
-      <li class="item" *ngFor="let subcategory of category.subcategories"><div>{{subcategory.name}}</div>
-        <div class="dots" (click)="displayPopup($event)">...</div></li>
+      <li class="item" *ngFor="let subcategory of category.subcategories">
+        <app-income-subcategory-box [subcategory]="subcategory"></app-income-subcategory-box>
+      </li>
     </ul>
   </ul>
 </div>

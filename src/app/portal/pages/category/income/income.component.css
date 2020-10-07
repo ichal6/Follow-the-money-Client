@@ -69,7 +69,7 @@ div h1{
   font-family: "Poppins Medium", sans-serif !important;
 }
 
-app-income-box{
+app-income-box, app-income-subcategory-box{
   width: 100%;
 }
 
