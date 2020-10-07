@@ -26,6 +26,8 @@ import { ExpenseComponent } from './pages/category/expense/expense.component';
 import { EditCategoryComponent } from './pages/category/edit-category/edit-category.component';
 import { IncomeBoxComponent } from './pages/category/income/income-box/income-box.component';
 import { IncomeSubcategoryBoxComponent } from './pages/category/income/income-subcategory-box/income-subcategory-box.component';
+import { ExpenseSubcategoryBoxComponent } from './pages/category/expense/expense-subcategory-box/expense-subcategory-box.component';
+import { ExpenseBoxComponent } from './pages/category/expense/expense-box/expense-box.component';
 
 const routes: Routes = [
   {
@@ -86,7 +88,9 @@ const routes: Routes = [
     ExpenseComponent,
     EditCategoryComponent,
     IncomeBoxComponent,
-    IncomeSubcategoryBoxComponent
+    IncomeSubcategoryBoxComponent,
+    ExpenseSubcategoryBoxComponent,
+    ExpenseBoxComponent
   ],
   imports: [
     CommonModule,

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {PopupService} from '../../../../service/popup.service';
+import {Category} from '../../../../model/Category';
+import {CategoryService} from '../../../../service/category.service';
 
 @Component({
   selector: 'app-category-expense',
@@ -7,25 +9,21 @@ import {PopupService} from '../../../../service/popup.service';
   styleUrls: ['./expense.component.css']
 })
 export class ExpenseComponent implements OnInit {
-  modeDisplayPopup: string;
-  coordinates = [];
+  categories = new Array<Category>();
 
-  constructor(private popupService: PopupService) {
+  constructor(private categoryService: CategoryService) {
   }
 
   ngOnInit(): void {
-    this.modeDisplayPopup = 'none';
-  }
-
-  displayPopup(event): void {
-    const coordinates = [];
-    this.popupService.displayPopup(event, coordinates);
-    this.coordinates = coordinates;
-    if (this.modeDisplayPopup === 'none') {
-      this.modeDisplayPopup = 'block';
-    } else {
-      this.modeDisplayPopup = 'none';
-    }
+    this.categoryService.getCategoriesByIncome().subscribe(
+      categoriesFromServer => {
+        this.categories = categoriesFromServer;
+        console.log(categoriesFromServer);
+      },
+      errors => {
+        console.log('Problem with server side ', errors);
+      }
+    );
   }
 
 }

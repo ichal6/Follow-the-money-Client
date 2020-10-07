@@ -69,36 +69,6 @@ div h1{
   font-family: "Poppins Medium", sans-serif !important;
 }
 
-.dropdown-content {
-  width: 125px;
-  height: 57px;
-  padding: 10px 10px 0;
-  display: none;
-  float: left;
-  position: absolute;
-  background-color: #FFFFFF;
-  z-index: 300;
-  border-radius: 10px;
-}
-
-.dropdown-content ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-
-.dropdown-content li {
-  margin: 0;
-  text-align: right;
-}
-
-.dropdown-content a {
-  color: #545759;
-  font-size: 12px;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.delete-text {
-  color: #F31259 !important;
+app-expense-box, app-expense-subcategory-box{
+  width: 100%;
 }

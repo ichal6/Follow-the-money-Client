@@ -1,24 +1,13 @@
 <div id="container">
-  <h1>Expense</h1>
-  <ul class="main-list">
-    <li class="item"><div>Coffee</div><div class="dots" (click)="displayPopup($event)">...</div></li>
-    <li class="item"><div>Tea</div><div class="dots" (click)="displayPopup($event)">...</div></li>
-    <ul class="sub-list">
-      <li class="item"><div>Black Tea</div><div class="dots" (click)="displayPopup($event)">...</div></li>
-      <li class="item"><div>Green Tea</div><div class="dots" (click)="displayPopup($event)">...</div></li>
+  <h1>Income</h1>
+  <ul class="main-list" *ngFor="let category of categories">
+    <li class="item">
+      <app-expense-box [category]="category"></app-expense-box>
+    </li>
+    <ul class="sub-list" *ngIf="category.subcategories.length != 0">
+      <li class="item" *ngFor="let subcategory of category.subcategories">
+        <app-expense-subcategory-box [subcategory]="subcategory"></app-expense-subcategory-box>
+      </li>
     </ul>
-    <li class="item"><div>Milk</div><div class="dots">...</div></li>
-  </ul>
-</div>
-
-<div class="dropdown-content" [style.display]="modeDisplayPopup" [style.top]="coordinates[0]"
-     [style.left]="coordinates[1]" #dropdown>
-  <ul>
-    <li>
-      <a>Rename</a>
-    </li>
-    <li>
-      <a class="delete-text">Delete</a>
-    </li>
   </ul>
 </div>
