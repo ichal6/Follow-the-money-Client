@@ -5,7 +5,7 @@ import {Observable} from 'rxjs';
 import {Dashboard} from '../model/Dashboard';
 import {environment} from '../../environments/environment';
 import {map} from 'rxjs/operators';
-import {Category} from '../model/Category';
+import {Category, Subcategory} from '../model/Category';
 
 @Injectable({
   providedIn: 'root'
@@ -57,6 +57,11 @@ export class CategoryService {
   deleteCategory(id): Observable<Category>{
     return this.http.delete<null>(environment.restUrl + '/api/category/' + this.email + '/' + id,
       {withCredentials: true});
+  }
+
+  deleteSubcategory(idCategory, idSubcategory): Observable<Subcategory>{
+    const url = environment.restUrl + '/api/category/' + this.email + '/' + idCategory + '/' + idSubcategory;
+    return this.http.delete<null>(url, {withCredentials: true});
   }
 
   createNewCategory(newCategory: Category): Observable<Category>{
