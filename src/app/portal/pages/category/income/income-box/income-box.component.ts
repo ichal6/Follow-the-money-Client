@@ -13,7 +13,7 @@ import {Router} from '@angular/router';
 export class IncomeBoxComponent implements OnInit, OnDestroy {
   modeDisplayPopup: string;
   coordinates = [];
-  deleteSubscription: Subscription;
+  deleteSubscription2: Subscription;
 
   @Input()
   category = new Category();
@@ -38,7 +38,7 @@ export class IncomeBoxComponent implements OnInit, OnDestroy {
     }
   }
     deleteButton(id): void{
-      this.deleteSubscription = this.categoryService.deleteCategory(id).subscribe(
+      this.deleteSubscription2 = this.categoryService.deleteCategory(id).subscribe(
         next => {
           console.log('Delete category');
           this.ngOnDestroy();
@@ -56,7 +56,9 @@ export class IncomeBoxComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.deleteSubscription.unsubscribe();
+    if (this.deleteSubscription2 != null){
+      this.deleteSubscription2.unsubscribe();
+    }
     this.reloadComponent();
   }
 }

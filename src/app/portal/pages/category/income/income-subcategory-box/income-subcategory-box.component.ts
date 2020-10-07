@@ -1,5 +1,5 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {Category, Subcategory} from '../../../../../model/Category';
+import {Subcategory} from '../../../../../model/Category';
 import {PopupService} from '../../../../../service/popup.service';
 import {CategoryService} from '../../../../../service/category.service';
 import {Router} from '@angular/router';
@@ -13,7 +13,7 @@ import {Subscription} from 'rxjs';
 export class IncomeSubcategoryBoxComponent implements OnInit, OnDestroy {
   modeDisplayPopup: string;
   coordinates = [];
-  deleteSubscription: Subscription;
+  deleteSubscription1: Subscription;
 
   @Input()
   subcategory = new Subcategory();
@@ -40,7 +40,7 @@ export class IncomeSubcategoryBoxComponent implements OnInit, OnDestroy {
     }
   }
   deleteButton(id): void{
-    this.deleteSubscription = this.categoryService.deleteSubcategory(this.categoryId, id).subscribe(
+    this.deleteSubscription1 = this.categoryService.deleteSubcategory(this.categoryId, id).subscribe(
       next => {
         console.log('Delete subcategory');
         this.ngOnDestroy();
@@ -58,7 +58,9 @@ export class IncomeSubcategoryBoxComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.deleteSubscription.unsubscribe();
+    if (this.deleteSubscription1 != null){
+      this.deleteSubscription1.unsubscribe();
+    }
     this.reloadComponent();
   }
 }
