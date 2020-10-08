@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {CategoryService} from '../../../../service/category.service';
 import {Category, GeneralType} from '../../../../model/Category';
 
@@ -8,6 +8,8 @@ import {Category, GeneralType} from '../../../../model/Category';
   styleUrls: ['./edit-category.component.css']
 })
 export class EditCategoryComponent implements OnInit {
+  @Input()
+  public updateCategory: Category;
 
   constructor(private categoryService: CategoryService) { }
 

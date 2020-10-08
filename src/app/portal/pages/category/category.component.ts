@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {AccountsService} from '../../../service/accounts.service';
+import {FormChangeService} from '../../../service/form-change.service';
 
 @Component({
   selector: 'app-category',
@@ -7,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CategoryComponent implements OnInit {
 
-  constructor() { }
+  constructor(public formChangeService: FormChangeService) { }
 
   ngOnInit(): void {
   }

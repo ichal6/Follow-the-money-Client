@@ -1,0 +1,23 @@
+<div>
+  <h1>Add new account</h1>
+  <form #categoryForm="ngForm">
+    <p class="message" *ngIf="message">{{message}}</p>
+    <input type="text" class="form-input" id="name" placeholder="Name" name="name"
+           [(ngModel)]="newCategory.name" (change)="checkIfNameIsValid()" #nameField="ngModel" required>
+    <p *ngIf="!isNameValid && nameField.touched" class="message">Name should be at least 3 characters</p>
+    <select class="form-select" id="type" name="type"
+            [(ngModel)]="newCategory.type" (change)="checkIfTypeIsValid()" #typeField="ngModel" required>
+      <option [ngValue]="null" [disabled]="true" >Select category type</option>
+      <option value = "INCOME">INCOME</option>
+      <option value = "EXPENSE">EXPENSE</option>
+    </select>
+    <p class="message" *ngIf="!isTypeValid && typeField.touched">You have to choose one of the above options</p>
+    <select>
+      <option value="" selected disabled hidden>Subcategory to...</option>
+    </select>
+    <button type="button" class="form-button" (click)="onSubmit()"
+            [disabled]="categoryForm.invalid || !isNameValid || !isTypeValid">
+      Save
+    </button>
+  </form>
+</div>

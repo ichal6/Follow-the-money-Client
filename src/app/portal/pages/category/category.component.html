@@ -4,5 +4,7 @@
     <app-category-income></app-category-income>
     <app-category-expense></app-category-expense>
   </div>
-  <app-category-edit></app-category-edit>
+  <app-category-add *ngIf="this.formChangeService.formAction === 'add'"></app-category-add>
+  <app-category-edit *ngIf="this.formChangeService.formAction === 'edit'"
+                          [updateCategory]="formChangeService.category"></app-category-edit>
 </div>

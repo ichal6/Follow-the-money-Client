@@ -29,6 +29,7 @@ import { ExpenseSubcategoryBoxComponent } from './pages/category/expense/expense
 import { ExpenseBoxComponent } from './pages/category/expense/expense-box/expense-box.component';
 import {FormsModule} from '@angular/forms';
 import {AccountsFormAddComponent} from './pages/accounts/accounts-form-add/accounts-form-add.component';
+import { AddCategoryComponent } from './pages/category/add-category/add-category.component';
 
 const routes: Routes = [
   {
@@ -92,7 +93,8 @@ const routes: Routes = [
     IncomeSubcategoryBoxComponent,
     ExpenseSubcategoryBoxComponent,
     ExpenseBoxComponent,
-    AccountsFormAddComponent
+    AccountsFormAddComponent,
+    AddCategoryComponent
   ],
   imports: [
     CommonModule,
