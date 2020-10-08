@@ -1,0 +1,15 @@
+<h1>Add new account</h1>
+<form class="account-form" #accountForm="ngForm">
+  <p class="message" *ngIf="message">{{message}}</p>
+  <input type="text" class="form-input" id="name" placeholder="Name" name="name" [(ngModel)]="newAccount.name" (change)="checkIfNameIsValid()" #nameField="ngModel" required>
+  <p *ngIf="!isNameValid && nameField.touched" class="message">Name should be at least 3 characters</p>
+  <select class="form-select" id="type" name="type" [(ngModel)]="newAccount.accountType" (change)="checkIfTypeIsValid()" #typeField="ngModel" required>
+    <option [ngValue]="null" [disabled]="true" >Select account type</option>
+    <option value = "Cash">Cash</option>
+    <option value = "Bank">Bank</option>
+  </select>
+  <p class="message" *ngIf="!isTypeValid && typeField.touched">You have to choose one of the above options</p>
+  <input type="number" class="form-input" id="starting-balance" placeholder="Starting balance (USD)" name="balance" [(ngModel)]="newAccount.startingBalance" (change)="checkIfBalanceIsValid()" #balanceField="ngModel" required>
+  <p class="message" *ngIf="!isBalanceValid && balanceField.touched">Balance can't be empty or contain signs other than '.'. Must be a number: positive, negative or 0.</p>
+  <button type="button" class="form-button" (click)="onSubmit()" [disabled]="accountForm.invalid || !isNameValid || !isBalanceValid || !isTypeValid">Save</button>
+</form>

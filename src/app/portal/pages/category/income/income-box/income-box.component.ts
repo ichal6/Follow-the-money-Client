@@ -58,7 +58,7 @@ export class IncomeBoxComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     if (this.deleteSubscription2 != null){
       this.deleteSubscription2.unsubscribe();
+      this.reloadComponent();
     }
-    this.reloadComponent();
   }
 }

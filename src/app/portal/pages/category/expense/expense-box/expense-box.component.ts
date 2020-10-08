@@ -58,7 +58,7 @@ export class ExpenseBoxComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     if (this.deleteSubscription4 != null){
       this.deleteSubscription4.unsubscribe();
+      this.reloadComponent();
     }
-    this.reloadComponent();
   }
 }

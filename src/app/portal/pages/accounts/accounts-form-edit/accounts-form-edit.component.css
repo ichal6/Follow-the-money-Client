@@ -20,6 +20,7 @@ h1 {
 .account-form {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .form-select, .form-input {
@@ -53,6 +54,11 @@ h1 {
 .form-button:hover {
   transform: scale(1.05);
   cursor: pointer;
+}
+
+.message {
+  font-family: "Poppins Semibold", sans-serif;
+  color: red;
 }
 
 @media only screen and (max-width: 550px) {

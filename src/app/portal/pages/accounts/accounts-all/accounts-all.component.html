@@ -1,8 +1,4 @@
 <h1>Your accounts</h1>
 <div class="account-boxes-container">
-  <app-account-box></app-account-box>
-  <app-account-box></app-account-box>
-  <app-account-box></app-account-box>
-  <app-account-box></app-account-box>
-  <app-account-box></app-account-box>
+  <app-account-box *ngFor="let account of accounts" [account] = account></app-account-box>
 </div>

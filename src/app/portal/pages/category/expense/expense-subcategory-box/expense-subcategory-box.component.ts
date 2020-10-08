@@ -60,7 +60,7 @@ export class ExpenseSubcategoryBoxComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     if (this.deleteSubscription3 != null){
       this.deleteSubscription3.unsubscribe();
+      this.reloadComponent();
     }
-    this.reloadComponent();
   }
 }

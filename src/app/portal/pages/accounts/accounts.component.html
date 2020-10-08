@@ -1,4 +1,5 @@
 <div class="accounts-content">
-  <app-accounts-all></app-accounts-all>
-  <app-accounts-form></app-accounts-form>
+  <app-accounts-all [accounts]="accounts"></app-accounts-all>
+  <app-accounts-form-add *ngIf="this.formChangeService.formAction === 'add'"></app-accounts-form-add>
+  <app-accounts-form-edit *ngIf="this.formChangeService.formAction === 'edit'" [updatedAccount]="formChangeService.account"></app-accounts-form-edit>
 </div>
