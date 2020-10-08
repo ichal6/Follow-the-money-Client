@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnDestroy, OnInit} from '@angular/core';
 import {CategoryService} from '../../../../service/category.service';
 import {Category, GeneralType} from '../../../../model/Category';
 import {Router} from '@angular/router';
+import {FormChangeService} from '../../../../service/form-change.service';
 
 @Component({
   selector: 'app-category-edit',
@@ -20,7 +21,8 @@ export class EditCategoryComponent implements OnInit, OnDestroy {
   isTypeValid = false;
 
   constructor(private categoryService: CategoryService,
-              private router: Router) { }
+              private router: Router,
+              private formChangeService: FormChangeService) { }
 
   ngOnInit(): void {
     this.initializeForm();
@@ -39,7 +41,9 @@ export class EditCategoryComponent implements OnInit, OnDestroy {
   onSubmit(): void {
     this.message = 'Saving new account...';
     this.categoryService.updateCategory(this.updatedCategoryForm).subscribe(
-      (account) => {
+      (category) => {
+        this.formChangeService.formAction = 'add';
+        this.formChangeService.category = new Category();
         this.redirectTo('category');
       },
       (error) => {
