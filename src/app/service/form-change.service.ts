@@ -21,6 +21,7 @@ export class FormChangeService {
   changeFormToEditForCategory(categoryToEdit: Category): void {
     this.formAction = 'edit';
     this.category = categoryToEdit;
+    console.log('zmiana edit');
   }
 
   changeFormToEditForSubcategory(subcategoryToEdit: Subcategory): void {

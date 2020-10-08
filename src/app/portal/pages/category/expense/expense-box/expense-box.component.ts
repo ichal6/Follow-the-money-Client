@@ -58,6 +58,7 @@ export class ExpenseBoxComponent implements OnInit, OnDestroy {
   }
 
   changeFormToEdit(): void {
+    console.log('Tu weszłem box');
     this.formChangeService.changeFormToEditForCategory(this.category);
   }
 
