@@ -54,16 +54,16 @@ export class EditCategoryComponent implements OnInit, OnDestroy {
   }
 
   checkIfNameIsValid(): void {
-    if (this.updateCategory.name) {
-      this.isNameValid = this.updateCategory.name.trim().length >= 3;
+    if (this.updatedCategoryForm.name) {
+      this.isNameValid = this.updatedCategoryForm.name.trim().length >= 3;
     } else {
       this.isNameValid = false;
     }
   }
 
   checkIfTypeIsValid(): void {
-    this.isTypeValid = (this.updateCategory.type.toUpperCase() === GeneralType.INCOME
-      || this.updateCategory.type.toUpperCase() === GeneralType.EXPENSE);
+    this.isTypeValid = (this.updatedCategoryForm.type.toUpperCase() === GeneralType.INCOME
+      || this.updatedCategoryForm.type.toUpperCase() === GeneralType.EXPENSE);
   }
 
   redirectTo(uri: string): void {

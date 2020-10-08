@@ -47,3 +47,8 @@ form button {
   border-radius: 10px;
   padding: 20px;
 }
+
+.message {
+  font-family: "Poppins Semibold", sans-serif;
+  color: red;
+}
