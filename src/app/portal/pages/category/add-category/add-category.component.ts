@@ -15,6 +15,7 @@ import {CategoryService} from '../../../../service/category.service';
 export class AddCategoryComponent implements OnInit, OnDestroy {
 
   newCategory: Category;
+  allCategories: Array<Category>;
   message: string;
 
   dataChangedEvent = new EventEmitter();
@@ -28,10 +29,23 @@ export class AddCategoryComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.newCategory = new Category();
     this.newCategory.type = null;
+    this.loadCategories();
   }
 
   ngOnDestroy(): void {
 
+  }
+
+  loadCategories(): void {
+    this.categoryService.getAllCategories().subscribe(
+      categories => {
+        this.allCategories = categories;
+      },
+      error => {
+        this.message = error.getMessages();
+        console.log('Problem with server side.');
+      }
+    );
   }
 
   onSubmit(): void {

@@ -14,6 +14,7 @@
     <p class="message" *ngIf="!isTypeValid && typeField.touched">You have to choose one of the above options</p>
     <select>
       <option value="" selected disabled hidden>Subcategory to...</option>
+      <option *ngFor="let category of allCategories">{{category.name}}</option>
     </select>
     <button type="button" class="form-button" (click)="onSubmit()"
             [disabled]="categoryForm.invalid || !isNameValid || !isTypeValid">

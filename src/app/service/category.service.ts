@@ -24,6 +24,21 @@ export class CategoryService {
     }
   }
 
+  getAllCategories(): Observable<Array<Category>>{
+    return this.http.get<Array<Category>>(environment.restUrl + '/api/category/' + this.email, {withCredentials: true})
+      .pipe(
+        map(
+          data => {
+            const categories = new Array<Category>();
+            for (const category of data) {
+              categories.push(Category.fromHttp(category));
+            }
+            return categories;
+          }
+        )
+      );
+  }
+
   getCategoriesByIncome(): Observable<Array<Category>>{
     return this.http.get<Array<Category>>(environment.restUrl + '/api/category/income/' + this.email, {withCredentials: true})
       .pipe(
