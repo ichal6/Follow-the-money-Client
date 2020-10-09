@@ -6,5 +6,6 @@
   </div>
   <app-category-add *ngIf="this.formChangeService.formAction === 'add'"></app-category-add>
   <app-category-edit *ngIf="this.formChangeService.formAction === 'edit'"
-                          [updateCategory]="formChangeService.category"></app-category-edit>
+                          [updateCategory]="formChangeService.category"
+                          [updateSubcategory]="formChangeService.subcategory"></app-category-edit>
 </div>

@@ -7,7 +7,7 @@
      [style.left]="coordinates[1]" #dropdown>
   <ul>
     <li>
-      <a>Edit</a>
+      <a (click)="changeFormToEdit()">Edit</a>
     </li>
     <li>
       <a class="delete-text" (click)="deleteButton(subcategory.id)">Delete</a>

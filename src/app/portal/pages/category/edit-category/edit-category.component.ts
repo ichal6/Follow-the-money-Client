@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnDestroy, OnInit} from '@angular/core';
 import {CategoryService} from '../../../../service/category.service';
-import {Category, GeneralType} from '../../../../model/Category';
+import {Category, GeneralType, Subcategory} from '../../../../model/Category';
 import {Router} from '@angular/router';
 import {FormChangeService} from '../../../../service/form-change.service';
 
@@ -12,13 +12,18 @@ import {FormChangeService} from '../../../../service/form-change.service';
 export class EditCategoryComponent implements OnInit, OnDestroy {
   @Input()
   public updateCategory: Category;
+  @Input()
+  public updateSubcategory: Subcategory;
 
-  updatedCategoryForm: Category;
+  updatedCategoryForm;
 
   message: string;
+  idCategory: number;
 
   isNameValid = false;
   isTypeValid = false;
+  allCategories: Array<Category>;
+  private isSubcategory = false;
 
   constructor(private categoryService: CategoryService,
               private router: Router,
@@ -32,18 +37,55 @@ export class EditCategoryComponent implements OnInit, OnDestroy {
 
   }
 
+  loadCategories(): void {
+    this.categoryService.getAllCategories().subscribe(
+      categories => {
+        this.allCategories = categories;
+      },
+      error => {
+        this.message = error.getMessages();
+        console.log('Problem with server side.');
+      }
+    );
+  }
+
   initializeForm(): void {
-    this.updatedCategoryForm = Object.assign({}, this.updateCategory);
+    if (this.formChangeService.isSubcategory){
+      console.log('Jest subkategorią');
+      this.updatedCategoryForm = Object.assign({}, this.updateSubcategory);
+    } else{
+      this.updatedCategoryForm = Object.assign({}, this.updateCategory);
+    }
     this.checkIfNameIsValid();
     this.checkIfTypeIsValid();
   }
 
   onSubmit(): void {
     this.message = 'Saving new account...';
-    this.categoryService.updateCategory(this.updatedCategoryForm).subscribe(
+    if (this.formChangeService.isSubcategory){
+      this.saveSubcategory();
+    }
+    else{
+      this.categoryService.updateCategory(this.updatedCategoryForm).subscribe(
+        (category) => {
+          this.formChangeService.formAction = 'add';
+          this.formChangeService.category = new Category();
+          this.redirectTo('category');
+        },
+        (error) => {
+          this.message = error.error;
+          console.log(error);
+        }
+      );
+    }
+  }
+
+  saveSubcategory(): void{
+    this.categoryService.updateSubcategory(this.updatedCategoryForm, this.formChangeService.idCategoryForSubcategory).subscribe(
       (category) => {
         this.formChangeService.formAction = 'add';
-        this.formChangeService.category = new Category();
+        this.formChangeService.isSubcategory = false;
+        this.formChangeService.subcategory = new Subcategory();
         this.redirectTo('category');
       },
       (error) => {
@@ -71,4 +113,8 @@ export class EditCategoryComponent implements OnInit, OnDestroy {
       this.router.navigate([uri]));
   }
 
+  checkIfSubcategory(): void {
+    this.isSubcategory = true;
+    console.log(this.idCategory);
+  }
 }

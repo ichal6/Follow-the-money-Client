@@ -95,4 +95,10 @@ export class CategoryService {
     return this.http.put<Category>(environment.restUrl + '/api/category/' + this.email + '/' + updatedCategory.id, categoryJSON,
       {withCredentials : true});
   }
+
+  updateSubcategory(updatedSubcategory: Category, idCategory: number): Observable<Category>{
+    return this.http.put<Category>(
+      environment.restUrl + '/api/category/'  + this.email  + '/' + idCategory + '/' + updatedSubcategory.id, updatedSubcategory.name,
+      {withCredentials : true});
+  }
 }

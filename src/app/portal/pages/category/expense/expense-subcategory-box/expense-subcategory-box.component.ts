@@ -4,6 +4,7 @@ import {PopupService} from '../../../../../service/popup.service';
 import {Subscription} from 'rxjs';
 import {CategoryService} from '../../../../../service/category.service';
 import {Router} from '@angular/router';
+import {FormChangeService} from '../../../../../service/form-change.service';
 
 @Component({
   selector: 'app-expense-subcategory-box',
@@ -22,6 +23,7 @@ export class ExpenseSubcategoryBoxComponent implements OnInit, OnDestroy {
 
   constructor(private popupService: PopupService,
               private categoryService: CategoryService,
+              private formChangeService: FormChangeService,
               private router: Router) {
   }
 
@@ -55,6 +57,11 @@ export class ExpenseSubcategoryBoxComponent implements OnInit, OnDestroy {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.router.onSameUrlNavigation = 'reload';
     this.router.navigate(['/category']);
+  }
+
+  changeFormToEdit(): void {
+    console.log('Tu weszłem box');
+    this.formChangeService.changeFormToEditForSubcategory(this.categoryId, this.subcategory);
   }
 
   ngOnDestroy(): void {
