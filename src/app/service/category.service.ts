@@ -84,6 +84,12 @@ export class CategoryService {
     return this.http.post<Category>(environment.restUrl + '/api/category/' + this.email, categoryJSON, {withCredentials : true});
   }
 
+  createNewSubcategory(newCategory: Category, idCategory: number): Observable<Category>{
+    const subcategoryJSON = {name: newCategory.name, type: newCategory.type, subcategories: []};
+    return this.http.post<Category>(environment.restUrl + '/api/category/'  + this.email  + '/' + idCategory, subcategoryJSON,
+      {withCredentials : true});
+  }
+
   updateCategory(updatedCategory: Category): Observable<Category>{
     const categoryJSON = {id: updatedCategory.id, name: updatedCategory.name, type: updatedCategory.type, subcategories: []};
     return this.http.put<Category>(environment.restUrl + '/api/category/' + this.email + '/' + updatedCategory.id, categoryJSON,

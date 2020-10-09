@@ -16,12 +16,14 @@ export class AddCategoryComponent implements OnInit, OnDestroy {
 
   newCategory: Category;
   allCategories: Array<Category>;
+  idCategory: number;
   message: string;
 
   dataChangedEvent = new EventEmitter();
 
   isNameValid = false;
   isTypeValid = false;
+  isSubcategory = false;
 
   constructor(private categoryService: CategoryService,
               private router: Router) { }
@@ -49,8 +51,24 @@ export class AddCategoryComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(): void {
-    this.message = 'Saving new account...';
+    this.message = 'Saving new category...';
+    if (this.isSubcategory){
+      this.saveSubcategory();
+    }
     this.categoryService.createNewCategory(this.newCategory).subscribe(
+      (account) => {
+        this.dataChangedEvent.emit();
+        this.redirectTo('category');
+      },
+      (error) => {
+        this.message = error.error;
+        console.log(error);
+      }
+    );
+  }
+
+  saveSubcategory(): void{
+    this.categoryService.createNewSubcategory(this.newCategory, this.idCategory).subscribe(
       (account) => {
         this.dataChangedEvent.emit();
         this.redirectTo('category');
@@ -80,4 +98,8 @@ export class AddCategoryComponent implements OnInit, OnDestroy {
       this.router.navigate([uri]));
   }
 
+  checkIfSubcategory(): void {
+    this.isSubcategory = true;
+    console.log(this.idCategory);
+  }
 }
