@@ -52,3 +52,9 @@ form button {
   font-family: "Poppins Semibold", sans-serif;
   color: red;
 }
+
+@media only screen and (min-width: 800px) {
+  .form-button{
+    width: 150px !important;
+  }
+}
