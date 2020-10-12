@@ -61,7 +61,7 @@ export class EditCategoryComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(): void {
-    this.message = 'Saving new account...';
+    this.message = 'Saving new category...';
     if (this.formChangeService.isSubcategory){
       this.saveSubcategory();
     }
