@@ -19,3 +19,39 @@ div h1{
   flex-direction: column;
   justify-content: space-between;
 }
+
+@media only screen and (min-width: 800px) {
+  #categories {
+    flex-direction: row;
+  }
+
+  app-category-expense, app-category-income{
+    width: 100%;
+  }
+
+  app-category-income{
+    margin-right: 10px;
+  }
+
+  app-category-expense{
+    margin-left: 10px;
+  }
+}
+
+@media only screen and (min-width: 1300px) {
+  #category-container{
+    flex-direction: row;
+    width: 100%;
+  }
+
+  #categories {
+    flex-direction: row;
+    margin-right: 10px;
+    width: 66%;
+  }
+
+  app-category-add, app-category-edit {
+    margin-left: 10px;
+    width: 33%;
+  }
+}
