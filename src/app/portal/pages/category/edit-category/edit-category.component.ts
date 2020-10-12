@@ -1,6 +1,6 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {CategoryService} from '../../../../service/category.service';
-import {Category, GeneralType, Subcategory} from '../../../../model/Category';
+import {Category, Subcategory} from '../../../../model/Category';
 import {Router} from '@angular/router';
 import {FormChangeService} from '../../../../service/form-change.service';
 
@@ -18,12 +18,9 @@ export class EditCategoryComponent implements OnInit, OnDestroy {
   updatedCategoryForm;
 
   message: string;
-  idCategory: number;
 
   isNameValid = false;
-  isTypeValid = false;
   allCategories: Array<Category>;
-  private isSubcategory = false;
 
   constructor(private categoryService: CategoryService,
               private router: Router,
@@ -37,18 +34,6 @@ export class EditCategoryComponent implements OnInit, OnDestroy {
 
   }
 
-  loadCategories(): void {
-    this.categoryService.getAllCategories().subscribe(
-      categories => {
-        this.allCategories = categories;
-      },
-      error => {
-        this.message = error.getMessages();
-        console.log('Problem with server side.');
-      }
-    );
-  }
-
   initializeForm(): void {
     if (this.formChangeService.isSubcategory){
       this.updatedCategoryForm = Object.assign({}, this.updateSubcategory);
@@ -56,7 +41,6 @@ export class EditCategoryComponent implements OnInit, OnDestroy {
       this.updatedCategoryForm = Object.assign({}, this.updateCategory);
     }
     this.checkIfNameIsValid();
-    this.checkIfTypeIsValid();
   }
 
   onSubmit(): void {
@@ -106,17 +90,8 @@ export class EditCategoryComponent implements OnInit, OnDestroy {
     }
   }
 
-  checkIfTypeIsValid(): void {
-    this.isTypeValid = (this.updatedCategoryForm.type.toUpperCase() === GeneralType.INCOME
-      || this.updatedCategoryForm.type.toUpperCase() === GeneralType.EXPENSE);
-  }
-
   redirectTo(uri: string): void {
     this.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
       this.router.navigate([uri]));
-  }
-
-  checkIfSubcategory(): void {
-    this.isSubcategory = true;
   }
 }

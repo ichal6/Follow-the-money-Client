@@ -20,6 +20,7 @@ export class AddCategoryComponent implements OnInit, OnDestroy {
   isNameValid = false;
   isTypeValid = false;
   isSubcategory = false;
+  isVisible = false;
 
   constructor(private categoryService: CategoryService,
               private router: Router) { }
@@ -38,6 +39,7 @@ export class AddCategoryComponent implements OnInit, OnDestroy {
     this.categoryService.getAllCategories().subscribe(
       categories => {
         this.allCategories = categories;
+        this.allCategories.push(new Category('Subcategory to...'));
       },
       error => {
         this.message = error.getMessages();
