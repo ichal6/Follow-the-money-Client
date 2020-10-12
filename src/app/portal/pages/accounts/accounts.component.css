@@ -8,7 +8,7 @@ app-accounts-all {
   flex: 1.6;
 }
 
-app-accounts-form {
+app-accounts-form-add, app-accounts-form-edit {
   flex: 1;
 }
 

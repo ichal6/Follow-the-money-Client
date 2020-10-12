@@ -1,0 +1,14 @@
+<h1>Edit category</h1>
+<div>
+  <form #categoryForm="ngForm">
+    <p class="message" *ngIf="message">{{message}}</p>
+    <input type="text" class="form-input" id="name" placeholder="Name" name="name"
+           [(ngModel)]="updatedCategoryForm.name" (change)="checkIfNameIsValid()" #nameField="ngModel" required>
+    <p *ngIf="!isNameValid && nameField.touched" class="message">Name should be at least 3 characters</p>
+
+    <button type="button" class="form-button" (click)="onSubmit()"
+            [disabled]="categoryForm.invalid || !isNameValid">
+      Save
+    </button>
+  </form>
+</div>

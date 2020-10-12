@@ -12,14 +12,24 @@ import {ChartComponent} from './pages/dashboard/chart/chart.component';
 import {ActivityComponent} from './pages/dashboard/activity/activity.component';
 import {AccountsPopularComponent} from './pages/dashboard/accounts-popular/accounts-popular.component';
 import {AccountsAllComponent} from './pages/accounts/accounts-all/accounts-all.component';
-import {AccountsFormComponent} from './pages/accounts/accounts-form/accounts-form.component';
+import {AccountsFormEditComponent} from './pages/accounts/accounts-form-edit/accounts-form-edit.component';
 import {ChartsModule} from 'ng2-charts';
 import {SingleActivityComponent} from './pages/dashboard/activity/single-activity/single-activity.component';
 import {PrefetchDashboardService} from '../service/prefetch-dashboard.service';
 import {PopularAccountBoxComponent} from './pages/dashboard/accounts-popular/popular-account-box/popular-account-box.component';
 import {AccountBoxComponent} from './pages/accounts/accounts-all/account-box/account-box.component';
-import {PortalComponent} from './portal.component';
 import {AuthRouteGuardService} from '../service/auth-route-guard.service';
+import { CategoryComponent } from './pages/category/category.component';
+import { IncomeComponent } from './pages/category/income/income.component';
+import { ExpenseComponent } from './pages/category/expense/expense.component';
+import { EditCategoryComponent } from './pages/category/edit-category/edit-category.component';
+import { IncomeBoxComponent } from './pages/category/income/income-box/income-box.component';
+import { IncomeSubcategoryBoxComponent } from './pages/category/income/income-subcategory-box/income-subcategory-box.component';
+import { ExpenseSubcategoryBoxComponent } from './pages/category/expense/expense-subcategory-box/expense-subcategory-box.component';
+import { ExpenseBoxComponent } from './pages/category/expense/expense-box/expense-box.component';
+import {FormsModule} from '@angular/forms';
+import {AccountsFormAddComponent} from './pages/accounts/accounts-form-add/accounts-form-add.component';
+import { AddCategoryComponent } from './pages/category/add-category/add-category.component';
 
 const routes: Routes = [
   {
@@ -44,6 +54,17 @@ const routes: Routes = [
       }
     ],
     canActivate : [AuthRouteGuardService]
+  },
+  {
+    path: 'category',
+    component: MainPortalLayoutComponent,
+    children: [
+      {
+        path: '',
+        component: CategoryComponent
+      }
+    ],
+    canActivate : [AuthRouteGuardService]
   }
 ];
 
@@ -60,15 +81,27 @@ const routes: Routes = [
     ActivityComponent,
     AccountsPopularComponent,
     AccountsAllComponent,
-    AccountsFormComponent,
+    AccountsFormEditComponent,
     SingleActivityComponent,
     PopularAccountBoxComponent,
-    AccountBoxComponent
+    AccountBoxComponent,
+    CategoryComponent,
+    IncomeComponent,
+    ExpenseComponent,
+    EditCategoryComponent,
+    IncomeBoxComponent,
+    IncomeSubcategoryBoxComponent,
+    ExpenseSubcategoryBoxComponent,
+    ExpenseBoxComponent,
+    AccountsFormAddComponent,
+    AddCategoryComponent
   ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    ChartsModule
+    ChartsModule,
+    RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' }),
+    FormsModule
   ],
   exports:
     [RouterModule]

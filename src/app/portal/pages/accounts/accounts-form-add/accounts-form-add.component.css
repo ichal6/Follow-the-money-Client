@@ -1,0 +1,67 @@
+@font-face {
+  font-family: "Poppins Regular";
+  src: url("src/assets/fonts/Poppins-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Poppins Medium";
+  src: url("src/assets/fonts/Poppins-Medium.ttf");
+}
+
+@font-face {
+  font-family: "Poppins Semibold";
+  src: url("src/assets/fonts/Poppins-SemiBold.ttf");
+}
+
+h1 {
+  font-size: 24px;
+}
+
+.account-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-select, .form-input {
+  background-color: transparent;
+  border: none;
+  color: #A0A0A1;
+  font-family: "Poppins Medium", sans-serif;
+  font-size: 16px;
+  border-bottom: 1px solid #A0A0A1;
+  margin: 30px 0 30px;
+  padding-bottom: 15px;
+}
+
+.form-input::placeholder {
+  color: #A0A0A1;
+}
+
+.form-button {
+  width: 180px;
+  height: 50px;
+  background: #0BD1B8;
+  border-radius: 10px;
+  font-family: "Poppins Semibold", sans-serif;
+  font-size: 18px;
+  border: none;
+  color: #ffffff;
+  margin-top: 30px;
+  transition: all .2s ease-out;
+}
+
+.form-button:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+.message {
+  font-family: "Poppins Semibold", sans-serif;
+  color: red;
+}
+
+@media only screen and (max-width: 550px) {
+  .form-button {
+    width: 100%;
+  }
+}
