@@ -56,7 +56,7 @@ export class AccountsFormEditComponent implements OnInit, OnDestroy {
     this.accountsService.updateAccount(this.updatedAccountForm).subscribe(
       (account) => {
         this.dataChangedEvent.emit();
-        this.router.navigate(['portal', 'pages', 'accounts']);
+        this.redirectTo('accounts');
       },
       (error) => {
         this.message = error.error;
@@ -81,5 +81,10 @@ export class AccountsFormEditComponent implements OnInit, OnDestroy {
     this.isBalanceValid = ((this.updatedAccountForm.startingBalance != null) &&
       (this.updatedAccountForm.startingBalance.toString() !== '') &&
       !isNaN(Number(this.updatedAccountForm.startingBalance.toString())));
+  }
+
+  redirectTo(uri: string): void {
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
+      this.router.navigate([uri]));
   }
 }

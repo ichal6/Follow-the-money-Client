@@ -55,4 +55,8 @@ export class AccountsService {
       currentBalance: updatedAccount.currentBalance, startingBalance: updatedAccount.startingBalance, userEmail: this.email};
     return this.http.put<any>(environment.restUrl + '/api/account', accountToUpdate , {withCredentials : true});
   }
+
+  deleteAccount(accountToDelete: Account): Observable<any> {
+    return this.http.delete<any>(environment.restUrl + '/api/account/' + accountToDelete.id, {withCredentials: true});
+  }
 }
