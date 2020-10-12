@@ -42,7 +42,6 @@ export class ExpenseBoxComponent implements OnInit, OnDestroy {
   deleteButton(id): void{
     this.deleteSubscription4 = this.categoryService.deleteCategory(id).subscribe(
       next => {
-        console.log('Delete category');
         this.ngOnDestroy();
       },
       error => {
@@ -58,7 +57,6 @@ export class ExpenseBoxComponent implements OnInit, OnDestroy {
   }
 
   changeFormToEdit(): void {
-    console.log('Tu weszłem box');
     this.formChangeService.changeFormToEditForCategory(this.category);
   }
 

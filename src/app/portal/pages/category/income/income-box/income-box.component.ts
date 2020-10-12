@@ -42,7 +42,6 @@ export class IncomeBoxComponent implements OnInit, OnDestroy {
     deleteButton(id): void{
       this.deleteSubscription2 = this.categoryService.deleteCategory(id).subscribe(
         next => {
-          console.log('Delete category');
           this.ngOnDestroy();
         },
         error => {

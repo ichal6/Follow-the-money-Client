@@ -17,7 +17,6 @@ export class ExpenseComponent implements OnInit {
     this.categoryService.getCategoriesByExpense().subscribe(
       categoriesFromServer => {
         this.categories = categoriesFromServer;
-        console.log(categoriesFromServer);
       },
       errors => {
         console.log('Problem with server side ', errors);

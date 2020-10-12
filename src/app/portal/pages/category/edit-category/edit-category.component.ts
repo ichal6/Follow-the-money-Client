@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {CategoryService} from '../../../../service/category.service';
 import {Category, GeneralType, Subcategory} from '../../../../model/Category';
 import {Router} from '@angular/router';
@@ -51,7 +51,6 @@ export class EditCategoryComponent implements OnInit, OnDestroy {
 
   initializeForm(): void {
     if (this.formChangeService.isSubcategory){
-      console.log('Jest subkategorią');
       this.updatedCategoryForm = Object.assign({}, this.updateSubcategory);
     } else{
       this.updatedCategoryForm = Object.assign({}, this.updateCategory);
@@ -115,6 +114,5 @@ export class EditCategoryComponent implements OnInit, OnDestroy {
 
   checkIfSubcategory(): void {
     this.isSubcategory = true;
-    console.log(this.idCategory);
   }
 }

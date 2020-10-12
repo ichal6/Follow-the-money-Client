@@ -44,7 +44,6 @@ export class IncomeSubcategoryBoxComponent implements OnInit, OnDestroy {
   deleteButton(id): void{
     this.deleteSubscription1 = this.categoryService.deleteSubcategory(this.categoryId, id).subscribe(
       next => {
-        console.log('Delete subcategory');
         this.ngOnDestroy();
       },
       error => {
@@ -60,7 +59,6 @@ export class IncomeSubcategoryBoxComponent implements OnInit, OnDestroy {
   }
 
   changeFormToEdit(): void {
-    console.log('Tu weszłem box');
     this.formChangeService.changeFormToEditForSubcategory(this.categoryId, this.subcategory);
   }
 

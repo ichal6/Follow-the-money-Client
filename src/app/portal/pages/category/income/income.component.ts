@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {PopupService} from '../../../../service/popup.service';
 import {CategoryService} from '../../../../service/category.service';
 import {Category} from '../../../../model/Category';
 
@@ -18,7 +17,6 @@ export class IncomeComponent implements OnInit {
     this.categoryService.getCategoriesByIncome().subscribe(
       categoriesFromServer => {
         this.categories = categoriesFromServer;
-        console.log(categoriesFromServer);
       },
       errors => {
         console.log('Problem with server side ', errors);

@@ -1,9 +1,5 @@
 import {Component, EventEmitter, OnDestroy, OnInit} from '@angular/core';
-import {Account, AccountType} from '../../../../model/Account';
-import {Subscription} from 'rxjs';
-import {AccountsService} from '../../../../service/accounts.service';
 import {Router} from '@angular/router';
-import {FormResetService} from '../../../../service/form-reset.service';
 import {Category, GeneralType} from '../../../../model/Category';
 import {CategoryService} from '../../../../service/category.service';
 
@@ -101,6 +97,5 @@ export class AddCategoryComponent implements OnInit, OnDestroy {
 
   checkIfSubcategory(): void {
     this.isSubcategory = true;
-    console.log(this.idCategory);
   }
 }
