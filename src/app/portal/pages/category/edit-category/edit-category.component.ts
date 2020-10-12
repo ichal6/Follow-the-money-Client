@@ -65,21 +65,25 @@ export class EditCategoryComponent implements OnInit, OnDestroy {
       this.saveSubcategory();
     }
     else{
-      this.categoryService.updateCategory(this.updatedCategoryForm).subscribe(
-        (category) => {
-          this.formChangeService.formAction = 'add';
-          this.formChangeService.category = new Category();
-          this.redirectTo('category');
-        },
-        (error) => {
-          this.message = error.error;
-          console.log(error);
-        }
-      );
+      this.saveCategory();
     }
   }
 
-  saveSubcategory(): void{
+  saveCategory(): void {
+    this.categoryService.updateCategory(this.updatedCategoryForm).subscribe(
+      (category) => {
+        this.formChangeService.formAction = 'add';
+        this.formChangeService.category = new Category();
+        this.redirectTo('category');
+      },
+      (error) => {
+        this.message = error.error;
+        console.log(error);
+      }
+    );
+  }
+
+  saveSubcategory(): void {
     this.categoryService.updateSubcategory(this.updatedCategoryForm, this.formChangeService.idCategoryForSubcategory).subscribe(
       (category) => {
         this.formChangeService.formAction = 'add';

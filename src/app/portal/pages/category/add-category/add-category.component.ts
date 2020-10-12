@@ -51,20 +51,24 @@ export class AddCategoryComponent implements OnInit, OnDestroy {
     if (this.isSubcategory){
       this.saveSubcategory();
     } else{
-      this.categoryService.createNewCategory(this.newCategory).subscribe(
-        (account) => {
-          this.dataChangedEvent.emit();
-          this.redirectTo('category');
-        },
-        (error) => {
-          this.message = error.error;
-          console.log(error);
-        }
-      );
+      this.saveCategory();
     }
   }
 
-  saveSubcategory(): void{
+  saveCategory(): void {
+    this.categoryService.createNewCategory(this.newCategory).subscribe(
+      (account) => {
+        this.dataChangedEvent.emit();
+        this.redirectTo('category');
+      },
+      (error) => {
+        this.message = error.error;
+        console.log(error);
+      }
+    );
+  }
+
+  saveSubcategory(): void {
     this.categoryService.createNewSubcategory(this.newCategory, this.idCategory).subscribe(
       (account) => {
         this.dataChangedEvent.emit();
