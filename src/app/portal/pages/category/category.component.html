@@ -1,12 +1,15 @@
-<h1>Your categories</h1>
-
 <div id="category-container">
-  <div id="categories">
-    <app-category-income></app-category-income>
-    <app-category-expense></app-category-expense>
+  <div class="wrapper-up">
+    <h1>Your categories</h1>
+    <div id="categories">
+      <app-category-income></app-category-income>
+      <app-category-expense></app-category-expense>
+    </div>
   </div>
-  <app-category-add *ngIf="this.formChangeService.formAction === 'add'"></app-category-add>
-  <app-category-edit *ngIf="this.formChangeService.formAction === 'edit'"
-                          [updateCategory]="formChangeService.category"
-                          [updateSubcategory]="formChangeService.subcategory"></app-category-edit>
+  <div class="wrapper-bottom">
+    <app-category-add *ngIf="this.formChangeService.formAction === 'add'"></app-category-add>
+    <app-category-edit *ngIf="this.formChangeService.formAction === 'edit'"
+                       [updateCategory]="formChangeService.category"
+                       [updateSubcategory]="formChangeService.subcategory"></app-category-edit>
+  </div>
 </div>

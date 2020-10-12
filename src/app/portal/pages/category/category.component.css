@@ -3,8 +3,9 @@
   src: url("src/assets/fonts/Poppins-Regular.ttf");
 }
 
-div h1{
+h1{
   color: #404040;
+  font-size: 24px;
   font-family: "Poppins Regular", sans-serif;
 }
 
@@ -41,17 +42,16 @@ div h1{
 @media only screen and (min-width: 1300px) {
   #category-container{
     flex-direction: row;
+    align-items: stretch;
     width: 100%;
   }
 
-  #categories {
-    flex-direction: row;
-    margin-right: 10px;
-    width: 66%;
+  .wrapper-up {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    margin-right: 20px;
   }
 
-  app-category-add, app-category-edit {
-    margin-left: 10px;
-    width: 33%;
-  }
+
 }
