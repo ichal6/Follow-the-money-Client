@@ -52,4 +52,9 @@ export class PayeeService {
         )
       );
   }
+
+  deletePayee(id): Observable<any>{
+    return this.http.delete<null>(environment.restUrl + '/api/payee/' + this.email + '/' + id,
+      {withCredentials: true});
+  }
 }

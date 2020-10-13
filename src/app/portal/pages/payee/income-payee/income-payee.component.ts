@@ -26,6 +26,8 @@ export class IncomePayeeComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    if (this.subscription != null){
+      this.subscription.unsubscribe();
+    }
   }
 }

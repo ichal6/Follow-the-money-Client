@@ -1,7 +1,6 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Payee} from '../../../../model/Payee';
 import {PopupService} from '../../../../service/popup.service';
-import {CategoryService} from '../../../../service/category.service';
 import {FormChangeService} from '../../../../service/form-change.service';
 import {Router} from '@angular/router';
 import {PayeeService} from '../../../../service/payee.service';
@@ -15,7 +14,7 @@ import {Subscription} from 'rxjs';
 export class SingleBoxPayeeComponent implements OnInit, OnDestroy {
   modeDisplayPopup: string;
   coordinates = [];
-  // deleteSubscription4: Subscription;
+  deleteSubscription: Subscription;
 
   @Input()
   public payee: Payee;
@@ -42,14 +41,14 @@ export class SingleBoxPayeeComponent implements OnInit, OnDestroy {
   }
 
   deleteButton(id): void{
-  //   this.deleteSubscription4 = this.payeeService.deleteCategory(id).subscribe(
-  //     next => {
-  //       this.ngOnDestroy();
-  //     },
-  //     error => {
-  //       console.log('Problem with server side');
-  //     }
-  //   );
+    this.deleteSubscription = this.payeeService.deletePayee(id).subscribe(
+      next => {
+        this.ngOnDestroy();
+      },
+      error => {
+        console.log('Problem with server side');
+      }
+    );
   }
 
   reloadComponent(): void {
@@ -63,10 +62,10 @@ export class SingleBoxPayeeComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    // if (this.deleteSubscription4 != null){
-    //   this.deleteSubscription4.unsubscribe();
-    //   this.reloadComponent();
-    // }
+    if (this.deleteSubscription != null){
+      this.deleteSubscription.unsubscribe();
+      this.reloadComponent();
+    }
   }
 
 }
