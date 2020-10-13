@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Payee} from '../../../../model/Payee';
 
 @Component({
   selector: 'app-single-box-payee',
@@ -7,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SingleBoxPayeeComponent implements OnInit {
 
+  @Input()
+  public payee: Payee;
   constructor() { }
 
   ngOnInit(): void {

@@ -1,1 +1,9 @@
-<p>expense-payee works!</p>
+<div id="container">
+  <h1>Expense</h1>
+  <ul class="main-list" *ngFor="let payee of payees">
+    <li class="item">
+      <app-single-box-payee [payee]="payee"></app-single-box-payee>
+    </li>
+  </ul>
+</div>
+
