@@ -30,6 +30,12 @@ import { ExpenseBoxComponent } from './pages/category/expense/expense-box/expens
 import {FormsModule} from '@angular/forms';
 import {AccountsFormAddComponent} from './pages/accounts/accounts-form-add/accounts-form-add.component';
 import { AddCategoryComponent } from './pages/category/add-category/add-category.component';
+import { AddPayeeComponent } from './pages/payee/add-payee/add-payee.component';
+import { EditPayeeComponent } from './pages/payee/edit-payee/edit-payee.component';
+import { ExpensePayeeComponent } from './pages/payee/expense-payee/expense-payee.component';
+import { IncomePayeeComponent } from './pages/payee/income-payee/income-payee.component';
+import {SingleBoxPayeeComponent} from './pages/payee/single-box-payee/single-box-payee.component';
+import {PayeeComponent} from './pages/payee/payee.component';
 
 const routes: Routes = [
   {
@@ -65,6 +71,17 @@ const routes: Routes = [
       }
     ],
     canActivate : [AuthRouteGuardService]
+  },
+  {
+    path: 'payee',
+    component: MainPortalLayoutComponent,
+    children: [
+      {
+        path: '',
+        component: PayeeComponent
+      }
+    ],
+    canActivate : [AuthRouteGuardService]
   }
 ];
 
@@ -94,7 +111,12 @@ const routes: Routes = [
     ExpenseSubcategoryBoxComponent,
     ExpenseBoxComponent,
     AccountsFormAddComponent,
-    AddCategoryComponent
+    AddCategoryComponent,
+    AddPayeeComponent,
+    EditPayeeComponent,
+    ExpensePayeeComponent,
+    IncomePayeeComponent,
+    SingleBoxPayeeComponent
   ],
   imports: [
     CommonModule,
@@ -104,7 +126,7 @@ const routes: Routes = [
     FormsModule
   ],
   exports:
-    [RouterModule]
+    [RouterModule, IncomePayeeComponent, ExpensePayeeComponent, AddPayeeComponent, EditPayeeComponent]
 })
 
 export class PortalModule { }
