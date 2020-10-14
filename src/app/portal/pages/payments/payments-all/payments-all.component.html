@@ -7,7 +7,7 @@
     </select>
   </div>
   <div class="parameter2">
-    <label for="period">Select time period: </label>
+    <label for="period">Period: </label>
     <select class="period-select" name="period" id="period" [(ngModel)]="periodInDays" (change)="requestPayments()" #periodSelect="ngModel">
       <option value="7">Last 7 days</option>
       <option value="30">Last 30 days</option>
