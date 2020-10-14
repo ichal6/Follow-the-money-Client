@@ -20,9 +20,10 @@ label, select, option{
 .payments-container {
   display: flex;
   flex-direction: column;
+  margin-right: 50px;
 }
 
-.parameter1, .parameter2 {
+.parameter1, .parameter2, .payments {
   margin-top: 15px;
   margin-bottom: 15px;
 }
@@ -33,4 +34,10 @@ select {
   background-color: #ffffff;
   border-radius: 10px;
   margin-left: 10px;
+}
+
+@media only screen and (max-width: 1100px) {
+  .payments-container {
+    margin-right: 0;
+  }
 }

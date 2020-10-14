@@ -14,7 +14,7 @@ export class Payment {
     newPayment.isInternal = payment.isInternal;
     newPayment.id = payment.id;
     newPayment.value = payment.value;
-    newPayment.date = payment.date;
+    newPayment.date = new Date(payment.date);
     newPayment.title = payment.title;
     newPayment.from = payment.from;
     newPayment.to = payment.to;

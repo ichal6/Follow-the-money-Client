@@ -15,7 +15,13 @@
       <option value="365">Last year</option>
     </select>
   </div>
-  <app-payment *ngFor="let payment of payments" [payment] = payment></app-payment>
-  <p *ngIf="account == null || periodInDays == null">Choose required parameters to see your transactions!</p>
-  <p *ngIf="payments != undefined && payments.length === 0 && account != null && periodInDays != null">There are no transactions for selected parameters!</p>
+  <div class="payments">
+    <app-payment *ngFor="let payment of payments first as isFirst; last as isLast; even as isEven"
+                 [payment] = payment
+                 [first] = isFirst
+                 [last] = isLast
+                 [even] = isEven></app-payment>
+    <p *ngIf="account == null || periodInDays == null">Choose required parameters to see your transactions!</p>
+    <p *ngIf="payments != undefined && payments.length === 0 && account != null && periodInDays != null">There are no transactions for selected parameters!</p>
+  </div>
 </div>

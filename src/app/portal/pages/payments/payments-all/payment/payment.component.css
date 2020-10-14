@@ -1,1 +1,71 @@
+.payment {
+  display: flex;
+  flex-direction: column;
+  padding: 15px 20px 15px 20px;
+}
 
+p {
+  padding: 2px;
+  margin: 0;
+}
+
+.payment-row1, .payment-row2, .payment-row3, .payment-row4, .payment-row5 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#payment-title, #payment-value {
+  font-size: 13px;
+  font-family: "Poppins Semibold", sans-serif;
+}
+
+#payment-date, #payment-balance, #payment-category, #payment-from, #payment-to {
+  font-family: "Poppins Regular", sans-serif;
+  font-size: 11px;
+}
+
+#dots {
+  font-size: 36px;
+  font-family: "Poppins Semibold", sans-serif;
+  line-height: 0.2;
+}
+
+
+a {
+  cursor: pointer;
+}
+
+.dropdown-content {
+  width: 122px;
+  height: 86px;
+  padding: 10px 10px 0;
+  display: none;
+  float: left;
+  position: absolute;
+  background-color: #FFFFFF;
+  z-index: 300;
+  border-radius: 10px;
+}
+
+.dropdown-content ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.dropdown-content li {
+  margin: 0;
+  text-align: right;
+}
+
+.dropdown-content a {
+  color: #545759;
+  font-size: 12px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.delete-text {
+  color: #F31259 !important;
+}

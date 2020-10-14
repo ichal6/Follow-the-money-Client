@@ -1,1 +1,32 @@
-<p>{{payment.title}}</p>
+<div class="payment" [style]="{'background-color': backgroundColor, 'border-radius': border}" (click)="toggleIsFullLength()">
+  <div class="payment-row1">
+    <p id="payment-title">{{payment.title}}</p>
+    <p id="payment-value" [ngStyle]="{color: payment.value >= 0 ? '#0BD1B8': '#F31259'}">{{payment.value}} USD</p>
+  </div>
+  <div class="payment-row2">
+    <p id="payment-date">{{payment.date.toLocaleDateString()}}</p>
+    <p id="payment-balance">Balance {{payment.balanceAfter}} USD</p>
+  </div>
+  <div class="payment-row3" *ngIf="payment.categoryName != null && isFullLength === true">
+    <p id="payment-category">Category: {{payment.categoryName}}</p>
+  </div>
+  <div class="payment-row4" *ngIf="isFullLength === true">
+    <p id="payment-from">From: {{payment.from}}</p>
+  </div>
+  <div class="payment-row5" *ngIf="isFullLength === true">
+    <p id="payment-to">To: {{payment.to}}</p>
+    <p id="dots" (click)="displayPopup($event)">...</p>
+  </div>
+</div>
+<div class="dropdown-content" [style.display]="modeDisplayPopup" [style.top]="coordinates[0]"
+     [style.left]="coordinates[1]">
+  <ul>
+    <li>
+      <a>Edit</a>
+    </li>
+    <li>
+      <a class="delete-text">Delete</a>
+    </li>
+  </ul>
+</div>
+
