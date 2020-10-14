@@ -70,6 +70,17 @@ const routes: Routes = [
       }
     ],
     canActivate : [AuthRouteGuardService]
+  },
+  {
+    path: 'payments',
+    component: MainPortalLayoutComponent,
+    children: [
+      {
+        path: '',
+        component: PaymentsComponent
+      }
+    ],
+    canActivate : [AuthRouteGuardService]
   }
 ];
 
