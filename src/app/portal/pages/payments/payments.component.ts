@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {FormChangeService} from '../../../service/form-change.service';
 
 @Component({
   selector: 'app-payments',
@@ -7,9 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PaymentsComponent implements OnInit {
 
-  constructor() { }
+  constructor(public formChangeService: FormChangeService) { }
 
   ngOnInit(): void {
+    this.formChangeService.formAction = 'transaction';
   }
-
 }

@@ -26,5 +26,4 @@ export class AccountsComponent implements OnInit {
       }
     );
   }
-
 }
