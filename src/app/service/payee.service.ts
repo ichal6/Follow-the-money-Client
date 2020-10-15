@@ -5,7 +5,6 @@ import {environment} from '../../environments/environment';
 import {map} from 'rxjs/operators';
 import {Payee} from '../model/Payee';
 import {Observable} from 'rxjs';
-import {Category} from '../model/Category';
 
 @Injectable({
   providedIn: 'root'

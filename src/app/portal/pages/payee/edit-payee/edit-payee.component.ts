@@ -1,6 +1,4 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {Category, Subcategory} from '../../../../model/Category';
-import {CategoryService} from '../../../../service/category.service';
 import {Router} from '@angular/router';
 import {FormChangeService} from '../../../../service/form-change.service';
 import {Payee} from '../../../../model/Payee';

@@ -1,6 +1,5 @@
 import {Component, EventEmitter, OnDestroy, OnInit} from '@angular/core';
 import {Category, GeneralType} from '../../../../model/Category';
-import {CategoryService} from '../../../../service/category.service';
 import {Router} from '@angular/router';
 import {Payee} from '../../../../model/Payee';
 import {PayeeService} from '../../../../service/payee.service';
