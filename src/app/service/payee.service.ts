@@ -5,6 +5,7 @@ import {environment} from '../../environments/environment';
 import {map} from 'rxjs/operators';
 import {Payee} from '../model/Payee';
 import {Observable} from 'rxjs';
+import {Category} from '../model/Category';
 
 @Injectable({
   providedIn: 'root'
@@ -56,5 +57,10 @@ export class PayeeService {
   deletePayee(id): Observable<any>{
     return this.http.delete<null>(environment.restUrl + '/api/payee/' + this.email + '/' + id,
       {withCredentials: true});
+  }
+
+  createNewPayee(newPayee: Payee): Observable<any>{
+    const payeeJSON = {name: newPayee.name, type: newPayee.type};
+    return this.http.post<null>(environment.restUrl + '/api/payee/' + this.email, payeeJSON, {withCredentials : true});
   }
 }
