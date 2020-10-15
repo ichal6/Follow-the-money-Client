@@ -1,0 +1,57 @@
+@font-face {
+  font-family: "Poppins Regular";
+  src: url("src/assets/fonts/Poppins-Regular.ttf");
+}
+
+h1{
+  color: #404040;
+  font-size: 24px;
+  font-family: "Poppins Regular", sans-serif;
+}
+
+#payee-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#payees{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+@media only screen and (min-width: 800px) {
+  #payees {
+    flex-direction: row;
+  }
+
+  app-expense-payee, app-income-payee{
+    width: 100%;
+  }
+
+  app-income-payee{
+    margin-right: 10px;
+  }
+
+  app-expense-payee{
+    margin-left: 10px;
+  }
+}
+
+@media only screen and (min-width: 1300px) {
+  #payee-container{
+    flex-direction: row;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .wrapper-up {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    margin-right: 20px;
+  }
+
+
+}
