@@ -1,1 +1,14 @@
-<p>edit-payee works!</p>
+<h1>Edit payee</h1>
+<div>
+  <form #payeeForm="ngForm">
+    <p class="message" *ngIf="message">{{message}}</p>
+    <input type="text" class="form-input" id="name" placeholder="Name" name="name"
+           [(ngModel)]="updatedPayeeForm.name" (change)="checkIfNameIsValid()" #nameField="ngModel" required>
+    <p *ngIf="!isNameValid && nameField.touched" class="message">Name should be at least 3 characters</p>
+
+    <button type="button" class="form-button" (click)="onSubmit()"
+            [disabled]="payeeForm.invalid || !isNameValid">
+      Save
+    </button>
+  </form>
+</div>

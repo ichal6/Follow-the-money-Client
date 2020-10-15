@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Account} from '../model/Account';
 import {Category, Subcategory} from '../model/Category';
-import {tokenReference} from '@angular/compiler';
+import {Payee} from '../model/Payee';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,7 @@ export class FormChangeService {
   public subcategory: Subcategory;
   public idCategoryForSubcategory: number;
   public isSubcategory = false;
-  public payee: any;
+  public payee: Payee;
 
   constructor() { }
 
@@ -34,5 +34,10 @@ export class FormChangeService {
     this.formAction = 'edit';
     this.subcategory = subcategoryToEdit;
     this.idCategoryForSubcategory = idCategory;
+  }
+
+  changeFormToEditForPayee(payeeToEdit: Payee): void {
+    this.formAction = 'edit';
+    this.payee = payeeToEdit;
   }
 }

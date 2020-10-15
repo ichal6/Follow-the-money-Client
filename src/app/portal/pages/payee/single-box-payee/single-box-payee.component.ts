@@ -58,7 +58,7 @@ export class SingleBoxPayeeComponent implements OnInit, OnDestroy {
   }
 
   changeFormToEdit(): void {
-  //   this.formChangeService.changeFormToEditForCategory(this.category);
+    this.formChangeService.changeFormToEditForPayee(this.payee);
   }
 
   ngOnDestroy(): void {

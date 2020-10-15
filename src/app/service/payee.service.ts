@@ -63,4 +63,9 @@ export class PayeeService {
     const payeeJSON = {name: newPayee.name, type: newPayee.type};
     return this.http.post<null>(environment.restUrl + '/api/payee/' + this.email, payeeJSON, {withCredentials : true});
   }
+
+  updatePayee(updatedPayee: Payee): Observable<any>{
+    return this.http.put<null>(environment.restUrl + '/api/payee/' + this.email + '/' + updatedPayee.id, updatedPayee.name,
+      {withCredentials : true});
+  }
 }
