@@ -40,7 +40,6 @@ export class AccountsService {
     for (const account of accountsJSON) {
       accountsTS.push(Account.fromHttp(account));
     }
-
     return accountsTS;
   }
 
