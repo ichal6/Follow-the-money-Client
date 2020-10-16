@@ -30,17 +30,17 @@ import { ExpenseBoxComponent } from './pages/category/expense/expense-box/expens
 import {FormsModule} from '@angular/forms';
 import {AccountsFormAddComponent} from './pages/accounts/accounts-form-add/accounts-form-add.component';
 import { AddCategoryComponent } from './pages/category/add-category/add-category.component';
+import { PaymentsComponent } from './pages/payments/payments.component';
+import { PaymentsAllComponent } from './pages/payments/payments-all/payments-all.component';
+import { PaymentComponent } from './pages/payments/payments-all/payment/payment.component';
+import { TransactionFormAddComponent } from './pages/payments/transaction-form-add/transaction-form-add.component';
+import { TransferFormAddComponent } from './pages/payments/transfer-form-add/transfer-form-add.component';
 import { AddPayeeComponent } from './pages/payee/add-payee/add-payee.component';
 import { EditPayeeComponent } from './pages/payee/edit-payee/edit-payee.component';
 import { ExpensePayeeComponent } from './pages/payee/expense-payee/expense-payee.component';
 import { IncomePayeeComponent } from './pages/payee/income-payee/income-payee.component';
 import {SingleBoxPayeeComponent} from './pages/payee/single-box-payee/single-box-payee.component';
 import {PayeeComponent} from './pages/payee/payee.component';
-import { PaymentsComponent } from './pages/payments/payments.component';
-import { PaymentsAllComponent } from './pages/payments/payments-all/payments-all.component';
-import { PaymentComponent } from './pages/payments/payments-all/payment/payment.component';
-import { TransactionFormAddComponent } from './pages/payments/transaction-form-add/transaction-form-add.component';
-import { TransferFormAddComponent } from './pages/payments/transfer-form-add/transfer-form-add.component';
 
 const routes: Routes = [
   {
@@ -73,6 +73,17 @@ const routes: Routes = [
       {
         path: '',
         component: CategoryComponent
+      }
+    ],
+    canActivate : [AuthRouteGuardService]
+  },
+  {
+    path: 'payments',
+    component: MainPortalLayoutComponent,
+    children: [
+      {
+        path: '',
+        component: PaymentsComponent
       }
     ],
     canActivate : [AuthRouteGuardService]
@@ -128,6 +139,11 @@ const routes: Routes = [
     ExpenseBoxComponent,
     AccountsFormAddComponent,
     AddCategoryComponent,
+    PaymentsComponent,
+    PaymentsAllComponent,
+    PaymentComponent,
+    TransactionFormAddComponent,
+    TransferFormAddComponent,
     AddPayeeComponent,
     EditPayeeComponent,
     ExpensePayeeComponent,

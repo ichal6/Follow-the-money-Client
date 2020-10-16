@@ -12,7 +12,7 @@
      [style.left]="coordinates[1]" #dropdown>
   <ul>
     <li>
-      <a>See transactions</a>
+      <a (click)="redirectTo('payments')">See transactions</a>
     </li>
     <li>
       <a (click)="changeFormToEdit()">Edit</a>
