@@ -1,7 +1,7 @@
 <div class="main-container">
   <h1>Popular accounts</h1>
   <div class="container">
-    <input type="image" src="assets/icons/dashboard/plus-button.png" alt="plus-button"/>
+    <input (click)="redirectTo('accounts')"  type="image" src="assets/icons/dashboard/plus-button.png" alt="plus-button"/>
     <div id="popular-accounts">
       <app-popular-account-box *ngFor="let account of dashboard.popularAccounts" [account] = account></app-popular-account-box>
     </div>

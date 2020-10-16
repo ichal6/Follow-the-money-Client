@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Dashboard} from '../../../../model/Dashboard';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-activity',
@@ -10,9 +11,12 @@ export class ActivityComponent implements OnInit {
   @Input()
   dashboard: Dashboard;
 
-  constructor() {
-  }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  redirectTo(uri: string): void {
+    this.router.navigate([uri]);
   }
 }
