@@ -1,0 +1,15 @@
+<div id="payee-container">
+  <div class="wrapper-up">
+    <h1>Your Payees</h1>
+    <div id="payees">
+      <app-income-payee></app-income-payee>
+      <app-expense-payee></app-expense-payee>
+    </div>
+  </div>
+  <div class="wrapper-bottom">
+    <app-add-payee *ngIf="this.formChangeService.formAction === 'add'"></app-add-payee>
+    <app-edit-payee *ngIf="this.formChangeService.formAction === 'edit'"
+                       [updatePayee]="formChangeService.payee"
+                       ></app-edit-payee>
+  </div>
+</div>

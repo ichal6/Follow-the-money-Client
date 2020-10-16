@@ -1,1 +1,22 @@
-<p>transaction-form-add works!</p>
+<div class="buttons">
+  <button>transaction</button>
+  <button>transfer</button>
+</div>
+<h1>Add new transaction</h1>
+<form class="transaction-form" #transactionForm="ngForm">
+  <p class="message" *ngIf="message">{{message}}</p>
+  <select class="form-select" id="account-from" name="account-from" [(ngModel)]="newTransaction.accountId" (change)="checkIfAccountIdIsValid()" #accountIdField="ngModel" required>
+    <option [ngValue]="null" [disabled]="true" >Select account for transaction</option>
+    <option *ngFor="let account of allAccounts" [ngValue]="account.id">{{account.name}}</option>
+  </select>
+  <p class="message" *ngIf="!isAccountIdValid && accountIdField.touched">You have to choose the account</p>
+  <select class="form-select" id="type" name="type" [(ngModel)]="newTransaction.type" (change)="checkIfTypeIsValid()" #typeField="ngModel" required>
+    <option [ngValue]="null" [disabled]="true">Select transaction type</option>
+    <option value = "INCOME">INCOME</option>
+    <option value = "EXPENSE">EXPENSE</option>
+  </select>
+  <p class="message" *ngIf="!isTypeValid && typeField.touched">You have to choose the transaction type</p>
+  <input type="number" class="form-input" id="value" placeholder="Transaction value (USD)" name="value" [(ngModel)]="newTransaction.value" (change)="checkIfValueIsValid()" #valueField="ngModel" required>
+  <p class="message" *ngIf="!isValueValid && valueField.touched">Value can't be empty or contain signs other than '.'. Must be a positive number.</p>
+
+</form>

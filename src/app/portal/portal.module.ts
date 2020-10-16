@@ -35,6 +35,12 @@ import { PaymentsAllComponent } from './pages/payments/payments-all/payments-all
 import { PaymentComponent } from './pages/payments/payments-all/payment/payment.component';
 import { TransactionFormAddComponent } from './pages/payments/transaction-form-add/transaction-form-add.component';
 import { TransferFormAddComponent } from './pages/payments/transfer-form-add/transfer-form-add.component';
+import { AddPayeeComponent } from './pages/payee/add-payee/add-payee.component';
+import { EditPayeeComponent } from './pages/payee/edit-payee/edit-payee.component';
+import { ExpensePayeeComponent } from './pages/payee/expense-payee/expense-payee.component';
+import { IncomePayeeComponent } from './pages/payee/income-payee/income-payee.component';
+import {SingleBoxPayeeComponent} from './pages/payee/single-box-payee/single-box-payee.component';
+import {PayeeComponent} from './pages/payee/payee.component';
 
 const routes: Routes = [
   {
@@ -81,6 +87,17 @@ const routes: Routes = [
       }
     ],
     canActivate : [AuthRouteGuardService]
+  },
+  {
+    path: 'payee',
+    component: MainPortalLayoutComponent,
+    children: [
+      {
+        path: '',
+        component: PayeeComponent
+      }
+    ],
+    canActivate : [AuthRouteGuardService]
   }
 ];
 
@@ -115,7 +132,12 @@ const routes: Routes = [
     PaymentsAllComponent,
     PaymentComponent,
     TransactionFormAddComponent,
-    TransferFormAddComponent
+    TransferFormAddComponent,
+    AddPayeeComponent,
+    EditPayeeComponent,
+    ExpensePayeeComponent,
+    IncomePayeeComponent,
+    SingleBoxPayeeComponent
   ],
   imports: [
     CommonModule,
@@ -125,7 +147,7 @@ const routes: Routes = [
     FormsModule
   ],
   exports:
-    [RouterModule]
+    [RouterModule, IncomePayeeComponent, ExpensePayeeComponent, AddPayeeComponent, EditPayeeComponent]
 })
 
 export class PortalModule { }

@@ -1,5 +1,3 @@
-import {Account, AccountType} from './Account';
-
 export class Category{
   id: number;
   name: string;
