@@ -32,6 +32,8 @@ export class TransactionFormAddComponent implements OnInit, OnDestroy {
   isValueValid = false;
   isDateValid = false;
   isTitleValid = false;
+  isPayeeIdValid = false;
+  isCategoryIdValid = false;
 
   subscribe: Subscription;
   transactionResetSubscription: Subscription;
@@ -86,8 +88,6 @@ export class TransactionFormAddComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(): void {
-    console.log(this.allCategoriesForExpense);
-    console.log(this.newTransaction);
     this.message = 'Saving new account...';
     this.transactionsService.addTransaction(this.newTransaction).subscribe(
       (transaction) => {
@@ -141,6 +141,16 @@ export class TransactionFormAddComponent implements OnInit, OnDestroy {
     } else {
       this.isTitleValid = false;
     }
+  }
+
+  checkIfCategoryIdIsValid(): void {
+    this.isCategoryIdValid = this.newTransaction.categoryId != null &&
+      !isNaN(Number(this.newTransaction.categoryId.toString()));
+  }
+
+  checkIfPayeeIdIsValid(): void {
+    this.isPayeeIdValid = this.newTransaction.payeeId != null &&
+      !isNaN(Number(this.newTransaction.payeeId.toString()));
   }
 
   redirectTo(uri: string): void {
