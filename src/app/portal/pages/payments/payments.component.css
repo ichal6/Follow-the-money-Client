@@ -1,0 +1,19 @@
+.payments-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+app-payments-all {
+  flex: 1.6;
+}
+
+app-transaction-form-add, app-transfer-form-add {
+  flex: 1;
+}
+
+@media only screen and (max-width: 1100px) {
+  .payments-content {
+    flex-direction: column;
+  }
+}

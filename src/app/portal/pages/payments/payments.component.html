@@ -1,0 +1,5 @@
+<div class="payments-content">
+  <app-payments-all></app-payments-all>
+  <app-transaction-form-add *ngIf="this.formChangeService.formAction === 'transaction'"></app-transaction-form-add>
+  <app-transfer-form-add *ngIf="this.formChangeService.formAction === 'transfer'"></app-transfer-form-add>
+</div>
