@@ -157,3 +157,4 @@ export class TransactionFormAddComponent implements OnInit, OnDestroy {
     this.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
       this.router.navigate([uri]));
   }
+}

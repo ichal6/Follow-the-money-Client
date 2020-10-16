@@ -41,11 +41,6 @@ import { ExpensePayeeComponent } from './pages/payee/expense-payee/expense-payee
 import { IncomePayeeComponent } from './pages/payee/income-payee/income-payee.component';
 import {SingleBoxPayeeComponent} from './pages/payee/single-box-payee/single-box-payee.component';
 import {PayeeComponent} from './pages/payee/payee.component';
-import { PaymentsComponent } from './pages/payments/payments.component';
-import { PaymentsAllComponent } from './pages/payments/payments-all/payments-all.component';
-import { PaymentComponent } from './pages/payments/payments-all/payment/payment.component';
-import { TransactionFormAddComponent } from './pages/payments/transaction-form-add/transaction-form-add.component';
-import { TransferFormAddComponent } from './pages/payments/transfer-form-add/transfer-form-add.component';
 
 const routes: Routes = [
   {
