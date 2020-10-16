@@ -15,8 +15,20 @@
     <option value = "INCOME">INCOME</option>
     <option value = "EXPENSE">EXPENSE</option>
   </select>
+  <input type="text" class="form-input" id="title" placeholder="Transaction title" name="title" [(ngModel)]="newTransaction.title" (change)="checkIfTitleIsValid()" #titleField="ngModel" required>
+  <p class="message" *ngIf="!isTitleValid && titleField.touched">Title has to be at least 3 characters long</p>
   <p class="message" *ngIf="!isTypeValid && typeField.touched">You have to choose the transaction type</p>
   <input type="number" class="form-input" id="value" placeholder="Transaction value (USD)" name="value" [(ngModel)]="newTransaction.value" (change)="checkIfValueIsValid()" #valueField="ngModel" required>
   <p class="message" *ngIf="!isValueValid && valueField.touched">Value can't be empty or contain signs other than '.'. Must be a positive number.</p>
-
+  <select *ngIf="newTransaction.type != null" class="form-select" id="payee" name="payee" [ngModel]="newTransaction.payeeId" required>
+    <option [ngValue]="null" [disabled]="true" >Select payee</option>
+    <option *ngFor="let payee of getPayeesForType()" [ngValue]="payee.id">{{payee.name}}</option>
+  </select>
+  <select *ngIf="newTransaction.type != null" class="form-select" id="category" name="category" [ngModel]="newTransaction.categoryId" required>
+    <option [ngValue]="null" [disabled]="true" >Select category</option>
+    <option *ngFor="let category of getCategoriesForType()" [ngValue]="category.id">{{category.name}}</option>
+  </select>
+  <input type="date" class="form-input" id="date" placeholder="Date" name="date" [(ngModel)]="newTransaction.date" (change)="checkIfDateIsValid()" #dateField="ngModel" required>
+  <p *ngIf="!isDateValid && dateField.touched" class="message">Date should be in format DD.MM.YYYY</p>
+  <button type="button" class="form-button" (click)="onSubmit()" [disabled]="transactionForm.invalid || !isTitleValid || !isAccountIdValid || !isTypeValid || !isValueValid || !isDateValid ">Save</button>
 </form>

@@ -1,4 +1,4 @@
-export class Category{
+export class Category {
   id: number;
   name: string;
   type: GeneralType;
@@ -18,22 +18,22 @@ export class Category{
     return newCategory;
   }
 
-  private static fillSubcategories(category: Category): Array<Subcategory>{
+  private static fillSubcategories(category: Category): Array<Subcategory> {
     const subcategoriesJSON = category.subcategories;
     const subcategoriesTS = new Array<Subcategory>();
-    for (const subcategory of subcategoriesJSON){
+    for (const subcategory of subcategoriesJSON) {
       subcategoriesTS.push(Subcategory.fromHttp(subcategory));
     }
     return subcategoriesTS;
   }
 }
 
-export enum GeneralType{
+export enum GeneralType {
   INCOME = 'INCOME',
   EXPENSE = 'EXPENSE'
 }
 
-export class Subcategory{
+export class Subcategory {
   id: number;
   name: string;
   type: GeneralType;

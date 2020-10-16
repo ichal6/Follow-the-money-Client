@@ -4,6 +4,12 @@ import {Subscription} from 'rxjs';
 import {AccountsService} from '../../../../service/accounts.service';
 import {Account} from '../../../../model/Account';
 import {Category} from '../../../../model/Category';
+import {Payee} from '../../../../model/Payee';
+import {PayeeService} from '../../../../service/payee.service';
+import {CategoryService} from '../../../../service/category.service';
+import {FormResetService} from '../../../../service/form-reset.service';
+import {TransactionsService} from '../../../../service/transactions.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-transaction-form-add',
@@ -14,38 +20,100 @@ export class TransactionFormAddComponent implements OnInit, OnDestroy {
   newTransaction: Transaction;
   message: string;
   allAccounts: Array<Account>;
-  allCategories: Array<Category>;
-  allPayees: Array<Payee>;
+  allCategoriesForExpense: Array<Category>;
+  allCategoriesForIncome: Array<Category>;
+  allPayeesForExpense: Array<Payee>;
+  allPayeesForIncome: Array<Payee>;
 
   dataChangedEvent = new EventEmitter();
 
   isAccountIdValid = false;
   isTypeValid = false;
   isValueValid = false;
+  isDateValid = false;
+  isTitleValid = false;
 
   subscribe: Subscription;
+  transactionResetSubscription: Subscription;
 
-  constructor(private accountsService: AccountsService) { }
+  constructor(private accountsService: AccountsService,
+              private payeeService: PayeeService,
+              private categoryService: CategoryService,
+              private transactionsService: TransactionsService,
+              private formResetService: FormResetService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.newTransaction = new Transaction();
     this.newTransaction.accountId = null;
+    this.newTransaction.payeeId = null;
+    this.newTransaction.categoryId = null;
     this.newTransaction.type = null;
+    this.transactionResetSubscription = this.formResetService.resetTransactionFormEvent.subscribe(
+      transaction => {
+        this.newTransaction = transaction;
+      }
+    );
     this.subscribe = this.accountsService.getAccounts().subscribe(
       next => {
         this.allAccounts = next;
-      },
-      error => {
-        console.log('problem with loading the accounts: ', error);
+      }
+    );
+    this.subscribe = this.payeeService.getPayeeByExpense().subscribe(
+      next => {
+        this.allPayeesForExpense = next;
+      }
+    );
+    this.subscribe = this.payeeService.getPayeeByIncome().subscribe(
+      next => {
+        this.allPayeesForIncome = next;
+      }
+    );
+    this.subscribe = this.categoryService.getCategoriesByExpense().subscribe(
+      next => {
+        this.allCategoriesForExpense = next;
+      }
+    );
+    this.subscribe = this.categoryService.getCategoriesByIncome().subscribe(
+      next => {
+        this.allCategoriesForIncome = next;
       }
     );
   }
 
   ngOnDestroy(): void {
+    this.transactionResetSubscription.unsubscribe();
+  }
+
+  onSubmit(): void {
+    console.log(this.allCategoriesForExpense);
+    console.log(this.newTransaction);
+    this.message = 'Saving new account...';
+    this.transactionsService.addTransaction(this.newTransaction).subscribe(
+      (transaction) => {
+        this.dataChangedEvent.emit();
+        this.redirectTo('payments');
+      }
+    );
+  }
+
+  getPayeesForType(): Array<Payee> {
+    if (this.newTransaction.type === GeneralType.EXPENSE) {
+      return this.allPayeesForExpense;
+    } else {
+      return this.allPayeesForIncome;
+    }
+  }
+
+  getCategoriesForType(): Array<Category> {
+    if (this.newTransaction.type === GeneralType.EXPENSE) {
+      return this.allCategoriesForExpense;
+    } else {
+      return this.allCategoriesForIncome;
+    }
   }
 
   checkIfAccountIdIsValid(): void {
-    console.log(this.newTransaction.accountId);
     this.isAccountIdValid = this.newTransaction.accountId != null &&
       !isNaN(Number(this.newTransaction.accountId.toString()));
   }
@@ -61,5 +129,22 @@ export class TransactionFormAddComponent implements OnInit, OnDestroy {
       (!isNaN(Number(this.newTransaction.value.toString()))) &&
       (Number(this.newTransaction.value.toString()) > 0)
     );
+  }
+
+  checkIfDateIsValid(): void {
+    this.isDateValid = this.newTransaction.date != null;
+  }
+
+  checkIfTitleIsValid(): void {
+    if (this.newTransaction.title) {
+      this.isTitleValid = this.newTransaction.title.trim().length >= 3;
+    } else {
+      this.isTitleValid = false;
+    }
+  }
+
+  redirectTo(uri: string): void {
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
+      this.router.navigate([uri]));
   }
 }
