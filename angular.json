@@ -16,7 +16,7 @@
             "allowedCommonJsDependencies": [
               "chart.js"
             ],
-            "outputPath": "dist/ftmClient",
+            "outputPath": "dist",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
