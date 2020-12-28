@@ -16,10 +16,10 @@ export class DataService {
   constructor(private http: HttpClient,
               private cookieService: CookieService) {
     this.setEmailFromCookie();
-    console.log('List of Cookies - ', cookieService.getAll());
   }
 
   setEmailFromCookie(): void{
+    console.log('List of Cookies - ', this.cookieService.getAll());
     if (this.cookieService.check('e-mail')){
       this.email = this.cookieService.get('e-mail');
     }
