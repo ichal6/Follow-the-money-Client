@@ -16,6 +16,7 @@ export class DataService {
   constructor(private http: HttpClient,
               private cookieService: CookieService) {
     this.setEmailFromCookie();
+    console.log(cookieService.getAll());
   }
 
   setEmailFromCookie(): void{
