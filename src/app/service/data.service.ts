@@ -11,7 +11,7 @@ import {User} from '../model/User';
   providedIn: 'root'
 })
 export class DataService {
-  private email: string;
+  private email = 'user@user.pl';
 
   constructor(private http: HttpClient,
               private cookieService: CookieService) {
