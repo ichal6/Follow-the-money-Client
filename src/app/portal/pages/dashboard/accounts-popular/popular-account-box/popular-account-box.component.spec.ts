@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { PopularAccountBoxComponent } from './popular-account-box.component';
 
@@ -6,7 +6,7 @@ describe('PopularAccountBoxComponent', () => {
   let component: PopularAccountBoxComponent;
   let fixture: ComponentFixture<PopularAccountBoxComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ PopularAccountBoxComponent ]
     })
