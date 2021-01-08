@@ -159,7 +159,7 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     ChartsModule,
-    RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' }),
+    RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload', relativeLinkResolution: 'legacy' }),
     FormsModule
   ],
   exports:

@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { TransactionFormAddComponent } from './transaction-form-add.component';
 
@@ -6,7 +6,7 @@ describe('TransactionFormAddComponent', () => {
   let component: TransactionFormAddComponent;
   let fixture: ComponentFixture<TransactionFormAddComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ TransactionFormAddComponent ]
     })

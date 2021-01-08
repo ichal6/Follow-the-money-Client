@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { EnterPageContentComponent } from './enter-page-content.component';
 
@@ -6,7 +6,7 @@ describe('LoginPageComponent', () => {
   let component: EnterPageContentComponent;
   let fixture: ComponentFixture<EnterPageContentComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ EnterPageContentComponent ]
     })

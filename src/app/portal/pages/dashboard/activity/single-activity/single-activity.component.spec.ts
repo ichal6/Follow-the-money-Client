@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { SingleActivityComponent } from './single-activity.component';
 
@@ -6,7 +6,7 @@ describe('SingleActivityComponent', () => {
   let component: SingleActivityComponent;
   let fixture: ComponentFixture<SingleActivityComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ SingleActivityComponent ]
     })
