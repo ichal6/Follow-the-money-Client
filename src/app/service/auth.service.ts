@@ -39,6 +39,7 @@ export class AuthService {
 
   logout(): void {
     this.dataService.logout().subscribe();
+    this.cookieService.delete('e-mail');
     this.isAuthenticated = false;
     this.authenticationResultEvent.emit(false);
   }

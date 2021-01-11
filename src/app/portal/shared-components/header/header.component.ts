@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {DataService} from '../../../service/data.service';
 import {Router} from '@angular/router';
+import {AuthService} from '../../../service/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +12,8 @@ export class HeaderComponent implements OnInit {
   userName = 'Please wait...';
 
   constructor(private dataService: DataService,
-              private route: Router) { }
+              private route: Router,
+              private authService: AuthService) { }
 
   ngOnInit(): void {
     this.dataService.getUser().subscribe(
@@ -25,14 +27,7 @@ export class HeaderComponent implements OnInit {
   }
 
   logout(): void{
-    this.dataService.logout().subscribe(
-      next => {
-        console.log('Logout successfully');
-      },
-      error => {
-        console.log('Problem with logout');
-      }
-    );
+    this.authService.logout();
     this.route.navigate(['login']);
   }
 }

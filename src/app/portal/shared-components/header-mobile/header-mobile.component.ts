@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {DataService} from '../../../service/data.service';
+import {AuthService} from '../../../service/auth.service';
 
 @Component({
   selector: 'app-header-mobile',
@@ -10,7 +11,8 @@ import {DataService} from '../../../service/data.service';
 export class HeaderMobileComponent implements OnInit {
 
   constructor(private dataService: DataService,
-              private route: Router) { }
+              private route: Router,
+              private authService: AuthService) { }
 
   ngOnInit(): void {
   }
@@ -20,14 +22,7 @@ export class HeaderMobileComponent implements OnInit {
   }
 
   logout(): void{
-    this.dataService.logout().subscribe(
-      next => {
-        console.log('Logout successfully');
-      },
-      error => {
-        console.log('Problem with logout');
-      }
-    );
+    this.authService.logout();
     this.route.navigate(['login']);
   }
 
