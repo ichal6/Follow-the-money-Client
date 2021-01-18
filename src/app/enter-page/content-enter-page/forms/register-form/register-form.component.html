@@ -14,5 +14,5 @@
   </div>
   <div class="warning" *ngIf="message">{{message}}</div>
   <button class="button" id="button-sign-up" type="button" (click)="onSubmit()">Ready to go!</button>
-  <button class="button" id="button-login" onclick="location.href='#'">Already registered? Log in!</button>
+  <button class="button" id="button-login" (click)="navigateTo('/login')">Already registered? Log in!</button>
 </form>

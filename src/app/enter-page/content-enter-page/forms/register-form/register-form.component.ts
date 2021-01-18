@@ -55,4 +55,8 @@ export class RegisterFormComponent implements OnInit, OnDestroy {
         }
       );
   }
+
+  navigateTo(page: string): void {
+    this.route.navigate([page]);
+  }
 }
