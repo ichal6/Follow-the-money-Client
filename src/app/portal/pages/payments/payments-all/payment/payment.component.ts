@@ -4,6 +4,7 @@ import {PopupService} from '../../../../../service/popup.service';
 import {Subscription} from 'rxjs';
 import {TransactionsService} from '../../../../../service/transactions.service';
 import {Router} from '@angular/router';
+import {TransferService} from '../../../../../service/transfer.service';
 
 @Component({
   selector: 'app-payment',
@@ -26,10 +27,12 @@ export class PaymentComponent implements OnInit, OnDestroy {
   isFullLength: boolean;
   modeDisplayPopup: string;
   coordinates = [];
-  deleteSubscription: Subscription;
+  deleteSubscriptionTransaction: Subscription;
+  deleteSubscriptionTransfer: Subscription;
 
   constructor(private popupService: PopupService,
               private transactionService: TransactionsService,
+              private transferService: TransferService,
               private router: Router) {
   }
 
@@ -62,24 +65,35 @@ export class PaymentComponent implements OnInit, OnDestroy {
     }
   }
 
-  deleteButton(idTransaction): void{
+  deleteButton(idPayment): void{
     if (this.payment.isInternal === true){
-      console.log('To jest transfer!');
-      return;
+      this.deleteSubscriptionTransfer = this.transferService.deleteTransfer(idPayment).subscribe(
+        next => {
+          this.ngOnDestroy();
+        },
+        error => {
+          console.log('Problem with server side');
+        }
+      );
+    } else{
+      this.deleteSubscriptionTransaction = this.transactionService.deleteTransaction(idPayment).subscribe(
+        next => {
+          this.ngOnDestroy();
+        },
+        error => {
+          console.log('Problem with server side');
+        }
+      );
     }
-    this.deleteSubscription = this.transactionService.deleteTransaction(idTransaction).subscribe(
-      next => {
-        this.ngOnDestroy();
-      },
-      error => {
-        console.log('Problem with server side');
-      }
-    );
+
   }
 
   ngOnDestroy(): void {
-    if (this.deleteSubscription != null){
-      this.deleteSubscription.unsubscribe();
+    if (this.deleteSubscriptionTransaction != null){
+      this.deleteSubscriptionTransaction.unsubscribe();
+      this.reloadComponent();
+    } else if (this.deleteSubscriptionTransfer != null){
+      this.deleteSubscriptionTransfer.unsubscribe();
       this.reloadComponent();
     }
   }
