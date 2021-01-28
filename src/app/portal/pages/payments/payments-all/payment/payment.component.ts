@@ -1,14 +1,16 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Payment} from '../../../../../model/Payment';
-import {Activity} from '../../../../../model/Activity';
 import {PopupService} from '../../../../../service/popup.service';
+import {Subscription} from 'rxjs';
+import {TransactionsService} from '../../../../../service/transactions.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-payment',
   templateUrl: './payment.component.html',
   styleUrls: ['./payment.component.css']
 })
-export class PaymentComponent implements OnInit {
+export class PaymentComponent implements OnInit, OnDestroy {
   @Input()
   public payment: Payment;
   @Input()
@@ -24,8 +26,11 @@ export class PaymentComponent implements OnInit {
   isFullLength: boolean;
   modeDisplayPopup: string;
   coordinates = [];
+  deleteSubscription: Subscription;
 
-  constructor(private popupService: PopupService) {
+  constructor(private popupService: PopupService,
+              private transactionService: TransactionsService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -55,5 +60,34 @@ export class PaymentComponent implements OnInit {
     } else {
       this.modeDisplayPopup = 'none';
     }
+  }
+
+  deleteButton(idTransaction): void{
+    if (this.payment.isInternal === true){
+      console.log('To jest transfer!');
+      return;
+    }
+    this.deleteSubscription = this.transactionService.deleteTransaction(idTransaction).subscribe(
+      next => {
+        this.ngOnDestroy();
+      },
+      error => {
+        console.log('Problem with server side');
+      }
+    );
+  }
+
+  ngOnDestroy(): void {
+    if (this.deleteSubscription != null){
+      this.deleteSubscription.unsubscribe();
+      this.reloadComponent();
+    }
+  }
+
+
+  reloadComponent(): void {
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = 'reload';
+    this.router.navigate(['/payments']);
   }
 }
