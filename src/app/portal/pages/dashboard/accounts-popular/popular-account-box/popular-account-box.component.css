@@ -19,6 +19,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 10px;
   margin-bottom: 10px;
 }
 
@@ -37,39 +38,6 @@
   font-size: 20px !important;
 }
 
-.dropdown-content {
-  width: 122px;
-  height: 86px;
-  padding: 10px 10px 0;
-  display: none;
-  float: left;
-  position: absolute;
-  background-color: #FFFFFF;
-  z-index: 300;
-  border-radius: 10px;
-}
-
-.dropdown-content ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-
-.dropdown-content li {
-  margin: 0;
-  text-align: right;
-}
-
-.dropdown-content a {
-  color: #545759;
-  font-size: 12px;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.delete-text {
-  color: #F31259 !important;
-}
 
 @media only screen and (min-width: 800px) {
   .box-account {
