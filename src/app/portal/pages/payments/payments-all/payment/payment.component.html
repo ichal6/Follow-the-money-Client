@@ -22,7 +22,7 @@
      [style.left]="coordinates[1]">
   <ul>
     <li>
-      <a>Edit</a>
+      <a (click)="displayInfo($event)">Edit</a>
     </li>
     <li>
       <a class="delete-text" (click)="deleteButton(payment.id)">Delete</a>
@@ -30,3 +30,7 @@
   </ul>
 </div>
 
+<div class="info-message" [style.display]="modeDisplayInfoMessage" [style.top]="coordinates[0]"
+     [style.left]="coordinates[1]">
+  <p>This option is not implement, yet.</p>
+</div>
