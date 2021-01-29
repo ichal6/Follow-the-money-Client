@@ -26,6 +26,10 @@ export class HeaderComponent implements OnInit {
     );
   }
 
+  displayInfo(): void {
+    alert('User menu isn\'t implement, yet!');
+  }
+
   logout(): void{
     this.authService.logout();
     this.route.navigate(['login']);

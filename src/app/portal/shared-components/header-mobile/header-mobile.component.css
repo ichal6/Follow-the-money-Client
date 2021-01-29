@@ -25,6 +25,7 @@ header {
 
 .logo-container, .logo-mobile img, .logo-mobile {
   height: 50px;
+  cursor: pointer;
 }
 
 .logo-mobile {

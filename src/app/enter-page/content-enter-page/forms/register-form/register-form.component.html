@@ -13,6 +13,6 @@
     <input type="password" placeholder="Your password" [(ngModel)]="password" name="password">
   </div>
   <div class="warning" *ngIf="message">{{message}}</div>
-  <button class="button" id="button-sign-up" type="button" (click)="onSubmit()">Ready to go!</button>
+  <button class="button" id="button-sign-up" type="submit" (click)="onSubmit()">Ready to go!</button>
   <button class="button" id="button-login" (click)="navigateTo('/login')">Already registered? Log in!</button>
 </form>

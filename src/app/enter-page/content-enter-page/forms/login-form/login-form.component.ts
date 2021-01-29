@@ -54,4 +54,7 @@ export class LoginFormComponent implements OnInit, OnDestroy {
     this.route.navigate([page]);
   }
 
+  displayInfo(): void {
+    alert('This option doesn\'t implement, yet!');
+  }
 }

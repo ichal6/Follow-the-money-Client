@@ -1,6 +1,6 @@
 <header>
   <div class="logo-container">
-    <a href="#" class="logo-mobile"><img src="../../../../assets/icons/logo.svg" alt="logo-mobile"></a>
+    <a (click)="navigateTo('portal')" class="logo-mobile"><img src="../../../../assets/icons/logo.svg" alt="logo-mobile"></a>
   </div>
   <div class="burger-container">
     <input class="menu-btn" type="checkbox" id="menu-btn"/>
@@ -13,7 +13,7 @@
         <li><a (click)="navigateTo('payee')">Payees</a></li>
         <li><a (click)="navigateTo('payments')">Payments</a></li>
 <!--        <li><a (click)="navigateTo('portal')">Charts</a></li>-->
-        <li><a (click)="navigateTo('portal')">Settings</a></li>
+        <li><a (click)="displayInfo()">Settings</a></li>
         <li><a (click)="logout()">Log out</a></li>
       </ul>
     </div>
