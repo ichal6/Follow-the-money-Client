@@ -47,6 +47,9 @@ a {
   background-color: #FFFFFF;
   z-index: 300;
   border-radius: 10px;
+  border-color: #CAC9CE;
+  border-style: solid;
+  border-width: thin;
 }
 
 .dropdown-content ul {
