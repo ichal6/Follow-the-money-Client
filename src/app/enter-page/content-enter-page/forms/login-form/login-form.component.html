@@ -10,6 +10,6 @@
   </div>
   <div class="warning" *ngIf="message">{{message}}</div>
   <a id="forgot-password" (click)="displayInfo()">forgot your password?</a>
-  <button class="button" id="button-login" type="button" (click)="onSubmit()">Ready to go!</button>
-  <button class="button" id="button-sign-up" (click)="navigateTo('/register')">No account? Sign up!</button>
+  <button class="button" id="button-login" type="submit" (click)="onSubmit()">Ready to go!</button>
+  <button class="button" type="button" id="button-sign-up" (click)="navigateTo('/register')">No account? Sign up!</button>
 </form>
