@@ -26,7 +26,6 @@ export class PaymentComponent implements OnInit, OnDestroy {
   even: any;
   isFullLength: boolean;
   modeDisplayPopup: string;
-  modeDisplayInfoMessage: string;
   coordinates = [];
   deleteSubscriptionTransaction: Subscription;
   deleteSubscriptionTransfer: Subscription;
@@ -36,7 +35,6 @@ export class PaymentComponent implements OnInit, OnDestroy {
               private transferService: TransferService,
               private router: Router) {
     this.modeDisplayPopup = 'none';
-    this.modeDisplayInfoMessage = 'none';
   }
 
   ngOnInit(): void {
@@ -59,7 +57,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
 
   displayPopup(event): void {
     const coordinates = [];
-    this.popupService.displayPopup(event, coordinates);
+    this.popupService.displayPopupWithSetUserSize(event, coordinates, 25, 105);
     this.coordinates = coordinates;
     if (this.modeDisplayPopup === 'none') {
       this.modeDisplayPopup = 'block';
@@ -68,15 +66,8 @@ export class PaymentComponent implements OnInit, OnDestroy {
     }
   }
 
-  displayInfo(event): void {
-    const coordinates = [];
-    this.popupService.displayPopup(event, coordinates);
-    this.coordinates = coordinates;
-    if (this.modeDisplayInfoMessage === 'none') {
-      this.modeDisplayInfoMessage = 'block';
-    } else {
-      this.modeDisplayInfoMessage = 'none';
-    }
+  displayInfo(): void {
+    alert('This option is not implement, yet!');
   }
 
   deleteButton(idPayment): void{
