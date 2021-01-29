@@ -9,7 +9,7 @@
     <input type="password" placeholder="Your password" [(ngModel)]="password" name="password">
   </div>
   <div class="warning" *ngIf="message">{{message}}</div>
-  <a id="forgot-password" href="#forgot-password">forgot your password?</a>
+  <a id="forgot-password" (click)="displayInfo()">forgot your password?</a>
   <button class="button" id="button-login" type="button" (click)="onSubmit()">Ready to go!</button>
   <button class="button" id="button-sign-up" (click)="navigateTo('/register')">No account? Sign up!</button>
 </form>
