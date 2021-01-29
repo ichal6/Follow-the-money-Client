@@ -34,6 +34,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
               private transactionService: TransactionsService,
               private transferService: TransferService,
               private router: Router) {
+    this.modeDisplayPopup = 'none';
   }
 
   ngOnInit(): void {
