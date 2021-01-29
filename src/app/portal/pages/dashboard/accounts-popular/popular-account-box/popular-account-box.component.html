@@ -1,24 +1,10 @@
 <div class="box-account" [style.background-color]="currentColor">
   <div class="box-account-top">
     <img src="assets/icons/dashboard/{{urlToImage()}}" alt="icon bank/wallet">
-    <a (click)="displayPopup($event)">...</a>
   </div>
   <div class="box-account-bottom">
     <p>{{account.name}}</p>
     <p class="balance-value">${{account.currentBalance}}</p>
   </div>
 </div>
-<div class="dropdown-content" [style.display]="modeDisplayPopup" [style.top]="coordinates[0]"
-     [style.left]="coordinates[1]" #dropdown>
-  <ul>
-    <li>
-      <a>See transactions</a>
-    </li>
-    <li>
-      <a>Rename</a>
-    </li>
-    <li>
-      <a class="delete-text">Delete</a>
-    </li>
-  </ul>
-</div>
+

@@ -17,7 +17,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   height: 100vh;
   min-height: 500px;
   background-color: #F4F3F9;
@@ -53,21 +53,21 @@ app-enter-page-content {
 
 @media only screen and (max-height: 700px){
   #background-img{
-    display: none;
+    display: block;
   }
 
   #container{
-    background-color: #564193;
+    background-color: #978cd0;
   }
 }
 
 @media only screen and (min-width: 500px){
   #background-img{
-    display: none;
+    display: block;
   }
 
   #container{
-    background-color: #564193;
+    background-color: #978cd0;
   }
 }
 

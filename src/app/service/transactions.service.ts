@@ -35,4 +35,10 @@ export class TransactionsService {
       date: newTransaction.date};
     return this.http.post<any>(environment.restUrl + '/api/payment/transaction/' + this.email, transactionToAdd , {withCredentials : true});
   }
+
+  deleteTransaction(idTransaction): Observable<Transaction>{
+    return this.http.delete<null>(
+      environment.restUrl + '/api/payment/transaction/' + idTransaction,
+      {withCredentials: true});
+  }
 }

@@ -42,10 +42,11 @@ export class RegisterFormComponent implements OnInit, OnDestroy {
             console.log('Register has been successfully');
             const url = this.activatedRoute.snapshot.queryParams.requested;
             if (url != null) {
-              console.log('To jest url - ', url);
+              // console.log('To jest url - ', url);
               this.route.navigateByUrl(url);
             } else {
-              console.log('nie ma url :-(');
+              // console.log('nie ma url :-(');
+              alert('Register has been successfully. Click ok to continue');
               this.route.navigate(['login']);
             }
           }
@@ -54,5 +55,9 @@ export class RegisterFormComponent implements OnInit, OnDestroy {
           this.message = 'Your username, email or password was not correct - try again.';
         }
       );
+  }
+
+  navigateTo(page: string): void {
+    this.route.navigate([page]);
   }
 }

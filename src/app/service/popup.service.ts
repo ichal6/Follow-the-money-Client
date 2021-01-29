@@ -16,6 +16,12 @@ export class PopupService {
     coordinates.push(position.offsetLeft - this.widthOfPopUp + 'px');
   }
 
+  displayPopupWithSetUserSize(event, coordinates, lengthFromTop, widthOfPopUp): void {
+    const position = this.getPosition(event);
+    coordinates.push(position.offsetTop + lengthFromTop + 'px');
+    coordinates.push(position.offsetLeft - widthOfPopUp + 'px');
+  }
+
   getPosition(event): any {
     const el = event.target;
     const offsetLeft = el.offsetLeft;

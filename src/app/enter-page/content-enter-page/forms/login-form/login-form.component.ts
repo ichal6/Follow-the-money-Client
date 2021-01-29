@@ -50,4 +50,11 @@ export class LoginFormComponent implements OnInit, OnDestroy {
     this.authService.authenticate(this.email, this.password);
   }
 
+  navigateTo(page: string): void {
+    this.route.navigate([page]);
+  }
+
+  displayInfo(): void {
+    alert('This option doesn\'t implement, yet!');
+  }
 }
