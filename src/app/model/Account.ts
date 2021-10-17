@@ -14,8 +14,11 @@ export class Account {
     newAccount.accountType = (account.accountType === AccountType.CASH) ? AccountType.CASH : AccountType.BANK;
     return newAccount;
   }
-}
 
+  getCurrentBalance(): string {
+    return this.currentBalance.toPrecision(2);
+  }
+}
 export enum AccountType {
   CASH = 'CASH',
   BANK = 'BANK'
