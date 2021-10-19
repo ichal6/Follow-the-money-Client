@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { FormsComponent } from './forms.component';
+import {RouterTestingModule} from '@angular/router/testing';
 
 describe('FormsComponent', () => {
   let component: FormsComponent;
@@ -8,7 +9,10 @@ describe('FormsComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ FormsComponent ]
+      declarations: [ FormsComponent ],
+      imports: [
+        RouterTestingModule
+      ],
     })
     .compileComponents();
   }));

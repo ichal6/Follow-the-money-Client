@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { AccountBoxComponent } from './account-box.component';
+import {HttpClientModule} from '@angular/common/http';
+import {RouterTestingModule} from '@angular/router/testing';
 
 describe('AccountBoxComponent', () => {
   let component: AccountBoxComponent;
@@ -8,7 +10,10 @@ describe('AccountBoxComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ AccountBoxComponent ]
+      declarations: [ AccountBoxComponent ],
+      imports: [
+        HttpClientModule, RouterTestingModule
+      ],
     })
     .compileComponents();
   }));
