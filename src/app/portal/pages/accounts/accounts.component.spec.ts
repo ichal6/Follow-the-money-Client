@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { AccountsComponent } from './accounts.component';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {RouterTestingModule} from '@angular/router/testing';
+import {FormsModule} from '@angular/forms';
 
 describe('AccountsComponent', () => {
   let component: AccountsComponent;
@@ -8,7 +11,10 @@ describe('AccountsComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ AccountsComponent ]
+      declarations: [ AccountsComponent ],
+      imports: [
+        HttpClientTestingModule, RouterTestingModule, FormsModule
+      ]
     })
     .compileComponents();
   }));
