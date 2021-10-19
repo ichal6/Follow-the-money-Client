@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { RegisterTextComponent } from './register-text.component';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {RouterTestingModule} from '@angular/router/testing';
+import {FormsModule} from '@angular/forms';
 
 describe('RegisterTextComponent', () => {
   let component: RegisterTextComponent;
@@ -8,7 +11,10 @@ describe('RegisterTextComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ RegisterTextComponent ]
+      declarations: [ RegisterTextComponent ],
+      imports: [
+        HttpClientTestingModule, RouterTestingModule, FormsModule
+      ]
     })
     .compileComponents();
   }));
