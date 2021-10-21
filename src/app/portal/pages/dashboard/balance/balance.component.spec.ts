@@ -30,10 +30,11 @@ describe('BalanceComponent', () => {
   });
 
   it('digits should be round to 2 decimal in difference', () => {
+    // when
     const pDifference = fixture.nativeElement.querySelector('#difference').textContent;
     const differenceSplit = pDifference.split(' ');
     const differenceValueExpected = +differenceSplit[1];
+    // then
     expect(differenceValueExpected).toEqual(-454.44);
-    // fail();
   });
 });
