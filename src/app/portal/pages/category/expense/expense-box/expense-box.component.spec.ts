@@ -1,9 +1,9 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { ExpenseBoxComponent } from './expense-box.component';
-import {HttpClientModule} from '@angular/common/http';
 import {RouterTestingModule} from '@angular/router/testing';
 import {FormsModule} from '@angular/forms';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
 
 describe('ExpenseBoxComponent', () => {
   let component: ExpenseBoxComponent;
@@ -13,7 +13,7 @@ describe('ExpenseBoxComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ ExpenseBoxComponent ],
       imports: [
-        HttpClientModule, RouterTestingModule, FormsModule
+        HttpClientTestingModule, RouterTestingModule, FormsModule
       ]
     })
     .compileComponents();
