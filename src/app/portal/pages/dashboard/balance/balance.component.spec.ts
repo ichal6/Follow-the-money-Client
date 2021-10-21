@@ -21,10 +21,19 @@ describe('BalanceComponent', () => {
     fixture = TestBed.createComponent(BalanceComponent);
     component = fixture.componentInstance;
     component.dashboard = TestBed.inject(Dashboard);
+    component.dashboard.difference = -454.43999999999994;
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('digits should be round to 2 decimal in difference', () => {
+    const pDifference = fixture.nativeElement.querySelector('#difference').textContent;
+    const differenceSplit = pDifference.split(' ');
+    const differenceValueExpected = +differenceSplit[1];
+    expect(differenceValueExpected).toEqual(-454.44);
+    // fail();
   });
 });
