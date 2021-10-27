@@ -16,7 +16,7 @@ export class Account {
   }
 
   getCurrentBalance(): string {
-    return this.currentBalance.toPrecision(2);
+    return this.currentBalance.toFixed(2);
   }
 }
 export enum AccountType {
