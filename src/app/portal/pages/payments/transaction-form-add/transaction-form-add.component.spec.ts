@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { TransactionFormAddComponent } from './transaction-form-add.component';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {RouterTestingModule} from '@angular/router/testing';
+import {FormsModule} from '@angular/forms';
 
 describe('TransactionFormAddComponent', () => {
   let component: TransactionFormAddComponent;
@@ -8,7 +11,10 @@ describe('TransactionFormAddComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ TransactionFormAddComponent ]
+      declarations: [ TransactionFormAddComponent ],
+      imports: [
+        HttpClientTestingModule, RouterTestingModule, FormsModule
+      ]
     })
     .compileComponents();
   }));

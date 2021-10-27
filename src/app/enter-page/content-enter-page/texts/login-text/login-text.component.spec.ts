@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { LoginTextComponent } from './login-text.component';
+import {RouterTestingModule} from '@angular/router/testing';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
 
 describe('LoginTextComponent', () => {
   let component: LoginTextComponent;
@@ -8,7 +10,10 @@ describe('LoginTextComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ LoginTextComponent ]
+      declarations: [ LoginTextComponent ],
+      imports: [
+        HttpClientTestingModule, RouterTestingModule
+      ],
     })
     .compileComponents();
   }));

@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { IncomeSubcategoryBoxComponent } from './income-subcategory-box.component';
+import {HttpClientModule} from '@angular/common/http';
+import {RouterTestingModule} from '@angular/router/testing';
 
 describe('IncomeSubcategoryBoxComponent', () => {
   let component: IncomeSubcategoryBoxComponent;
@@ -8,7 +10,10 @@ describe('IncomeSubcategoryBoxComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ IncomeSubcategoryBoxComponent ]
+      declarations: [ IncomeSubcategoryBoxComponent ],
+      imports: [
+        HttpClientModule, RouterTestingModule
+      ],
     })
     .compileComponents();
   }));

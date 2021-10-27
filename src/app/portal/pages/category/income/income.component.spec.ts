@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { IncomeComponent } from './income.component';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {RouterTestingModule} from '@angular/router/testing';
+import {FormsModule} from '@angular/forms';
 
 describe('IncomeComponent', () => {
   let component: IncomeComponent;
@@ -8,7 +11,10 @@ describe('IncomeComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ IncomeComponent ]
+      declarations: [ IncomeComponent ],
+      imports: [
+        HttpClientTestingModule, RouterTestingModule, FormsModule
+      ],
     })
     .compileComponents();
   }));

@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { HeaderMobileComponent } from './header-mobile.component';
+import {HttpClientModule} from '@angular/common/http';
+import {RouterTestingModule} from '@angular/router/testing';
 
 describe('HeaderMobileComponent', () => {
   let component: HeaderMobileComponent;
@@ -8,7 +10,10 @@ describe('HeaderMobileComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ HeaderMobileComponent ]
+      declarations: [ HeaderMobileComponent ],
+      imports: [
+        HttpClientModule, RouterTestingModule
+      ],
     })
     .compileComponents();
   }));

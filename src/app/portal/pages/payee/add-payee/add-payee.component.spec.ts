@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { AddPayeeComponent } from './add-payee.component';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {RouterTestingModule} from '@angular/router/testing';
+import {FormsModule} from '@angular/forms';
 
 describe('AddPayeeComponent', () => {
   let component: AddPayeeComponent;
@@ -8,7 +11,10 @@ describe('AddPayeeComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddPayeeComponent ]
+      declarations: [ AddPayeeComponent ],
+      imports: [
+        HttpClientTestingModule, RouterTestingModule, FormsModule
+      ],
     })
     .compileComponents();
   }));
