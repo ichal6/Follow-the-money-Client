@@ -17,8 +17,8 @@ export class HeaderComponent implements OnInit {
     this.router.navigate([page]);
   }
 
-  displayInfo(): void {
-    alert('This option does not implement, yet!');
+  displayInfo(info = 'This option does not implement, yet!'): void {
+    alert(info);
   }
 
 }
