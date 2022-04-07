@@ -18,7 +18,7 @@ export class HeaderComponent implements OnInit {
   }
 
   displayInfo(): void {
-    alert('This option doesn\'t implement, yet!');
+    alert('This option does not implement, yet!');
   }
 
 }
