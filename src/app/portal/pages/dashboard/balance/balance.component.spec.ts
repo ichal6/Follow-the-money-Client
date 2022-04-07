@@ -36,5 +36,7 @@ describe('BalanceComponent', () => {
     const differenceValueExpected = +differenceSplit[1];
     // then
     expect(differenceValueExpected).toEqual(-454.44);
+
+    fail();
   });
 });
