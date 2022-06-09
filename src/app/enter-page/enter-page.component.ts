@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../service/auth.service';
+import {DataService} from '../service/data.service';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +10,8 @@ import {AuthService} from '../service/auth.service';
 export class EnterPageComponent implements OnInit{
   isDisplay: boolean;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService,
+              private dataService: DataService) { }
 
   ngOnInit(): void {
     this.isDisplay = false;
@@ -19,6 +21,16 @@ export class EnterPageComponent implements OnInit{
 
   displayPopup(): void {
     this.authService.tryLoginEvent.subscribe(
+      next => {
+        console.log(next);
+        this.isDisplay = next;
+      },
+      error => {
+        console.log(error);
+      }
+    );
+
+    this.dataService.tryRegisterEvent.subscribe(
       next => {
         console.log(next);
         this.isDisplay = next;
