@@ -1,5 +1,5 @@
-<app-wait></app-wait>
-<div id="background-gray"></div>
+<app-wait *ngIf="isDisplay"></app-wait>
+<div *ngIf="isDisplay" id="background-gray"></div>
 
 <div id="container">
   <img id="background-img" src="assets/img/background-mobile-dots.png" alt="background_purple">

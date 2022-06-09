@@ -13,6 +13,7 @@ import {TransactionsService} from './transactions.service';
 export class AuthService {
   isAuthenticated = false;
   authenticationResultEvent = new EventEmitter<boolean>();
+  tryLoginEvent = new EventEmitter<boolean>();
 
   constructor(private dataService: DataService,
               private accountsService: AccountsService,
@@ -23,6 +24,7 @@ export class AuthService {
               private cookieService: CookieService) { }
 
   authenticate(name: string, password: string): void {
+    this.tryLoginEvent.emit(true);
     this.dataService.validateUser(name, password).subscribe(
       next => {
         this.isAuthenticated = true;
