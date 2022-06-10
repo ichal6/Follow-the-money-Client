@@ -22,6 +22,7 @@ describe('BalanceComponent', () => {
     component = fixture.componentInstance;
     component.dashboard = TestBed.inject(Dashboard);
     component.dashboard.difference = -454.43999999999994;
+    component.dashboard.totalBalance = 12.8999999999994;
     fixture.detectChanges();
   });
 
@@ -36,5 +37,14 @@ describe('BalanceComponent', () => {
     const differenceValueExpected = +differenceSplit[1];
     // then
     expect(differenceValueExpected).toEqual(-454.44);
+  });
+
+  it('digits should be round to 2 decimal in totalBalance', () => {
+    // when
+    const pDifference = fixture.nativeElement.querySelector('#currency').textContent;
+    const differenceSplit = pDifference.slice(1, -3);
+
+    // then
+    expect(differenceSplit).toEqual(12.90);
   });
 });
