@@ -11,10 +11,11 @@ export class EnterPageComponent implements OnInit{
   isDisplay: boolean;
 
   constructor(private authService: AuthService,
-              private dataService: DataService) { }
+              private dataService: DataService) {
+    this.isDisplay = false;
+  }
 
   ngOnInit(): void {
-    this.isDisplay = false;
     this.displayPopup();
     this.hidePopup();
   }
