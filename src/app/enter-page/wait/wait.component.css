@@ -1,0 +1,13 @@
+@font-face {
+  font-family: "Poppins Medium";
+  src: url("src/assets/fonts/Poppins-Medium.ttf");
+}
+
+#wait-dialog{
+  font-family: "Poppins Medium", sans-serif;
+  border: 3px solid #4B486E;
+  border-radius: 10px;
+  background-color: #4B486E;
+  padding: 1em;
+  color: #ffffff;
+}

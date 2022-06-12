@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {EventEmitter, Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
@@ -12,6 +12,7 @@ import {User} from '../model/User';
 })
 export class DataService {
   private email: string;
+  tryRegisterEvent = new EventEmitter<boolean>();
 
   constructor(private http: HttpClient,
               private cookieService: CookieService) {
@@ -53,6 +54,7 @@ export class DataService {
   }
 
   register(user: User, password: string): Observable<User>{
+    this.tryRegisterEvent.emit(true);
     const userWithPassword = {name: user.name, email: user.email, password};
     return this.http.post<User>(environment.restUrl + '/register', userWithPassword);
   }

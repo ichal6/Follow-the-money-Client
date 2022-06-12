@@ -12,6 +12,7 @@ import {ChartsModule} from 'ng2-charts';
 import {EnterPageModule} from './enter-page/enter-page.module';
 import {AuthRouteGuardService} from './service/auth-route-guard.service';
 import { PayeeComponent } from './portal/pages/payee/payee.component';
+import { WaitComponent } from './enter-page/wait/wait.component';
 
 const routes: Routes = [
   {path: 'login', component: EnterPageComponent},
@@ -23,7 +24,8 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     EnterPageComponent,
-    PayeeComponent
+    PayeeComponent,
+    WaitComponent
   ],
   imports: [
     BrowserModule,

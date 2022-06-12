@@ -53,6 +53,7 @@ export class RegisterFormComponent implements OnInit, OnDestroy {
         }, error1 => {
           console.log('Register has not been successfully');
           this.message = 'Your username, email or password was not correct - try again.';
+          this.authService.authenticationResultEvent.emit(false);
         }
       );
   }
