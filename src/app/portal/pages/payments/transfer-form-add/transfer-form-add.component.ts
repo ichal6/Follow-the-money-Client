@@ -10,7 +10,7 @@ import {TransferService} from '../../../../service/transfer.service';
 @Component({
   selector: 'app-transfer-form-add',
   templateUrl: './transfer-form-add.component.html',
-  styleUrls: ['./transfer-form-add.component.css']
+  styleUrls: ['./transfer-form-add.component.css', '../transaction-form-add/transaction-form-add.component.css']
 })
 export class TransferFormAddComponent implements OnInit, OnDestroy {
 

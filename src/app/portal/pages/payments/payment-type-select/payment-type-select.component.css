@@ -1,14 +1,17 @@
 #header-box {
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
 
 #header-box>select {
-  background-color: transparent;
+  background-color: #ffffff;
   border: none;
+  border-radius: 10px;
   font-size: 24px;
   font-style: italic;
   font-weight: bold;
-  margin-left: 5px;
-  min-width: 200px;
+  margin-left: 10px;
+  min-width: 230px;
+  height: 65px;
 }
