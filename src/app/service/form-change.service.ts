@@ -40,4 +40,12 @@ export class FormChangeService {
     this.formAction = 'edit';
     this.payee = payeeToEdit;
   }
+
+  changeFormToTransaction(): void {
+    this.formAction = 'transaction';
+  }
+
+  changeFormToTransfer(): void {
+    this.formAction = 'transfer';
+  }
 }
