@@ -28,4 +28,12 @@ export class PaymentTypeSelectComponent implements OnInit {
   get defaultOption(): string {
     return this._defaultOption;
   }
+
+  onSelected(value: string): void {
+    if (value === 'transaction'){
+      this.toTransaction();
+    } else{
+      this.toTransfer();
+    }
+  }
 }

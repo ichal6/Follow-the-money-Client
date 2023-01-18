@@ -1,8 +1,8 @@
 <div id="header-box">
   <h1>Add new</h1>
-  <select id="payment-type" name="payment-type" required [value]="defaultOption">
-    <option value="transaction" (click)="toTransaction()">TRANSACTION</option>
-    <option value="transfer" (click)="toTransfer()">TRANSFER</option>
+  <select #teams id="payment-type" name="payment-type" required [value]="defaultOption" (change)="onSelected(teams.value)">
+    <option value="transaction">TRANSACTION</option>
+    <option value="transfer">TRANSFER</option>
   </select>
 </div>
 
