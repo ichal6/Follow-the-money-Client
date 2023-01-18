@@ -1,2 +1,23 @@
 <app-payment-type-select></app-payment-type-select>
 
+<form class="transaction-form" #transferForm="ngForm">
+  <p class="message" *ngIf="information">{{information}}</p>
+  <select class="form-select" id="account-from" name="account-from" [(ngModel)]="newTransfer.accountFromId" (change)="checkIfAccountIsValid()" #accountFromIdField="ngModel" required>
+    <option [ngValue]="null" [disabled]="true" >From (Select account)</option>
+    <option *ngFor="let account of allAccounts" [ngValue]="account.id">{{account.name}}</option>
+  </select>
+  <select class="form-select" id="account-to" name="account-to" [(ngModel)]="newTransfer.accountToId" (change)="checkIfAccountIsValid()" #accountToField="ngModel" required>
+    <option [ngValue]="null" [disabled]="true" >To (Select account)</option>
+    <option *ngFor="let account of allAccounts" [ngValue]="account.id">{{account.name}}</option>
+  </select>
+  <p class="message" *ngIf="!isAccountIdValid && accountFromIdField.touched && accountToField.touched">You have to choose the account</p>
+  <p class="message" *ngIf="!isAccountIsDifferent && accountFromIdField.touched && accountToField.touched">You have to choose different account</p>
+  <input type="text" class="form-input" id="title" placeholder="Transfer title" name="title" [(ngModel)]="newTransfer.title" (change)="checkIfTitleIsValid()" #titleField="ngModel" required>
+  <p class="message" *ngIf="!isTitleValid && titleField.touched">Title has to be at least 3 characters long</p>
+  <input type="number" class="form-input" id="value" placeholder="Transfer value (USD)" name="value" [(ngModel)]="newTransfer.value" (change)="checkIfValueIsValid()" #valueField="ngModel" required>
+  <p class="message" *ngIf="!isValueValid && valueField.touched">Value can't be empty or contain signs other than '.'. Must be a positive number.</p>
+
+  <input type="date" class="form-input" id="date" placeholder="Date" name="date" [(ngModel)]="newTransfer.date" (change)="checkIfDateIsValid()" #dateField="ngModel" required>
+  <p *ngIf="!isDateValid && dateField.touched" class="message">Date should be in format DD.MM.YYYY</p>
+  <button type="button" class="form-button" (click)="onSubmit()" [disabled]="transferForm.invalid || !isTitleValid || !isAccountIdValid  || !isValueValid || !isDateValid || !isAccountIsDifferent ">Save</button>
+</form>
