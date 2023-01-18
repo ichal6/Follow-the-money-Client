@@ -1,6 +1,11 @@
 <h1>Add new transaction</h1>
 <form class="transaction-form" #transactionForm="ngForm">
   <p class="message" *ngIf="message">{{message}}</p>
+  <select class="form-select" id="payment-type" name="payment-type" required>
+    <option [ngValue]="null" [disabled]="true">Transaction/transfer (select)</option>
+    <option value="TRANSACTION">TRANSACTION</option>
+    <option value="TRANSFER" (click)="toTransfer()" >TRANSFER</option>
+  </select>
   <select class="form-select" id="account-from" name="account-from" [(ngModel)]="newTransaction.accountId" (change)="checkIfAccountIdIsValid()" #accountIdField="ngModel" required>
     <option [ngValue]="null" [disabled]="true" >Select account for transaction</option>
     <option *ngFor="let account of allAccounts" [ngValue]="account.id">{{account.name}}</option>
