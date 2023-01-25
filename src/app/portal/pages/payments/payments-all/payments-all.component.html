@@ -3,6 +3,7 @@
   <div class="parameter1">
     <label for="account">Select account: </label>
     <select class="account-select" name="account" id="account" [(ngModel)]="account" (change)="requestPayments()" #accountSelect="ngModel">
+      <option [ngValue]="" ></option>
       <option *ngFor="let account of allAccounts" [ngValue]="account">{{account.name}}</option>
     </select>
   </div>
