@@ -24,11 +24,11 @@ export class PaymentsService {
   }
 
   getPayments(accountId?: number, periodInDays?: number): Observable<Array<Payment>> {
-    let url = environment.restUrl + '/api/payment/' + this.email;
-    if (typeof accountId !== 'undefined') {
-      url += '?id=' + accountId;
+    let url = environment.restUrl + '/api/payment/' + this.email + '?';
+    if (typeof accountId !== 'undefined' && accountId !== null) {
+      url += 'id=' + accountId;
     }
-    if (typeof periodInDays !== 'undefined') {
+    if (periodInDays > 0) {
       url += '&period=' + periodInDays;
     }
     return this.http.get<Array<Payment>>(url,

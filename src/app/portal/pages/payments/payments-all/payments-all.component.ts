@@ -3,7 +3,7 @@ import {Payment} from '../../../../model/Payment';
 import {Subscription} from 'rxjs';
 import {PaymentsService} from '../../../../service/payments.service';
 import {AccountsService} from '../../../../service/accounts.service';
-import {Account} from '../../../../model/Account';
+import {Account, NoAccount} from '../../../../model/Account';
 
 @Component({
   selector: 'app-payments-all',
@@ -15,12 +15,15 @@ export class PaymentsAllComponent implements OnInit {
   private subscribe: Subscription;
   public allAccounts: Array<Account>;
   public account: Account;
+  public noAccount: NoAccount;
   public periodInDays: number;
-
   constructor(private paymentsService: PaymentsService,
               private accountsService: AccountsService) { }
 
   ngOnInit(): void {
+    this.noAccount = new NoAccount();
+    this.account = this.noAccount;
+    this.periodInDays = 0;
     this.subscribe = this.accountsService.getAccounts().subscribe(
       next => {
         this.allAccounts = next;
@@ -29,18 +32,17 @@ export class PaymentsAllComponent implements OnInit {
         console.log('problem with loading the accounts: ', error);
       }
     );
+    this.requestPayments();
   }
 
   requestPayments(): void {
-    if (this.account != null && this.periodInDays != null) {
-      this.subscribe = this.paymentsService.getPayments(this.account.id, this.periodInDays).subscribe(
-        next => {
-          this.payments = next;
-        },
-        error => {
-          console.log('problem with getting the payments: ', error);
-        }
-      );
-    }
+    this.subscribe = this.paymentsService.getPayments(this.account.id, this.periodInDays).subscribe(
+      next => {
+        this.payments = next;
+      },
+      error => {
+        console.log('problem with getting the payments: ', error);
+      }
+    );
   }
 }
