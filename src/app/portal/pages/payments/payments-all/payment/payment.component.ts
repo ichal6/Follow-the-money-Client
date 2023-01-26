@@ -109,4 +109,11 @@ export class PaymentComponent implements OnInit, OnDestroy {
     this.router.onSameUrlNavigation = 'reload';
     this.router.navigate(['/payments']);
   }
+
+  getColor(): string {
+    if (this.payment.balanceAfter || !this.payment.isInternal) {
+      return this.payment.value >= 0 ? '#0BD1B8' : '#F31259';
+    }
+    return '#0b0b0b';
+  }
 }
