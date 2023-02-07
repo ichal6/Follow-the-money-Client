@@ -39,7 +39,7 @@ jobs:
 
       - name: Build
         run: |
-          npm run build -- --prod
+          npm run build:prod
 
       - name: Lint
         run: |
@@ -52,5 +52,14 @@ jobs:
       - name: Create 404.html
         if: github.ref == 'refs/heads/main'
         run: cp dist/Follow-the-money-Client/index.html dist/Follow-the-money-Client/404.html
+
+      - name: Deploy to GitHub Pages
+        if: github.ref == 'refs/heads/main'
+        uses: crazy-max/ghaction-github-pages@v3
+        with:
+          target_branch: gh-pages
+          build_dir: dist/Follow-the-money-Client/
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 
