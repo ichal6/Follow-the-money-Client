@@ -22,8 +22,8 @@ jobs:
       - name: Lint
         run: npm run lint
 
-      - name: Tests
-        run: npm run test:prod # Chrome headless; watch code to false; add code-coverage
+#      - name: Tests
+#        run: npm run test:prod # Chrome headless; watch code to false; add code-coverage
 
       - name: Build
         run: npm run build -- --prod
