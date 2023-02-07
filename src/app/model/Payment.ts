@@ -9,7 +9,7 @@ export class Payment {
   categoryName: string;
   balanceAfter: number;
 
-  static fromHttp(payment: Payment): Payment {
+  static fromHttp(payment): Payment {
     const newPayment = new Payment();
     newPayment.isInternal = payment.isInternal;
     newPayment.id = payment.id;

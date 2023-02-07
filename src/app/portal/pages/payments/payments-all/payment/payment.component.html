@@ -1,11 +1,11 @@
 <div class="payment" [style]="{'background-color': backgroundColor, 'border-radius': border}">
   <div class="payment-row1" (click)="toggleIsFullLength()">
     <p id="payment-title">{{payment.title}}</p>
-    <p id="payment-value" [ngStyle]="{color: payment.value >= 0 ? '#0BD1B8': '#F31259'}">{{payment.value}} USD</p>
+    <p id="payment-value" [ngStyle]="{color: getColor()}">{{payment.value}} USD</p>
   </div>
   <div class="payment-row2" (click)="toggleIsFullLength()">
     <p id="payment-date">{{payment.date.toLocaleDateString()}}</p>
-    <p id="payment-balance">Balance {{payment.balanceAfter}} USD</p>
+    <p id="payment-balance" *ngIf="payment.balanceAfter">Balance {{payment.balanceAfter}} USD</p>
   </div>
   <div class="payment-row3" *ngIf="payment.categoryName != null && isFullLength === true" (click)="toggleIsFullLength()">
     <p id="payment-category">Category: {{payment.categoryName}}</p>
