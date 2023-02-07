@@ -10,7 +10,7 @@
     "e2e": "ng e2e",
     "postinstall": "ng build --output-path angularapp  --aot --prod",
     "test:prod": "ng test --browsers=ChromeHeadless --watch=false --code-coverage",
-    "build:prod": "ng build --prod --base-href /Follow-the-money-Client/ --deploy-url /Follow-the-money-Client/ --output-path=/Follow-the-money-Client/"
+    "build:prod": "ng build --prod --base-href /Follow-the-money-Client/ --deploy-url /Follow-the-money-Client/ --output-path=dist/Follow-the-money-Client/"
   },
 
   "engines": {
