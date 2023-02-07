@@ -49,4 +49,8 @@ jobs:
         run: |
           npm run test -- --prod
 
+      - name: Create 404.html
+        if: github.ref == 'refs/heads/main'
+        run: cp dist/Follow-the-money-Client/index.html dist/Follow-the-money-Client/404.html
+
 
