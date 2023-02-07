@@ -2,7 +2,10 @@ name: GitHub Deployment
 on:
   push:
     branches: [ "main" ]
-
+  workflow_run:
+    workflows: [ "FTM-client-Angular CI/CD" ]
+    types:
+      - completed
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -18,12 +21,6 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
-#
-#      - name: Lint
-#        run: npm run lint
-
-#      - name: Tests
-#        run: npm run test:prod # Chrome headless; watch code to false; add code-coverage
 
       - name: Build
         run: npm run build:prod
