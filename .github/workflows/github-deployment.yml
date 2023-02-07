@@ -2,14 +2,18 @@ name: GitHub Deployment
 on:
   push:
     branches: [ "main" ]
-  workflow_run:
-    workflows: [ "FTM-client-Angular CI/CD" ]
-    types:
-      - completed
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Wait for tests to succeed
+        uses: lewagon/wait-on-check-action@v1.2.0
+        with:
+          ref: ${{ github.ref }}
+          check-name: 'Test'
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          wait-interval: 10
       - name: Checkout # Check out the project source code
         uses: actions/checkout@v3
 
