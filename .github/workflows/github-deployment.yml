@@ -28,6 +28,9 @@ jobs:
       - name: Build
         run: npm run build:prod
 
+      - name: Create 404.html
+        run: cp dist/Follow-the-money-Client/index.html dist/Follow-the-money-Client/404.html
+
       - name: Deploy to GitHub Pages
         uses: crazy-max/ghaction-github-pages@v3
         with:
