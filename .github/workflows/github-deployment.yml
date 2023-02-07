@@ -26,7 +26,7 @@ jobs:
 #        run: npm run test:prod # Chrome headless; watch code to false; add code-coverage
 
       - name: Build
-        run: npm run build:prod
+        run: npm run build:prod -- --prod
 
       - name: Deploy to GitHub Pages
         uses: crazy-max/ghaction-github-pages@v3
