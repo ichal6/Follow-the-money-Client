@@ -1,11 +1,11 @@
 <form id="login-form" #userForm="ngForm">
   <h1>Log in:</h1>
   <div class="login-input">
-    <img src="../../assets/icons/login-email.svg" alt="login_icon">
+    <img src="assets/icons/login-email.svg" alt="login_icon">
     <input placeholder="Your email" [(ngModel)]="email" name="email">
   </div>
   <div class="login-input">
-    <img src="../../assets/icons/login-password.svg" alt="password_icon">
+    <img src="assets/icons/login-password.svg" alt="password_icon">
     <input type="password" placeholder="Your password" [(ngModel)]="password" name="password">
   </div>
   <div class="warning" *ngIf="message">{{message}}</div>
