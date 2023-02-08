@@ -1,9 +1,9 @@
-name: FTM-client-Angular CI/CD
+name: CI/CD
 
 on: [push]
 
 jobs:
-  ci:
+  ci-cd:
     runs-on: ubuntu-latest
 
     strategy:
