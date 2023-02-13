@@ -81,6 +81,6 @@ jobs:
           key: ${{ secrets.KEY_ED25519 }}
           port: ${{ secrets.PORT }}
           strip_components: 1
-          source: "dist/"
+          source: "dist/index.html"
           target: "root/ftmAngularClient/"
       
