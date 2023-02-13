@@ -80,6 +80,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY_ED25519 }}
           port: ${{ secrets.PORT }}
-          source: "*"
-          target: "root/ftmAngularClient"
+          strip_components: 1
+          source: "dist/"
+          target: "root/ftmAngularClient/"
       
