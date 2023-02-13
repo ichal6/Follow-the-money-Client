@@ -81,5 +81,5 @@ jobs:
           privateKey: ${{ secrets.KEY_ED25519 }}
           port: ${{ secrets.PORT }}
           local: dist
-          remote: root/ftmAngularClient
+          remote: ftmAngularClient
       
