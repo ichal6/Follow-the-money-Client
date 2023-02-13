@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { TransferFormAddComponent } from './transfer-form-add.component';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {RouterTestingModule} from '@angular/router/testing';
+import {FormsModule} from '@angular/forms';
 
 describe('TransferFormAddComponent', () => {
   let component: TransferFormAddComponent;
@@ -8,9 +11,12 @@ describe('TransferFormAddComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ TransferFormAddComponent ]
+      declarations: [ TransferFormAddComponent ],
+      imports: [
+        HttpClientTestingModule, RouterTestingModule, FormsModule
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

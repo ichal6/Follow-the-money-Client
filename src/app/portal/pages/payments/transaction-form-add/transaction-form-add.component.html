@@ -1,4 +1,5 @@
-<h1>Add new transaction</h1>
+<app-payment-type-select ></app-payment-type-select>
+
 <form class="transaction-form" #transactionForm="ngForm">
   <p class="message" *ngIf="message">{{message}}</p>
   <select class="form-select" id="account-from" name="account-from" [(ngModel)]="newTransaction.accountId" (change)="checkIfAccountIdIsValid()" #accountIdField="ngModel" required>

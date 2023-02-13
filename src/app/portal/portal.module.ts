@@ -41,6 +41,7 @@ import { ExpensePayeeComponent } from './pages/payee/expense-payee/expense-payee
 import { IncomePayeeComponent } from './pages/payee/income-payee/income-payee.component';
 import {SingleBoxPayeeComponent} from './pages/payee/single-box-payee/single-box-payee.component';
 import {PayeeComponent} from './pages/payee/payee.component';
+import { PaymentTypeSelectComponent } from './pages/payments/payment-type-select/payment-type-select.component';
 
 const routes: Routes = [
   {
@@ -153,7 +154,8 @@ const routes: Routes = [
     PaymentsAllComponent,
     PaymentComponent,
     TransactionFormAddComponent,
-    TransferFormAddComponent
+    TransferFormAddComponent,
+    PaymentTypeSelectComponent
   ],
   imports: [
     CommonModule,

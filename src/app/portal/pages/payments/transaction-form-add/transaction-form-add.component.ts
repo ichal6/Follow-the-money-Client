@@ -10,6 +10,7 @@ import {CategoryService} from '../../../../service/category.service';
 import {FormResetService} from '../../../../service/form-reset.service';
 import {TransactionsService} from '../../../../service/transactions.service';
 import {Router} from '@angular/router';
+import {FormChangeService} from '../../../../service/form-change.service';
 
 @Component({
   selector: 'app-transaction-form-add',
@@ -43,7 +44,8 @@ export class TransactionFormAddComponent implements OnInit, OnDestroy {
               private categoryService: CategoryService,
               private transactionsService: TransactionsService,
               private formResetService: FormResetService,
-              private router: Router) { }
+              private router: Router,
+              private formChangeService: FormChangeService) { }
 
   ngOnInit(): void {
     this.newTransaction = new Transaction();
@@ -156,5 +158,10 @@ export class TransactionFormAddComponent implements OnInit, OnDestroy {
   redirectTo(uri: string): void {
     this.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
       this.router.navigate([uri]));
+  }
+
+  toTransfer(): void {
+    console.log('To transfer active');
+    this.formChangeService.changeFormToTransfer();
   }
 }
