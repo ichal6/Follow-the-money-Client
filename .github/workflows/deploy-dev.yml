@@ -18,4 +18,4 @@ jobs:
         port: ${{ secrets.PORT }}
         source: "*"
         target: "root/ftmAngularClient"
-        script: sh deploy-Angular.sh ${{ github.event.pull_request.base.ref }}
+        script: sh deploy-Angular.sh ${{ github.event.pull_request.head.ref }}
