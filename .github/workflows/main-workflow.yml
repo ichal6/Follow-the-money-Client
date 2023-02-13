@@ -1,6 +1,10 @@
 name: CI/CD
 
-on: [push]
+on: 
+  push:
+  pull_request:
+    branches:
+      - dev
 
 jobs:
   ci-cd:
@@ -39,8 +43,12 @@ jobs:
           npm ci
 
       - name: Build
+        if: github.event.name != 'pull_request'
         run: |
           npm run build:prod
+      - name: Build dev
+        if: github.event.name == 'pull_request'
+        run: npm run build:dev
 
       - name: Lint
         run: |
@@ -62,5 +70,15 @@ jobs:
           build_dir: dist/Follow-the-money-Client/
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-
+          
+      - name: Deploy to mikr.us
+        if: github.event.name == 'pull_request'
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY_ED25519 }}
+          port: ${{ secrets.PORT }}
+          source: "*"
+          target: "root/ftmAngularClient"
+      
