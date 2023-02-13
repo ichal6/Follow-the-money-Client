@@ -74,13 +74,12 @@ jobs:
           
       - name: Deploy to mikr.us
         if: github.event_name == 'pull_request'
-        uses: appleboy/ssh-action@master
+        uses: garygrossgarten/github-action-scp@release
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.KEY_ED25519 }}
+          privateKey: ${{ secrets.KEY_ED25519 }}
           port: ${{ secrets.PORT }}
-          strip_components: 1
-          source: dist/index.html
-          target: root/ftmAngularClient/
+          local: dist
+          remote: root/ftmAngularClient
       
