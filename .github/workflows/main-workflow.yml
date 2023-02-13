@@ -43,11 +43,12 @@ jobs:
           npm ci
 
       - name: Build
-        if: github.event.name != 'pull_request'
+        if: github.event_name != 'pull_request'
         run: |
           npm run build:prod
+          
       - name: Build dev
-        if: github.event.name == 'pull_request'
+        if: github.event_name == 'pull_request'
         run: npm run build:dev
 
       - name: Lint
@@ -72,7 +73,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
       - name: Deploy to mikr.us
-        if: github.event.name == 'pull_request'
+        if: github.event_name == 'pull_request'
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST }}
