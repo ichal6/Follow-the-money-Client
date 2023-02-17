@@ -7,6 +7,7 @@
     <option [ngValue]="null" [disabled]="true" >Select account type</option>
     <option value = "Cash">Cash</option>
     <option value = "Bank">Bank</option>
+    <option value = "Loan">Loan</option>
   </select>
   <p class="message" *ngIf="!isTypeValid && typeField.touched">You have to choose one of the above options</p>
   <input type="number" class="form-input" id="starting-balance" placeholder="Starting balance (USD)" name="balance" [(ngModel)]="newAccount.startingBalance" (mouseleave)="checkIfBalanceIsValid()" (focusout)="checkIfBalanceIsValid()" #balanceField="ngModel" required>
