@@ -33,10 +33,13 @@ export class AccountBoxComponent implements OnInit {
   }
 
   urlToImage(): string {
-    if (this.account.accountType === AccountType.CASH) {
-      return 'wallet-type.png';
-    } else {
-      return 'bank-type.png';
+    switch (this.account.accountType) {
+      case AccountType.BANK:
+        return 'bank-type.png';
+      case AccountType.CASH:
+        return 'wallet-type.png';
+      case AccountType.LOAN:
+        return 'loan-type.png';
     }
   }
 

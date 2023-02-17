@@ -5,14 +5,25 @@ export class Account {
   startingBalance: number;
   currentBalance: number;
 
-  static fromHttp(account: Account): Account {
+  static fromHttp(account): Account {
     const newAccount = new Account();
     newAccount._id = account.id;
     newAccount._name = account.name;
     newAccount.currentBalance = account.currentBalance;
     newAccount.startingBalance = account.startingBalance;
-    newAccount.accountType = (account.accountType === AccountType.CASH) ? AccountType.CASH : AccountType.BANK;
+    newAccount.accountType = this.setAccountType(account.accountType);
     return newAccount;
+  }
+
+  private static setAccountType(accountType: string): AccountType {
+    switch (accountType) {
+      case AccountType.BANK:
+        return AccountType.BANK;
+      case AccountType.CASH:
+        return AccountType.CASH;
+      case AccountType.LOAN:
+        return AccountType.LOAN;
+    }
   }
 
   getCurrentBalance(): string {
