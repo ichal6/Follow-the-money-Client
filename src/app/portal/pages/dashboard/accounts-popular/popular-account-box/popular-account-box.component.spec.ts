@@ -28,4 +28,31 @@ describe('PopularAccountBoxComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should select correct icon for loan account', () => {
+    // given
+    component.account.accountType = AccountType.LOAN;
+    // when
+    const urlToIcon = component.urlToImage();
+    // then
+    expect(urlToIcon).toEqual('loan-type.png');
+  });
+
+  it('should select correct icon for cash account', () => {
+    // given
+    component.account.accountType = AccountType.CASH;
+    // when
+    const urlToIcon = component.urlToImage();
+    // then
+    expect(urlToIcon).toEqual('wallet-type.png');
+  });
+
+  it('should select correct icon for bank account', () => {
+    // given
+    component.account.accountType = AccountType.BANK;
+    // when
+    const urlToIcon = component.urlToImage();
+    // then
+    expect(urlToIcon).toEqual('bank-type.png');
+  });
 });
