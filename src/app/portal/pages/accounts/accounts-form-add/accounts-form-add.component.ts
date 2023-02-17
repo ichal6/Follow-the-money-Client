@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, OnDestroy, OnInit} from '@angular/core';
 import {Account, AccountType} from '../../../../model/Account';
 import {Subscription} from 'rxjs';
 import {AccountsService} from '../../../../service/accounts.service';
@@ -63,8 +63,7 @@ export class AccountsFormAddComponent implements OnInit, OnDestroy {
   }
 
   checkIfTypeIsValid(): void {
-    this.isTypeValid = (this.newAccount.accountType.toUpperCase() === AccountType.BANK
-    || this.newAccount.accountType.toUpperCase() === AccountType.CASH);
+    this.isTypeValid = this.newAccount.accountType.toUpperCase() in AccountType;
   }
 
   checkIfBalanceIsValid(): void {

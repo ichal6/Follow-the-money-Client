@@ -61,5 +61,6 @@ export class NoAccount extends Account {
 
 export enum AccountType {
   CASH = 'CASH',
-  BANK = 'BANK'
+  BANK = 'BANK',
+  LOAN = 'LOAN'
 }
