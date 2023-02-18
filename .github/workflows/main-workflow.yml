@@ -1,6 +1,6 @@
 name: CI/CD
 
-on: 
+on:
   push:
   pull_request:
     branches:
@@ -25,6 +25,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: Cache node modules
+        if: ${{ false }} # temporary disable cache
         id: cache-nodemodules
         uses: actions/cache@v2
         env:
@@ -47,7 +48,7 @@ jobs:
         if: github.event_name != 'pull_request'
         run: |
           npm run build:prod
-          
+
       - name: Build dev
         if: github.event_name == 'pull_request'
         run: |
@@ -73,7 +74,7 @@ jobs:
           build_dir: dist/Follow-the-money-Client/
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          
+
       - name: Deploy dist to mikr.us
         if: github.event_name == 'pull_request'
         uses: garygrossgarten/github-action-scp@release
@@ -84,7 +85,7 @@ jobs:
           port: ${{ secrets.PORT }}
           local: dist
           remote: ftmAngularClient
-      
+
       - name: Run website on mikr.us
         if: github.event_name == 'pull_request'
         uses: appleboy/ssh-action@master
