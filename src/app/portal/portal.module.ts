@@ -161,7 +161,7 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     ChartsModule,
-    RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload', relativeLinkResolution: 'legacy' }),
+    RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' }),
     FormsModule
   ],
   exports:
