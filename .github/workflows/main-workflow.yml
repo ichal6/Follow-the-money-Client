@@ -60,7 +60,7 @@ jobs:
 
       - name: Test
         run: |
-          npm run test -- --configuration=production
+          npm run test
 
       - name: Create 404.html
         if: github.ref == 'refs/heads/main'
