@@ -25,7 +25,6 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: Cache node modules
-        if: ${{ false }} # temporary disable cache
         id: cache-nodemodules
         uses: actions/cache@v2
         env:
