@@ -4,7 +4,7 @@
     <li class="item">
       <app-expense-box [category]="category"></app-expense-box>
     </li>
-    <ul class="sub-list" *ngIf="category.subcategories.length != 0">
+    <ul class="sub-list" *ngIf="category.subcategories.length !== 0">
       <li class="item" *ngFor="let subcategory of category.subcategories">
         <app-expense-subcategory-box [subcategory]="subcategory"  [categoryId] = category.id></app-expense-subcategory-box>
       </li>

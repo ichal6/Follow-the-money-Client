@@ -1,15 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-main-portal-layout',
   templateUrl: './main-portal-layout.component.html',
   styleUrls: ['./main-portal-layout.component.css']
 })
-export class MainPortalLayoutComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+export class MainPortalLayoutComponent {
 
 }

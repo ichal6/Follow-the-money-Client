@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {Router} from '@angular/router';
 
 @Component({
@@ -6,12 +6,9 @@ import {Router} from '@angular/router';
   templateUrl: './login-text.component.html',
   styleUrls: ['./login-text.component.css']
 })
-export class LoginTextComponent implements OnInit {
+export class LoginTextComponent {
 
   constructor(private router: Router) { }
-
-  ngOnInit(): void {
-  }
 
   navigateTo(page: string): void {
     this.router.navigate([page]);

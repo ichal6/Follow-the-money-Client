@@ -11,5 +11,4 @@ export class FormResetService {
   resetAccountFormEvent = new EventEmitter<Account>();
   resetTransactionFormEvent = new EventEmitter<Transaction>();
   resetTransferFormEvent = new EventEmitter<Transfer>();
-  constructor() { }
 }

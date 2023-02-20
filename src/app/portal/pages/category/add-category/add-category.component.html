@@ -14,7 +14,7 @@
     <p class="message" *ngIf="!isTypeValid && typeField.touched">You have to choose one of the above options</p>
     <select [(ngModel)]="idCategory" (change)="checkIfSubcategory()" #idCategoryField id="subcategory" name="subcategory">
       <option value="{{category.id}}" *ngFor="let category of allCategories"
-              [hidden]="category.id == null" [disabled]="category.id == null" [selected]="true" >
+              [hidden]="category.id === null" [disabled]="category.id === null" [selected]="true" >
         {{category.name}}
       </option>
     </select>

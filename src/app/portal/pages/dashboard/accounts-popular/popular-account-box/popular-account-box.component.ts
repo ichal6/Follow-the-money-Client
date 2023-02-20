@@ -13,9 +13,6 @@ export class PopularAccountBoxComponent implements OnInit {
   colorsArray = ['#F4BB4A', '#F31259', '#FF7D44', '#564193'];
   currentColor: string;
 
-  constructor() {
-  }
-
   ngOnInit(): void {
     this.currentColor = this.getColor();
   }

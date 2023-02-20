@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {Router} from '@angular/router';
 
 @Component({
@@ -6,12 +6,9 @@ import {Router} from '@angular/router';
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css']
 })
-export class MenuComponent implements OnInit {
+export class MenuComponent {
 
   constructor(private route: Router) { }
-
-  ngOnInit(): void {
-  }
 
   navigateTo(page: string): void {
     this.route.navigate([page]);

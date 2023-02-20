@@ -20,7 +20,6 @@ export class SingleActivityComponent implements OnInit {
   last: any;
   @Input()
   even: any;
-  constructor() { }
 
   ngOnInit(): void {
     if (this.first){

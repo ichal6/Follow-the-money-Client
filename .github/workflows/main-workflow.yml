@@ -42,7 +42,7 @@ jobs:
       - name: Install Dependencies
         if: steps.cache-nodemodules.outputs.cache-hit != 'true'
         run: |
-          npm ci --save --legacy-peer-deps
+          npm ci
 
       - name: Build
         if: github.event_name != 'pull_request'

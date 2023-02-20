@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {Dashboard} from '../../../../model/Dashboard';
 
 @Component({
@@ -6,14 +6,7 @@ import {Dashboard} from '../../../../model/Dashboard';
   templateUrl: './balance.component.html',
   styleUrls: ['./balance.component.css']
 })
-export class BalanceComponent implements OnInit {
+export class BalanceComponent {
   @Input()
   dashboard: Dashboard;
-
-  constructor() {
-  }
-
-  ngOnInit(): void {
-  }
-
 }

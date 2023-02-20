@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnDestroy, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit} from '@angular/core';
 import {Category, GeneralType} from '../../../../model/Category';
 import {Router} from '@angular/router';
 import {Payee} from '../../../../model/Payee';
@@ -9,7 +9,7 @@ import {PayeeService} from '../../../../service/payee.service';
   templateUrl: './add-payee.component.html',
   styleUrls: ['./add-payee.component.css']
 })
-export class AddPayeeComponent implements OnInit, OnDestroy {
+export class AddPayeeComponent implements OnInit {
 
   newPayee: Payee;
   allPayees: Array<Payee>;
@@ -27,10 +27,6 @@ export class AddPayeeComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.newPayee = new Category();
     this.newPayee.type = null;
-  }
-
-  ngOnDestroy(): void {
-
   }
 
   onSubmit(): void {

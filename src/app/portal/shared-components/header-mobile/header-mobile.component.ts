@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {Router} from '@angular/router';
 import {DataService} from '../../../service/data.service';
 import {AuthService} from '../../../service/auth.service';
@@ -8,14 +8,11 @@ import {AuthService} from '../../../service/auth.service';
   templateUrl: './header-mobile.component.html',
   styleUrls: ['./header-mobile.component.css']
 })
-export class HeaderMobileComponent implements OnInit {
+export class HeaderMobileComponent {
 
   constructor(private dataService: DataService,
               private route: Router,
               private authService: AuthService) { }
-
-  ngOnInit(): void {
-  }
 
   navigateTo(page: string): void {
     this.route.navigate([page]);

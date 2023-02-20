@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {Router} from '@angular/router';
 
 @Component({
@@ -6,12 +6,9 @@ import {Router} from '@angular/router';
   templateUrl: './forms.component.html',
   styleUrls: ['./forms.component.css']
 })
-export class FormsComponent implements OnInit {
+export class FormsComponent {
 
   constructor(private router: Router) { }
-
-  ngOnInit(): void {
-  }
 
   getUrl(): string{
     return this.router.url;

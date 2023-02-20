@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnDestroy, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {Category, GeneralType} from '../../../../model/Category';
 import {CategoryService} from '../../../../service/category.service';
@@ -8,7 +8,7 @@ import {CategoryService} from '../../../../service/category.service';
   templateUrl: './add-category.component.html',
   styleUrls: ['./add-category.component.css']
 })
-export class AddCategoryComponent implements OnInit, OnDestroy {
+export class AddCategoryComponent implements OnInit {
 
   newCategory: Category;
   allCategories: Array<Category>;
@@ -30,11 +30,6 @@ export class AddCategoryComponent implements OnInit, OnDestroy {
     this.newCategory.type = null;
     this.loadCategories();
   }
-
-  ngOnDestroy(): void {
-
-  }
-
   loadCategories(): void {
     this.categoryService.getAllCategories().subscribe(
       categories => {

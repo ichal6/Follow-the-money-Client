@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {FormChangeService} from '../../../service/form-change.service';
 
 @Component({
@@ -6,11 +6,8 @@ import {FormChangeService} from '../../../service/form-change.service';
   templateUrl: './payee.component.html',
   styleUrls: ['./payee.component.css']
 })
-export class PayeeComponent implements OnInit {
+export class PayeeComponent {
 
   constructor(public formChangeService: FormChangeService) { }
-
-  ngOnInit(): void {
-  }
 
 }

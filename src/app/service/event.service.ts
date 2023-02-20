@@ -5,6 +5,4 @@ import {EventEmitter, Injectable} from '@angular/core';
 })
 export class EventService {
   public dashboardChangedEvent = new EventEmitter();
-
-  constructor() { }
 }

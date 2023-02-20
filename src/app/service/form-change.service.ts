@@ -15,8 +15,6 @@ export class FormChangeService {
   public isSubcategory = false;
   public payee: Payee;
 
-  constructor() { }
-
   changeFormToEdit(accountToUpdate: Account): void {
     this.formAction = 'edit';
     this.account = accountToUpdate;

@@ -1,4 +1,4 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {CategoryService} from '../../../../service/category.service';
 import {Category, Subcategory} from '../../../../model/Category';
 import {Router} from '@angular/router';
@@ -9,7 +9,7 @@ import {FormChangeService} from '../../../../service/form-change.service';
   templateUrl: './edit-category.component.html',
   styleUrls: ['./edit-category.component.css']
 })
-export class EditCategoryComponent implements OnInit, OnDestroy {
+export class EditCategoryComponent implements OnInit {
   @Input()
   public updateCategory: Category;
   @Input()
@@ -28,10 +28,6 @@ export class EditCategoryComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.initializeForm();
-  }
-
-  ngOnDestroy(): void {
-
   }
 
   initializeForm(): void {

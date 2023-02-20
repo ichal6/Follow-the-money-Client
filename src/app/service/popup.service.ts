@@ -7,9 +7,6 @@ export class PopupService {
   widthOfPopUp = 125;
   lengthFromTop = 50;
 
-  constructor() {
-  }
-
   displayPopup(event, coordinates): void {
     const position = this.getPosition(event);
     coordinates.push(position.offsetTop + this.lengthFromTop + 'px');
