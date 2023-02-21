@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {CookieService} from 'ngx-cookie-service';
 import {Observable} from 'rxjs';
-import {Dashboard} from '../model/Dashboard';
 import {environment} from '../../environments/environment';
 import {map} from 'rxjs/operators';
 import {Category, Subcategory} from '../model/Category';

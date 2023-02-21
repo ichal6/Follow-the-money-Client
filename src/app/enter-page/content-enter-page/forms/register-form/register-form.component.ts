@@ -4,7 +4,6 @@ import {AuthService} from '../../../../service/auth.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {DataService} from '../../../../service/data.service';
 import {User} from '../../../../model/User';
-import {error} from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-register-form',

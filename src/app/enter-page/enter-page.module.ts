@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
-import {ChartsModule} from 'ng2-charts';
+import {NgChartsModule} from 'ng2-charts';
 import {EnterPageComponent} from './enter-page.component';
 import {PortalComponent} from '../portal/portal.component';
 import {HeaderComponent} from './header/header.component';
@@ -52,7 +52,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    ChartsModule,
+    NgChartsModule,
     FormsModule
   ],
   exports: [RouterModule, HeaderComponent, EnterPageContentComponent]

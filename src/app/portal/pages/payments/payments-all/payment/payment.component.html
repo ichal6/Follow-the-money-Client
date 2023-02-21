@@ -7,7 +7,7 @@
     <p id="payment-date">{{payment.date.toLocaleDateString()}}</p>
     <p id="payment-balance" *ngIf="payment.balanceAfter">Balance {{payment.balanceAfter}} USD</p>
   </div>
-  <div class="payment-row3" *ngIf="payment.categoryName != null && isFullLength === true" (click)="toggleIsFullLength()">
+  <div class="payment-row3" *ngIf="payment.categoryName !== null && isFullLength === true" (click)="toggleIsFullLength()">
     <p id="payment-category">Category: {{payment.categoryName}}</p>
   </div>
   <div class="payment-row4" *ngIf="isFullLength === true" (click)="toggleIsFullLength()">

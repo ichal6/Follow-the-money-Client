@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {FormChangeService} from '../../../service/form-change.service';
 
 @Component({
@@ -6,11 +6,7 @@ import {FormChangeService} from '../../../service/form-change.service';
   templateUrl: './category.component.html',
   styleUrls: ['./category.component.css']
 })
-export class CategoryComponent implements OnInit {
+export class CategoryComponent {
 
   constructor(public formChangeService: FormChangeService) { }
-
-  ngOnInit(): void {
-  }
-
 }

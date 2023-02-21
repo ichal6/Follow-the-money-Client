@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {Account} from '../../../../model/Account';
 
 @Component({
@@ -6,13 +6,8 @@ import {Account} from '../../../../model/Account';
   templateUrl: './accounts-all.component.html',
   styleUrls: ['./accounts-all.component.css']
 })
-export class AccountsAllComponent implements OnInit {
+export class AccountsAllComponent{
 
   @Input()
   accounts: Array<Account>;
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
 }

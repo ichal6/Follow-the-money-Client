@@ -13,7 +13,7 @@ import {ActivityComponent} from './pages/dashboard/activity/activity.component';
 import {AccountsPopularComponent} from './pages/dashboard/accounts-popular/accounts-popular.component';
 import {AccountsAllComponent} from './pages/accounts/accounts-all/accounts-all.component';
 import {AccountsFormEditComponent} from './pages/accounts/accounts-form-edit/accounts-form-edit.component';
-import {ChartsModule} from 'ng2-charts';
+import {NgChartsModule} from 'ng2-charts';
 import {SingleActivityComponent} from './pages/dashboard/activity/single-activity/single-activity.component';
 import {PrefetchDashboardService} from '../service/prefetch-dashboard.service';
 import {PopularAccountBoxComponent} from './pages/dashboard/accounts-popular/popular-account-box/popular-account-box.component';
@@ -160,8 +160,8 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    ChartsModule,
-    RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload', relativeLinkResolution: 'legacy' }),
+    NgChartsModule,
+    RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' }),
     FormsModule
   ],
   exports:

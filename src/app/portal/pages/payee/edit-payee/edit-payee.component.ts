@@ -1,4 +1,4 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {FormChangeService} from '../../../../service/form-change.service';
 import {Payee} from '../../../../model/Payee';
@@ -9,7 +9,7 @@ import {PayeeService} from '../../../../service/payee.service';
   templateUrl: './edit-payee.component.html',
   styleUrls: ['./edit-payee.component.css']
 })
-export class EditPayeeComponent implements OnInit, OnDestroy {
+export class EditPayeeComponent implements OnInit {
 
   @Input()
   public updatePayee: Payee;
@@ -26,10 +26,6 @@ export class EditPayeeComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.initializeForm();
-  }
-
-  ngOnDestroy(): void {
-
   }
 
   initializeForm(): void {

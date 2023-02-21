@@ -1,6 +1,6 @@
 name: CI/CD
 
-on: 
+on:
   push:
   pull_request:
     branches:
@@ -13,20 +13,20 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [14.x]
+        node-version: [18.x]
 
     steps:
       - name: Check out the project source code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
 
       - name: Cache node modules
         id: cache-nodemodules
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         env:
           cache-name: cache-node-modules
         with:
@@ -47,7 +47,7 @@ jobs:
         if: github.event_name != 'pull_request'
         run: |
           npm run build:prod
-          
+
       - name: Build dev
         if: github.event_name == 'pull_request'
         run: |
@@ -59,7 +59,7 @@ jobs:
 
       - name: Test
         run: |
-          npm run test -- --prod
+          npm run test:ci
 
       - name: Create 404.html
         if: github.ref == 'refs/heads/main'
@@ -73,7 +73,7 @@ jobs:
           build_dir: dist/Follow-the-money-Client/
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          
+
       - name: Deploy dist to mikr.us
         if: github.event_name == 'pull_request'
         uses: garygrossgarten/github-action-scp@release
@@ -84,7 +84,7 @@ jobs:
           port: ${{ secrets.PORT }}
           local: dist
           remote: ftmAngularClient
-      
+
       - name: Run website on mikr.us
         if: github.event_name == 'pull_request'
         uses: appleboy/ssh-action@master

@@ -8,7 +8,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {RouterModule, Routes} from '@angular/router';
 import {PortalComponent} from './portal/portal.component';
 import {PortalModule} from './portal/portal.module';
-import {ChartsModule} from 'ng2-charts';
+import {NgChartsModule} from 'ng2-charts';
 import {EnterPageModule} from './enter-page/enter-page.module';
 import {AuthRouteGuardService} from './service/auth-route-guard.service';
 import { PayeeComponent } from './portal/pages/payee/payee.component';
@@ -32,9 +32,9 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' }),
+    RouterModule.forRoot(routes, { }),
     PortalModule,
-    ChartsModule,
+    NgChartsModule,
     EnterPageModule
   ],
   providers: [],
