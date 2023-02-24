@@ -110,6 +110,17 @@ const routes: Routes = [
       }
     ],
     canActivate : [AuthRouteGuardService]
+  },
+  {
+    path: 'analysis',
+    component: MainPortalLayoutComponent,
+    children: [
+      {
+        path: '',
+        component: PayeeComponent
+      }
+    ],
+    canActivate : [AuthRouteGuardService]
   }
 ];
 
