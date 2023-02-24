@@ -4,6 +4,7 @@ import { MenuComponent } from './menu.component';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {RouterTestingModule} from '@angular/router/testing';
 import {FormsModule} from '@angular/forms';
+import {Router} from '@angular/router';
 
 describe('MenuComponent', () => {
   let component: MenuComponent;
@@ -11,6 +12,14 @@ describe('MenuComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
+      providers: [
+        {
+          provide: Router,
+          useValue: {
+            url: '/portal'
+          }
+        }
+      ],
       declarations: [ MenuComponent ],
       imports: [
         HttpClientTestingModule, RouterTestingModule, FormsModule
