@@ -10,5 +10,7 @@
     <li class="menu-item"><a id="payee" #href (click)="navigateTo('payee')"><img src="assets/icons/navigation/icon-payees.svg" alt="payees-icon" ><p>Payees</p></a></li>
     <li class="menu-item"><a id="payments" #href (click)="navigateTo('payments')"><img src="assets/icons/navigation/icon-payments.svg" alt="payments-icon" ><p>Payments</p></a></li>
     <li class="menu-item"><a id="analysis" #href (click)="navigateTo('analysis')"><img src="assets/icons/navigation/icon-analysis.svg" alt="analysis-icon" ><p>Financial analysis</p></a></li>
+    <li class="menu-item mobile"><a (click)="displayInfo()"><p>Settings</p></a></li>
+    <li class="menu-item mobile"><a (click)="logout()"><p>Log out</p></a></li>
   </ul>
 </nav>

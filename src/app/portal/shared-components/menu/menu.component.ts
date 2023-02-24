@@ -1,5 +1,6 @@
 import {AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChildren} from '@angular/core';
 import {Router} from '@angular/router';
+import {AuthService} from '../../../service/auth.service';
 
 @Component({
   selector: 'app-menu',
@@ -10,7 +11,8 @@ export class MenuComponent implements OnInit, AfterViewInit {
   private selectedHref: string;
   @ViewChildren("href") hrefs: QueryList<ElementRef>;
 
-  constructor(private route: Router) { }
+  constructor(private route: Router,
+              private authService: AuthService) { }
 
   ngOnInit(): void {
     this.selectedHref = this.route.url;
@@ -26,5 +28,13 @@ export class MenuComponent implements OnInit, AfterViewInit {
     this.route.navigate([page]);
   }
 
+  displayInfo(): void {
+    alert('User menu isn\'t implement, yet!');
+  }
+
+  logout(): void{
+    this.authService.logout();
+    this.route.navigate(['login']);
+  }
 
 }
