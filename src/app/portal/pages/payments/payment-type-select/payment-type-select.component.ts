@@ -7,7 +7,6 @@ import {FormChangeService} from '../../../../service/form-change.service';
   styleUrls: ['./payment-type-select.component.css']
 })
 export class PaymentTypeSelectComponent implements OnInit {
-  // eslint-disable-next-line @typescript-eslint/naming-convention, no-underscore-dangle, id-blacklist, id-match
   private _defaultOption: string;
 
   constructor(private formChangeService: FormChangeService) { }

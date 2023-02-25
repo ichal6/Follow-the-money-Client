@@ -45,6 +45,12 @@ import { PaymentTypeSelectComponent } from './pages/payments/payment-type-select
 import { AnalysisComponent } from './pages/analysis/analysis.component';
 import { FinancialSummaryComponent } from './pages/analysis/financial-summary/financial-summary.component';
 import { FinancialTableComponent } from './pages/analysis/financial-table/financial-table.component';
+import {TableModule} from 'primeng/table';
+import {ProgressBarModule} from 'primeng/progressbar';
+import {SliderModule} from 'primeng/slider';
+import {DropdownModule} from 'primeng/dropdown';
+import {MultiSelectModule} from 'primeng/multiselect';
+import { SelectTimePeriodComponent } from './pages/analysis/financial-table/select-time-period/select-time-period.component';
 
 const routes: Routes = [
   {
@@ -172,14 +178,20 @@ const routes: Routes = [
     PaymentTypeSelectComponent,
     AnalysisComponent,
     FinancialSummaryComponent,
-    FinancialTableComponent
+    FinancialTableComponent,
+    SelectTimePeriodComponent
   ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
     NgChartsModule,
-    RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' }),
-    FormsModule
+    RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'}),
+    FormsModule,
+    TableModule,
+    ProgressBarModule,
+    SliderModule,
+    DropdownModule,
+    MultiSelectModule
   ],
   exports:
     [RouterModule, IncomePayeeComponent, ExpensePayeeComponent, AddPayeeComponent, EditPayeeComponent]
