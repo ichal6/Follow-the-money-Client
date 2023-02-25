@@ -42,6 +42,9 @@ import { IncomePayeeComponent } from './pages/payee/income-payee/income-payee.co
 import {SingleBoxPayeeComponent} from './pages/payee/single-box-payee/single-box-payee.component';
 import {PayeeComponent} from './pages/payee/payee.component';
 import { PaymentTypeSelectComponent } from './pages/payments/payment-type-select/payment-type-select.component';
+import { AnalysisComponent } from './pages/analysis/analysis.component';
+import { FinancialSummaryComponent } from './pages/analysis/financial-summary/financial-summary.component';
+import { FinancialTableComponent } from './pages/analysis/financial-table/financial-table.component';
 
 const routes: Routes = [
   {
@@ -117,7 +120,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: PayeeComponent
+        component: AnalysisComponent
       }
     ],
     canActivate : [AuthRouteGuardService]
@@ -166,7 +169,10 @@ const routes: Routes = [
     PaymentComponent,
     TransactionFormAddComponent,
     TransferFormAddComponent,
-    PaymentTypeSelectComponent
+    PaymentTypeSelectComponent,
+    AnalysisComponent,
+    FinancialSummaryComponent,
+    FinancialTableComponent
   ],
   imports: [
     CommonModule,
