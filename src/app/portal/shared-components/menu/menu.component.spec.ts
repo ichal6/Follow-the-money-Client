@@ -9,6 +9,7 @@ import {Router} from '@angular/router';
 describe('MenuComponent', () => {
   let component: MenuComponent;
   let fixture: ComponentFixture<MenuComponent>;
+  const selectedColor = 'rgb(11, 209, 184)';
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -36,5 +37,15 @@ describe('MenuComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should highlighted selected link', () => {
+    const color = fixture.debugElement.nativeElement.querySelector('#portal').style.color;
+    expect(color).toBe(selectedColor);
+  });
+
+  it('should not highlighted unselected link', () => {
+    const color = fixture.debugElement.nativeElement.querySelector('#accounts').style.color;
+    expect(color).toBe('');
   });
 });
