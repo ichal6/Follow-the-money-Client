@@ -1,4 +1,7 @@
 import {Component, OnInit} from '@angular/core';
+import {Subscription} from 'rxjs';
+import {AnalysisService} from '../../../../service/analysis.service';
+import {AnalysisTableRow} from '../../../../model/AnalysisTableRow';
 
 @Component({
   selector: 'app-financial-table',
@@ -6,28 +9,23 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./financial-table.component.css']
 })
 export class FinancialTableComponent  implements OnInit {
-  tableData: any[] = [];
+  private subscribeTableContent: Subscription;
+  tableData: AnalysisTableRow[] = [];
+
+  constructor(private analysisService: AnalysisService) {
+  }
 
   ngOnInit() {
     this.updateData();
   }
 
   updateData(eventData?: { period: number }) : void {
-    console.log('update');
-    console.log(eventData === undefined);
-    this.tableData = [
-      {
-        categoryName: 'Sport',
-        income: 40,
-        expense: 50,
-        balance: -10
-      },
-      {
-        categoryName: 'All',
-        income: 40,
-        expense: 50,
-        balance: -10
-      }
-    ];
+    this.subscribeTableContent = this.analysisService.getAnalysisDataRows().subscribe({
+      next: (res) => this.tableData = res,
+      error: (err) =>
+        console.log('problem with getting the table rows: ', err)
+      ,
+      complete: () => console.log('Completed fetch table data')
+    });
   }
 }
