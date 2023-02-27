@@ -20,11 +20,15 @@ export class FinancialTableComponent  implements OnInit {
   }
 
   updateData(eventData?: { period: number }) : void {
-    this.subscribeTableContent = this.analysisService.getAnalysisDataRows().subscribe({
+    let startDate = '1970-01-01';
+    if(eventData !== undefined && eventData.period > 0) {
+      let date = new Date();
+      date.setDate(new Date().getDate() - eventData.period);
+      startDate = date.toISOString().substring(0,10);
+    }
+    this.subscribeTableContent = this.analysisService.getAnalysisDataRows(startDate).subscribe({
       next: (res) => this.tableData = res,
-      error: (err) =>
-        console.log('problem with getting the table rows: ', err)
-      ,
+      error: (err) => console.log('problem with getting the table rows: ', err),
       complete: () => console.log('Completed fetch table data')
     });
   }
