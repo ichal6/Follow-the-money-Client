@@ -57,6 +57,7 @@ export class AuthService {
     this.isAuthenticated = false;
     this.authenticationResultEvent.emit(false);
     this.resetEmailInServices();
+    this.tryLoginEvent.emit(false);
   }
 
   resetEmailInServices(): void {
