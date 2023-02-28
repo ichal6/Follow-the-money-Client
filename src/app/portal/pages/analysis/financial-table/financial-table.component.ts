@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {AnalysisService} from '../../../../service/analysis.service';
 import {AnalysisTableRow} from '../../../../model/AnalysisTableRow';
@@ -8,7 +8,7 @@ import {AnalysisTableRow} from '../../../../model/AnalysisTableRow';
   templateUrl: './financial-table.component.html',
   styleUrls: ['./financial-table.component.css']
 })
-export class FinancialTableComponent  implements OnInit {
+export class FinancialTableComponent  implements OnInit, OnDestroy {
   private subscribeTableContent: Subscription;
   tableData: AnalysisTableRow[] = [];
 
@@ -17,6 +17,10 @@ export class FinancialTableComponent  implements OnInit {
 
   ngOnInit() {
     this.updateData();
+  }
+
+  ngOnDestroy(): void {
+    this.subscribeTableContent.unsubscribe();
   }
 
   updateData(eventData?: { period: number }) : void {
