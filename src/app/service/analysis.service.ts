@@ -27,7 +27,8 @@ export class AnalysisService {
       .pipe(
         map(data => {
           return this.extractAnalysisTableRowFromJSON(data);
-        })
+        }),
+        map(arr => arr.sort((a: AnalysisTableRow, b: AnalysisTableRow) => a.name.localeCompare(b.name)))
       );
   }
 
