@@ -31,7 +31,7 @@ export class AnalysisService {
       );
   }
 
-  extractAnalysisTableRowFromJSON(dataJSON): Array<AnalysisTableRow> {
+  private extractAnalysisTableRowFromJSON(dataJSON): Array<AnalysisTableRow> {
     const analysisTableRowsTS = new Array<AnalysisTableRow>();
 
     for (const row of dataJSON) {
