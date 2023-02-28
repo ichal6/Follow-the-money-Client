@@ -31,7 +31,7 @@ export class AnalysisService {
         map(data => {
           return this.extractAnalysisTableRowFromJSON(data);
         }),
-        map(arr => arr.sort((a: AnalysisTableRow, b: AnalysisTableRow) => a.name.localeCompare(b.name)))
+        map(arr => arr.sort((a: AnalysisTableRow, b: AnalysisTableRow) => a.balance - b.balance))
       );
   }
 
