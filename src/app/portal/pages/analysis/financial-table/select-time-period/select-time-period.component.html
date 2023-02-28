@@ -8,3 +8,13 @@
     <option value="365">Last year</option>
   </select>
 </div>
+
+<div class="parameter">
+  <label for="type">Type: </label>
+  <select class="type-select" name="type" id="type" [(ngModel)]="type" (change)="requestData()" #periodSelect="ngModel">
+    <option value="accounts">Accounts</option>
+    <option value="payees">Payees</option>
+    <option value="categories">Categories</option>
+  </select>
+</div>
+

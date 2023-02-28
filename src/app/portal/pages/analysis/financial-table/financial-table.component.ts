@@ -23,7 +23,7 @@ export class FinancialTableComponent  implements OnInit, OnDestroy {
     this.subscribeTableContent.unsubscribe();
   }
 
-  updateData(eventData?: { period: number }) : void {
+  updateData(eventData?: { period: number, type: string }) : void {
     let startDate = '1970-01-01';
     if(eventData !== undefined && eventData.period > 0) {
       const date = new Date();
