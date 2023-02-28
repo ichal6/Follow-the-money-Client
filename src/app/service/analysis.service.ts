@@ -17,10 +17,13 @@ export class AnalysisService {
     this.setEmailFromCookie()
   }
 
-  getAnalysisDataRows(startDate?: string): Observable<Array<AnalysisTableRow>> {
+  getAnalysisDataRows(startDate?: string, type?: string): Observable<Array<AnalysisTableRow>> {
     let url = environment.restUrl + '/api/analysis/' + this.email + '?';
     if (typeof startDate !== 'undefined' && startDate !== null) {
       url += 'start=' + startDate;
+    }
+    if (type !== undefined) {
+      url += '&type=' + type;
     }
     return this.http.get<Array<AnalysisTableRow>>(url,
       {withCredentials: true})
