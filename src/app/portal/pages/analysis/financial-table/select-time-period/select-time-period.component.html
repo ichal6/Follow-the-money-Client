@@ -1,0 +1,20 @@
+<div class="parameter">
+  <label for="period">Period: </label>
+  <select class="period-select" name="period" id="period" [(ngModel)]="periodInDays" (change)="requestData()" #periodSelect="ngModel">
+    <option value="0">Whole time</option>
+    <option value="7">Last 7 days</option>
+    <option value="30">Last 30 days</option>
+    <option value="90">Last 3 months</option>
+    <option value="365">Last year</option>
+  </select>
+</div>
+
+<div class="parameter">
+  <label for="type">Type: </label>
+  <select class="type-select" name="type" id="type" [(ngModel)]="type" (change)="requestData()" #periodSelect="ngModel">
+    <option value="accounts">Accounts</option>
+    <option value="payees">Payees</option>
+    <option value="categories">Categories</option>
+  </select>
+</div>
+

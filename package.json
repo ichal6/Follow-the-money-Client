@@ -11,6 +11,7 @@
     "postinstall": "ng build --output-path angularapp  --aot --configuration production",
     "build:prod": "ng build --configuration production --base-href /Follow-the-money-Client/ --deploy-url /Follow-the-money-Client/ --output-path=dist/Follow-the-money-Client/",
     "build:dev": "ng build --configuration=development",
+    "build:prev": "ng build --configuration=preview",
     "lint": "ng lint"
   },
   "engines": {
@@ -36,6 +37,8 @@
     "ng2-charts": "4.1.1",
     "ngx-cookie-service": "^15.0.0",
     "path": "^0.12.7",
+    "primeicons": "^6.0.1",
+    "primeng": "^15.2.0",
     "rxjs": "7.8.0",
     "save-dev": "0.0.1-security",
     "tslib": "^2.5.0",

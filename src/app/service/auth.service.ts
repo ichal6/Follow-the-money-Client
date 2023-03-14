@@ -6,6 +6,7 @@ import {CategoryService} from './category.service';
 import {PayeeService} from './payee.service';
 import {PaymentsService} from './payments.service';
 import {TransactionsService} from './transactions.service';
+import {AnalysisService} from './analysis.service';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,7 @@ export class AuthService {
               private payeeService: PayeeService,
               private paymentsService: PaymentsService,
               private transactionsService: TransactionsService,
+              private analysisService: AnalysisService,
               private cookieService: CookieService) { }
 
   authenticate(name: string, password: string): void {
@@ -55,6 +57,7 @@ export class AuthService {
     this.isAuthenticated = false;
     this.authenticationResultEvent.emit(false);
     this.resetEmailInServices();
+    this.tryLoginEvent.emit(false);
   }
 
   resetEmailInServices(): void {
@@ -64,5 +67,6 @@ export class AuthService {
       this.payeeService.setEmailFromCookie();
       this.paymentsService.setEmailFromCookie();
       this.transactionsService.setEmailFromCookie();
+      this.analysisService.setEmailFromCookie();
   }
 }
