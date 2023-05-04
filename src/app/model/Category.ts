@@ -1,19 +1,16 @@
 export class Category {
   id: number;
   name: string;
-  type: GeneralType;
   subcategories: Array<Subcategory>;
 
-  constructor(name?: string, type?: GeneralType) {
+  constructor(name?: string) {
     this.name = name;
-    this.type = type;
   }
 
   static fromHttp(category: Category): Category {
     const newCategory = new Category();
     newCategory.name = category.name;
     newCategory.id = category.id;
-    newCategory.type = (category.type === GeneralType.INCOME) ? GeneralType.INCOME : GeneralType.EXPENSE;
     newCategory.subcategories = this.fillSubcategories(category);
     return newCategory;
   }
@@ -28,21 +25,14 @@ export class Category {
   }
 }
 
-export enum GeneralType {
-  INCOME = 'INCOME',
-  EXPENSE = 'EXPENSE'
-}
-
 export class Subcategory {
   id: number;
   name: string;
-  type: GeneralType;
 
   static fromHttp(subcategory: Subcategory): Subcategory {
     const newSubcategory = new Subcategory();
     newSubcategory.name = subcategory.name;
     newSubcategory.id = subcategory.id;
-    newSubcategory.type = (subcategory.type === GeneralType.INCOME) ? GeneralType.INCOME : GeneralType.EXPENSE;
     return newSubcategory;
   }
 }

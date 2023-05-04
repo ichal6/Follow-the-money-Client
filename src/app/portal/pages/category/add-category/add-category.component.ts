@@ -1,6 +1,6 @@
 import {Component, EventEmitter, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {Category, GeneralType} from '../../../../model/Category';
+import {Category} from '../../../../model/Category';
 import {CategoryService} from '../../../../service/category.service';
 
 @Component({
@@ -18,7 +18,6 @@ export class AddCategoryComponent implements OnInit {
   dataChangedEvent = new EventEmitter();
 
   isNameValid = false;
-  isTypeValid = false;
   isSubcategory = false;
   isVisible = false;
 
@@ -27,7 +26,6 @@ export class AddCategoryComponent implements OnInit {
 
   ngOnInit(): void {
     this.newCategory = new Category();
-    this.newCategory.type = null;
     this.loadCategories();
   }
   loadCategories(): void {
@@ -84,11 +82,6 @@ export class AddCategoryComponent implements OnInit {
     } else {
       this.isNameValid = false;
     }
-  }
-
-  checkIfTypeIsValid(): void {
-    this.isTypeValid = (this.newCategory.type.toUpperCase() === GeneralType.INCOME
-      || this.newCategory.type.toUpperCase() === GeneralType.EXPENSE);
   }
 
   redirectTo(uri: string): void {
