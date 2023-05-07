@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SubcategoryBoxComponent } from './subcategory-box.component';
+import {RouterTestingModule} from '@angular/router/testing';
+import {HttpClientModule} from '@angular/common/http';
 
 describe('SubcategoryBoxComponent', () => {
   let component: SubcategoryBoxComponent;
@@ -8,7 +10,10 @@ describe('SubcategoryBoxComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SubcategoryBoxComponent ]
+      declarations: [ SubcategoryBoxComponent ],
+      imports: [
+        HttpClientModule, RouterTestingModule
+      ]
     })
     .compileComponents();
 
