@@ -1,0 +1,65 @@
+@font-face {
+  font-family: "Poppins Regular";
+  src: url("src/assets/fonts/Poppins-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Poppins Bold";
+  src: url("src/assets/fonts/Poppins-Bold.ttf");
+}
+
+.container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  width: 10vw;
+}
+
+.dots{
+  font-size: 36px !important;
+  font-family: "Poppins Bold", sans-serif;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 850px) {
+  .container {
+    width: 55vw;
+  }
+}
+
+/*For popup*/
+.dropdown-content {
+  width: 125px;
+  height: 57px;
+  padding: 10px 10px 0;
+  display: none;
+  float: left;
+  position: absolute;
+  background-color: #FFFFFF;
+  z-index: 300;
+  border-radius: 10px;
+}
+
+.dropdown-content ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.dropdown-content li {
+  margin: 0;
+  text-align: right;
+}
+
+.dropdown-content a {
+  font-family: "Poppins Regular", sans-serif;
+  color: #545759;
+  font-size: 12px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.delete-text {
+  color: #F31259 !important;
+}

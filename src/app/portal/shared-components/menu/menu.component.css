@@ -72,7 +72,7 @@ li a p {
   margin-bottom: 15px;
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 850px) {
   nav {
     width: 80px;
   }

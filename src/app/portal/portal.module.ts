@@ -42,6 +42,9 @@ import { IncomePayeeComponent } from './pages/payee/income-payee/income-payee.co
 import {SingleBoxPayeeComponent} from './pages/payee/single-box-payee/single-box-payee.component';
 import {PayeeComponent} from './pages/payee/payee.component';
 import { PaymentTypeSelectComponent } from './pages/payments/payment-type-select/payment-type-select.component';
+import { ListComponent } from './pages/category/list/list.component';
+import { CategoryBoxComponent } from './pages/category/list/category-box/category-box.component';
+import { SubcategoryBoxComponent } from './pages/category/list/subcategory-box/subcategory-box.component';
 
 const routes: Routes = [
   {
@@ -155,7 +158,10 @@ const routes: Routes = [
     PaymentComponent,
     TransactionFormAddComponent,
     TransferFormAddComponent,
-    PaymentTypeSelectComponent
+    PaymentTypeSelectComponent,
+    ListComponent,
+    CategoryBoxComponent,
+    SubcategoryBoxComponent
   ],
   imports: [
     CommonModule,

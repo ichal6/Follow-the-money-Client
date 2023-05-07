@@ -1,0 +1,79 @@
+@font-face {
+  font-family: "Poppins Bold";
+  src: url("src/assets/fonts/Poppins-Bold.ttf");
+}
+
+@font-face {
+  font-family: "Poppins Medium";
+  src: url("src/assets/fonts/Poppins-Medium.ttf");
+}
+
+#container{
+  border-radius: 10px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.sub-item:nth-child(even) {
+  background-color: #FFFFFF;
+}
+
+.sub-item:nth-child(odd) {
+  background-color: rgb(246, 246, 246);
+}
+
+.main-list li:last-child, .sub-item:last-child {
+  border-radius: 0 0 10px 10px;
+}
+
+.sub-list:first-child {
+  border-radius: 0 !important;
+}
+
+.main-list{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.main-list li{
+  padding: 15px 15px 0;
+}
+
+.sub-list {
+  padding: 0;
+  margin-left: 25px;
+  margin-right: 25px;
+  list-style: ':';
+  width: 13vw;
+}
+
+.item{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  font-family: "Poppins Bold", sans-serif;
+  font-size: 16px;
+}
+
+.sub-list .item{
+  font-family: "Poppins Medium", sans-serif !important;
+}
+
+app-income-box, app-income-subcategory-box{
+  width: 100%;
+}
+
+@media only screen and (max-width: 850px) {
+  #container {
+    flex-direction: column;
+    width: 67vw;
+  }
+
+  .sub-list {
+    width: 58vw;
+  }
+}
+

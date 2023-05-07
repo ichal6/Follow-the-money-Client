@@ -1,8 +1,8 @@
 import {Component, EventEmitter, OnInit} from '@angular/core';
-import {Category, GeneralType} from '../../../../model/Category';
 import {Router} from '@angular/router';
 import {Payee} from '../../../../model/Payee';
 import {PayeeService} from '../../../../service/payee.service';
+import {PaymentType} from '../../../../model/PaymentType';
 
 @Component({
   selector: 'app-add-payee',
@@ -25,7 +25,7 @@ export class AddPayeeComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit(): void {
-    this.newPayee = new Category();
+    this.newPayee = new Payee();
     this.newPayee.type = null;
   }
 
@@ -56,8 +56,8 @@ export class AddPayeeComponent implements OnInit {
   }
 
   checkIfTypeIsValid(): void {
-    this.isTypeValid = (this.newPayee.type.toUpperCase() === GeneralType.INCOME
-      || this.newPayee.type.toUpperCase() === GeneralType.EXPENSE);
+    this.isTypeValid = (this.newPayee.type.toUpperCase() === PaymentType.INCOME
+      || this.newPayee.type.toUpperCase() === PaymentType.EXPENSE);
   }
 
   redirectTo(uri: string): void {
