@@ -2,7 +2,6 @@ import {Component, EventEmitter, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {Payee} from '../../../../model/Payee';
 import {PayeeService} from '../../../../service/payee.service';
-import {PaymentType} from '../../../../model/PaymentType';
 
 @Component({
   selector: 'app-add-payee',
@@ -18,7 +17,6 @@ export class AddPayeeComponent implements OnInit {
   dataChangedEvent = new EventEmitter();
 
   isNameValid = false;
-  isTypeValid = false;
   isVisible = false;
 
   constructor(private payeeService: PayeeService,
@@ -26,7 +24,6 @@ export class AddPayeeComponent implements OnInit {
 
   ngOnInit(): void {
     this.newPayee = new Payee();
-    this.newPayee.type = null;
   }
 
   onSubmit(): void {
@@ -53,11 +50,6 @@ export class AddPayeeComponent implements OnInit {
     } else {
       this.isNameValid = false;
     }
-  }
-
-  checkIfTypeIsValid(): void {
-    this.isTypeValid = (this.newPayee.type.toUpperCase() === PaymentType.INCOME
-      || this.newPayee.type.toUpperCase() === PaymentType.EXPENSE);
   }
 
   redirectTo(uri: string): void {

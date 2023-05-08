@@ -23,23 +23,8 @@ export class PayeeService {
     }
   }
 
-  getPayeeByIncome(): Observable<Array<Payee>>{
-    return this.http.get<Array<Payee>>(environment.restUrl + '/api/payee/income/' + this.email, {withCredentials: true})
-      .pipe(
-        map(
-          data => {
-            const payees = new Array<Payee>();
-            for (const payee of data) {
-              payees.push(Payee.fromHttp(payee));
-            }
-            return payees;
-          }
-        )
-      );
-  }
-
-  getPayeeByExpense(): Observable<Array<Payee>>{
-    return this.http.get<Array<Payee>>(environment.restUrl + '/api/payee/expense/' + this.email, {withCredentials: true})
+  getPayees(): Observable<Array<Payee>>{
+    return this.http.get<Array<Payee>>(environment.restUrl + '/api/payee/' + this.email, {withCredentials: true})
       .pipe(
         map(
           data => {
@@ -59,7 +44,7 @@ export class PayeeService {
   }
 
   createNewPayee(newPayee: Payee): Observable<any>{
-    const payeeJSON = {name: newPayee.name, type: newPayee.type};
+    const payeeJSON = {name: newPayee.name};
     return this.http.post<null>(environment.restUrl + '/api/payee/' + this.email, payeeJSON, {withCredentials : true});
   }
 

@@ -1,5 +1,5 @@
-<div class="container">
-  <div>{{payee.name}}</div>
+<div class="container" [style.background-color]="currentColor">
+  <div id="payee-name">{{payee.name}}</div>
   <div class="dots" (click)="displayPopup($event)">...</div>
 </div>
 

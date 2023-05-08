@@ -37,14 +37,13 @@ import { TransactionFormAddComponent } from './pages/payments/transaction-form-a
 import { TransferFormAddComponent } from './pages/payments/transfer-form-add/transfer-form-add.component';
 import { AddPayeeComponent } from './pages/payee/add-payee/add-payee.component';
 import { EditPayeeComponent } from './pages/payee/edit-payee/edit-payee.component';
-import { ExpensePayeeComponent } from './pages/payee/expense-payee/expense-payee.component';
-import { IncomePayeeComponent } from './pages/payee/income-payee/income-payee.component';
 import {SingleBoxPayeeComponent} from './pages/payee/single-box-payee/single-box-payee.component';
 import {PayeeComponent} from './pages/payee/payee.component';
 import { PaymentTypeSelectComponent } from './pages/payments/payment-type-select/payment-type-select.component';
 import { ListComponent } from './pages/category/list/list.component';
 import { CategoryBoxComponent } from './pages/category/list/category-box/category-box.component';
 import { SubcategoryBoxComponent } from './pages/category/list/subcategory-box/subcategory-box.component';
+import { PayeeAllComponent } from './pages/payee/payee-all/payee-all.component';
 
 const routes: Routes = [
   {
@@ -150,8 +149,6 @@ const routes: Routes = [
     TransferFormAddComponent,
     AddPayeeComponent,
     EditPayeeComponent,
-    ExpensePayeeComponent,
-    IncomePayeeComponent,
     SingleBoxPayeeComponent,
     PaymentsComponent,
     PaymentsAllComponent,
@@ -161,7 +158,8 @@ const routes: Routes = [
     PaymentTypeSelectComponent,
     ListComponent,
     CategoryBoxComponent,
-    SubcategoryBoxComponent
+    SubcategoryBoxComponent,
+    PayeeAllComponent
   ],
   imports: [
     CommonModule,
@@ -171,7 +169,7 @@ const routes: Routes = [
     FormsModule
   ],
   exports:
-    [RouterModule, IncomePayeeComponent, ExpensePayeeComponent, AddPayeeComponent, EditPayeeComponent]
+    [RouterModule, AddPayeeComponent, EditPayeeComponent, PayeeAllComponent]
 })
 
 export class PortalModule { }
