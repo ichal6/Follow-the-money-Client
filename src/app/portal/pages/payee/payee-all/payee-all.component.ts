@@ -15,7 +15,7 @@ export class PayeeAllComponent implements OnInit, OnDestroy {
   constructor(private payeeService: PayeeService) { }
 
   ngOnInit(): void {
-    this.subscription = this.payeeService.getPayeeByIncome().subscribe(
+    this.subscription = this.payeeService.getPayees().subscribe(
       payeesFromServer => {
         this.payees = payeesFromServer;
       },

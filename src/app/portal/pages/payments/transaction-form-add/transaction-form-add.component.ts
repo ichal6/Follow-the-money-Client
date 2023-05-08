@@ -24,7 +24,7 @@ export class TransactionFormAddComponent implements OnInit, OnDestroy {
   allCategoriesForExpense: Array<Category>;
   allCategoriesForIncome: Array<Category>;
   allPayeesForExpense: Array<Payee>;
-  allPayeesForIncome: Array<Payee>;
+  allPayees: Array<Payee>;
 
   dataChangedEvent = new EventEmitter();
 
@@ -63,14 +63,9 @@ export class TransactionFormAddComponent implements OnInit, OnDestroy {
         this.allAccounts = next;
       }
     );
-    this.subscribe = this.payeeService.getPayeeByExpense().subscribe(
+    this.subscribe = this.payeeService.getPayees().subscribe(
       next => {
-        this.allPayeesForExpense = next;
-      }
-    );
-    this.subscribe = this.payeeService.getPayeeByIncome().subscribe(
-      next => {
-        this.allPayeesForIncome = next;
+        this.allPayees = next;
       }
     );
     this.subscribe = this.categoryService.getCategoriesByExpense().subscribe(
@@ -99,12 +94,8 @@ export class TransactionFormAddComponent implements OnInit, OnDestroy {
     );
   }
 
-  getPayeesForType(): Array<Payee> {
-    if (this.newTransaction.type === GeneralType.EXPENSE) {
-      return this.allPayeesForExpense;
-    } else {
-      return this.allPayeesForIncome;
-    }
+  getPayees(): Array<Payee> {
+    return this.allPayees;
   }
 
   getCategoriesForType(): Array<Category> {

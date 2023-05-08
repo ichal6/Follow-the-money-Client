@@ -19,7 +19,7 @@
   <p class="message" *ngIf="!isValueValid && valueField.touched">Value can't be empty or contain signs other than '.'. Must be a positive number.</p>
   <select class="form-select" id="payee" name="payee" [(ngModel)]="newTransaction.payeeId" (change)="checkIfPayeeIdIsValid()" required>
     <option [ngValue]="null" [disabled]="true" >Select payee</option>
-    <option *ngFor="let payee of getPayeesForType()" [ngValue]="payee.id">{{payee.name}}</option>
+    <option *ngFor="let payee of getPayees()" [ngValue]="payee.id">{{payee.name}}</option>
   </select>
   <select class="form-select" id="category" name="category" [(ngModel)]="newTransaction.categoryId" (change)="checkIfCategoryIdIsValid()" required>
     <option [ngValue]="null" [disabled]="true" >Select category</option>
