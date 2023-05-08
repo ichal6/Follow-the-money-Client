@@ -45,6 +45,7 @@ import { PaymentTypeSelectComponent } from './pages/payments/payment-type-select
 import { ListComponent } from './pages/category/list/list.component';
 import { CategoryBoxComponent } from './pages/category/list/category-box/category-box.component';
 import { SubcategoryBoxComponent } from './pages/category/list/subcategory-box/subcategory-box.component';
+import { PayeeAllComponent } from './pages/payee/payee-all/payee-all.component';
 
 const routes: Routes = [
   {
@@ -161,7 +162,8 @@ const routes: Routes = [
     PaymentTypeSelectComponent,
     ListComponent,
     CategoryBoxComponent,
-    SubcategoryBoxComponent
+    SubcategoryBoxComponent,
+    PayeeAllComponent
   ],
   imports: [
     CommonModule,
@@ -171,7 +173,7 @@ const routes: Routes = [
     FormsModule
   ],
   exports:
-    [RouterModule, IncomePayeeComponent, ExpensePayeeComponent, AddPayeeComponent, EditPayeeComponent]
+    [RouterModule, IncomePayeeComponent, ExpensePayeeComponent, AddPayeeComponent, EditPayeeComponent, PayeeAllComponent]
 })
 
 export class PortalModule { }

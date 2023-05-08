@@ -1,0 +1,58 @@
+@font-face {
+  font-family: "Poppins Bold";
+  src: url("src/assets/fonts/Poppins-Bold.ttf");
+}
+
+@font-face {
+  font-family: "Poppins Medium";
+  src: url("src/assets/fonts/Poppins-Medium.ttf");
+}
+
+#container{
+  border-radius: 10px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.main-list li:last-child {
+  border-radius: 0 0 10px 10px;
+}
+
+.sub-list:first-child {
+  border-radius: 0 !important;
+}
+
+.main-list{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.main-list li{
+  padding: 15px 15px 0;
+}
+
+.item{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  font-family: "Poppins Bold", sans-serif;
+  font-size: 16px;
+}
+
+app-single-box-payee {
+  width: 100%;
+}
+
+@media only screen and (max-width: 850px) {
+  .main-list {
+    flex-direction: column;
+    width: 67vw;
+  }
+}
+
