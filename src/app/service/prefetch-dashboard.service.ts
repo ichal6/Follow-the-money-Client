@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Resolve} from '@angular/router';
+
 import {Observable} from 'rxjs';
 import {Dashboard} from '../model/Dashboard';
 import {DataService} from './data.service';
@@ -7,7 +7,7 @@ import {DataService} from './data.service';
 @Injectable({
   providedIn: 'root'
 })
-export class PrefetchDashboardService implements Resolve<Observable<Dashboard>>{
+export class PrefetchDashboardService {
 
   constructor(private dataService: DataService) { }
 
