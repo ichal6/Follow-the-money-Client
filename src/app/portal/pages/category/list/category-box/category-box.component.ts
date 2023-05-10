@@ -1,20 +1,23 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Subscription} from 'rxjs';
 import {Category} from '../../../../../model/Category';
 import {PopupService} from '../../../../../service/popup.service';
 import {CategoryService} from '../../../../../service/category.service';
-import {Subscription} from 'rxjs';
-import {Router} from '@angular/router';
 import {FormChangeService} from '../../../../../service/form-change.service';
+import {Router} from '@angular/router';
 
 @Component({
-  selector: 'app-income-box',
-  templateUrl: './income-box.component.html',
-  styleUrls: ['./income-box.component.css']
+  selector: 'app-category-box',
+  templateUrl: './category-box.component.html',
+  styleUrls: ['./category-box.component.css']
 })
-export class IncomeBoxComponent implements OnInit, OnDestroy {
+export class CategoryBoxComponent implements OnInit, OnDestroy {
+  static count = 0;
   modeDisplayPopup: string;
   coordinates = [];
   deleteSubscription2: Subscription;
+  colorsArray = ['#F4BB4A', '#F31259', '#FF7D44', '#564193'];
+  currentColor: string;
 
   @Input()
   category = new Category();
@@ -27,6 +30,7 @@ export class IncomeBoxComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.modeDisplayPopup = 'none';
+    this.currentColor =  this.getColor();
   }
 
   displayPopup(event): void {
@@ -39,16 +43,17 @@ export class IncomeBoxComponent implements OnInit, OnDestroy {
       this.modeDisplayPopup = 'none';
     }
   }
-    deleteButton(id): void{
-      this.deleteSubscription2 = this.categoryService.deleteCategory(id).subscribe(
-        next => {
-          this.ngOnDestroy();
-        },
-        error => {
-          console.log('Problem with server side');
-        }
-      );
-    }
+
+  deleteButton(id): void {
+    this.deleteSubscription2 = this.categoryService.deleteCategory(id).subscribe(
+      next => {
+        this.ngOnDestroy();
+      },
+      error => {
+        console.log('Problem with server side');
+      }
+    );
+  }
 
   reloadComponent(): void {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
@@ -60,8 +65,15 @@ export class IncomeBoxComponent implements OnInit, OnDestroy {
     this.formChangeService.changeFormToEditForCategory(this.category);
   }
 
+  getColor(): string {
+    if (CategoryBoxComponent.count >= this.colorsArray.length) {
+      CategoryBoxComponent.count = 0;
+    }
+    return this.colorsArray[CategoryBoxComponent.count++];
+  }
+
   ngOnDestroy(): void {
-    if (this.deleteSubscription2 != null){
+    if (this.deleteSubscription2 != null) {
       this.deleteSubscription2.unsubscribe();
       this.reloadComponent();
     }

@@ -21,6 +21,10 @@ h1{
   justify-content: space-between;
 }
 
+app-payee-all {
+  width: 100%;
+}
+
 @media only screen and (min-width: 800px) {
   #payees {
     flex-direction: row;
@@ -49,7 +53,7 @@ h1{
   .wrapper-up {
     display: flex;
     flex-direction: column;
-    width: 70%;
+    width: 80%;
     margin-right: 20px;
   }
 

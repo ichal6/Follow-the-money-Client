@@ -12,9 +12,12 @@ import {Subscription} from 'rxjs';
   styleUrls: ['./single-box-payee.component.css']
 })
 export class SingleBoxPayeeComponent implements OnInit, OnDestroy {
+  static count = 0;
   modeDisplayPopup: string;
   coordinates = [];
   deleteSubscription: Subscription;
+  colorsArray = ['#F4BB4A', '#F31259', '#FF7D44', '#564193'];
+  currentColor: string;
 
   @Input()
   public payee: Payee;
@@ -27,6 +30,7 @@ export class SingleBoxPayeeComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.modeDisplayPopup = 'none';
+    this.currentColor =  this.getColor();
   }
 
   displayPopup(event): void {
@@ -66,6 +70,13 @@ export class SingleBoxPayeeComponent implements OnInit, OnDestroy {
       this.deleteSubscription.unsubscribe();
       this.reloadComponent();
     }
+  }
+
+  getColor(): string {
+    if (SingleBoxPayeeComponent.count >= this.colorsArray.length) {
+      SingleBoxPayeeComponent.count = 0;
+    }
+    return this.colorsArray[SingleBoxPayeeComponent.count++];
   }
 
 }

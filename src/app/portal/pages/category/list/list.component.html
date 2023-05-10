@@ -1,0 +1,12 @@
+<div id="container">
+  <ul class="main-list" *ngFor="let category of categories">
+    <li class="item">
+      <app-category-box [category]="category"></app-category-box>
+    </li>
+    <ul class="sub-list" *ngIf="category.subcategories.length !== 0">
+      <li class="item sub-item" *ngFor="let subcategory of category.subcategories">
+        <app-subcategory-box [subcategory]="subcategory" [categoryId] = category.id></app-subcategory-box>
+      </li>
+    </ul>
+  </ul>
+</div>

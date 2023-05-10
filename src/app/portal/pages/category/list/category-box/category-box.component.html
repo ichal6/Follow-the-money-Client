@@ -1,5 +1,5 @@
-<div class="container">
-  <div>{{subcategory.name}}</div>
+<div class="container" [style.background-color]="currentColor">
+  <div class="category-name">{{category.name}}</div>
   <div class="dots" (click)="displayPopup($event)">...</div>
 </div>
 
@@ -10,7 +10,7 @@
       <a (click)="changeFormToEdit()">Edit</a>
     </li>
     <li>
-      <a class="delete-text" (click)="deleteButton(subcategory.id)">Delete</a>
+      <a class="delete-text" (click)="deleteButton(category.id)">Delete</a>
     </li>
   </ul>
 </div>

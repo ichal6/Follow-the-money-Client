@@ -1,21 +1,21 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Payee} from '../../../../model/Payee';
-import {PayeeService} from '../../../../service/payee.service';
 import {Subscription} from 'rxjs';
+import {PayeeService} from '../../../../service/payee.service';
 
 @Component({
-  selector: 'app-expense-payee',
-  templateUrl: './expense-payee.component.html',
-  styleUrls: ['./expense-payee.component.css']
+  selector: 'app-payee-all',
+  templateUrl: './payee-all.component.html',
+  styleUrls: ['./payee-all.component.css']
 })
-export class ExpensePayeeComponent implements OnInit, OnDestroy {
+export class PayeeAllComponent implements OnInit, OnDestroy {
   payees = new Array<Payee>();
   subscription: Subscription;
 
   constructor(private payeeService: PayeeService) { }
 
   ngOnInit(): void {
-    this.subscription = this.payeeService.getPayeeByExpense().subscribe(
+    this.subscription = this.payeeService.getPayees().subscribe(
       payeesFromServer => {
         this.payees = payeesFromServer;
       },
@@ -30,5 +30,4 @@ export class ExpensePayeeComponent implements OnInit, OnDestroy {
       this.subscription.unsubscribe();
     }
   }
-
 }

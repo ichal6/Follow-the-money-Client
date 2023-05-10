@@ -1,23 +1,25 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {Category} from '../../../../../model/Category';
-import {PopupService} from '../../../../../service/popup.service';
 import {Subscription} from 'rxjs';
+import {Subcategory} from '../../../../../model/Category';
+import {PopupService} from '../../../../../service/popup.service';
 import {CategoryService} from '../../../../../service/category.service';
-import {Router} from '@angular/router';
 import {FormChangeService} from '../../../../../service/form-change.service';
+import {Router} from '@angular/router';
 
 @Component({
-  selector: 'app-expense-box',
-  templateUrl: './expense-box.component.html',
-  styleUrls: ['./expense-box.component.css']
+  selector: 'app-subcategory-box',
+  templateUrl: './subcategory-box.component.html',
+  styleUrls: ['./subcategory-box.component.css']
 })
-export class ExpenseBoxComponent implements OnInit, OnDestroy {
+export class SubcategoryBoxComponent implements OnInit, OnDestroy {
   modeDisplayPopup: string;
   coordinates = [];
-  deleteSubscription4: Subscription;
+  deleteSubscription1: Subscription;
 
   @Input()
-  category = new Category();
+  subcategory = new Subcategory();
+  @Input()
+  categoryId: number;
 
   constructor(private popupService: PopupService,
               private categoryService: CategoryService,
@@ -40,7 +42,7 @@ export class ExpenseBoxComponent implements OnInit, OnDestroy {
     }
   }
   deleteButton(id): void{
-    this.deleteSubscription4 = this.categoryService.deleteCategory(id).subscribe(
+    this.deleteSubscription1 = this.categoryService.deleteSubcategory(this.categoryId, id).subscribe(
       next => {
         this.ngOnDestroy();
       },
@@ -57,13 +59,14 @@ export class ExpenseBoxComponent implements OnInit, OnDestroy {
   }
 
   changeFormToEdit(): void {
-    this.formChangeService.changeFormToEditForCategory(this.category);
+    this.formChangeService.changeFormToEditForSubcategory(this.categoryId, this.subcategory);
   }
 
   ngOnDestroy(): void {
-    if (this.deleteSubscription4 != null){
-      this.deleteSubscription4.unsubscribe();
+    if (this.deleteSubscription1 != null){
+      this.deleteSubscription1.unsubscribe();
       this.reloadComponent();
     }
   }
 }
+

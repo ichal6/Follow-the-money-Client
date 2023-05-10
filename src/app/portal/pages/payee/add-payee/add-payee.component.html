@@ -5,15 +5,8 @@
     <input type="text" class="form-input" id="name" placeholder="Name" name="name"
            [(ngModel)]="newPayee.name" (change)="checkIfNameIsValid()" #nameField="ngModel" required>
     <p *ngIf="!isNameValid && nameField.touched" class="message">Name should be at least 3 characters</p>
-    <select class="form-select" id="type" name="type"
-            [(ngModel)]="newPayee.type" (change)="checkIfTypeIsValid()" #typeField="ngModel" required>
-      <option [ngValue]="null" [disabled]="true" >Select category type</option>
-      <option value = "INCOME">INCOME</option>
-      <option value = "EXPENSE">EXPENSE</option>
-    </select>
-    <p class="message" *ngIf="!isTypeValid && typeField.touched">You have to choose one of the above options</p>
     <button type="button" class="form-button" (click)="onSubmit()"
-            [disabled]="payeeForm.invalid || !isNameValid || !isTypeValid">
+            [disabled]="payeeForm.invalid || !isNameValid">
       Save
     </button>
   </form>

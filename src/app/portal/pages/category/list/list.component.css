@@ -10,29 +10,25 @@
 
 #container{
   border-radius: 10px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
 }
 
-li:nth-child(even){
+.sub-item:nth-child(even) {
   background-color: #FFFFFF;
 }
 
-.main-list li:last-child{
+.sub-item:nth-child(odd) {
+  background-color: rgb(246, 246, 246);
+}
+
+.main-list li:last-child, .sub-item:last-child {
   border-radius: 0 0 10px 10px;
 }
 
-.sub-list li{
+.sub-list:first-child {
   border-radius: 0 !important;
-}
-
-div h1{
-  background-color: #0BD1B8;
-  color: #FFFFFF;
-  font-family: "Poppins Bold", sans-serif;
-  text-align: center;
-  font-size: 16px;
-  padding: 13px 0 13px 0;
-  margin-bottom: 0;
-  border-radius: 10px 10px 0 0;
 }
 
 .main-list{
@@ -42,12 +38,15 @@ div h1{
 }
 
 .main-list li{
-  padding: 0 15px 15px;
+  padding: 15px 15px 0;
 }
 
-.sub-list{
-  padding-left: 30px;
+.sub-list {
+  padding: 0;
+  margin-left: 25px;
+  margin-right: 25px;
   list-style: ':';
+  width: 13vw;
 }
 
 .item{
@@ -65,5 +64,16 @@ div h1{
 
 app-income-box, app-income-subcategory-box{
   width: 100%;
+}
+
+@media only screen and (max-width: 850px) {
+  #container {
+    flex-direction: column;
+    width: 67vw;
+  }
+
+  .sub-list {
+    width: 58vw;
+  }
 }
 

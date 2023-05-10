@@ -190,7 +190,6 @@
       }
     }
   },
-  "defaultProject": "ftmClient",
   "cli": {
     "schematicCollections": [
       "@angular-eslint/schematics"

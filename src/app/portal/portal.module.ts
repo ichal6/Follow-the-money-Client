@@ -20,13 +20,7 @@ import {PopularAccountBoxComponent} from './pages/dashboard/accounts-popular/pop
 import {AccountBoxComponent} from './pages/accounts/accounts-all/account-box/account-box.component';
 import {AuthRouteGuardService} from '../service/auth-route-guard.service';
 import { CategoryComponent } from './pages/category/category.component';
-import { IncomeComponent } from './pages/category/income/income.component';
-import { ExpenseComponent } from './pages/category/expense/expense.component';
 import { EditCategoryComponent } from './pages/category/edit-category/edit-category.component';
-import { IncomeBoxComponent } from './pages/category/income/income-box/income-box.component';
-import { IncomeSubcategoryBoxComponent } from './pages/category/income/income-subcategory-box/income-subcategory-box.component';
-import { ExpenseSubcategoryBoxComponent } from './pages/category/expense/expense-subcategory-box/expense-subcategory-box.component';
-import { ExpenseBoxComponent } from './pages/category/expense/expense-box/expense-box.component';
 import {FormsModule} from '@angular/forms';
 import {AccountsFormAddComponent} from './pages/accounts/accounts-form-add/accounts-form-add.component';
 import { AddCategoryComponent } from './pages/category/add-category/add-category.component';
@@ -37,11 +31,13 @@ import { TransactionFormAddComponent } from './pages/payments/transaction-form-a
 import { TransferFormAddComponent } from './pages/payments/transfer-form-add/transfer-form-add.component';
 import { AddPayeeComponent } from './pages/payee/add-payee/add-payee.component';
 import { EditPayeeComponent } from './pages/payee/edit-payee/edit-payee.component';
-import { ExpensePayeeComponent } from './pages/payee/expense-payee/expense-payee.component';
-import { IncomePayeeComponent } from './pages/payee/income-payee/income-payee.component';
 import {SingleBoxPayeeComponent} from './pages/payee/single-box-payee/single-box-payee.component';
 import {PayeeComponent} from './pages/payee/payee.component';
 import { PaymentTypeSelectComponent } from './pages/payments/payment-type-select/payment-type-select.component';
+import { ListComponent } from './pages/category/list/list.component';
+import { CategoryBoxComponent } from './pages/category/list/category-box/category-box.component';
+import { SubcategoryBoxComponent } from './pages/category/list/subcategory-box/subcategory-box.component';
+import { PayeeAllComponent } from './pages/payee/payee-all/payee-all.component';
 import { AnalysisComponent } from './pages/analysis/analysis.component';
 import { FinancialSummaryComponent } from './pages/analysis/financial-summary/financial-summary.component';
 import { FinancialTableComponent } from './pages/analysis/financial-table/financial-table.component';
@@ -151,13 +147,7 @@ const routes: Routes = [
     PopularAccountBoxComponent,
     AccountBoxComponent,
     CategoryComponent,
-    IncomeComponent,
-    ExpenseComponent,
     EditCategoryComponent,
-    IncomeBoxComponent,
-    IncomeSubcategoryBoxComponent,
-    ExpenseSubcategoryBoxComponent,
-    ExpenseBoxComponent,
     AccountsFormAddComponent,
     AddCategoryComponent,
     PaymentsComponent,
@@ -167,14 +157,17 @@ const routes: Routes = [
     TransferFormAddComponent,
     AddPayeeComponent,
     EditPayeeComponent,
-    ExpensePayeeComponent,
-    IncomePayeeComponent,
     SingleBoxPayeeComponent,
     PaymentsComponent,
     PaymentsAllComponent,
     PaymentComponent,
     TransactionFormAddComponent,
     TransferFormAddComponent,
+    PaymentTypeSelectComponent,
+    ListComponent,
+    CategoryBoxComponent,
+    SubcategoryBoxComponent,
+    PayeeAllComponent,
     PaymentTypeSelectComponent,
     AnalysisComponent,
     FinancialSummaryComponent,
@@ -194,7 +187,7 @@ const routes: Routes = [
     MultiSelectModule
   ],
   exports:
-    [RouterModule, IncomePayeeComponent, ExpensePayeeComponent, AddPayeeComponent, EditPayeeComponent]
+    [RouterModule, AddPayeeComponent, EditPayeeComponent, PayeeAllComponent]
 })
 
 export class PortalModule { }

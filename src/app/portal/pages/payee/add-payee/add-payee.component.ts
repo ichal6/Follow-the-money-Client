@@ -1,5 +1,4 @@
 import {Component, EventEmitter, OnInit} from '@angular/core';
-import {Category, GeneralType} from '../../../../model/Category';
 import {Router} from '@angular/router';
 import {Payee} from '../../../../model/Payee';
 import {PayeeService} from '../../../../service/payee.service';
@@ -18,15 +17,13 @@ export class AddPayeeComponent implements OnInit {
   dataChangedEvent = new EventEmitter();
 
   isNameValid = false;
-  isTypeValid = false;
   isVisible = false;
 
   constructor(private payeeService: PayeeService,
               private router: Router) { }
 
   ngOnInit(): void {
-    this.newPayee = new Category();
-    this.newPayee.type = null;
+    this.newPayee = new Payee();
   }
 
   onSubmit(): void {
@@ -53,11 +50,6 @@ export class AddPayeeComponent implements OnInit {
     } else {
       this.isNameValid = false;
     }
-  }
-
-  checkIfTypeIsValid(): void {
-    this.isTypeValid = (this.newPayee.type.toUpperCase() === GeneralType.INCOME
-      || this.newPayee.type.toUpperCase() === GeneralType.EXPENSE);
   }
 
   redirectTo(uri: string): void {
