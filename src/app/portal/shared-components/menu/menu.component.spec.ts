@@ -9,7 +9,7 @@ import {Router} from '@angular/router';
 describe('MenuComponent', () => {
   let component: MenuComponent;
   let fixture: ComponentFixture<MenuComponent>;
-  const selectedColor = 'rgb(11, 209, 184)';
+  const selectedColor = 'rgb(92, 226, 50)';
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
