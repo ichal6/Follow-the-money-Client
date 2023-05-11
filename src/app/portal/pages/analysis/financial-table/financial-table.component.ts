@@ -10,6 +10,7 @@ import {AnalysisTableRow} from '../../../../model/AnalysisTableRow';
 })
 export class FinancialTableComponent  implements OnInit, OnDestroy {
   private subscribeTableContent: Subscription;
+  selectedType: string;
   tableData: AnalysisTableRow[] = [];
 
   constructor(private analysisService: AnalysisService) {
@@ -34,6 +35,7 @@ export class FinancialTableComponent  implements OnInit, OnDestroy {
     if(eventData !== undefined) {
       type = eventData.type;
     }
+    this.selectedType = type;
 
     this.subscribeTableContent = this.analysisService.getAnalysisDataRows(startDate, type).subscribe({
       next: (res) => this.tableData = res,
