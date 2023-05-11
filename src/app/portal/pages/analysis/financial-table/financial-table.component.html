@@ -5,9 +5,11 @@
   <p-table
     responsiveLayout="stack"
     [value]="tableData"
-    scrollHeight="flex">
+    scrollHeight="flex"
+    >
+
     <ng-template pTemplate="header">
-      <tr>
+      <tr class="table-header">
         <th>Name</th>
         <th>Income</th>
         <th>Expense</th>
