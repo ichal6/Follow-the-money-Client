@@ -18,3 +18,7 @@
 :host ::ng-deep.p-datatable-table tr:nth-child(even){
   background-color: rgb(246, 246, 246);
 }
+
+:host ::ng-deep.p-datatable{
+  position: initial;
+}
