@@ -73,25 +73,3 @@ jobs:
           build_dir: dist/Follow-the-money-Client/
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Deploy dist to mikr.us
-        if: github.event_name == 'pull_request'
-        uses: garygrossgarten/github-action-scp@release
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          privateKey: ${{ secrets.KEY_ED25519 }}
-          port: ${{ secrets.PORT }}
-          local: dist
-          remote: ftmAngularClient
-
-      - name: Run website on mikr.us
-        if: github.event_name == 'pull_request'
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.KEY_ED25519 }}
-          port: ${{ secrets.PORT }}
-          script: sh deploy-Angular.sh
-
