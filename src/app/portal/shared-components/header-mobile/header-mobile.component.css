@@ -87,12 +87,13 @@ header {
 
 .burger-container .menu-btn:checked ~ .menu-container .menu {
   position: absolute;
-  width: 94vw;
+  width: 100vw;
   margin-left: -100vw;
   padding-top: 40px;
   padding-bottom: 40px;
   display: block;
   background-color: #FFFFFF;
+  top: 60px;
 }
 
 .burger-container .menu-btn:checked ~ .menu-icon .navicon {
