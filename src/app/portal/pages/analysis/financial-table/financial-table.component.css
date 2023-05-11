@@ -1,3 +1,8 @@
-.table-body-center-text *{
+.table-body-center-text *, #no-found-message{
   text-align: center;
+}
+
+#no-found-message {
+  color: #FF7D44;
+  font-size: 20px;
 }

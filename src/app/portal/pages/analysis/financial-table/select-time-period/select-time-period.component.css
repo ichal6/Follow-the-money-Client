@@ -25,3 +25,13 @@ select {
   border-radius: 10px;
   margin-left: 10px;
 }
+
+#parameters {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 3vh;
+}
+
+.parameter {
+  margin-right: 3.5vw;
+}

@@ -8,7 +8,7 @@
     scrollHeight="flex">
     <ng-template pTemplate="header">
       <tr>
-        <th>Category</th>
+        <th>Name</th>
         <th>Income</th>
         <th>Expense</th>
         <th>Balance</th>
@@ -25,7 +25,7 @@
         <td>
 					<span
             class="p-column-title">
-						Category
+						Name
 					</span>
           {{ analysis.name }}
         </td>
@@ -54,7 +54,7 @@
     </ng-template>
     <ng-template pTemplate="emptymessage">
       <tr>
-        <td colspan="8">No {{selectedType}} found</td>
+        <td colspan="8" id="no-found-message">No {{selectedType}} found</td>
       </tr>
     </ng-template>
   </p-table>
