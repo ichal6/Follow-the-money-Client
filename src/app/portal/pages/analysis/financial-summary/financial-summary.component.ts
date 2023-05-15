@@ -4,6 +4,7 @@ import {Chart} from 'chart.js';
 import {AnalysisTableRow} from "../../../../model/AnalysisTableRow";
 import {AnalysisService} from "../../../../service/analysis.service";
 import {PaymentType} from "../../../../model/PaymentType";
+import {AnalysisBuilder} from "../../../../model/AnalysisBuilder";
 
 @Component({
   selector: 'app-financial-summary',
@@ -11,6 +12,7 @@ import {PaymentType} from "../../../../model/PaymentType";
   styleUrls: ['./financial-summary.component.css']
 })
 export class FinancialSummaryComponent implements OnInit, OnDestroy{
+  private readonly maxDisplay = 13;
   private subscribeTableContent: Subscription;
   selectedType: string;
   tableData: AnalysisTableRow[] = [];
@@ -36,7 +38,6 @@ export class FinancialSummaryComponent implements OnInit, OnDestroy{
 
 
   constructor(private analysisService: AnalysisService) {
-    Chart.overrides['doughnut'].plugins.legend.display = false;
   }
 
   ngOnInit() {
@@ -72,10 +73,17 @@ export class FinancialSummaryComponent implements OnInit, OnDestroy{
   }
 
   private updateChart() {
-    const topData = this.tableData
+    let topData = this.tableData
       .filter(this.filterZeroValue())
-      .sort(this.compare())
-      // .slice(0, 2);
+      .sort(this.compare());
+    if (topData.length > this.maxDisplay) {
+      const value = topData.slice(10, topData.length).reduce(
+        (result, obj) => obj.expense + result , 0)
+        .toFixed(2);
+
+      topData = topData.slice(0, this.maxDisplay);
+      topData.push(new AnalysisBuilder().name("Other").value(value).build());
+    }
     this.chartData = [{
       data: topData.map(this.mapByType())
     }];
