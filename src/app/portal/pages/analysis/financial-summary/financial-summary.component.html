@@ -1,1 +1,13 @@
-<p>financial-summary works!</p>
+<h1>{{name}}</h1>
+<app-select-time-period (updateData)="updateData($event)"/>
+
+<div class="chart">
+  <canvas baseChart
+          [datasets]="chartData"
+          [labels]="chartLabels"
+          [options]="chartOptions"
+          [legend]="chartLegend"
+          [type]="chartType">
+  </canvas>
+</div>
+

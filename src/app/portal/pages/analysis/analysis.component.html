@@ -1,8 +1,8 @@
 <div>
+  <div id="visual-summary">
+    <app-financial-summary [type]="PaymentType.INCOME" [name]="'Income sources'"/>
+    <app-financial-summary [type]="PaymentType.EXPENSE" [name]="'Expenses'"/>
+  </div>
   <h1>Income vs Expense</h1>
   <app-financial-table />
-  <div id="visual-summary">
-    <app-financial-summary [name]="'Income sources'"/>
-    <app-financial-summary [name]="'Expenses'"/>
-  </div>
 </div>

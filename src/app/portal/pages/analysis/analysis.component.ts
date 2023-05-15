@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {PaymentType} from "../../../model/PaymentType";
 
 @Component({
   selector: 'app-analysis',
@@ -7,4 +8,5 @@ import { Component } from '@angular/core';
 })
 export class AnalysisComponent {
 
+  protected readonly PaymentType = PaymentType;
 }

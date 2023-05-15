@@ -1,0 +1,27 @@
+h1 {
+  font-size: 24px;
+  color: #404040;
+}
+
+.chart {
+  display: block;
+  background-color: #FFFFFF;
+  padding: 30px;
+  border-radius: 10px;
+  position: relative;
+  width: 20vw;
+  height: 45vh;
+}
+
+
+@media only screen and (max-width: 550px) {
+  .chart {
+    width: 70vw;
+  }
+}
+
+@media only screen and (max-width: 1550px) and (min-width: 551px){
+  .chart {
+    width: 50vw;
+  }
+}
