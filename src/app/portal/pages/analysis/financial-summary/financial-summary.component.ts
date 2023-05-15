@@ -48,6 +48,18 @@ export class FinancialSummaryComponent implements OnInit, OnDestroy{
     this.subscribeTableContent.unsubscribe();
   }
 
+  updateData(eventData?: { period: number, type: string }) : void {
+    const validatedParams = this.analysisService.validateParams(eventData);
+    this.selectedType = validatedParams.type;
+
+    this.subscribeTableContent = this.analysisService
+      .getAnalysisDataRows(validatedParams.startDate, validatedParams.type).subscribe({
+        next: (res) => this.tableData = res,
+        error: (err) => console.log('problem with getting the table rows: ', err),
+        complete: () => this.updateChart()
+      });
+  }
+
   private compare() {
     if (PaymentType.INCOME == this.type) {
       return (a, b) => a.income > b.income ? -1 : 1;
@@ -88,17 +100,5 @@ export class FinancialSummaryComponent implements OnInit, OnDestroy{
       data: topData.map(this.mapByType())
     }];
     this.chartLabels =  topData.map(d => d.name);
-  }
-
-  updateData(eventData?: { period: number, type: string }) : void {
-    const validatedParams = this.analysisService.validateParams(eventData);
-    this.selectedType = validatedParams.type;
-
-    this.subscribeTableContent = this.analysisService
-      .getAnalysisDataRows(validatedParams.startDate, validatedParams.type).subscribe({
-      next: (res) => this.tableData = res,
-      error: (err) => console.log('problem with getting the table rows: ', err),
-      complete: () => this.updateChart()
-    });
   }
 }
