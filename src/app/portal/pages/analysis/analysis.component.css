@@ -1,0 +1,9 @@
+h1 {
+  font-size: 24px;
+  color: #404040;
+}
+
+#visual-summary {
+  display: flex;
+  flex-direction: row;
+}

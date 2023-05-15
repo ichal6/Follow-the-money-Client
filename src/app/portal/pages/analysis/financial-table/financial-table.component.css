@@ -1,3 +1,9 @@
+#table-analysis {
+  background-color: #FFFFFF;
+  padding: 30px;
+  border-radius: 10px;
+}
+
 .table-body-center-text *, #no-found-message{
   text-align: center;
 }
@@ -12,7 +18,7 @@
 }
 
 :host ::ng-deep.p-datatable-table tr:nth-child(odd){
-  background-color: rgb(255, 255, 255);
+  background-color: #E8E7E7B8;
 }
 
 :host ::ng-deep.p-datatable-table tr:nth-child(even){
