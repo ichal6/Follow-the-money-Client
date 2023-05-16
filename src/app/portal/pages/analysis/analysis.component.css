@@ -12,10 +12,36 @@ h1 {
 
 app-financial-summary {
   margin-right: 20px;
+  width: 33vw;
 }
 
 @media only screen and (max-width: 550px) {
   app-financial-summary {
     margin-right: 0;
+  }
+
+  #visual-summary {
+    justify-content: flex-start;
+    flex-direction: column;
+  }
+
+  app-financial-summary {
+    width: 66vw;
+  }
+}
+
+@media only screen and (max-width: 1090px) {
+  #visual-summary {
+    justify-content: flex-start;
+  }
+}
+
+@media only screen and (max-width: 800px) and (min-width: 551px){
+  #visual-summary {
+    flex-direction: column;
+  }
+
+  app-financial-summary {
+    width: 66vw;
   }
 }

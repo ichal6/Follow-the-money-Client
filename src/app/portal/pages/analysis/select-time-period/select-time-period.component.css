@@ -37,7 +37,7 @@ select {
   margin-right: 3.5vw;
 }
 
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 1900px) {
   #parameters {
     margin: 0;
     flex-direction: column;
@@ -45,6 +45,6 @@ select {
 
   .parameter {
     margin-right: 0;
-    margin-bottom: 3vw;
+    margin-bottom: 20px;
   }
 }

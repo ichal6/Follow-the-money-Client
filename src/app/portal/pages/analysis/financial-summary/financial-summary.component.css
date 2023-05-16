@@ -9,19 +9,24 @@ h1 {
   padding: 30px;
   border-radius: 10px;
   position: relative;
-  width: 20vw;
-  height: 45vh;
+  height: 55vh;
 }
 
 
 @media only screen and (max-width: 550px) {
   .chart {
-    width: 70vw;
+    width: 80vw;
   }
 }
 
-@media only screen and (max-width: 1550px) and (min-width: 551px){
+@media only screen and (max-width: 1090px) and (min-width: 801px){
   .chart {
     width: 50vw;
+  }
+}
+
+@media only screen and (max-width: 800px) and (min-width: 551px) {
+  .chart {
+    width: 66vw;
   }
 }
