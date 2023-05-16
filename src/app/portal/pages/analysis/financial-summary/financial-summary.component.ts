@@ -12,7 +12,7 @@ import {AnalysisBuilder} from "../../../../model/AnalysisBuilder";
   styleUrls: ['./financial-summary.component.css']
 })
 export class FinancialSummaryComponent implements OnInit, OnDestroy{
-  private readonly maxDisplay = 13;
+  private readonly maxDisplay = 15;
   private subscribeTableContent: Subscription;
   selectedType: string;
   tableData: AnalysisTableRow[] = [];
@@ -89,7 +89,7 @@ export class FinancialSummaryComponent implements OnInit, OnDestroy{
       .filter(this.filterZeroValue())
       .sort(this.compare());
     if (topData.length > this.maxDisplay) {
-      const value = topData.slice(10, topData.length).reduce(
+      const value = topData.slice(this.maxDisplay, topData.length).reduce(
         (result, obj) => obj.expense + result , 0)
         .toFixed(2);
 
@@ -97,7 +97,8 @@ export class FinancialSummaryComponent implements OnInit, OnDestroy{
       topData.push(new AnalysisBuilder().name("Other").value(value).build());
     }
     this.chartData = [{
-      data: topData.map(this.mapByType())
+      data: topData.map(this.mapByType()),
+      backgroundColor: ["#fd7f6f", "#7eb0d5", "#b2e061", "#bd7ebe", "#ffb55a", "#ffee65", "#beb9db", "#fdcce5", "#8bd3c7"]
     }];
     this.chartLabels =  topData.map(d => d.name);
   }
