@@ -127,4 +127,12 @@ li a p {
   .mobile {
     display: block;
   }
+
+  ul {
+    padding-left: 55px;
+  }
+
+  li {
+    margin-bottom: 0;
+  }
 }
