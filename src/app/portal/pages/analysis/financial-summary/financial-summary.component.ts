@@ -39,6 +39,7 @@ export class FinancialSummaryComponent implements OnInit, OnDestroy{
   }
 
   ngOnInit() {
+    this.chartData = [{data: []}];
     this.updateData();
   }
 
