@@ -7,7 +7,12 @@
           [labels]="chartLabels"
           [options]="chartOptions"
           [legend]="chartLegend"
-          [type]="chartType">
+          [type]="chartType"
+          *ngIf="chartData[0]['data'].length">
   </canvas>
+  <div class="no-data" *ngIf="chartData[0]['data'].length === 0 ">
+    No Data Available
+  </div>
+
 </div>
 

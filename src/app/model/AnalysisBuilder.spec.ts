@@ -1,4 +1,3 @@
-import {AnalysisTableRow} from "./AnalysisTableRow";
 import {AnalysisBuilder} from "./AnalysisBuilder";
 
 describe('AnalysisBuilder', () => {

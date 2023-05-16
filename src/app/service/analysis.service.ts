@@ -43,7 +43,7 @@ export class AnalysisService {
       date.setDate(new Date().getDate() - eventData.period);
       startDate = date.toISOString().substring(0,10);
     }
-    if(eventData !== undefined) {
+    if(eventData !== undefined && eventData.type !== undefined) {
       type = eventData.type;
     }
     return {startDate, type};

@@ -1,6 +1,5 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from "rxjs";
-import {Chart} from 'chart.js';
 import {AnalysisTableRow} from "../../../../model/AnalysisTableRow";
 import {AnalysisService} from "../../../../service/analysis.service";
 import {PaymentType} from "../../../../model/PaymentType";
@@ -16,7 +15,6 @@ export class FinancialSummaryComponent implements OnInit, OnDestroy{
   private subscribeTableContent: Subscription;
   selectedType: string;
   tableData: AnalysisTableRow[] = [];
-  public chart: Chart;
   @Input()
   name: string;
   @Input()
