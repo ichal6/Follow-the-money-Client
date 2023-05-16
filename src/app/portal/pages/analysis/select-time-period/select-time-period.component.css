@@ -29,9 +29,22 @@ select {
 #parameters {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   margin-bottom: 3vh;
 }
 
 .parameter {
   margin-right: 3.5vw;
+}
+
+@media only screen and (max-width: 1900px) {
+  #parameters {
+    margin: 0;
+    flex-direction: column;
+  }
+
+  .parameter {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
 }

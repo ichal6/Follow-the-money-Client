@@ -25,20 +25,12 @@ export class FinancialTableComponent  implements OnInit, OnDestroy {
   }
 
   updateData(eventData?: { period: number, type: string }) : void {
-    let startDate = '1970-01-01';
-    let type = "accounts";
-    if(eventData !== undefined && eventData.period > 0) {
-      const date = new Date();
-      date.setDate(new Date().getDate() - eventData.period);
-      startDate = date.toISOString().substring(0,10);
-    }
-    if(eventData !== undefined) {
-      type = eventData.type;
-    }
-    this.selectedType = type;
+    const validatedParams = this.analysisService.validateParams(eventData);
+    this.selectedType = validatedParams.type;
 
-    this.subscribeTableContent = this.analysisService.getAnalysisDataRows(startDate, type).subscribe({
-      next: (res) => this.tableData = res,
+    this.subscribeTableContent = this.analysisService
+      .getAnalysisDataRows(validatedParams.startDate, validatedParams.type).subscribe({
+      next: (res) => this.tableData = res.filter(a => a.balance != 0),
       error: (err) => console.log('problem with getting the table rows: ', err),
       complete: () => console.log('Completed fetch table data')
     });

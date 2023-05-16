@@ -1,0 +1,40 @@
+h1 {
+  font-size: 24px;
+  color: #404040;
+}
+
+.chart {
+  display: block;
+  background-color: #FFFFFF;
+  padding: 30px;
+  border-radius: 10px;
+  /*position: relative;*/
+  height: 55vh;
+}
+
+.no-data {
+  color: #FF7D44;
+  text-align: center;
+  top: 45%;
+  position: relative;
+  font-size: 24px;
+}
+
+
+@media only screen and (max-width: 550px) {
+  .chart {
+    width: 80vw;
+  }
+}
+
+@media only screen and (max-width: 1090px) and (min-width: 801px){
+  .chart {
+    width: 50vw;
+  }
+}
+
+@media only screen and (max-width: 800px) and (min-width: 551px) {
+  .chart {
+    width: 66vw;
+  }
+}

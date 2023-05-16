@@ -35,6 +35,21 @@ export class AnalysisService {
       );
   }
 
+  validateParams(eventData?: { period: number, type: string }) {
+    let startDate = '1970-01-01';
+    let type = "accounts";
+    if(eventData !== undefined && eventData.period > 0) {
+      const date = new Date();
+      date.setDate(new Date().getDate() - eventData.period);
+      startDate = date.toISOString().substring(0,10);
+    }
+    if(eventData !== undefined && eventData.type !== undefined) {
+      type = eventData.type;
+    }
+    return {startDate, type};
+  }
+
+
   private extractAnalysisTableRowFromJSON(dataJSON): Array<AnalysisTableRow> {
     const analysisTableRowsTS = new Array<AnalysisTableRow>();
 

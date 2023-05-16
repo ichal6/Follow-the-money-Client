@@ -20,8 +20,8 @@ export class MenuComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     const actualPageHref = this.hrefs.filter(a => a.nativeElement.id === this.selectedHref.substring(1))[0];
-    actualPageHref.nativeElement.style.color = '#5ce232';
-    actualPageHref.nativeElement.firstChild.style.filter = 'invert(70%) sepia(100%) saturate(3.5) hue-rotate(60deg)';
+    actualPageHref.nativeElement.style.color = '#0BD1B8';
+    actualPageHref.nativeElement.firstChild.style.filter = 'invert(66%) sepia(79%) saturate(3666%) hue-rotate(132deg) brightness(107%) contrast(91%)';
   }
 
   navigateTo(page: string): void {

@@ -46,7 +46,7 @@ import {ProgressBarModule} from 'primeng/progressbar';
 import {SliderModule} from 'primeng/slider';
 import {DropdownModule} from 'primeng/dropdown';
 import {MultiSelectModule} from 'primeng/multiselect';
-import { SelectTimePeriodComponent } from './pages/analysis/financial-table/select-time-period/select-time-period.component';
+import { SelectTimePeriodComponent } from './pages/analysis/select-time-period/select-time-period.component';
 
 const routes: Routes = [
   {
