@@ -10,9 +10,11 @@ describe('PaymentsService', () => {
   let service: PaymentsService;
   let httpSpy: Spy<HttpClient>;
 
-  const paymentsObjects = [PaymentModelFixture.getBuyCarPayment(),
-    PaymentModelFixture.getBuyAnotherCarPayment(),
-    PaymentModelFixture.getCashDepositSeptember()];
+  const paymentsObjects = [
+    PaymentModelFixture.getCashDepositSeptember(),
+    PaymentModelFixture.getBuyCarPayment(),
+    PaymentModelFixture.getBuyAnotherCarPayment()
+  ];
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -21,12 +23,15 @@ describe('PaymentsService', () => {
       ],
       providers: [
         PaymentsService,
-        { provide: HttpClient, useValue: createSpyFromClass(HttpClient) }
+        {
+          provide: HttpClient,
+          useValue: createSpyFromClass(HttpClient)
+        }
       ]
     });
     TestBed.configureTestingModule({});
     service = TestBed.inject(PaymentsService);
-    httpSpy = TestBed.inject<any>(HttpClient);
+    httpSpy = TestBed.inject(HttpClient) as Spy<HttpClient>;
   });
 
   it('should be created', () => {
@@ -36,13 +41,14 @@ describe('PaymentsService', () => {
   it('should call http Get method and return all payments', (done: DoneFn) => {
     httpSpy.get.and.nextWith(data);
 
-    service.getPayments().subscribe(payments => {
+    service.getPayments().subscribe({
+      next: payments => {
         expect(payments.length).toEqual(data.length);
         expect(payments).toEqual(paymentsObjects);
         done();
       },
-      done.fail
-    );
+      error: done.fail
+    });
     expect(httpSpy.get.calls.count()).toBe(1);
   });
 });
