@@ -53,6 +53,8 @@ export class TransactionFormAddComponent implements OnInit, OnDestroy {
     this.newTransaction.payeeId = null;
     this.newTransaction.categoryId = null;
     this.newTransaction.type = null;
+    this.newTransaction.date = new Date().toISOString().slice(0, 16);
+    this.isDateValid = true;
     this.transactionResetSubscription = this.formResetService.resetTransactionFormEvent.subscribe(
       transaction => {
         this.newTransaction = transaction;

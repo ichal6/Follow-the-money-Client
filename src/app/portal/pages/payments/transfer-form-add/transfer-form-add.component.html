@@ -17,7 +17,7 @@
   <input type="number" class="form-input" id="value" placeholder="Transfer value (USD)" name="value" [(ngModel)]="newTransfer.value" (change)="checkIfValueIsValid()" #valueField="ngModel" required>
   <p class="message" *ngIf="!isValueValid && valueField.touched">Value can't be empty or contain signs other than '.'. Must be a positive number.</p>
 
-  <input type="date" class="form-input" id="date" placeholder="Date" name="date" [(ngModel)]="newTransfer.date" (change)="checkIfDateIsValid()" #dateField="ngModel" required>
+  <input type="datetime-local" class="form-input" id="date" placeholder="Date" name="date" [(ngModel)]="newTransfer.date" (change)="checkIfDateIsValid()" #dateField="ngModel" required>
   <p *ngIf="!isDateValid && dateField.touched" class="message">Date should be in format DD.MM.YYYY</p>
   <button type="button" class="form-button" (click)="onSubmit()" [disabled]="transferForm.invalid || !isTitleValid || !isAccountIdValid  || !isValueValid || !isDateValid || !isAccountIsDifferent ">Save</button>
 </form>

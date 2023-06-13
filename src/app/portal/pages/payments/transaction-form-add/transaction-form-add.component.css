@@ -40,6 +40,12 @@ h1 {
   cursor: pointer;
 }
 
+.form-button:disabled {
+  cursor: not-allowed;
+  transform: initial;
+  background: #A0A0A1;
+}
+
 .message {
   font-family: "Poppins Semibold", sans-serif;
   color: red;

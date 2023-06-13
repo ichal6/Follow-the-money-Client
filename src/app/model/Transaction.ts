@@ -6,7 +6,7 @@ export class Transaction {
   categoryId: number;
   payeeId: number;
   accountId: number;
-  date: Date;
+  date: string;
 
   static fromHttp(transaction: Transaction): Transaction {
     const newTransaction = new Transaction();
