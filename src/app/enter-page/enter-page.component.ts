@@ -28,6 +28,7 @@ export class EnterPageComponent implements OnInit{
       },
       error => {
         console.log(error);
+        this.isDisplay = false;
       }
     );
 
@@ -38,6 +39,7 @@ export class EnterPageComponent implements OnInit{
       },
       error => {
         console.log(error);
+        this.isDisplay = false;
       }
     );
   }
@@ -50,8 +52,8 @@ export class EnterPageComponent implements OnInit{
       },
       error => {
         console.log(error);
+        this.isDisplay = false;
       }
     );
   }
-
 }
