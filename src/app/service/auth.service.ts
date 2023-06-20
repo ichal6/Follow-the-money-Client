@@ -7,6 +7,7 @@ import {PayeeService} from './payee.service';
 import {PaymentsService} from './payments.service';
 import {TransactionsService} from './transactions.service';
 import {AnalysisService} from './analysis.service';
+import {catchError} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -38,17 +39,29 @@ export class AuthService {
         console.log(error);
         this.isAuthenticated = false;
         this.authenticationResultEvent.emit(false);
+        this.tryLoginEvent.emit(false);
       }
     );
   }
 
   checkIfAlreadyAuthenticated(): void {
-    this.dataService.isLogin().subscribe(
-      next => {
+    this.dataService.isLogin().pipe(
+      catchError(err => {
+        console.log(err);
+        this.isAuthenticated = false;
+        this.tryLoginEvent.emit(false);
+        throw new Error("Server is not response");
+      })
+    ).subscribe({
+      next:  () =>  {
         this.isAuthenticated = true;
         this.authenticationResultEvent.emit(true);
+    },
+      error: () => {
+        this.isAuthenticated = false;
+        this.tryLoginEvent.emit(false);
       }
-    );
+  });
   }
 
   logout(): void {

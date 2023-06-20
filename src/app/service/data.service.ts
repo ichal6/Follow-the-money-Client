@@ -23,6 +23,8 @@ export class DataService {
     console.log('List of Cookies - ', this.cookieService.getAll());
     if (this.cookieService.check('e-mail')){
       this.email = this.cookieService.get('e-mail');
+    } else {
+      this.email = null;
     }
   }
 
