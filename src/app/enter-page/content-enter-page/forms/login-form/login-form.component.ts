@@ -35,6 +35,7 @@ export class LoginFormComponent implements OnInit, OnDestroy {
         }
         else {
           console.log('Log in has not been successfully');
+          this.authService.tryLoginEvent.emit(true);
           this.message = 'Your username or password was not recognised - try again.';
         }
       }
