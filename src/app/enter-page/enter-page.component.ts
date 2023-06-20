@@ -24,6 +24,7 @@ export class EnterPageComponent implements OnInit{
     this.authService.tryLoginEvent.subscribe(
       next => {
         console.log(next);
+        console.log("Success login");
         this.isDisplay = next;
       },
       error => {
@@ -35,6 +36,7 @@ export class EnterPageComponent implements OnInit{
     this.dataService.tryRegisterEvent.subscribe(
       next => {
         console.log(next);
+        console.log("Success register");
         this.isDisplay = next;
       },
       error => {
