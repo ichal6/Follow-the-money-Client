@@ -65,7 +65,6 @@ export class AuthService {
   }
 
   logout(): void {
-    this.authenticationResultEvent.emit(false);
     this.dataService.logout().subscribe();
     this.cookieService.deleteAll();
     this.isAuthenticated = false;
