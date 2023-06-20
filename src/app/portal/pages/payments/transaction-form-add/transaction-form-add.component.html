@@ -25,7 +25,7 @@
     <option [ngValue]="null" [disabled]="true" >Select category</option>
     <option *ngFor="let category of getCategoriesForType()" [ngValue]="category.id">{{category.name}}</option>
   </select>
-  <input type="date" class="form-input" id="date" placeholder="Date" name="date" [(ngModel)]="newTransaction.date" (change)="checkIfDateIsValid()" #dateField="ngModel" required>
+  <input type="datetime-local" class="form-input" id="date" placeholder="Date" name="date" [(ngModel)]="newTransaction.date" (change)="checkIfDateIsValid()" #dateField="ngModel" required>
   <p *ngIf="!isDateValid && dateField.touched" class="message">Date should be in format DD.MM.YYYY</p>
   <button type="button" class="form-button" (click)="onSubmit()" [disabled]="transactionForm.invalid || !isTitleValid || !isAccountIdValid || !isTypeValid || !isCategoryIdValid || !isPayeeIdValid || !isValueValid || !isDateValid ">Save</button>
 </form>

@@ -28,4 +28,8 @@ describe('LoginComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should hide register popup when user logout', () => {
+    expect(component.isDisplay).toBe(false);
+  })
 });

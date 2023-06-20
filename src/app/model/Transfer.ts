@@ -4,7 +4,7 @@ export class Transfer {
   value: number;
   accountFromId: number;
   accountToId: number;
-  date: Date;
+  date: string;
 
   static fromHttp(transfer: Transfer): Transfer {
     const newTransfer = new Transfer();

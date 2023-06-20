@@ -12,12 +12,13 @@ import {Account, NoAccount} from '../../../../model/Account';
 })
 export class PaymentsAllComponent implements OnInit, OnDestroy {
   public payments: Array<Payment>;
-  private subscribePayment: Subscription;
-  private subscribeAccount: Subscription;
   public allAccounts: Array<Account>;
   public account: Account;
   public noAccount: NoAccount;
   public periodInDays: number;
+  private subscribePayment: Subscription;
+  private subscribeAccount: Subscription;
+
   constructor(private paymentsService: PaymentsService,
               private accountsService: AccountsService) { }
 
@@ -25,26 +26,24 @@ export class PaymentsAllComponent implements OnInit, OnDestroy {
     this.noAccount = new NoAccount();
     this.account = this.noAccount;
     this.periodInDays = 0;
-    this.subscribeAccount = this.accountsService.getAccounts().subscribe(
-      next => {
-        this.allAccounts = next;
-      },
-      error => {
-        console.log('problem with loading the accounts: ', error);
-      }
-    );
+    this.requestAccounts();
     this.requestPayments();
   }
 
+  private requestAccounts() : void {
+    this.subscribeAccount = this.accountsService.getAccounts().subscribe({
+      next: (res) => this.allAccounts = res,
+      error: err => console.log('problem with loading the accounts: ', err),
+      complete: () => console.log('Completed fetch accounts')
+    });
+  }
+
   requestPayments(): void {
-    this.subscribePayment = this.paymentsService.getPayments(this.account.id, this.periodInDays).subscribe(
-      next => {
-        this.payments = next;
-      },
-      error => {
-        console.log('problem with getting the payments: ', error);
-      }
-    );
+    this.subscribePayment = this.paymentsService.getPayments(this.account.id, this.periodInDays).subscribe({
+      next: (res) => this.payments = res,
+      error: (err) => console.log('problem with getting the payments: ', err),
+      complete: () => console.log('Completed fetch all payments')
+    });
   }
 
   ngOnDestroy(): void {

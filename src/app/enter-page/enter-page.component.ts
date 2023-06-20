@@ -24,20 +24,26 @@ export class EnterPageComponent implements OnInit{
     this.authService.tryLoginEvent.subscribe(
       next => {
         console.log(next);
+        console.log("Success login");
         this.isDisplay = next;
       },
       error => {
         console.log(error);
+        console.log("Problem with login");
+        this.isDisplay = false;
       }
     );
 
     this.dataService.tryRegisterEvent.subscribe(
       next => {
         console.log(next);
+        console.log("Success register");
         this.isDisplay = next;
       },
       error => {
         console.log(error);
+        console.log("Problem with register");
+        this.isDisplay = false;
       }
     );
   }
@@ -50,8 +56,8 @@ export class EnterPageComponent implements OnInit{
       },
       error => {
         console.log(error);
+        this.isDisplay = false;
       }
     );
   }
-
 }

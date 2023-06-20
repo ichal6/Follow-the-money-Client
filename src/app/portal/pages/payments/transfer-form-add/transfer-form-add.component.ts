@@ -38,6 +38,8 @@ export class TransferFormAddComponent implements OnInit, OnDestroy {
     this.newTransfer = new Transfer();
     this.newTransfer.accountToId = null;
     this.newTransfer.accountFromId = null;
+    this.newTransfer.date = new Date().toISOString().slice(0, 16);
+    this.isDateValid = true;
     this.transferResetSubscription = this.formResetService.resetTransferFormEvent.subscribe(
       transfer => {
         this.newTransfer = transfer;
