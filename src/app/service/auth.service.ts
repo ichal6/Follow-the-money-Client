@@ -53,11 +53,10 @@ export class AuthService {
 
   logout(): void {
     this.dataService.logout().subscribe();
-    this.cookieService.delete('e-mail');
+    this.cookieService.deleteAll();
     this.isAuthenticated = false;
     this.authenticationResultEvent.emit(false);
     this.resetEmailInServices();
-    this.tryLoginEvent.emit(false);
   }
 
   resetEmailInServices(): void {
