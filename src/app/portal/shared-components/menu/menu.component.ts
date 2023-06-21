@@ -34,7 +34,5 @@ export class MenuComponent implements OnInit, AfterViewInit {
 
   logout(): void{
     this.authService.logout();
-    this.route.navigate(['login']);
   }
-
 }

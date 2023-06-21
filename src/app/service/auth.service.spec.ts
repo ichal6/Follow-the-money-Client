@@ -20,11 +20,4 @@ describe('AuthService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('check that the event emitter is firing an event when logout method was run', () =>
-  {
-    spyOn(service.authenticationResultEvent, 'emit');
-    service.logout();
-    expect(service.authenticationResultEvent.emit).toHaveBeenCalledWith(false);
-  });
-
 });

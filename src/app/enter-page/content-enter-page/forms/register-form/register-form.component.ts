@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {AuthService} from '../../../../service/auth.service';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -10,7 +10,7 @@ import {User} from '../../../../model/User';
   templateUrl: './register-form.component.html',
   styleUrls: ['./register-form.component.css']
 })
-export class RegisterFormComponent implements OnInit, OnDestroy {
+export class RegisterFormComponent implements OnDestroy {
   message = '';
   name: string;
   email: string;
@@ -21,10 +21,6 @@ export class RegisterFormComponent implements OnInit, OnDestroy {
               private dataService: DataService,
               private route: Router,
               private activatedRoute: ActivatedRoute) { }
-
-  ngOnInit(): void{
-      this.authService.logout();
-  }
 
   ngOnDestroy(): void{
     if (this.subscription != null){
