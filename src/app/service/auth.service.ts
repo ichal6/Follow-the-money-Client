@@ -65,7 +65,7 @@ export class AuthService {
 
   logout(): void {
     this.dataService.logout().subscribe({
-      next: (res) => {
+      next: () => {
         this.cookieService.deleteAll();
         this.isAuthenticated = false;
         this.resetEmailInServices();

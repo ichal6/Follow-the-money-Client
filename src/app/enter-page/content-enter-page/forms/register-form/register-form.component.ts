@@ -10,7 +10,7 @@ import {User} from '../../../../model/User';
   templateUrl: './register-form.component.html',
   styleUrls: ['./register-form.component.css']
 })
-export class RegisterFormComponent implements OnInit, OnDestroy {
+export class RegisterFormComponent implements OnDestroy {
   message = '';
   name: string;
   email: string;
@@ -21,9 +21,6 @@ export class RegisterFormComponent implements OnInit, OnDestroy {
               private dataService: DataService,
               private route: Router,
               private activatedRoute: ActivatedRoute) { }
-
-  ngOnInit(): void{
-  }
 
   ngOnDestroy(): void{
     if (this.subscription != null){
