@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { EnterPageComponent } from './enter-page.component';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {Subscription} from 'rxjs';
 
 describe('LoginComponent', () => {
   let component: EnterPageComponent;
@@ -31,5 +32,16 @@ describe('LoginComponent', () => {
 
   it('should hide register popup when user logout', () => {
     expect(component.isDisplay).toBe(false);
+  })
+
+  it('should can run ngOnDestroy when component quick create and immediately destroy', () => {
+    // given
+    const spyUnsubscribe = spyOn(Subscription.prototype, 'unsubscribe');
+    fixture = TestBed.createComponent(EnterPageComponent);
+    component = fixture.componentInstance;
+    // when
+    component.ngOnDestroy();
+    // then
+    expect(spyUnsubscribe).toHaveBeenCalledTimes(0);
   })
 });

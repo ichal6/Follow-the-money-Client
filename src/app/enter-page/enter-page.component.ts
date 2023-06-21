@@ -8,7 +8,7 @@ import {Subscription} from 'rxjs';
   templateUrl: './enter-page.component.html',
   styleUrls: ['./enter-page.component.css']
 })
-export class EnterPageComponent implements OnInit, OnDestroy{
+export class EnterPageComponent implements OnInit, OnDestroy {
   isDisplay: boolean;
   loginSubscribe: Subscription;
   registerSubscribe: Subscription;
@@ -27,25 +27,25 @@ export class EnterPageComponent implements OnInit, OnDestroy{
   private displayPopup(): void {
     this.loginSubscribe = this.authService.tryLoginEvent.subscribe(
       next => this.isDisplay = next,
-      error => this.isDisplay = false
+      () => this.isDisplay = false
     );
 
     this.registerSubscribe = this.dataService.tryRegisterEvent.subscribe(
       next => this.isDisplay = next,
-      error => this.isDisplay = false
+      () => this.isDisplay = false
     );
   }
 
   private hidePopup(): void {
     this.authenticateResultSubscribe = this.authService.authenticationResultEvent.subscribe(
       next => this.isDisplay = next,
-      error => this.isDisplay = false
+      () => this.isDisplay = false
     );
   }
 
   ngOnDestroy(): void {
-    this.loginSubscribe.unsubscribe();
-    this.registerSubscribe.unsubscribe();
-    this.authenticateResultSubscribe.unsubscribe();
+    this.loginSubscribe?.unsubscribe();
+    this.registerSubscribe?.unsubscribe();
+    this.authenticateResultSubscribe?.unsubscribe();
   }
 }
