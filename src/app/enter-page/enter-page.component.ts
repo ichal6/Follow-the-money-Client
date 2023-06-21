@@ -44,8 +44,8 @@ export class EnterPageComponent implements OnInit, OnDestroy{
   }
 
   ngOnDestroy(): void {
-    this.loginSubscribe.unsubscribe();
-    this.registerSubscribe.unsubscribe();
-    this.authenticateResultSubscribe.unsubscribe();
+    this.loginSubscribe?.unsubscribe();
+    this.registerSubscribe?.unsubscribe();
+    this.authenticateResultSubscribe?.unsubscribe();
   }
 }
