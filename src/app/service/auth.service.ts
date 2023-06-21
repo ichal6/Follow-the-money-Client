@@ -8,6 +8,7 @@ import {PaymentsService} from './payments.service';
 import {TransactionsService} from './transactions.service';
 import {AnalysisService} from './analysis.service';
 import {catchError} from 'rxjs';
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,7 @@ export class AuthService {
   tryLoginEvent = new EventEmitter<boolean>();
 
   constructor(private dataService: DataService,
+              private route: Router,
               private accountsService: AccountsService,
               private categoryService: CategoryService,
               private payeeService: PayeeService,
@@ -36,7 +38,6 @@ export class AuthService {
         this.resetEmailInServices();
       },
       error => {
-        console.log(error);
         this.isAuthenticated = false;
         this.authenticationResultEvent.emit(false);
         this.tryLoginEvent.emit(false);
@@ -48,8 +49,6 @@ export class AuthService {
     this.dataService.isLogin().pipe(
       catchError(err => {
         console.log(err);
-        this.isAuthenticated = false;
-        this.tryLoginEvent.emit(false);
         throw new Error("Server is not response");
       })
     ).subscribe({
@@ -65,10 +64,15 @@ export class AuthService {
   }
 
   logout(): void {
-    this.dataService.logout().subscribe();
-    this.cookieService.deleteAll();
-    this.isAuthenticated = false;
-    this.resetEmailInServices();
+    this.dataService.logout().subscribe({
+      next: (res) => {
+        this.cookieService.deleteAll();
+        this.isAuthenticated = false;
+        this.resetEmailInServices();
+      },
+      error: (err) => console.dir({'problem with logout: ': err}),
+      complete: () => this.route.navigate(['login'])
+    });
   }
 
   resetEmailInServices(): void {

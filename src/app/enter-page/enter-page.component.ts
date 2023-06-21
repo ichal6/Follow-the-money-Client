@@ -1,14 +1,18 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AuthService} from '../service/auth.service';
 import {DataService} from '../service/data.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-login',
   templateUrl: './enter-page.component.html',
   styleUrls: ['./enter-page.component.css']
 })
-export class EnterPageComponent implements OnInit{
+export class EnterPageComponent implements OnInit, OnDestroy{
   isDisplay: boolean;
+  loginSubscribe: Subscription;
+  registerSubscribe: Subscription;
+  authenticateResultSubscribe: Subscription;
 
   constructor(private authService: AuthService,
               private dataService: DataService) {
@@ -20,42 +24,28 @@ export class EnterPageComponent implements OnInit{
     this.hidePopup();
   }
 
-  displayPopup(): void {
-    this.authService.tryLoginEvent.subscribe(
-      next => {
-        console.log(next);
-        console.log("Success login");
-        this.isDisplay = next;
-      },
-      error => {
-        console.log(error);
-        this.isDisplay = false;
-      }
+  private displayPopup(): void {
+    this.loginSubscribe = this.authService.tryLoginEvent.subscribe(
+      next => this.isDisplay = next,
+      error => this.isDisplay = false
     );
 
-    this.dataService.tryRegisterEvent.subscribe(
-      next => {
-        console.log(next);
-        console.log("Success register");
-        this.isDisplay = next;
-      },
-      error => {
-        console.log(error);
-        this.isDisplay = false;
-      }
+    this.registerSubscribe = this.dataService.tryRegisterEvent.subscribe(
+      next => this.isDisplay = next,
+      error => this.isDisplay = false
     );
   }
 
-  hidePopup(): void {
-    this.authService.authenticationResultEvent.subscribe(
-      next => {
-        console.log(next);
-        this.isDisplay = next;
-      },
-      error => {
-        console.log(error);
-        this.isDisplay = false;
-      }
+  private hidePopup(): void {
+    this.authenticateResultSubscribe = this.authService.authenticationResultEvent.subscribe(
+      next => this.isDisplay = next,
+      error => this.isDisplay = false
     );
+  }
+
+  ngOnDestroy(): void {
+    this.loginSubscribe.unsubscribe();
+    this.registerSubscribe.unsubscribe();
+    this.authenticateResultSubscribe.unsubscribe();
   }
 }

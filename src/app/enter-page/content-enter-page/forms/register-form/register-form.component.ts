@@ -23,7 +23,6 @@ export class RegisterFormComponent implements OnInit, OnDestroy {
               private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void{
-      this.authService.logout();
   }
 
   ngOnDestroy(): void{
