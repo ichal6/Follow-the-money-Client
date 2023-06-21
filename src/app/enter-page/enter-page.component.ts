@@ -8,7 +8,7 @@ import {Subscription} from 'rxjs';
   templateUrl: './enter-page.component.html',
   styleUrls: ['./enter-page.component.css']
 })
-export class EnterPageComponent implements OnInit, OnDestroy{
+export class EnterPageComponent implements OnInit, OnDestroy {
   isDisplay: boolean;
   loginSubscribe: Subscription;
   registerSubscribe: Subscription;
