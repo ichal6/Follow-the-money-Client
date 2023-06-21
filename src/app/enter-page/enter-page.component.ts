@@ -27,19 +27,19 @@ export class EnterPageComponent implements OnInit, OnDestroy{
   private displayPopup(): void {
     this.loginSubscribe = this.authService.tryLoginEvent.subscribe(
       next => this.isDisplay = next,
-      error => this.isDisplay = false
+      () => this.isDisplay = false
     );
 
     this.registerSubscribe = this.dataService.tryRegisterEvent.subscribe(
       next => this.isDisplay = next,
-      error => this.isDisplay = false
+      () => this.isDisplay = false
     );
   }
 
   private hidePopup(): void {
     this.authenticateResultSubscribe = this.authService.authenticationResultEvent.subscribe(
       next => this.isDisplay = next,
-      error => this.isDisplay = false
+      () => this.isDisplay = false
     );
   }
 
