@@ -4,6 +4,7 @@ import { HeaderComponent } from './header.component';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {RouterTestingModule} from '@angular/router/testing';
 import {FormsModule} from '@angular/forms';
+import {DataService} from '../../../service/data.service';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -20,6 +21,7 @@ describe('HeaderComponent', () => {
   }));
 
   beforeEach(() => {
+    spyOn(DataService.prototype, "getEmail").and.returnValue("fake@no.com");
     fixture = TestBed.createComponent(HeaderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

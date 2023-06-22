@@ -11,20 +11,18 @@ import {User} from '../model/User';
   providedIn: 'root'
 })
 export class DataService {
-  private email: string;
   tryRegisterEvent = new EventEmitter<boolean>();
 
   constructor(private http: HttpClient,
               private cookieService: CookieService) {
-    this.setEmailFromCookie();
   }
 
-  setEmailFromCookie(): void{
+  getEmail(): string{
     console.log('List of Cookies - ', this.cookieService.getAll());
     if (this.cookieService.check('e-mail')){
-      this.email = this.cookieService.get('e-mail');
+      return this.cookieService.get('e-mail');
     } else {
-      this.email = null;
+      throw Error("Email is not set");
     }
   }
 
@@ -41,11 +39,11 @@ export class DataService {
   }
 
   getUser(): Observable<any>{
-    return this.http.get<any>(environment.restUrl + '/api/user/' + this.email, {withCredentials: true});
+    return this.http.get<any>(environment.restUrl + '/api/user/' + this.getEmail(), {withCredentials: true});
   }
 
   getDashboard(): Observable<Dashboard>{
-    return this.http.get<Dashboard>(environment.restUrl + '/api/dashboard/' + this.email, {withCredentials: true})
+    return this.http.get<Dashboard>(environment.restUrl + '/api/dashboard/' + this.getEmail(), {withCredentials: true})
       .pipe(
         map(
           data => {

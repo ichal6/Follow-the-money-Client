@@ -1,22 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {DataService} from '../../../service/data.service';
 import {Router} from '@angular/router';
 import {AuthService} from '../../../service/auth.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
   userName = 'Please wait...';
+  private subscription: Subscription;
 
   constructor(private dataService: DataService,
               private route: Router,
               private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.dataService.getUser().subscribe(
+    this.subscription = this.dataService.getUser().subscribe(
       nextUser => {
         this.userName = nextUser.name;
       },
@@ -32,5 +34,9 @@ export class HeaderComponent implements OnInit {
 
   logout(): void{
     this.authService.logout();
+  }
+
+  ngOnDestroy(): void {
+    this.subscription?.unsubscribe();
   }
 }
