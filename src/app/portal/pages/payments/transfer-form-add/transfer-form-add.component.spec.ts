@@ -4,6 +4,7 @@ import { TransferFormAddComponent } from './transfer-form-add.component';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {RouterTestingModule} from '@angular/router/testing';
 import {FormsModule} from '@angular/forms';
+import {DataService} from '../../../../service/data.service';
 
 describe('TransferFormAddComponent', () => {
   let component: TransferFormAddComponent;
@@ -15,11 +16,12 @@ describe('TransferFormAddComponent', () => {
       imports: [
         HttpClientTestingModule, RouterTestingModule, FormsModule
       ]
-    })
-      .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {
+    spyOn(DataService.prototype, "getEmail").and.returnValue("fake@no.com");
+
     fixture = TestBed.createComponent(TransferFormAddComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
