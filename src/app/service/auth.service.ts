@@ -30,6 +30,7 @@ export class AuthService {
       next => {
         this.isAuthenticated = true;
         this.authenticationResultEvent.emit(true);
+        this.cookieService.set('e-mail', name);
         this.resetEmailInServices();
       },
       error => {
