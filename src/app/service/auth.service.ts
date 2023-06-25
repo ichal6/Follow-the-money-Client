@@ -28,6 +28,7 @@ export class AuthService {
     this.tryLoginEvent.emit(true);
     this.dataService.validateUser(name, password).subscribe(
       next => {
+        console.log('All cookies: ', this.cookieService.getAll());
         this.isAuthenticated = true;
         this.authenticationResultEvent.emit(true);
         this.cookieService.set('e-mail', name);
