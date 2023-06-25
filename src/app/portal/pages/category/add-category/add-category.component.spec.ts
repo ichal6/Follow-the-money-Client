@@ -4,6 +4,7 @@ import { AddCategoryComponent } from './add-category.component';
 import {RouterTestingModule} from '@angular/router/testing';
 import {FormsModule} from '@angular/forms';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {DataService} from '../../../../service/data.service';
 
 describe('AddCategoryComponent', () => {
   let component: AddCategoryComponent;
@@ -20,6 +21,8 @@ describe('AddCategoryComponent', () => {
   }));
 
   beforeEach(() => {
+    spyOn(DataService.prototype, "getEmail").and.returnValue("fake@no.com");
+
     fixture = TestBed.createComponent(AddCategoryComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

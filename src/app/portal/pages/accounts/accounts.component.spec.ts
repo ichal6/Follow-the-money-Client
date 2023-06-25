@@ -4,6 +4,7 @@ import { AccountsComponent } from './accounts.component';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {RouterTestingModule} from '@angular/router/testing';
 import {FormsModule} from '@angular/forms';
+import {DataService} from '../../../service/data.service';
 
 describe('AccountsComponent', () => {
   let component: AccountsComponent;
@@ -20,6 +21,8 @@ describe('AccountsComponent', () => {
   }));
 
   beforeEach(() => {
+    spyOn(DataService.prototype, "getEmail").and.returnValue("fake@no.com");
+
     fixture = TestBed.createComponent(AccountsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
