@@ -62,11 +62,11 @@ jobs:
           npm run test:ci
 
       - name: Create 404.html
-        if: github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/dev'
         run: cp dist/Follow-the-money-Client/index.html dist/Follow-the-money-Client/404.html
 
       - name: Deploy to GitHub Pages
-        if: github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/dev'
         uses: crazy-max/ghaction-github-pages@v3
         with:
           target_branch: gh-pages
