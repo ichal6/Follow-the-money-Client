@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {ErrorHandler, NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
 import {EnterPageComponent} from './enter-page/enter-page.component';
@@ -13,6 +13,7 @@ import {EnterPageModule} from './enter-page/enter-page.module';
 import {AuthRouteGuardService} from './service/auth-route-guard.service';
 import { PayeeComponent } from './portal/pages/payee/payee.component';
 import { WaitComponent } from './enter-page/wait/wait.component';
+import {GlobalErrorHandler} from './error-handler/global-error-handler/global-error-handler';
 
 const routes: Routes = [
   {path: 'login', component: EnterPageComponent},
@@ -37,7 +38,12 @@ const routes: Routes = [
     NgChartsModule,
     EnterPageModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: ErrorHandler,
+      useClass: GlobalErrorHandler,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
