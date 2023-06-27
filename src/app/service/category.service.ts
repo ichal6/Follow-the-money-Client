@@ -24,37 +24,7 @@ export class CategoryService {
             for (const category of data) {
               categories.push(Category.fromHttp(category));
             }
-            return categories;
-          }
-        )
-      );
-  }
-
-  getCategoriesByIncome(): Observable<Array<Category>>{
-    return this.http.get<Array<Category>>(environment.restUrl + '/api/category/income/' + this.dataService.getEmail(), {withCredentials: true})
-      .pipe(
-        map(
-          data => {
-            const categories = new Array<Category>();
-            for (const category of data) {
-              categories.push(Category.fromHttp(category));
-            }
-            return categories;
-          }
-        )
-      );
-  }
-
-  getCategoriesByExpense(): Observable<Array<Category>>{
-    return this.http.get<Array<Category>>(environment.restUrl + '/api/category/expense/' + this.dataService.getEmail(), {withCredentials: true})
-      .pipe(
-        map(
-          data => {
-            const categories = new Array<Category>();
-            for (const category of data) {
-              categories.push(Category.fromHttp(category));
-            }
-            return categories;
+            return categories.sort((a, b) => a.name.localeCompare(b.name));
           }
         )
       );
