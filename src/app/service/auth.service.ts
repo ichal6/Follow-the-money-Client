@@ -1,7 +1,6 @@
 import {EventEmitter, Injectable } from '@angular/core';
 import {DataService} from './data.service';
 import {CookieService} from 'ngx-cookie-service';
-import {PayeeService} from './payee.service';
 import {PaymentsService} from './payments.service';
 import {TransactionsService} from './transactions.service';
 import {AnalysisService} from './analysis.service';
@@ -18,7 +17,6 @@ export class AuthService {
 
   constructor(private dataService: DataService,
               private route: Router,
-              private payeeService: PayeeService,
               private paymentsService: PaymentsService,
               private transactionsService: TransactionsService,
               private analysisService: AnalysisService,
@@ -73,7 +71,6 @@ export class AuthService {
   }
 
   resetEmailInServices(): void {
-      this.payeeService.setEmailFromCookie();
       this.paymentsService.setEmailFromCookie();
       this.transactionsService.setEmailFromCookie();
       this.analysisService.setEmailFromCookie();
