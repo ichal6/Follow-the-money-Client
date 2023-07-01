@@ -1,30 +1,22 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {CookieService} from 'ngx-cookie-service';
 import {Payment} from '../model/Payment';
 import {Observable} from 'rxjs';
 import {environment} from '../../environments/environment';
 import {map} from 'rxjs/operators';
+import {DataService} from './data.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PaymentsService {
-  private email: string;
 
   constructor(private http: HttpClient,
-              private cookieService: CookieService) {
-    this.setEmailFromCookie();
-  }
-
-  setEmailFromCookie(): void {
-    if (this.cookieService.check('e-mail')) {
-      this.email = this.cookieService.get('e-mail');
-    }
+              private dataService: DataService) {
   }
 
   getPayments(accountId?: number, periodInDays?: number): Observable<Array<Payment>> {
-    let url = environment.restUrl + '/api/payment/' + this.email + '?';
+    let url = environment.restUrl + '/api/payment/' + this.dataService.getEmail() + '?';
     if (typeof accountId !== 'undefined' && accountId !== null) {
       url += 'id=' + accountId;
     }
