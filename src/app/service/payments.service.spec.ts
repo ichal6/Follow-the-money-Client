@@ -6,6 +6,8 @@ import {  HttpClientTestingModule } from '@angular/common/http/testing';
 import { createSpyFromClass, Spy } from 'jasmine-auto-spies';
 import { data } from './fixture/PaymentJSONFixture';
 import * as PaymentModelFixture from './fixture/PaymentModelFixture';
+import {spyDataServiceGetEmail} from './common/SpyObjects';
+
 describe('PaymentsService', () => {
   let service: PaymentsService;
   let httpSpy: Spy<HttpClient>;
@@ -32,6 +34,7 @@ describe('PaymentsService', () => {
     TestBed.configureTestingModule({});
     service = TestBed.inject(PaymentsService);
     httpSpy = TestBed.inject(HttpClient) as Spy<HttpClient>;
+    spyDataServiceGetEmail();
   });
 
   it('should be created', () => {

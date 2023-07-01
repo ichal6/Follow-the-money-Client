@@ -1,30 +1,21 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {CookieService} from 'ngx-cookie-service';
 import {environment} from '../../environments/environment';
 import {map} from 'rxjs/operators';
 import {Payee} from '../model/Payee';
 import {Observable} from 'rxjs';
+import {DataService} from './data.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PayeeService {
-  private email: string;
-
   constructor(private http: HttpClient,
-              private cookieService: CookieService) {
-    this.setEmailFromCookie();
-  }
-
-  setEmailFromCookie(): void{
-    if (this.cookieService.check('e-mail')){
-      this.email = this.cookieService.get('e-mail');
-    }
+              private dataService: DataService) {
   }
 
   getPayees(): Observable<Array<Payee>>{
-    return this.http.get<Array<Payee>>(environment.restUrl + '/api/payee/' + this.email, {withCredentials: true})
+    return this.http.get<Array<Payee>>(environment.restUrl + '/api/payee/' + this.dataService.getEmail(), {withCredentials: true})
       .pipe(
         map(
           data => {
@@ -32,24 +23,24 @@ export class PayeeService {
             for (const payee of data) {
               payees.push(Payee.fromHttp(payee));
             }
-            return payees;
+            return payees.sort((a, b) => a.name.localeCompare(b.name));
           }
         )
       );
   }
 
   deletePayee(id): Observable<any>{
-    return this.http.delete<null>(environment.restUrl + '/api/payee/' + this.email + '/' + id,
+    return this.http.delete<null>(environment.restUrl + '/api/payee/' + this.dataService.getEmail() + '/' + id,
       {withCredentials: true});
   }
 
   createNewPayee(newPayee: Payee): Observable<any>{
     const payeeJSON = {name: newPayee.name};
-    return this.http.post<null>(environment.restUrl + '/api/payee/' + this.email, payeeJSON, {withCredentials : true});
+    return this.http.post<null>(environment.restUrl + '/api/payee/' + this.dataService.getEmail(), payeeJSON, {withCredentials : true});
   }
 
   updatePayee(updatedPayee: Payee): Observable<any>{
-    return this.http.put<null>(environment.restUrl + '/api/payee/' + this.email + '/' + updatedPayee.id, updatedPayee.name,
+    return this.http.put<null>(environment.restUrl + '/api/payee/' + this.dataService.getEmail() + '/' + updatedPayee.id, updatedPayee.name,
       {withCredentials : true});
   }
 }

@@ -70,12 +70,12 @@ export class TransactionFormAddComponent implements OnInit, OnDestroy {
         this.allPayees = next;
       }
     );
-    this.subscribe = this.categoryService.getCategoriesByExpense().subscribe(
+    this.subscribe = this.categoryService.getAllCategories().subscribe(
       next => {
         this.allCategoriesForExpense = next;
       }
     );
-    this.subscribe = this.categoryService.getCategoriesByIncome().subscribe(
+    this.subscribe = this.categoryService.getAllCategories().subscribe(
       next => {
         this.allCategoriesForIncome = next;
       }
@@ -87,7 +87,7 @@ export class TransactionFormAddComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(): void {
-    this.message = 'Saving new account...';
+    this.message = 'Saving new transaction...';
     this.transactionsService.addTransaction(this.newTransaction).subscribe(
       (transaction) => {
         this.dataChangedEvent.emit();

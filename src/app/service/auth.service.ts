@@ -1,7 +1,6 @@
 import {EventEmitter, Injectable } from '@angular/core';
 import {DataService} from './data.service';
 import {CookieService} from 'ngx-cookie-service';
-import {PayeeService} from './payee.service';
 import {PaymentsService} from './payments.service';
 import {TransactionsService} from './transactions.service';
 import {AnalysisService} from './analysis.service';
@@ -18,7 +17,6 @@ export class AuthService {
 
   constructor(private dataService: DataService,
               private route: Router,
-              private payeeService: PayeeService,
               private paymentsService: PaymentsService,
               private transactionsService: TransactionsService,
               private analysisService: AnalysisService,
@@ -28,10 +26,10 @@ export class AuthService {
     this.tryLoginEvent.emit(true);
     this.dataService.validateUser(name, password).subscribe(
       next => {
+        console.log('All cookies: ', this.cookieService.getAll());
         this.isAuthenticated = true;
         this.authenticationResultEvent.emit(true);
         this.cookieService.set('e-mail', name);
-        this.resetEmailInServices();
       },
       error => {
         this.isAuthenticated = false;
@@ -64,17 +62,9 @@ export class AuthService {
       next: () => {
         this.cookieService.deleteAll();
         this.isAuthenticated = false;
-        this.resetEmailInServices();
       },
       error: (err) => console.dir({'problem with logout: ': err}),
       complete: () => this.route.navigate(['login'])
     });
-  }
-
-  resetEmailInServices(): void {
-      this.payeeService.setEmailFromCookie();
-      this.paymentsService.setEmailFromCookie();
-      this.transactionsService.setEmailFromCookie();
-      this.analysisService.setEmailFromCookie();
   }
 }
