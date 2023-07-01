@@ -3,22 +3,20 @@ import {Observable} from 'rxjs';
 import {environment} from '../../environments/environment';
 import {map} from 'rxjs/operators';
 import {HttpClient} from '@angular/common/http';
-import {CookieService} from 'ngx-cookie-service';
 import {AnalysisTableRow} from '../model/AnalysisTableRow';
+import {DataService} from './data.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AnalysisService {
-  private email: string;
 
   constructor(private http: HttpClient,
-              private cookieService: CookieService) {
-    this.setEmailFromCookie()
+              private dataService: DataService) {
   }
 
   getAnalysisDataRows(startDate?: string, type?: string): Observable<Array<AnalysisTableRow>> {
-    let url = environment.restUrl + '/api/analysis/' + this.email + '?';
+    let url = environment.restUrl + '/api/analysis/' + this.dataService.getEmail() + '?';
     if (typeof startDate !== 'undefined' && startDate !== null) {
       url += 'start=' + startDate;
     }
@@ -57,11 +55,5 @@ export class AnalysisService {
       analysisTableRowsTS.push(AnalysisTableRow.fromHttp(row));
     }
     return analysisTableRowsTS;
-  }
-
-  setEmailFromCookie(): void{
-    if (this.cookieService.check('e-mail')){
-      this.email = this.cookieService.get('e-mail');
-    }
   }
 }

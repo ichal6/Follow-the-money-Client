@@ -30,7 +30,6 @@ export class AuthService {
         this.isAuthenticated = true;
         this.authenticationResultEvent.emit(true);
         this.cookieService.set('e-mail', name);
-        this.resetEmailInServices();
       },
       error => {
         this.isAuthenticated = false;
@@ -63,14 +62,9 @@ export class AuthService {
       next: () => {
         this.cookieService.deleteAll();
         this.isAuthenticated = false;
-        this.resetEmailInServices();
       },
       error: (err) => console.dir({'problem with logout: ': err}),
       complete: () => this.route.navigate(['login'])
     });
-  }
-
-  resetEmailInServices(): void {
-      this.analysisService.setEmailFromCookie();
   }
 }

@@ -5,6 +5,7 @@ import {HttpClientTestingModule} from "@angular/common/http/testing";
 import {By} from "@angular/platform-browser";
 import {RouterTestingModule} from "@angular/router/testing";
 import {of} from "rxjs";
+import {spyDataServiceGetEmail} from '../../../../service/common/SpyObjects';
 
 describe('FinancialSummaryComponent', () => {
   let component: FinancialSummaryComponent;
@@ -12,6 +13,8 @@ describe('FinancialSummaryComponent', () => {
   let mockService;
 
   beforeEach(async () => {
+    spyDataServiceGetEmail();
+
     mockService = jasmine.createSpyObj( 'AnalysisService', ['getAnalysisDataRows', 'validateParams']);
     mockService.getAnalysisDataRows.and.returnValue(of([]))
     mockService.validateParams.and.returnValue(of({startDate: '1970-01-01', type: 'accounts'}))
