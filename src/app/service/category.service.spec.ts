@@ -55,5 +55,5 @@ describe('CategoryService', () => {
       error: done.fail
     });
     expect(httpSpy.get.calls.count()).toBe(1);
-  })
+  });
 });

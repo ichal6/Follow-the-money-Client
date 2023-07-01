@@ -23,7 +23,7 @@ export class PayeeService {
             for (const payee of data) {
               payees.push(Payee.fromHttp(payee));
             }
-            return payees;
+            return payees.sort((a, b) => a.name.localeCompare(b.name));
           }
         )
       );
