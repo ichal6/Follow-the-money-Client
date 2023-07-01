@@ -71,7 +71,6 @@ export class AuthService {
   }
 
   resetEmailInServices(): void {
-      this.transactionsService.setEmailFromCookie();
       this.analysisService.setEmailFromCookie();
   }
 }

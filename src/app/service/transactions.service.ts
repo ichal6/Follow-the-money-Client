@@ -1,25 +1,17 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {CookieService} from 'ngx-cookie-service';
 import {Observable} from 'rxjs';
 import {environment} from '../../environments/environment';
 import {GeneralType, Transaction} from '../model/Transaction';
+import {DataService} from './data.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TransactionsService {
-  private email: string;
 
   constructor(private http: HttpClient,
-              private cookieService: CookieService) {
-    this.setEmailFromCookie();
-  }
-
-  setEmailFromCookie(): void {
-    if (this.cookieService.check('e-mail')) {
-      this.email = this.cookieService.get('e-mail');
-    }
+              private dataService: DataService) {
   }
 
   addTransaction(newTransaction: Transaction): Observable<any> {
@@ -33,7 +25,7 @@ export class TransactionsService {
       payeeId: newTransaction.payeeId,
       accountId: newTransaction.accountId,
       date: newTransaction.date};
-    return this.http.post<any>(environment.restUrl + '/api/payment/transaction/' + this.email, transactionToAdd , {withCredentials : true});
+    return this.http.post<any>(environment.restUrl + '/api/payment/transaction/' + this.dataService.getEmail(), transactionToAdd , {withCredentials : true});
   }
 
   deleteTransaction(idTransaction): Observable<Transaction>{
