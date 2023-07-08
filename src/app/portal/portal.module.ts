@@ -47,6 +47,7 @@ import {SliderModule} from 'primeng/slider';
 import {DropdownModule} from 'primeng/dropdown';
 import {MultiSelectModule} from 'primeng/multiselect';
 import { SelectTimePeriodComponent } from './pages/analysis/select-time-period/select-time-period.component';
+import { TransactionFormEditComponent } from './pages/payments/transaction-form-edit/transaction-form-edit.component';
 
 const routes: Routes = [
   {
@@ -172,7 +173,8 @@ const routes: Routes = [
     AnalysisComponent,
     FinancialSummaryComponent,
     FinancialTableComponent,
-    SelectTimePeriodComponent
+    SelectTimePeriodComponent,
+    TransactionFormEditComponent
   ],
   imports: [
     CommonModule,

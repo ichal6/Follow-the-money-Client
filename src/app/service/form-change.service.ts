@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {Account} from '../model/Account';
 import {Category, Subcategory} from '../model/Category';
 import {Payee} from '../model/Payee';
+import {Payment} from '../model/Payment';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,7 @@ export class FormChangeService {
   public idCategoryForSubcategory: number;
   public isSubcategory = false;
   public payee: Payee;
+  public transaction: Payment;
 
   changeFormToEdit(accountToUpdate: Account): void {
     this.formAction = 'edit';
@@ -41,6 +43,11 @@ export class FormChangeService {
 
   changeFormToTransaction(): void {
     this.formAction = 'transaction';
+  }
+
+  changeFormToEditTransaction(transactionToEdit: Payment): void {
+    this.formAction = 'edit-transaction';
+    this.transaction = transactionToEdit;
   }
 
   changeFormToTransfer(): void {

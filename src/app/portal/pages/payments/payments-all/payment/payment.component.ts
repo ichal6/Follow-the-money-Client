@@ -5,6 +5,7 @@ import {Subscription} from 'rxjs';
 import {TransactionsService} from '../../../../../service/transactions.service';
 import {Router} from '@angular/router';
 import {TransferService} from '../../../../../service/transfer.service';
+import {FormChangeService} from '../../../../../service/form-change.service';
 
 @Component({
   selector: 'app-payment',
@@ -33,6 +34,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
   constructor(private popupService: PopupService,
               private transactionService: TransactionsService,
               private transferService: TransferService,
+              private formChangeService: FormChangeService,
               private router: Router) {
     this.modeDisplayPopup = 'none';
   }
@@ -90,7 +92,14 @@ export class PaymentComponent implements OnInit, OnDestroy {
         }
       );
     }
+  }
 
+  editAction() {
+    if (this.payment.isInternal) {
+      this.displayInfo();
+    } else{
+      this.formChangeService.changeFormToEditTransaction(this.payment);
+    }
   }
 
   ngOnDestroy(): void {
