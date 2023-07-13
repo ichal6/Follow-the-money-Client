@@ -20,6 +20,10 @@ export class Transaction {
     newTransaction.date = transaction.date;
     return newTransaction;
   }
+
+  public checkIfTitleIsValid(): boolean {
+    return this.title !== undefined && this.title !== null && this.title.trim().length >= 3;
+  }
 }
 
 export enum GeneralType {
