@@ -9,7 +9,7 @@ import {Subscription} from 'rxjs';
 @Component({
   selector: 'app-transaction-form-edit',
   templateUrl: './transaction-form-edit.component.html',
-  styleUrls: ['./transaction-form-edit.component.css']
+  styleUrls: ['./transaction-form-edit.component.css', '../transaction-form-add/transaction-form-add.component.css']
 })
 export class TransactionFormEditComponent  implements OnInit, OnDestroy{
   message: string;
