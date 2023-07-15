@@ -23,6 +23,7 @@ export class TransactionFormEditComponent  implements OnInit, OnDestroy{
   ngOnInit(): void {
     this.updateTransaction = new Transaction();
     this.updateTransaction.id = this.formChangeService.transaction.id;
+    this.updateTransaction.title = this.formChangeService.transaction.title;
   }
 
   onSubmit(): void {
