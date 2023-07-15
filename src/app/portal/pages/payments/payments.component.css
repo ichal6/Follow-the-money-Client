@@ -8,7 +8,7 @@ app-payments-all {
   flex: 1.6;
 }
 
-app-transaction-form-add, app-transfer-form-add {
+app-transaction-form-add, app-transfer-form-add, app-transaction-form-edit {
   flex: 1;
 }
 

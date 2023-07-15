@@ -1,7 +1,11 @@
 <form class="transaction-form" #transactionForm="ngForm">
   <p class="message" *ngIf="message">{{message}}</p>
-  <input type="text" class="form-input" id="title" placeholder="Transaction title" name="title" [(ngModel)]="updateTransaction.title" (change)="updateTransaction.checkIfTitleIsValid()" #titleField="ngModel" required>
+  <div id="edit-title-container">
+    <label for="title">Edit title:</label>
+    <input type="text" class="form-input" id="title" placeholder="Transaction title" name="title" [(ngModel)]="updateTransaction.title" (change)="updateTransaction.checkIfTitleIsValid()" #titleField="ngModel" required>
+  </div>
   <p class="message" *ngIf="!updateTransaction.checkIfTitleIsValid() && titleField.touched">Title has to be at least 3 characters long</p>
 
-  <button type="button" class="form-button" (click)="onSubmit()" [disabled]="transactionForm.invalid || !isTransactionValid() ">Save</button>
+
+  <button type="button" class="form-button" (click)="onSubmit()" [disabled]="transactionForm.invalid || !isTransactionValid() ">Update</button>
 </form>
