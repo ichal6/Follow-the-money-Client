@@ -33,4 +33,12 @@ export class TransactionsService {
       environment.restUrl + '/api/payment/transaction/' + idTransaction,
       {withCredentials: true});
   }
+
+  updateTransaction(transaction: Transaction): Observable<void> {
+    return this.http.put<null>(
+      environment.restUrl + '/api/payment/transaction',
+      transaction,
+      {withCredentials: true}
+    );
+  }
 }
