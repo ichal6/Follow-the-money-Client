@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  restUrl: 'https://ftmspring.bieda.it'
+  restUrl: 'https://ftmprod.bieda.it'
 };
