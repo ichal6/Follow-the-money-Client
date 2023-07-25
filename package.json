@@ -11,7 +11,6 @@
     "postinstall": "ng build --output-path angularapp  --aot --configuration production",
     "build:prod": "ng build --configuration production --base-href /Follow-the-money-Client/ --deploy-url /Follow-the-money-Client/ --output-path=dist/Follow-the-money-Client/",
     "build:dev": "ng build --configuration=development",
-    "build:prev": "ng build --configuration=preview",
     "lint": "ng lint"
   },
   "engines": {
