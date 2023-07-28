@@ -11,11 +11,28 @@
 
 #title {
   color: #404040;
+  text-align: center;
+  padding: 5px;
 }
 
 .message {
   align-self: center;
   justify-self: center;
   margin: 0;
+}
+
+.form-button {
+  width: 100% !important;
+}
+
+@media screen and (min-width: 801px) {
+  .form-button {
+    width: 25vw !important;
+    align-self: center;
+  }
+
+  #edit-title-container {
+    justify-content: space-evenly;
+  }
 }
 
