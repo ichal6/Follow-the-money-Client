@@ -21,7 +21,7 @@ export class TransactionsService {
     );
   }
 
-  addTransaction(newTransaction: Transaction): Observable<any> {
+  addTransaction(newTransaction: Transaction): Observable<void> {
     const calculatedValue = (newTransaction.type === GeneralType.EXPENSE) ? 0 - newTransaction.value : newTransaction.value;
     const transactionToAdd = {
       id: newTransaction.id,
@@ -32,7 +32,7 @@ export class TransactionsService {
       payeeId: newTransaction.payeeId,
       accountId: newTransaction.accountId,
       date: newTransaction.date};
-    return this.http.post<any>(environment.restUrl + '/api/payment/transaction/' + this.dataService.getEmail(), transactionToAdd , {withCredentials : true});
+    return this.http.post<void>(environment.restUrl + '/api/payment/transaction/' + this.dataService.getEmail(), transactionToAdd , {withCredentials : true});
   }
 
   deleteTransaction(idTransaction): Observable<Transaction>{
