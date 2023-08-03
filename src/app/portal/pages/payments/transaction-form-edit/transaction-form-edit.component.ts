@@ -14,21 +14,28 @@ import {Subscription} from 'rxjs';
 export class TransactionFormEditComponent  implements OnInit, OnDestroy{
   message: string;
   updateTransaction: Transaction;
-  subscription: Subscription;
+  subscriptionUpdate: Subscription;
+  subscriptionGet: Subscription;
 
   constructor(public formChangeService: FormChangeService,
               private transactionsService: TransactionsService,
               private router: Router) { }
 
   ngOnInit(): void {
-    this.updateTransaction = new Transaction();
-    this.updateTransaction.id = this.formChangeService.transaction.id;
-    this.updateTransaction.title = this.formChangeService.transaction.title;
+    this.loadTransaction();
+  }
+
+  private loadTransaction() {
+    this.subscriptionGet = this.transactionsService.getTransaction(this.formChangeService.transaction.id).subscribe({
+      next: (res) => this.updateTransaction = res,
+      error: err => console.log('problem with loading the transaction: ', err),
+      complete: () => console.log('Completed fetch transaction to edit')
+    });
   }
 
   onSubmit(): void {
     this.message = 'Update a transaction...';
-    this.subscription = this.transactionsService.updateTransaction(this.updateTransaction).subscribe(
+    this.subscriptionUpdate = this.transactionsService.updateTransaction(this.updateTransaction).subscribe(
       () => {
         this.redirectTo('payments');
       }
@@ -41,8 +48,8 @@ export class TransactionFormEditComponent  implements OnInit, OnDestroy{
   }
 
   ngOnDestroy(): void {
-    if(this.subscription)
-      this.subscription?.unsubscribe();
+    this.subscriptionUpdate?.unsubscribe();
+    this.subscriptionGet?.unsubscribe();
   }
 
   isTransactionValid(): boolean {

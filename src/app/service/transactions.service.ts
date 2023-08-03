@@ -14,6 +14,13 @@ export class TransactionsService {
               private dataService: DataService) {
   }
 
+  getTransaction(id: number): Observable<Transaction> {
+    return this.http.get<Transaction>(
+      environment.restUrl + "/api/payment/transaction/" + this.dataService.getEmail() + "/" + id,
+      {withCredentials: true}
+    );
+  }
+
   addTransaction(newTransaction: Transaction): Observable<any> {
     const calculatedValue = (newTransaction.type === GeneralType.EXPENSE) ? 0 - newTransaction.value : newTransaction.value;
     const transactionToAdd = {
