@@ -1,4 +1,4 @@
-import {Transaction} from './Transaction';
+import {GeneralType, Transaction} from './Transaction';
 
 describe('Transaction', () => {
   it('should return false for undefined title', () => {
@@ -189,4 +189,82 @@ describe('Transaction', () => {
     // then
     expect(isDateCorrect).toBe(false);
   })
+
+  it('should return false for undefined type', () => {
+    // given
+    const transaction = new Transaction();
+    // when
+    const isValid = transaction.checkIfTypeIsValid();
+    // then
+    expect(isValid).toBe(false);
+  });
+
+  it('should return false for null type', () => {
+    // given
+    const transaction = new Transaction();
+    transaction.type = null;
+    // when
+    const isValid = transaction.checkIfTypeIsValid();
+    // then
+    expect(isValid).toBe(false);
+  });
+
+  it('should return false for expense type', () => {
+    // given
+    const transaction = new Transaction();
+    transaction.type = GeneralType.EXPENSE;
+    // when
+    const isValid = transaction.checkIfTypeIsValid();
+    // then
+    expect(isValid).toBe(true);
+  });
+
+  it('should return false for income type', () => {
+    // given
+    const transaction = new Transaction();
+    transaction.type = GeneralType.INCOME;
+    // when
+    const isValid = transaction.checkIfTypeIsValid();
+    // then
+    expect(isValid).toBe(true);
+  });
+
+  it('should return false for undefined value', () => {
+    // given
+    const transaction = new Transaction();
+    // when
+    const isValid = transaction.checkIfValueIsValid();
+    // then
+    expect(isValid).toBe(false);
+  });
+
+  it('should return false for minus value', () => {
+    // given
+    const transaction = new Transaction();
+    transaction.value = -123;
+    // when
+    const isValid = transaction.checkIfValueIsValid();
+    // then
+    expect(isValid).toBe(false);
+  });
+
+  it('should return true for correct value', () => {
+    // given
+    const transaction = new Transaction();
+    transaction.value = 123.23;
+    // when
+    const isValid = transaction.checkIfValueIsValid();
+    // then
+    expect(isValid).toBe(true);
+  });
+
+  it('should return false for null value', () => {
+    // given
+    const transaction = new Transaction();
+    transaction.value = null;
+    // when
+    const isValid = transaction.checkIfValueIsValid();
+    // then
+    expect(isValid).toBe(false);
+  });
 });

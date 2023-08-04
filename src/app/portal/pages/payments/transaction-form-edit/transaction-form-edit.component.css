@@ -9,7 +9,7 @@
   color: #5d5d5d;
 }
 
-#title, #datetime {
+#title, #datetime, #type {
   color: #404040;
   text-align: center;
   padding: 5px;

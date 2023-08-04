@@ -10,6 +10,18 @@
     <input type="datetime-local" class="form-input" id="datetime" name="date" placeholder="Please provide a date" [(ngModel)]="updateTransaction.date" #dateTimeField="ngModel" required>
   </div>
   <p class="message" *ngIf="!dateTimeField.valid && !this.isDateIsValid() && dateTimeField.touched">Please should provide correct date</p>
+  <div class="edit-container">
+    <label for="type">Select transaction type:</label>
+    <select class="form-select" id="type" name="type" [(ngModel)]="updateTransaction.type" #typeField="ngModel" required>
+      <option value = "INCOME">INCOME</option>
+      <option value = "EXPENSE">EXPENSE</option>
+    </select>
+  </div>
+  <div class="edit-container">
+    <label for="value">Provide value:</label>
+    <input type="number" class="form-input" id="value" placeholder="Transaction value (USD)" name="value" [(ngModel)]="updateTransaction.value" #valueField="ngModel" required>
+  </div>
+  <p class="message" *ngIf="!this.isValueIsValid() && valueField.touched">Value can't be empty or contain signs other than '.'. Must be a positive number.</p>
 
   <button type="button" class="form-button" (click)="onSubmit()" [disabled]="transactionForm.invalid || !isTransactionValid() ">Update</button>
 </form>

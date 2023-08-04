@@ -52,6 +52,21 @@ export class Transaction {
     return false;
   }
 
+  checkIfTypeIsValid(): boolean {
+    if(this.type == null) {
+      return false;
+    }
+    return ( this.type.toUpperCase() === GeneralType.INCOME
+      || this.type.toUpperCase() === GeneralType.EXPENSE);
+  }
+
+  checkIfValueIsValid(): boolean {
+    return (this.value != null) &&
+      (this.value.toString() !== '') &&
+      (!isNaN(Number(this.value.toString()))) &&
+      (Number(this.value.toString()) > 0);
+  }
+
   private constructISOString(date: Date): string {
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, "0");

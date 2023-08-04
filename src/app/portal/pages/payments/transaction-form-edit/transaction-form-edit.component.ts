@@ -28,7 +28,10 @@ export class TransactionFormEditComponent  implements OnInit, OnDestroy{
 
   private loadTransaction() {
     this.subscriptionGet = this.transactionsService.getTransaction(this.formChangeService.transaction.id).subscribe({
-      next: (res) => this.updateTransaction = Transaction.fromHttp(res),
+      next: (res) => {
+        this.updateTransaction = Transaction.fromHttp(res);
+        this.updateTransaction.value = Math.abs(this.updateTransaction.value);
+      },
       error: err => console.log('problem with loading the transaction: ', err),
       complete: () => console.log('Completed fetch transaction to edit')
     });
@@ -54,7 +57,9 @@ export class TransactionFormEditComponent  implements OnInit, OnDestroy{
 
   isTransactionValid(): boolean {
     return this.updateTransaction.checkIfTitleIsValid() &&
-        this.updateTransaction.checkIfDateIsValid();
+        this.updateTransaction.checkIfDateIsValid() &&
+      this.updateTransaction.checkIfTypeIsValid() &&
+      this.updateTransaction.checkIfValueIsValid();
   }
 
   isTitleValid(): boolean {
@@ -63,5 +68,9 @@ export class TransactionFormEditComponent  implements OnInit, OnDestroy{
 
   isDateIsValid():boolean {
     return this.updateTransaction.checkIfDateIsValid();
+  }
+
+  isValueIsValid(): boolean {
+    return this.updateTransaction.checkIfValueIsValid();
   }
 }

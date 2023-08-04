@@ -37,4 +37,14 @@ describe('TransactionsService', () => {
     const req = httpMock.expectOne(environment.restUrl + '/api/payment/transaction');
     expect(req.request.method).toBe('PUT');
   })
+
+  it('should add sign to value before sent', () =>{
+    service.updateTransaction(TransactionModelFixture.getBuyCarTransaction()).subscribe(
+      response => {
+        expect(response).toBeNull();
+      });
+
+    const req = httpMock.expectOne(environment.restUrl + '/api/payment/transaction');
+    expect(req.request.body.value).toBe(TransactionModelFixture.getBuyCarTransaction().value * -1);
+  })
 });

@@ -42,6 +42,7 @@ export class TransactionsService {
   }
 
   updateTransaction(transaction: Transaction): Observable<void> {
+    transaction.value = (transaction.type === GeneralType.EXPENSE) ? 0 - transaction.value : transaction.value;
     return this.http.put<null>(
       environment.restUrl + '/api/payment/transaction',
       transaction,
