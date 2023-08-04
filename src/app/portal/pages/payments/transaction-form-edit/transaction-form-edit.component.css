@@ -9,8 +9,8 @@
   color: #5d5d5d;
 }
 
-#title, #datetime, #type {
-  color: #404040;
+#title, #datetime, #type, .provide-field {
+  color: #404040 !important;
   text-align: center;
   padding: 5px;
 }

@@ -4,6 +4,8 @@ import {TransactionsService} from '../../../../service/transactions.service';
 import {Router} from '@angular/router';
 import {Transaction} from '../../../../model/Transaction';
 import {Subscription} from 'rxjs';
+import {Account} from '../../../../model/Account';
+import {AccountsService} from '../../../../service/accounts.service';
 
 
 @Component({
@@ -14,16 +16,29 @@ import {Subscription} from 'rxjs';
 export class TransactionFormEditComponent  implements OnInit, OnDestroy{
   message: string;
   updateTransaction: Transaction;
+  allAccounts: Array<Account>;
+
   subscriptionUpdate: Subscription;
   subscriptionGet: Subscription;
+  subscriptionAccounts: Subscription;
 
   constructor(public formChangeService: FormChangeService,
               private transactionsService: TransactionsService,
+              private accountsService: AccountsService,
               private router: Router) { }
 
   ngOnInit(): void {
     this.updateTransaction = new Transaction();
     this.loadTransaction();
+    this.loadAccounts();
+  }
+
+  private loadAccounts(): void {
+    this.subscriptionAccounts = this.accountsService.getAccounts().subscribe({
+      next: (res) => this.allAccounts = res,
+      error: (err) => this.message = err.error,
+      complete: () => console.log("Completed fetch accounts")
+    })
   }
 
   private loadTransaction() {
@@ -53,6 +68,7 @@ export class TransactionFormEditComponent  implements OnInit, OnDestroy{
   ngOnDestroy(): void {
     this.subscriptionUpdate?.unsubscribe();
     this.subscriptionGet?.unsubscribe();
+    this.subscriptionAccounts?.unsubscribe();
   }
 
   isTransactionValid(): boolean {

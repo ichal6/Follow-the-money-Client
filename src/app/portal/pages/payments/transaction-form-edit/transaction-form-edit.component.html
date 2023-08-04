@@ -19,9 +19,16 @@
   </div>
   <div class="edit-container">
     <label for="value">Provide value:</label>
-    <input type="number" class="form-input" id="value" placeholder="Transaction value (USD)" name="value" [(ngModel)]="updateTransaction.value" #valueField="ngModel" required>
+    <input type="number" class="provide-field form-input" id="value" placeholder="Transaction value (USD)" name="value" [(ngModel)]="updateTransaction.value" #valueField="ngModel" required>
   </div>
   <p class="message" *ngIf="!this.isValueIsValid() && valueField.touched">Value can't be empty or contain signs other than '.'. Must be a positive number.</p>
+
+  <div class="edit-container">
+    <label for="account">Select account:</label>
+    <select class="provide-field form-select" id="account" name="account-from" [(ngModel)]="updateTransaction.accountId" #accountIdField="ngModel" required>
+      <option *ngFor="let account of allAccounts" [ngValue]="account.id">{{account.name}}</option>
+    </select>
+  </div>
 
   <button type="button" class="form-button" (click)="onSubmit()" [disabled]="transactionForm.invalid || !isTransactionValid() ">Update</button>
 </form>
