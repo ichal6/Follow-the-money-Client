@@ -36,5 +36,13 @@
       <option *ngFor="let payee of allPayees" [ngValue]="payee.id">{{payee.name}}</option>
     </select>
   </div>
+
+  <div class ="edit-container">
+    <label for="category">Select category:</label>
+    <select class="provide-field form-select" id="category" name="category" [(ngModel)]="updateTransaction.categoryId" required>
+      <option *ngFor="let category of allCategories" [ngValue]="category.id">{{category.name}}</option>
+    </select>
+  </div>
+
   <button type="button" class="form-button" (click)="onSubmit()" [disabled]="transactionForm.invalid || !isTransactionValid() ">Update</button>
 </form>

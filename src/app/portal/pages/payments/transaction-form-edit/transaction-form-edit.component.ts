@@ -8,6 +8,8 @@ import {Account} from '../../../../model/Account';
 import {AccountsService} from '../../../../service/accounts.service';
 import {Payee} from '../../../../model/Payee';
 import {PayeeService} from '../../../../service/payee.service';
+import {Category} from '../../../../model/Category';
+import {CategoryService} from '../../../../service/category.service';
 
 
 @Component({
@@ -20,16 +22,19 @@ export class TransactionFormEditComponent  implements OnInit, OnDestroy{
   updateTransaction: Transaction;
   allAccounts: Array<Account>;
   allPayees: Array<Payee>;
+  allCategories: Array<Category>;
 
   subscriptionUpdate: Subscription;
   subscriptionGet: Subscription;
   subscriptionAccounts: Subscription;
   subscriptionPayees: Subscription;
+  subscriptionCategories: Subscription;
 
   constructor(public formChangeService: FormChangeService,
               private transactionsService: TransactionsService,
               private accountsService: AccountsService,
               private payeesService: PayeeService,
+              private categoryService: CategoryService,
               private router: Router) { }
 
   ngOnInit(): void {
@@ -37,6 +42,15 @@ export class TransactionFormEditComponent  implements OnInit, OnDestroy{
     this.loadTransaction();
     this.loadAccounts();
     this.loadPayees();
+    this.loadCategories();
+  }
+
+  private loadCategories(): void {
+    this.subscriptionCategories = this.categoryService.getAllCategories().subscribe({
+      next: (res) => this.allCategories = res,
+      error: (err) => this.message = err.error,
+      complete: () => console.log("Completed fetch categories")
+    });
   }
 
   private loadPayees(): void {
@@ -84,6 +98,7 @@ export class TransactionFormEditComponent  implements OnInit, OnDestroy{
     this.subscriptionGet?.unsubscribe();
     this.subscriptionAccounts?.unsubscribe();
     this.subscriptionPayees?.unsubscribe();
+    this.subscriptionCategories?.unsubscribe();
   }
 
   isTransactionValid(): boolean {
