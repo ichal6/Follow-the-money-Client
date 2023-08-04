@@ -1,15 +1,15 @@
-#edit-title-container {
+.edit-container {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
 }
 
-#edit-title-container label {
+.edit-container label {
   font-size: 20px;
   color: #5d5d5d;
 }
 
-#title {
+#title, #datetime {
   color: #404040;
   text-align: center;
   padding: 5px;
@@ -29,10 +29,6 @@
   .form-button {
     width: 25vw !important;
     align-self: center;
-  }
-
-  #edit-title-container {
-    justify-content: space-evenly;
   }
 }
 

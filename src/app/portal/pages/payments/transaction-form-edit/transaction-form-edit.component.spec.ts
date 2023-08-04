@@ -56,4 +56,8 @@ describe('TransactionFormEditComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should transaction be instance of Transaction class', () => {
+    expect(component.updateTransaction).toBeInstanceOf(Transaction);
+  });
 });

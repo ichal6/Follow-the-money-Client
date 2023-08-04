@@ -22,12 +22,13 @@ export class TransactionFormEditComponent  implements OnInit, OnDestroy{
               private router: Router) { }
 
   ngOnInit(): void {
+    this.updateTransaction = new Transaction();
     this.loadTransaction();
   }
 
   private loadTransaction() {
     this.subscriptionGet = this.transactionsService.getTransaction(this.formChangeService.transaction.id).subscribe({
-      next: (res) => this.updateTransaction = res,
+      next: (res) => this.updateTransaction = Transaction.fromHttp(res),
       error: err => console.log('problem with loading the transaction: ', err),
       complete: () => console.log('Completed fetch transaction to edit')
     });
@@ -35,11 +36,10 @@ export class TransactionFormEditComponent  implements OnInit, OnDestroy{
 
   onSubmit(): void {
     this.message = 'Update a transaction...';
-    this.subscriptionUpdate = this.transactionsService.updateTransaction(this.updateTransaction).subscribe(
-      () => {
-        this.redirectTo('payments');
-      }
-    );
+    this.subscriptionUpdate = this.transactionsService.updateTransaction(this.updateTransaction).subscribe( {
+      next: () =>   this.redirectTo('payments'),
+      error: err => this.message = err.error
+    });
   }
 
   redirectTo(uri: string): void {
@@ -53,6 +53,15 @@ export class TransactionFormEditComponent  implements OnInit, OnDestroy{
   }
 
   isTransactionValid(): boolean {
+    return this.updateTransaction.checkIfTitleIsValid() &&
+        this.updateTransaction.checkIfDateIsValid();
+  }
+
+  isTitleValid(): boolean {
     return this.updateTransaction.checkIfTitleIsValid();
+  }
+
+  isDateIsValid():boolean {
+    return this.updateTransaction.checkIfDateIsValid();
   }
 }
