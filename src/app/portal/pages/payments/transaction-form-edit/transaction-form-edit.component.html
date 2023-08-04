@@ -1,4 +1,5 @@
 <form class="transaction-form" #transactionForm="ngForm">
+  <button type="button" class="form-button cancel-button"  (click)="returnToTransaction()">Discard changes</button>
   <p class="message" *ngIf="message">{{message}}</p>
   <div class="edit-container">
     <label for="title">Change title:</label>

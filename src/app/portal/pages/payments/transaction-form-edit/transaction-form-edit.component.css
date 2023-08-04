@@ -13,6 +13,11 @@
   color: #404040 !important;
   text-align: center;
   padding: 5px;
+  width: 70%;
+}
+
+.cancel-button {
+  background: #F31259 !important;
 }
 
 .message {

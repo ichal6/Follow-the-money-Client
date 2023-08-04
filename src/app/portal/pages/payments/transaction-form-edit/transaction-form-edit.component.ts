@@ -119,4 +119,8 @@ export class TransactionFormEditComponent  implements OnInit, OnDestroy{
   isValueIsValid(): boolean {
     return this.updateTransaction.checkIfValueIsValid();
   }
+
+  returnToTransaction() {
+    this.formChangeService.changeFormToTransaction();
+  }
 }
