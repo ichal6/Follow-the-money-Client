@@ -30,5 +30,11 @@
     </select>
   </div>
 
+  <div class="edit-container">
+    <label for="payee">Select payee:</label>
+    <select class="provide-field form-select" id="payee" name="payee" [(ngModel)]="updateTransaction.payeeId" required>
+      <option *ngFor="let payee of allPayees" [ngValue]="payee.id">{{payee.name}}</option>
+    </select>
+  </div>
   <button type="button" class="form-button" (click)="onSubmit()" [disabled]="transactionForm.invalid || !isTransactionValid() ">Update</button>
 </form>
