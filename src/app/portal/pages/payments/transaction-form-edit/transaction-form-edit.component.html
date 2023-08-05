@@ -1,7 +1,49 @@
 <form class="transaction-form" #transactionForm="ngForm">
+  <button type="button" class="form-button cancel-button"  (click)="returnToTransaction()">Discard changes</button>
   <p class="message" *ngIf="message">{{message}}</p>
-  <input type="text" class="form-input" id="title" placeholder="Transaction title" name="title" [(ngModel)]="updateTransaction.title" (change)="updateTransaction.checkIfTitleIsValid()" #titleField="ngModel" required>
-  <p class="message" *ngIf="!updateTransaction.checkIfTitleIsValid() && titleField.touched">Title has to be at least 3 characters long</p>
+  <div class="edit-container">
+    <label for="title">Change title:</label>
+    <input type="text" class="form-input" id="title" placeholder="Transaction title" name="title" [(ngModel)]="updateTransaction.title" #titleField="ngModel" required>
+  </div>
+  <p class="message" *ngIf="!this.isTitleValid() && titleField.touched">Title has to be at least 3 characters long</p>
+  <div class="edit-container">
+    <label for="datetime">Select date:</label>
+    <input type="datetime-local" class="form-input" id="datetime" name="date" placeholder="Please provide a date" [(ngModel)]="updateTransaction.date" #dateTimeField="ngModel" required>
+  </div>
+  <p class="message" *ngIf="!dateTimeField.valid && !this.isDateIsValid() && dateTimeField.touched">Please should provide correct date</p>
+  <div class="edit-container">
+    <label for="type">Select transaction type:</label>
+    <select class="form-select" id="type" name="type" [(ngModel)]="updateTransaction.type" #typeField="ngModel" required>
+      <option value = "INCOME">INCOME</option>
+      <option value = "EXPENSE">EXPENSE</option>
+    </select>
+  </div>
+  <div class="edit-container">
+    <label for="value">Provide value:</label>
+    <input type="number" class="provide-field form-input" id="value" placeholder="Transaction value (USD)" name="value" [(ngModel)]="updateTransaction.value" #valueField="ngModel" required>
+  </div>
+  <p class="message" *ngIf="!this.isValueIsValid() && valueField.touched">Value can't be empty or contain signs other than '.'. Must be a positive number.</p>
 
-  <button type="button" class="form-button" (click)="onSubmit()" [disabled]="transactionForm.invalid || !isTransactionValid() ">Save</button>
+  <div class="edit-container">
+    <label for="account">Select account:</label>
+    <select class="provide-field form-select" id="account" name="account-from" [(ngModel)]="updateTransaction.accountId" #accountIdField="ngModel" required>
+      <option *ngFor="let account of allAccounts" [ngValue]="account.id">{{account.name}}</option>
+    </select>
+  </div>
+
+  <div class="edit-container">
+    <label for="payee">Select payee:</label>
+    <select class="provide-field form-select" id="payee" name="payee" [(ngModel)]="updateTransaction.payeeId" required>
+      <option *ngFor="let payee of allPayees" [ngValue]="payee.id">{{payee.name}}</option>
+    </select>
+  </div>
+
+  <div class ="edit-container">
+    <label for="category">Select category:</label>
+    <select class="provide-field form-select" id="category" name="category" [(ngModel)]="updateTransaction.categoryId" required>
+      <option *ngFor="let category of allCategories" [ngValue]="category.id">{{category.name}}</option>
+    </select>
+  </div>
+
+  <button type="button" class="form-button" (click)="onSubmit()" [disabled]="transactionForm.invalid || !isTransactionValid() ">Update</button>
 </form>

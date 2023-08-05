@@ -8,12 +8,16 @@ app-payments-all {
   flex: 1.6;
 }
 
-app-transaction-form-add, app-transfer-form-add {
+app-transaction-form-add, app-transfer-form-add, app-transaction-form-edit {
   flex: 1;
 }
 
 @media only screen and (max-width: 1100px) {
   .payments-content {
-    flex-direction: column;
+    flex-direction: column-reverse;
+  }
+
+  app-payments-all {
+    margin-top: 6vh;
   }
 }

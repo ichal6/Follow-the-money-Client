@@ -14,7 +14,14 @@ export class TransactionsService {
               private dataService: DataService) {
   }
 
-  addTransaction(newTransaction: Transaction): Observable<any> {
+  getTransaction(id: number): Observable<Transaction> {
+    return this.http.get<Transaction>(
+      environment.restUrl + "/api/payment/transaction/" + this.dataService.getEmail() + "/" + id,
+      {withCredentials: true}
+    );
+  }
+
+  addTransaction(newTransaction: Transaction): Observable<void> {
     const calculatedValue = (newTransaction.type === GeneralType.EXPENSE) ? 0 - newTransaction.value : newTransaction.value;
     const transactionToAdd = {
       id: newTransaction.id,
@@ -25,7 +32,7 @@ export class TransactionsService {
       payeeId: newTransaction.payeeId,
       accountId: newTransaction.accountId,
       date: newTransaction.date};
-    return this.http.post<any>(environment.restUrl + '/api/payment/transaction/' + this.dataService.getEmail(), transactionToAdd , {withCredentials : true});
+    return this.http.post<void>(environment.restUrl + '/api/payment/transaction/' + this.dataService.getEmail(), transactionToAdd , {withCredentials : true});
   }
 
   deleteTransaction(idTransaction): Observable<Transaction>{
@@ -35,6 +42,7 @@ export class TransactionsService {
   }
 
   updateTransaction(transaction: Transaction): Observable<void> {
+    transaction.value = (transaction.type === GeneralType.EXPENSE) ? 0 - transaction.value : transaction.value;
     return this.http.put<null>(
       environment.restUrl + '/api/payment/transaction',
       transaction,
