@@ -4,23 +4,15 @@ import {environment} from '../../environments/environment';
 import {Payment} from '../model/Payment';
 import {HttpClient} from '@angular/common/http';
 import {Transfer} from '../model/Transfer';
-import {CookieService} from 'ngx-cookie-service';
+import {DataService} from './data.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TransferService {
-  private email: string;
 
   constructor(private http: HttpClient,
-              private cookieService: CookieService) {
-    this.setEmailFromCookie();
-  }
-
-  setEmailFromCookie(): void {
-    if (this.cookieService.check('e-mail')) {
-      this.email = this.cookieService.get('e-mail');
-    }
+              private dataService: DataService) {
   }
 
   addTransfer(newTransfer: Transfer): Observable<any> {
@@ -31,7 +23,7 @@ export class TransferService {
       accountIdFrom: newTransfer.accountFromId,
       accountIdTo: newTransfer.accountToId,
       date: newTransfer.date};
-    return this.http.post<any>(environment.restUrl + '/api/payment/transfer/' + this.email, transferToAdd , {withCredentials : true});
+    return this.http.post<any>(environment.restUrl + '/api/payment/transfer/' + this.dataService.getEmail(), transferToAdd , {withCredentials : true});
   }
 
   deleteTransfer(idTransfer): Observable<Payment>{
