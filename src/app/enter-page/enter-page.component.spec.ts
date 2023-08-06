@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 
 import { EnterPageComponent } from './enter-page.component';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
@@ -44,4 +44,13 @@ describe('LoginComponent', () => {
     // then
     expect(spyUnsubscribe).toHaveBeenCalledTimes(0);
   })
+
+  it('should hide popup when click close button', () => {
+    // given
+    component.isDisplay = true;
+    // when
+    component.closePopup();
+    // then
+    expect(component.isDisplay).toBe(false);
+  });
 });

@@ -43,6 +43,10 @@ export class EnterPageComponent implements OnInit, OnDestroy {
     );
   }
 
+  closePopup() {
+    this.isDisplay = false;
+  }
+
   ngOnDestroy(): void {
     this.loginSubscribe?.unsubscribe();
     this.registerSubscribe?.unsubscribe();
