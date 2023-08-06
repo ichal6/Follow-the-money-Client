@@ -1,5 +1,8 @@
-<app-wait *ngIf="isDisplay"></app-wait>
-<div *ngIf="isDisplay" id="background-gray"></div>
+<div id="popup" *ngIf="isDisplay">
+  <app-wait></app-wait>
+  <button id="close-button" (click)="closePopup()">&#10006;</button>
+  <div id="background-gray"></div>
+</div>
 
 <div id="container">
   <img id="background-img" src="assets/img/background-mobile-dots.png" alt="background_purple">
