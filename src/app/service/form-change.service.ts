@@ -15,7 +15,7 @@ export class FormChangeService {
   public idCategoryForSubcategory: number;
   public isSubcategory = false;
   public payee: Payee;
-  public transaction: Payment;
+  public payment: Payment;
 
   changeFormToEdit(accountToUpdate: Account): void {
     this.formAction = 'edit';
@@ -47,7 +47,12 @@ export class FormChangeService {
 
   changeFormToEditTransaction(transactionToEdit: Payment): void {
     this.formAction = 'edit-transaction';
-    this.transaction = transactionToEdit;
+    this.payment = transactionToEdit;
+  }
+
+  changeFormToEditTransfer(transferToEdit: Payment): void {
+    this.formAction = 'edit-transfer';
+    this.payment = transferToEdit;
   }
 
   changeFormToTransfer(): void {

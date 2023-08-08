@@ -70,7 +70,7 @@ export class TransactionFormEditComponent  implements OnInit, OnDestroy{
   }
 
   private loadTransaction() {
-    this.subscriptionGet = this.transactionsService.getTransaction(this.formChangeService.transaction.id).subscribe({
+    this.subscriptionGet = this.transactionsService.getTransaction(this.formChangeService.payment.id).subscribe({
       next: (res) => {
         this.updateTransaction = Transaction.fromHttp(res);
         this.updateTransaction.value = Math.abs(this.updateTransaction.value);
