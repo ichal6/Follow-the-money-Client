@@ -38,4 +38,12 @@ export class TransferService {
       {withCredentials: true}
     );
   }
+
+  updateTransfer(transfer: Transfer) : Observable<void> {
+    return this.http.put<null>(
+      environment.restUrl + '/api/payment/transfer',
+      transfer,
+      {withCredentials: true}
+    );
+  }
 }

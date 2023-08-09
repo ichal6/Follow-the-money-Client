@@ -21,6 +21,7 @@ export class TransferFormEditComponent implements OnInit, OnDestroy {
   allAccounts: Array<Account>;
   subscriptionAccounts: Subscription;
   subscriptionGet: Subscription;
+  subscriptionPut: Subscription;
 
   constructor(public formChangeService: FormChangeService,
               private transferService: TransferService,
@@ -56,6 +57,10 @@ export class TransferFormEditComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     this.message = 'Update a transfer...';
+    this.subscriptionPut = this.transferService.updateTransfer(this.updateTransfer).subscribe( {
+      next: () =>   this.redirectTo('payments'),
+      error: (err) => this.message = err.message
+    });
   }
 
   isTransferValid() {
@@ -81,8 +86,14 @@ export class TransferFormEditComponent implements OnInit, OnDestroy {
     });
   }
 
+  redirectTo(uri: string): void {
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
+      this.router.navigate([uri]));
+  }
+
   ngOnDestroy(): void {
     this.subscriptionAccounts?.unsubscribe();
     this.subscriptionGet?.unsubscribe();
+    this.subscriptionPut?.unsubscribe();
   }
 }
