@@ -1,0 +1,37 @@
+<form class="transfer-form" #transferForm="ngForm">
+  <button type="button" class="form-button cancel-button"  (click)="returnToTransfer()">Discard changes</button>
+  <p class="message" id="main-message" *ngIf="message">{{message}}</p>
+  <div class="edit-container">
+    <label for="title">Change title:</label>
+    <input type="text" class="form-input" id="title" placeholder="Transfer title" name="title" [(ngModel)]="updateTransfer.title" #titleField="ngModel" required>
+  </div>
+  <p class="message" *ngIf="!this.isTitleValid() && titleField.touched">Title has to be at least 3 characters long</p>
+  <div class="edit-container">
+    <label for="datetime">Select date:</label>
+    <input type="datetime-local" class="form-input" id="datetime" name="date" placeholder="Please provide a date" [(ngModel)]="updateTransfer.date" #dateTimeField="ngModel" required>
+  </div>
+  <p class="message" *ngIf="!dateTimeField.valid && !this.isDateIsValid() && dateTimeField.touched">Please should provide correct date</p>
+
+  <div class="edit-container">
+    <label for="value">Provide value:</label>
+    <input type="number" class="provide-field form-input" id="value" placeholder="Transfer value (USD)" name="value" [(ngModel)]="updateTransfer.value" #valueField="ngModel" required>
+  </div>
+  <p class="message" *ngIf="!this.isValueIsValid() && valueField.touched">Value can't be empty or contain signs other than '.'. Must be a positive number.</p>
+
+  <div class="edit-container">
+    <label for="account-from">Select account from:</label>
+    <select class="provide-field form-select" id="account-from" name="account-from" [(ngModel)]="updateTransfer.accountIdFrom" #accountFromIdField="ngModel" required>
+      <option *ngFor="let account of allAccounts" [ngValue]="account.id">{{account.name}}</option>
+    </select>
+  </div>
+
+  <div class="edit-container">
+    <label for="account-to">Select account to:</label>
+    <select class="provide-field form-select" id="account-to" name="account-to" [(ngModel)]="updateTransfer.accountIdTo" #accountToIdField="ngModel" required>
+      <option *ngFor="let account of allAccounts" [ngValue]="account.id">{{account.name}}</option>
+    </select>
+  </div>
+  <p class="message" *ngIf="!this.isAccountsIsValid()">You have to choose different account</p>
+
+  <button id="submit" type="button" class="form-button" (click)="onSubmit()" [disabled]="transferForm.invalid || !isTransferValid() ">Update</button>
+</form>

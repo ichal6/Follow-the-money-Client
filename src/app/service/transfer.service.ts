@@ -20,8 +20,8 @@ export class TransferService {
       id: newTransfer.id,
       title: newTransfer.title,
       value: newTransfer.value,
-      accountIdFrom: newTransfer.accountFromId,
-      accountIdTo: newTransfer.accountToId,
+      accountIdFrom: newTransfer.accountIdFrom,
+      accountIdTo: newTransfer.accountIdTo,
       date: newTransfer.date};
     return this.http.post<any>(environment.restUrl + '/api/payment/transfer/' + this.dataService.getEmail(), transferToAdd , {withCredentials : true});
   }
@@ -30,5 +30,20 @@ export class TransferService {
     return this.http.delete<null>(
       environment.restUrl + '/api/payment/transfer/' + idTransfer,
       {withCredentials: true});
+  }
+
+  getTransfer(id: number): Observable<Transfer> {
+    return this.http.get<Transfer>(
+      environment.restUrl + "/api/payment/transfer/" + this.dataService.getEmail() + "/" + id,
+      {withCredentials: true}
+    );
+  }
+
+  updateTransfer(transfer: Transfer) : Observable<void> {
+    return this.http.put<null>(
+      environment.restUrl + '/api/payment/transfer',
+      transfer,
+      {withCredentials: true}
+    );
   }
 }

@@ -96,7 +96,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
 
   editAction() {
     if (this.payment.isInternal) {
-      this.displayInfo();
+      this.formChangeService.changeFormToEditTransfer(this.payment);
     } else{
       this.formChangeService.changeFormToEditTransaction(this.payment);
     }

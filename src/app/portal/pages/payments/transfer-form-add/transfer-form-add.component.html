@@ -2,11 +2,11 @@
 
 <form class="transaction-form" #transferForm="ngForm">
   <p class="message" *ngIf="information">{{information}}</p>
-  <select class="form-select" id="account-from" name="account-from" [(ngModel)]="newTransfer.accountFromId" (change)="checkIfAccountIsValid()" #accountFromIdField="ngModel" required>
+  <select class="form-select" id="account-from" name="account-from" [(ngModel)]="newTransfer.accountIdFrom" (change)="checkIfAccountIsValid()" #accountFromIdField="ngModel" required>
     <option [ngValue]="null" [disabled]="true" >From (Select account)</option>
     <option *ngFor="let account of allAccounts" [ngValue]="account.id">{{account.name}}</option>
   </select>
-  <select class="form-select" id="account-to" name="account-to" [(ngModel)]="newTransfer.accountToId" (change)="checkIfAccountIsValid()" #accountToField="ngModel" required>
+  <select class="form-select" id="account-to" name="account-to" [(ngModel)]="newTransfer.accountIdTo" (change)="checkIfAccountIsValid()" #accountToField="ngModel" required>
     <option [ngValue]="null" [disabled]="true" >To (Select account)</option>
     <option *ngFor="let account of allAccounts" [ngValue]="account.id">{{account.name}}</option>
   </select>

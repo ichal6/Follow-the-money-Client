@@ -10,6 +10,7 @@ import {Payee} from '../../../../model/Payee';
 import {PayeeService} from '../../../../service/payee.service';
 import {Category} from '../../../../model/Category';
 import {CategoryService} from '../../../../service/category.service';
+import {ValidatorService} from '../../../../service/common/validator.service';
 
 
 @Component({
@@ -35,6 +36,7 @@ export class TransactionFormEditComponent  implements OnInit, OnDestroy{
               private accountsService: AccountsService,
               private payeesService: PayeeService,
               private categoryService: CategoryService,
+              private validator: ValidatorService,
               private router: Router) { }
 
   ngOnInit(): void {
@@ -70,7 +72,7 @@ export class TransactionFormEditComponent  implements OnInit, OnDestroy{
   }
 
   private loadTransaction() {
-    this.subscriptionGet = this.transactionsService.getTransaction(this.formChangeService.transaction.id).subscribe({
+    this.subscriptionGet = this.transactionsService.getTransaction(this.formChangeService.payment.id).subscribe({
       next: (res) => {
         this.updateTransaction = Transaction.fromHttp(res);
         this.updateTransaction.value = Math.abs(this.updateTransaction.value);
@@ -102,22 +104,22 @@ export class TransactionFormEditComponent  implements OnInit, OnDestroy{
   }
 
   isTransactionValid(): boolean {
-    return this.updateTransaction.checkIfTitleIsValid() &&
-        this.updateTransaction.checkIfDateIsValid() &&
-      this.updateTransaction.checkIfTypeIsValid() &&
-      this.updateTransaction.checkIfValueIsValid();
+    return this.isTitleValid() &&
+      this.isDateIsValid() &&
+      this.validator.checkIfTypeIsValid(this.updateTransaction.type) &&
+      this.isValueIsValid();
   }
 
   isTitleValid(): boolean {
-    return this.updateTransaction.checkIfTitleIsValid();
+    return this.validator.checkIfTitleIsValid(this.updateTransaction.title)
   }
 
-  isDateIsValid():boolean {
-    return this.updateTransaction.checkIfDateIsValid();
+  isDateIsValid(): boolean {
+    return this.validator.checkIfDateIsValid(this.updateTransaction.date);
   }
 
   isValueIsValid(): boolean {
-    return this.updateTransaction.checkIfValueIsValid();
+    return this.validator.checkIfValueIsValid(this.updateTransaction.value);
   }
 
   returnToTransaction() {

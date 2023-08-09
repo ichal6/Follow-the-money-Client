@@ -26,7 +26,7 @@ describe('TransactionFormEditComponent', () => {
 
     // Spy payment object
     formChangeServiceMock = jasmine.createSpyObj('FormChangeService', ['transaction']);
-    formChangeServiceMock.transaction = payment;
+    formChangeServiceMock.payment = payment;
 
     // Spy Transaction object
     transactionServiceMock = jasmine.createSpyObj('TransactionsService', ['getTransaction']);

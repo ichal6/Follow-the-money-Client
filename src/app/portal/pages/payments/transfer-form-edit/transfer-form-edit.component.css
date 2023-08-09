@@ -1,0 +1,10 @@
+.transfer-form {
+  display: flex;
+  flex-direction: column;
+}
+
+#main-message{
+  overflow-wrap: break-word;
+  max-width: 25vw;
+  flex-basis: 10px;
+}
