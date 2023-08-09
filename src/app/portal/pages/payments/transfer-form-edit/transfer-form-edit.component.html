@@ -1,6 +1,6 @@
 <form class="transfer-form" #transferForm="ngForm">
   <button type="button" class="form-button cancel-button"  (click)="returnToTransfer()">Discard changes</button>
-  <p class="message" *ngIf="message">{{message}}</p>
+  <p class="message" id="main-message" *ngIf="message">{{message}}</p>
   <div class="edit-container">
     <label for="title">Change title:</label>
     <input type="text" class="form-input" id="title" placeholder="Transfer title" name="title" [(ngModel)]="updateTransfer.title" #titleField="ngModel" required>
@@ -20,17 +20,18 @@
 
   <div class="edit-container">
     <label for="account-from">Select account from:</label>
-    <select class="provide-field form-select" id="account-from" name="account-from" [(ngModel)]="updateTransfer.accountFromId" #accountFromIdField="ngModel" required>
+    <select class="provide-field form-select" id="account-from" name="account-from" [(ngModel)]="updateTransfer.accountIdFrom" #accountFromIdField="ngModel" required>
       <option *ngFor="let account of allAccounts" [ngValue]="account.id">{{account.name}}</option>
     </select>
   </div>
 
   <div class="edit-container">
     <label for="account-to">Select account to:</label>
-    <select class="provide-field form-select" id="account-to" name="account-to" [(ngModel)]="updateTransfer.accountToId" #accountToIdField="ngModel" required>
+    <select class="provide-field form-select" id="account-to" name="account-to" [(ngModel)]="updateTransfer.accountIdTo" #accountToIdField="ngModel" required>
       <option *ngFor="let account of allAccounts" [ngValue]="account.id">{{account.name}}</option>
     </select>
   </div>
+  <p class="message" *ngIf="!this.isAccountsIsValid()">You have to choose different account</p>
 
-  <button type="button" class="form-button" (click)="onSubmit()" [disabled]="transferForm.invalid || !isTransferValid() ">Update</button>
+  <button id="submit" type="button" class="form-button" (click)="onSubmit()" [disabled]="transferForm.invalid || !isTransferValid() ">Update</button>
 </form>

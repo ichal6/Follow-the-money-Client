@@ -261,4 +261,49 @@ describe('ValidatorService', () => {
     // then
     expect(isValid).toBe(false);
   });
+
+  it('should return false for null accountFrom', () => {
+    // given
+    const accountFromId = null;
+    // when
+    const isValid = service.checkIfAccountIsDifferent(accountFromId, 2);
+    // then
+    expect(isValid).toBe(false);
+  });
+
+  it('should return false for null accountTo', () => {
+    // given
+    const accountToId = null;
+    // when
+    const isValid = service.checkIfAccountIsDifferent(2, accountToId);
+    // then
+    expect(isValid).toBe(false);
+  });
+
+  it('should return false for null accounts', () => {
+    // given / when
+    const isValid = service.checkIfAccountIsDifferent(null, null);
+    // then
+    expect(isValid).toBe(false);
+  });
+
+  it('should return false for the same account', () => {
+    // given
+    const accountToId = 1;
+    const accountFromId = 1;
+    // when
+    const isValid = service.checkIfAccountIsDifferent(accountFromId, accountToId);
+    // then
+    expect(isValid).toBe(false);
+  });
+
+  it('should return true for the different account', () => {
+    // given
+    const accountToId = 2;
+    const accountFromId = 1;
+    // when
+    const isValid = service.checkIfAccountIsDifferent(accountFromId, accountToId);
+    // then
+    expect(isValid).toBe(true);
+  });
 });

@@ -5,9 +5,6 @@ import {GeneralType} from '../../model/Transaction';
   providedIn: 'root'
 })
 export class ValidatorService {
-
-  constructor() { }
-
   public checkIfTitleIsValid(title: string): boolean {
     return title !== undefined && title !== null && title.trim().length >= 3;
   }
@@ -48,6 +45,10 @@ export class ValidatorService {
       (value.toString() !== '') &&
       (!isNaN(Number(value.toString()))) &&
       (Number(value.toString()) > 0);
+  }
+
+  checkIfAccountIsDifferent(accountFromId: number, accountToId: number): boolean {
+    return accountFromId != null && accountToId != null && accountFromId !== accountToId;
   }
 
   private constructISOString(date: Date): string {

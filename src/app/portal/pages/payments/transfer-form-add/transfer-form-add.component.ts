@@ -36,8 +36,8 @@ export class TransferFormAddComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.newTransfer = new Transfer();
-    this.newTransfer.accountToId = null;
-    this.newTransfer.accountFromId = null;
+    this.newTransfer.accountIdTo = null;
+    this.newTransfer.accountIdFrom = null;
     this.newTransfer.date = new Date().toISOString().slice(0, 16);
     this.isDateValid = true;
     this.transferResetSubscription = this.formResetService.resetTransferFormEvent.subscribe(
@@ -72,12 +72,12 @@ export class TransferFormAddComponent implements OnInit, OnDestroy {
   }
 
   checkIfAccountIdIsValid(): void {
-    this.isAccountIdValid = this.newTransfer.accountToId != null && this.newTransfer.accountFromId &&
-      !isNaN(Number(this.newTransfer.accountFromId.toString())) && !isNaN(Number(this.newTransfer.accountFromId.toString()));
+    this.isAccountIdValid = this.newTransfer.accountIdTo != null && this.newTransfer.accountIdFrom &&
+      !isNaN(Number(this.newTransfer.accountIdFrom.toString())) && !isNaN(Number(this.newTransfer.accountIdFrom.toString()));
   }
 
   checkIfAccountIsDifferent(): void {
-    this.isAccountIsDifferent = this.newTransfer.accountFromId !== this.newTransfer.accountToId;
+    this.isAccountIsDifferent = this.newTransfer.accountIdFrom !== this.newTransfer.accountIdTo;
   }
 
   checkIfValueIsValid(): void {

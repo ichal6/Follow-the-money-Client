@@ -1,4 +1,4 @@
-import {GeneralType, Transaction} from './Transaction';
+import {Transaction} from './Transaction';
 
 describe('Transaction', () => {
   it('should parse date to correct format after fromHttp call', () => {

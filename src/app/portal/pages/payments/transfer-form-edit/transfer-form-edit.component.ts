@@ -20,6 +20,7 @@ export class TransferFormEditComponent implements OnInit, OnDestroy {
   updateTransfer: Transfer;
   allAccounts: Array<Account>;
   subscriptionAccounts: Subscription;
+  subscriptionGet: Subscription;
 
   constructor(public formChangeService: FormChangeService,
               private transferService: TransferService,
@@ -29,6 +30,7 @@ export class TransferFormEditComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.updateTransfer = new Transfer();
+    this.loadTransfer();
     this.loadAccounts();
   }
 
@@ -48,6 +50,10 @@ export class TransferFormEditComponent implements OnInit, OnDestroy {
     return this.validator.checkIfValueIsValid(this.updateTransfer.value);
   }
 
+  isAccountsIsValid(): boolean {
+    return this.validator.checkIfAccountIsDifferent(this.updateTransfer.accountIdFrom, this.updateTransfer.accountIdTo);
+  }
+
   onSubmit() {
     this.message = 'Update a transfer...';
   }
@@ -55,18 +61,28 @@ export class TransferFormEditComponent implements OnInit, OnDestroy {
   isTransferValid() {
     return this.isTitleValid() &&
       this.isDateIsValid() &&
-      this.isValueIsValid();
+      this.isValueIsValid() &&
+      this.isAccountsIsValid();
   }
 
   private loadAccounts(): void {
     this.subscriptionAccounts = this.accountsService.getAccounts().subscribe({
       next: (res) => this.allAccounts = res,
-      error: (err) => this.message = err.error,
+      error: (err) => this.message = err.message,
       complete: () => console.log("Completed fetch accounts")
     })
   }
 
+  private loadTransfer() {
+    this.subscriptionGet = this.transferService.getTransfer(this.formChangeService.payment.id).subscribe({
+      next: (res) => this.updateTransfer = Transfer.fromHttp(res),
+      error: err => this.message = 'Problem with loading the transfer: ' + err.message,
+      complete: () => console.log('Completed fetch transfer to edit')
+    });
+  }
+
   ngOnDestroy(): void {
     this.subscriptionAccounts?.unsubscribe();
+    this.subscriptionGet?.unsubscribe();
   }
 }
