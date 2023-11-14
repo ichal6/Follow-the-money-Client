@@ -173,7 +173,7 @@ export class TransactionFormAddComponent implements OnInit, OnDestroy {
   }
 
   private getUTCISODateTime(date: Date): string {
-    console.info('Converted date' + date);
+    console.info('Converted date: ' + date);
     const dateAsMilliseconds = date.getTime();
     return new Date(dateAsMilliseconds).toISOString().slice(0, -5);
   }

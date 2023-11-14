@@ -11,6 +11,8 @@ import {Observable, throwError} from "rxjs";
 describe('TransactionFormAddComponent', () => {
   let component: TransactionFormAddComponent;
   let fixture: ComponentFixture<TransactionFormAddComponent>;
+  const getTime = Date.prototype.getTime;
+  const getTimezoneOffset = Date.prototype.getTimezoneOffset;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -39,6 +41,8 @@ describe('TransactionFormAddComponent', () => {
 
   afterEach(() => {
     jasmine.clock().uninstall();
+    Date.prototype.getTime = getTime;
+    Date.prototype.getTimezoneOffset = getTimezoneOffset;
   });
 
   it('should create', () => {
