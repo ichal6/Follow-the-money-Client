@@ -89,9 +89,7 @@ export class TransactionFormAddComponent implements OnInit, OnDestroy {
   onSubmit(): void {
     this.message = 'Saving new transaction...';
     const timeWithZone = this.newTransaction.date;
-    console.info('Date Local: ' + this.newTransaction.date);
     this.newTransaction.date = this.getUTCISODateTime(new Date(this.newTransaction.date));
-    console.info('Date ISO: ' + this.newTransaction.date);
     this.transactionsService.addTransaction(this.newTransaction).subscribe({
       next: () => {
         this.dataChangedEvent.emit();
@@ -173,7 +171,6 @@ export class TransactionFormAddComponent implements OnInit, OnDestroy {
   }
 
   private getUTCISODateTime(date: Date): string {
-    console.info('Converted date: ' + date);
     const dateAsMilliseconds = date.getTime();
     return new Date(dateAsMilliseconds).toISOString().slice(0, -5);
   }
