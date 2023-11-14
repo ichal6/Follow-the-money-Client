@@ -27,10 +27,11 @@ describe('TransactionFormAddComponent', () => {
 
     fixture = TestBed.createComponent(TransactionFormAddComponent);
 
-    Date.prototype.getTimezoneOffset =  () => -60; // Time zone for Warsaw
-
+    const timestamp = 1699976646000;
     jasmine.clock().install();
-    jasmine.clock().mockDate(new Date(1699976646000)); // 14 nov 2023 15:44:06 UTC
+    jasmine.clock().mockDate(new Date(timestamp)); // 14 nov 2023 15:44:06 UTC
+    Date.prototype.getTimezoneOffset =  () => -60; // Time zone for Warsaw
+    Date.prototype.getTime = () => timestamp;
 
     component = fixture.componentInstance;
     fixture.detectChanges();
