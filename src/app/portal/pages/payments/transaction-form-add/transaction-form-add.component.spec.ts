@@ -1,4 +1,4 @@
-import {ComponentFixture, TestBed, tick, waitForAsync} from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 
 import { TransactionFormAddComponent } from './transaction-form-add.component';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
@@ -6,7 +6,7 @@ import {RouterTestingModule} from '@angular/router/testing';
 import {FormsModule} from '@angular/forms';
 import {DataService} from '../../../../service/data.service';
 import {TransactionsService} from "../../../../service/transactions.service";
-import {Observable, throwError, timeout} from "rxjs";
+import {Observable, throwError} from "rxjs";
 
 describe('TransactionFormAddComponent', () => {
   let component: TransactionFormAddComponent;
