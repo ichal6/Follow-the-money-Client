@@ -54,6 +54,7 @@ describe('TransactionFormAddComponent', () => {
       .and.returnValue(new Observable());
     // when
     component.onSubmit();
+
     // then
     expect(component.newTransaction.date).toBe('2023-11-14T15:44:06');
   });
