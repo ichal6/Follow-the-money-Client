@@ -1,6 +1,5 @@
 import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
-
-import { TransactionFormAddComponent } from './transaction-form-add.component';
+import {TransactionFormAddComponent} from './transaction-form-add.component';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {RouterTestingModule} from '@angular/router/testing';
 import {FormsModule} from '@angular/forms';
@@ -29,9 +28,9 @@ describe('TransactionFormAddComponent', () => {
 
     fixture = TestBed.createComponent(TransactionFormAddComponent);
 
-    const timestamp = 1699976646000;
+    const timestamp = 1699976646000; // 14 nov 2023 15:44:06 UTC
     jasmine.clock().install();
-    jasmine.clock().mockDate(new Date(timestamp)); // 14 nov 2023 15:44:06 UTC
+    jasmine.clock().mockDate(new Date(timestamp));
     Date.prototype.getTimezoneOffset =  () => -60; // Time zone for Warsaw
     Date.prototype.getTime = () => timestamp;
 
@@ -59,7 +58,6 @@ describe('TransactionFormAddComponent', () => {
       .and.returnValue(new Observable());
     // when
     component.onSubmit();
-
     // then
     expect(component.newTransaction.date).toBe('2023-11-14T15:44:06');
   });
