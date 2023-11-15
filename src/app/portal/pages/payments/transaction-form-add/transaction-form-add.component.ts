@@ -53,7 +53,7 @@ export class TransactionFormAddComponent implements OnInit, OnDestroy {
     this.newTransaction.payeeId = null;
     this.newTransaction.categoryId = null;
     this.newTransaction.type = null;
-    this.newTransaction.date = new Date().toISOString().slice(0, 16);
+    this.newTransaction.date = this.getLocalISODatetime();
     this.isDateValid = true;
     this.transactionResetSubscription = this.formResetService.resetTransactionFormEvent.subscribe(
       transaction => {
@@ -88,12 +88,18 @@ export class TransactionFormAddComponent implements OnInit, OnDestroy {
 
   onSubmit(): void {
     this.message = 'Saving new transaction...';
-    this.transactionsService.addTransaction(this.newTransaction).subscribe(
-      (transaction) => {
+    const timeWithZone = this.newTransaction.date;
+    this.newTransaction.date = this.getUTCISODateTime(new Date(this.newTransaction.date));
+    this.transactionsService.addTransaction(this.newTransaction).subscribe({
+      next: () => {
         this.dataChangedEvent.emit();
         this.redirectTo('payments');
+      },
+      error: (err) => {
+        this.message = err.message;
+        this.newTransaction.date = timeWithZone;
       }
-    );
+    });
   }
 
   getPayees(): Array<Payee> {
@@ -156,5 +162,16 @@ export class TransactionFormAddComponent implements OnInit, OnDestroy {
   toTransfer(): void {
     console.log('To transfer active');
     this.formChangeService.changeFormToTransfer();
+  }
+
+  private getLocalISODatetime(): string {
+    const tzOffsetMilliseconds = new Date().getTimezoneOffset() * 60000;
+    const dateAsMilliseconds = Date.now();
+    return new Date(dateAsMilliseconds - tzOffsetMilliseconds).toISOString().slice(0, -5);
+  }
+
+  private getUTCISODateTime(date: Date): string {
+    const dateAsMilliseconds = date.getTime();
+    return new Date(dateAsMilliseconds).toISOString().slice(0, -5);
   }
 }
