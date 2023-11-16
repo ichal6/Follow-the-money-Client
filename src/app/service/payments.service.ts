@@ -44,9 +44,14 @@ export class PaymentsService {
     return paymentsTS;
   }
 
-  getLocalISODatetime(): string {
+  getLocalISODatetime(date?: Date): string {
     const tzOffsetMilliseconds = new Date().getTimezoneOffset() * 60000;
-    const dateAsMilliseconds = Date.now();
+    let dateAsMilliseconds = Date.now();
+
+    if(typeof date !== 'undefined') {
+       dateAsMilliseconds = date.getTime();
+    }
+
     return new Date(dateAsMilliseconds - tzOffsetMilliseconds).toISOString().slice(0, -5);
   }
 

@@ -77,6 +77,17 @@ describe('PaymentsService', () => {
     expect(service.getLocalISODatetime()).toBe('2023-11-14T16:44:06');
   })
 
+  it('should return local time for custom date with ISO format', () => {
+    // restore origin functions
+    Date.prototype.getTime = getTime;
+    // given
+    const timestamp = 1700152171000; // 2023-11-16-16T16:29:31 UTC
+    // when
+    const date = service.getLocalISODatetime(new Date(timestamp));
+    // then
+    expect(date).toBe('2023-11-16T17:29:31');
+  })
+
   it('should get UTC ISO date time in string format', () => {
     expect(service.getUTCISODateTime(new Date())).toBe('2023-11-14T15:44:06');
   });
