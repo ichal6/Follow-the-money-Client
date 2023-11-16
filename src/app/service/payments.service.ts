@@ -43,4 +43,15 @@ export class PaymentsService {
     }
     return paymentsTS;
   }
+
+  getLocalISODatetime(): string {
+    const tzOffsetMilliseconds = new Date().getTimezoneOffset() * 60000;
+    const dateAsMilliseconds = Date.now();
+    return new Date(dateAsMilliseconds - tzOffsetMilliseconds).toISOString().slice(0, -5);
+  }
+
+  getUTCISODateTime(date: Date): string {
+    const dateAsMilliseconds = date.getTime();
+    return new Date(dateAsMilliseconds).toISOString().slice(0, -5);
+  }
 }

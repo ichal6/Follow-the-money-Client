@@ -11,6 +11,7 @@ import {FormResetService} from '../../../../service/form-reset.service';
 import {TransactionsService} from '../../../../service/transactions.service';
 import {Router} from '@angular/router';
 import {FormChangeService} from '../../../../service/form-change.service';
+import {PaymentsService} from "../../../../service/payments.service";
 
 @Component({
   selector: 'app-transaction-form-add',
@@ -43,6 +44,7 @@ export class TransactionFormAddComponent implements OnInit, OnDestroy {
               private payeeService: PayeeService,
               private categoryService: CategoryService,
               private transactionsService: TransactionsService,
+              private paymentService: PaymentsService,
               private formResetService: FormResetService,
               private router: Router,
               private formChangeService: FormChangeService) { }
@@ -53,7 +55,7 @@ export class TransactionFormAddComponent implements OnInit, OnDestroy {
     this.newTransaction.payeeId = null;
     this.newTransaction.categoryId = null;
     this.newTransaction.type = null;
-    this.newTransaction.date = this.getLocalISODatetime();
+    this.newTransaction.date = this.paymentService.getLocalISODatetime();
     this.isDateValid = true;
     this.transactionResetSubscription = this.formResetService.resetTransactionFormEvent.subscribe(
       transaction => {
@@ -89,7 +91,8 @@ export class TransactionFormAddComponent implements OnInit, OnDestroy {
   onSubmit(): void {
     this.message = 'Saving new transaction...';
     const timeWithZone = this.newTransaction.date;
-    this.newTransaction.date = this.getUTCISODateTime(new Date(this.newTransaction.date));
+    this.newTransaction.date = this.paymentService.getUTCISODateTime(new Date(this.newTransaction.date));
+
     this.transactionsService.addTransaction(this.newTransaction).subscribe({
       next: () => {
         this.dataChangedEvent.emit();
