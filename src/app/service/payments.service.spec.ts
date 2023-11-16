@@ -7,10 +7,14 @@ import { createSpyFromClass, Spy } from 'jasmine-auto-spies';
 import { data } from './fixture/PaymentJSONFixture';
 import * as PaymentModelFixture from './fixture/PaymentModelFixture';
 import {spyDataServiceGetEmail} from './common/SpyObjects';
+import {TransactionsService} from "./transactions.service";
+import {Observable} from "rxjs";
 
 describe('PaymentsService', () => {
   let service: PaymentsService;
   let httpSpy: Spy<HttpClient>;
+  const getTime = Date.prototype.getTime;
+  const getTimezoneOffset = Date.prototype.getTimezoneOffset;
 
   const paymentsObjects = [
     PaymentModelFixture.getCashDepositSeptember(),
@@ -35,6 +39,18 @@ describe('PaymentsService', () => {
     service = TestBed.inject(PaymentsService);
     httpSpy = TestBed.inject(HttpClient) as Spy<HttpClient>;
     spyDataServiceGetEmail();
+
+    const timestamp = 1699976646000;
+    jasmine.clock().install();
+    jasmine.clock().mockDate(new Date(timestamp)); // 14 nov 2023 15:44:06 UTC
+    Date.prototype.getTimezoneOffset =  () => -60; // Time zone for Warsaw
+    Date.prototype.getTime = () => timestamp;
+  });
+
+  afterEach(() => {
+    jasmine.clock().uninstall();
+    Date.prototype.getTime = getTime;
+    Date.prototype.getTimezoneOffset = getTimezoneOffset;
   });
 
   it('should be created', () => {
@@ -53,5 +69,13 @@ describe('PaymentsService', () => {
       error: done.fail
     });
     expect(httpSpy.get.calls.count()).toBe(1);
+  });
+
+  it('should return local time with ISO format', () => {
+    expect(service.getLocalISODatetime()).toBe('2023-11-14T16:44:06');
+  })
+
+  it('should get UTC ISO date time in string format', () => {
+    expect(service.getUTCISODateTime(new Date())).toBe('2023-11-14T15:44:06');
   });
 });
