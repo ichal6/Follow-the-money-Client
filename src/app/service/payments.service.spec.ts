@@ -7,8 +7,6 @@ import { createSpyFromClass, Spy } from 'jasmine-auto-spies';
 import { data } from './fixture/PaymentJSONFixture';
 import * as PaymentModelFixture from './fixture/PaymentModelFixture';
 import {spyDataServiceGetEmail} from './common/SpyObjects';
-import {TransactionsService} from "./transactions.service";
-import {Observable} from "rxjs";
 
 describe('PaymentsService', () => {
   let service: PaymentsService;
@@ -58,6 +56,10 @@ describe('PaymentsService', () => {
   });
 
   it('should call http Get method and return all payments', (done: DoneFn) => {
+    // restore origin functions
+    Date.prototype.getTime = getTime;
+    Date.prototype.getTimezoneOffset = getTimezoneOffset;
+
     httpSpy.get.and.nextWith(data);
 
     service.getPayments().subscribe({
