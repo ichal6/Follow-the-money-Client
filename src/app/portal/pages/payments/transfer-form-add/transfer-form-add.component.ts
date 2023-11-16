@@ -6,6 +6,7 @@ import {FormResetService} from '../../../../service/form-reset.service';
 import {Router} from '@angular/router';
 import {Transfer} from '../../../../model/Transfer';
 import {TransferService} from '../../../../service/transfer.service';
+import {PaymentsService} from "../../../../service/payments.service";
 
 @Component({
   selector: 'app-transfer-form-add',
@@ -13,7 +14,6 @@ import {TransferService} from '../../../../service/transfer.service';
   styleUrls: ['./transfer-form-add.component.css', '../transaction-form-add/transaction-form-add.component.css']
 })
 export class TransferFormAddComponent implements OnInit, OnDestroy {
-
   newTransfer: Transfer;
   information: string;
   allAccounts: Array<Account>;
@@ -28,9 +28,9 @@ export class TransferFormAddComponent implements OnInit, OnDestroy {
   subscribe: Subscription;
   transferResetSubscription: Subscription;
 
-
   constructor(private accountsService: AccountsService,
               private transferService: TransferService,
+              private paymentService: PaymentsService,
               private formResetService: FormResetService,
               private router: Router) { }
 
@@ -38,7 +38,7 @@ export class TransferFormAddComponent implements OnInit, OnDestroy {
     this.newTransfer = new Transfer();
     this.newTransfer.accountIdTo = null;
     this.newTransfer.accountIdFrom = null;
-    this.newTransfer.date = new Date().toISOString().slice(0, 16);
+    this.newTransfer.date = this.paymentService.getLocalISODatetime();
     this.isDateValid = true;
     this.transferResetSubscription = this.formResetService.resetTransferFormEvent.subscribe(
       transfer => {
@@ -58,12 +58,18 @@ export class TransferFormAddComponent implements OnInit, OnDestroy {
 
   onSubmit(): void {
     this.information = 'Saving new transfer...';
-    this.transferService.addTransfer(this.newTransfer).subscribe(
-      (transfer) => {
+    const timeWithZone = this.newTransfer.date;
+    this.newTransfer.date = this.paymentService.getUTCISODateTime(new Date(this.newTransfer.date));
+    this.transferService.addTransfer(this.newTransfer).subscribe({
+        next: () => {
         this.dataChangedEvent.emit();
         this.redirectTo('payments');
+      },
+        error: (err) => {
+        this.information = err.message;
+        this.newTransfer.date = timeWithZone;
       }
-    );
+    });
   }
 
   checkIfAccountIsValid(): void {
