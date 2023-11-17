@@ -64,7 +64,7 @@ describe('TransferFormEditComponent', () => {
     const transfer = component.updateTransfer;
 
     transfer.title = 'example';
-    transfer.date = '2023-08-09T14:27';
+    transfer.date = '2023-08-09T14:27:00';
     transfer.value = 123;
     transfer.accountIdTo = 1;
     transfer.accountIdFrom = 2;
