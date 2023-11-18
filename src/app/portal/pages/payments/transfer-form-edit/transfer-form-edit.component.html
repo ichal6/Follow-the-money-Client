@@ -8,7 +8,7 @@
   <p class="message" *ngIf="!this.isTitleValid() && titleField.touched">Title has to be at least 3 characters long</p>
   <div class="edit-container">
     <label for="datetime">Select date:</label>
-    <input type="datetime-local" class="form-input" id="datetime" name="date" placeholder="Please provide a date" [(ngModel)]="updateTransfer.date" #dateTimeField="ngModel" required>
+    <input type="datetime-local" step="1" class="form-input" id="datetime" name="date" placeholder="Please provide a date" [(ngModel)]="updateTransfer.date" #dateTimeField="ngModel" required>
   </div>
   <p class="message" *ngIf="!dateTimeField.valid && !this.isDateIsValid() && dateTimeField.touched">Please should provide correct date</p>
 

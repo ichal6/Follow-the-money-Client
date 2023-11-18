@@ -1,5 +1,5 @@
 <form class="transaction-form" #transactionForm="ngForm">
-  <button type="button" class="form-button cancel-button"  (click)="returnToTransaction()">Discard changes</button>
+  <button type="button" class="form-button cancel-button" (click)="returnToTransaction()">Discard changes</button>
   <p class="message" *ngIf="message">{{message}}</p>
   <div class="edit-container">
     <label for="title">Change title:</label>
@@ -8,7 +8,7 @@
   <p class="message" *ngIf="!this.isTitleValid() && titleField.touched">Title has to be at least 3 characters long</p>
   <div class="edit-container">
     <label for="datetime">Select date:</label>
-    <input type="datetime-local" class="form-input" id="datetime" name="date" placeholder="Please provide a date" [(ngModel)]="updateTransaction.date" #dateTimeField="ngModel" required>
+    <input type="datetime-local" step="1" class="form-input" id="datetime" name="date" placeholder="Please provide a date" [(ngModel)]="updateTransaction.date" #dateTimeField="ngModel" required>
   </div>
   <p class="message" *ngIf="!dateTimeField.valid && !this.isDateIsValid() && dateTimeField.touched">Please should provide correct date</p>
   <div class="edit-container">
@@ -45,5 +45,5 @@
     </select>
   </div>
 
-  <button type="button" class="form-button" (click)="onSubmit()" [disabled]="transactionForm.invalid || !isTransactionValid() ">Update</button>
+  <button id="submit" type="button" class="form-button" (click)="onSubmit()" [disabled]="transactionForm.invalid || !isTransactionValid() ">Update</button>
 </form>
