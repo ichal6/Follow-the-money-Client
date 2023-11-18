@@ -166,15 +166,4 @@ export class TransactionFormAddComponent implements OnInit, OnDestroy {
     console.log('To transfer active');
     this.formChangeService.changeFormToTransfer();
   }
-
-  private getLocalISODatetime(): string {
-    const tzOffsetMilliseconds = new Date().getTimezoneOffset() * 60000;
-    const dateAsMilliseconds = Date.now();
-    return new Date(dateAsMilliseconds - tzOffsetMilliseconds).toISOString().slice(0, -5);
-  }
-
-  private getUTCISODateTime(date: Date): string {
-    const dateAsMilliseconds = date.getTime();
-    return new Date(dateAsMilliseconds).toISOString().slice(0, -5);
-  }
 }
