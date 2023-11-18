@@ -9,6 +9,8 @@ import {spyDataServiceGetEmail} from '../../../../service/common/SpyObjects';
 import {TransactionService} from '../../../../service/transaction.service';
 import {Observable, Observer} from 'rxjs';
 import {Transaction} from '../../../../model/Transaction';
+import {getBuyCarTransaction} from "../../../../service/fixture/TransationModelFixture";
+import {By} from "@angular/platform-browser";
 
 describe('TransactionFormEditComponent', () => {
   let component: TransactionFormEditComponent;
@@ -125,5 +127,26 @@ describe('TransactionFormEditComponent', () => {
     component.onSubmit();
     // then
     expect(component.message).toBe(error.message);
+  });
+
+  it('should can edit when seconds set to 00', () => {
+    // given
+    component.updateTransaction = getBuyCarTransaction();
+    // when
+    fixture.detectChanges();
+    // then
+    const buttonStatus = fixture.debugElement.query(By.css('#submit'));
+    expect(buttonStatus.nativeElement.disabled).toBeFalsy();
+  });
+
+  it('should cannot edit for incorrect date', () => {
+    // given
+    component.updateTransaction = getBuyCarTransaction();
+    component.updateTransaction.date = '2023-11-18T25:15:00';
+    // when
+    fixture.detectChanges();
+    // then
+    const buttonStatus = fixture.debugElement.query(By.css('#submit'));
+    expect(buttonStatus.nativeElement.disabled).toBeTruthy();
   });
 });
