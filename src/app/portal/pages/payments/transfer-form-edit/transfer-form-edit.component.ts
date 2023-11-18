@@ -8,6 +8,7 @@ import {TransferService} from '../../../../service/transfer.service';
 import {Account} from '../../../../model/Account';
 import {ValidatorService} from '../../../../service/common/validator.service';
 import {Subscription} from 'rxjs';
+import {PaymentsService} from "../../../../service/payments.service";
 
 @Component({
   selector: 'app-transfer-form-edit',
@@ -25,6 +26,7 @@ export class TransferFormEditComponent implements OnInit, OnDestroy {
 
   constructor(public formChangeService: FormChangeService,
               private transferService: TransferService,
+              private paymentService: PaymentsService,
               private accountsService: AccountsService,
               private validator: ValidatorService,
               private router: Router) { }
@@ -57,9 +59,14 @@ export class TransferFormEditComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     this.message = 'Update a transfer...';
+    const timeWithZone = this.updateTransfer.date;
+    this.updateTransfer.date = this.paymentService.getUTCISODateTime(new Date(this.updateTransfer.date));
     this.subscriptionPut = this.transferService.updateTransfer(this.updateTransfer).subscribe( {
-      next: () =>   this.redirectTo('payments'),
-      error: (err) => this.message = err.message
+      next: () => this.redirectTo('payments'),
+      error: (err) => {
+        this.message = err.message;
+        this.updateTransfer.date = timeWithZone;
+      }
     });
   }
 
@@ -80,7 +87,10 @@ export class TransferFormEditComponent implements OnInit, OnDestroy {
 
   private loadTransfer() {
     this.subscriptionGet = this.transferService.getTransfer(this.formChangeService.payment.id).subscribe({
-      next: (res) => this.updateTransfer = Transfer.fromHttp(res),
+      next: (res) => {
+        this.updateTransfer = Transfer.fromHttp(res);
+        this.updateTransfer.date = this.paymentService.getLocalISODatetime(new Date(this.updateTransfer.date));
+      },
       error: err => this.message = 'Problem with loading the transfer: ' + err.message,
       complete: () => console.log('Completed fetch transfer to edit')
     });

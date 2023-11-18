@@ -11,6 +11,7 @@ import {PayeeService} from '../../../../service/payee.service';
 import {Category} from '../../../../model/Category';
 import {CategoryService} from '../../../../service/category.service';
 import {ValidatorService} from '../../../../service/common/validator.service';
+import {PaymentsService} from "../../../../service/payments.service";
 
 
 @Component({
@@ -33,6 +34,7 @@ export class TransactionFormEditComponent  implements OnInit, OnDestroy{
 
   constructor(public formChangeService: FormChangeService,
               private transactionsService: TransactionsService,
+              private paymentService: PaymentsService,
               private accountsService: AccountsService,
               private payeesService: PayeeService,
               private categoryService: CategoryService,
@@ -76,6 +78,7 @@ export class TransactionFormEditComponent  implements OnInit, OnDestroy{
       next: (res) => {
         this.updateTransaction = Transaction.fromHttp(res);
         this.updateTransaction.value = Math.abs(this.updateTransaction.value);
+        this.updateTransaction.date = this.paymentService.getLocalISODatetime(new Date(this.updateTransaction.date));
       },
       error: err => console.log('problem with loading the transaction: ', err),
       complete: () => console.log('Completed fetch transaction to edit')
@@ -84,9 +87,14 @@ export class TransactionFormEditComponent  implements OnInit, OnDestroy{
 
   onSubmit(): void {
     this.message = 'Update a transaction...';
+    const timeWithZone = this.updateTransaction.date;
+    this.updateTransaction.date = this.paymentService.getUTCISODateTime(new Date(this.updateTransaction.date));
     this.subscriptionUpdate = this.transactionsService.updateTransaction(this.updateTransaction).subscribe( {
-      next: () =>   this.redirectTo('payments'),
-      error: err => this.message = err.error
+      next: () => this.redirectTo('payments'),
+      error: err => {
+        this.message = err.message;
+        this.updateTransaction.date = timeWithZone;
+      }
     });
   }
 

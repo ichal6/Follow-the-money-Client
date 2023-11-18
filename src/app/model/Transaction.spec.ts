@@ -8,7 +8,7 @@ describe('Transaction', () => {
     // when
     const transaction = Transaction.fromHttp(fromHttp);
     // then
-    expect(transaction.date).toBe('2023-07-27T17:57');
+    expect(transaction.date).toBe('2023-07-27T17:57:00');
   })
 
   it('should not assign id after fromHttp call when payload does not contain id', () => {

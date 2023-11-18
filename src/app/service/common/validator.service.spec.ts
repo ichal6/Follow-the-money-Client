@@ -15,7 +15,6 @@ describe('ValidatorService', () => {
     expect(service).toBeTruthy();
   });
 
-
   it('should return false for undefined title', () => {
     // given
     const transaction = new Transaction();
@@ -108,7 +107,7 @@ describe('ValidatorService', () => {
   it('should check is date correct for correct date', () => {
     // given
     const transaction = new Transaction();
-    transaction.date = '2023-07-27T17:57';
+    transaction.date = '2023-07-27T17:57:00';
     // when
     const isDateCorrect = service.checkIfDateIsValid(transaction.date);
     // then
@@ -128,7 +127,7 @@ describe('ValidatorService', () => {
   it('should check is date incorrect for incorrect hour', () => {
     // given
     const transaction = new Transaction();
-    transaction.date = '2023-27-27T24:57';
+    transaction.date = '2023-27-27T24:57:00';
     // when
     const isDateCorrect = service.checkIfDateIsValid(transaction.date);
     // then
@@ -138,7 +137,7 @@ describe('ValidatorService', () => {
   it('should check is date incorrect for incorrect minute', () => {
     // given
     const transaction = new Transaction();
-    transaction.date = '2023-27-27T22:60';
+    transaction.date = '2023-27-27T22:60:00';
     // when
     const isDateCorrect = service.checkIfDateIsValid(transaction.date);
     // then
@@ -148,7 +147,7 @@ describe('ValidatorService', () => {
   it('should check is date incorrect for incorrect day', () => {
     // given
     const transaction = new Transaction();
-    transaction.date = '2023-02-30T22:59';
+    transaction.date = '2023-02-30T22:59:00';
     // when
     const isDateCorrect = service.checkIfDateIsValid(transaction.date);
     // then
@@ -177,7 +176,7 @@ describe('ValidatorService', () => {
   it('should check is date incorrect for only time', () => {
     // given
     const transaction = new Transaction();
-    transaction.date = '22:59';
+    transaction.date = '22:59:00';
     // when
     const isDateCorrect = service.checkIfDateIsValid(transaction.date);
     // then

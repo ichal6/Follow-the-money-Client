@@ -20,7 +20,7 @@ export class Transaction {
     newTransaction.categoryId = transaction.categoryId;
     newTransaction.payeeId = transaction.payeeId;
     newTransaction.accountId = transaction.accountId;
-    newTransaction.date = transaction.date.substring(0, 16);
+    newTransaction.date = transaction.date;
     newTransaction.id = transaction.id;
     return newTransaction;
   }
