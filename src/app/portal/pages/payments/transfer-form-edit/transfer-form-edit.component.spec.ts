@@ -10,6 +10,7 @@ import {Transfer} from '../../../../model/Transfer';
 import {By} from '@angular/platform-browser';
 import {Observable, Observer} from "rxjs";
 import {TransferService} from "../../../../service/transfer.service";
+import {getCashDepositSeptember} from "../../../../service/fixture/TransferModelFixture";
 
 describe('TransferFormEditComponent', () => {
   let component: TransferFormEditComponent;
@@ -152,5 +153,26 @@ describe('TransferFormEditComponent', () => {
     component.onSubmit();
     // then
     expect(component.message).toBe(error.message);
+  });
+
+  it('should can edit when seconds set to 00', () => {
+    // given
+    component.updateTransfer = getCashDepositSeptember();
+    // when
+    fixture.detectChanges();
+    // then
+    const buttonStatus = fixture.debugElement.query(By.css('#submit'));
+    expect(buttonStatus.nativeElement.disabled).toBeFalsy();
+  });
+
+  it('should cannot edit for incorrect date', () => {
+    // given
+    component.updateTransfer = getCashDepositSeptember();
+    component.updateTransfer.date = '2023-11-18T25:15:00';
+    // when
+    fixture.detectChanges();
+    // then
+    const buttonStatus = fixture.debugElement.query(By.css('#submit'));
+    expect(buttonStatus.nativeElement.disabled).toBeTruthy();
   });
 });
