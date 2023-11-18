@@ -5,7 +5,7 @@ import {HttpClientTestingModule, HttpTestingController} from '@angular/common/ht
 import * as TransactionModelFixture from './fixture/TransationModelFixture';
 import {environment} from '../../environments/environment';
 
-describe('TransactionsService', () => {
+describe('TransactionService', () => {
   let service: TransactionService;
   let httpMock: HttpTestingController;
 
@@ -28,7 +28,6 @@ describe('TransactionsService', () => {
   });
 
   it('should sent PUT request when try edit Transaction', () =>{
-
     service.updateTransaction(TransactionModelFixture.getBuyCarTransaction()).subscribe(
       response => {
         expect(response).toBeNull();
