@@ -54,6 +54,7 @@ describe('TransactionFormEditComponent', () => {
         ]
     });
 
+    // Fixture Clock
     const timestamp = 1699976646000;
     jasmine.clock().install();
     jasmine.clock().mockDate(new Date(timestamp)); // 14 nov 2023 15:44:06 UTC

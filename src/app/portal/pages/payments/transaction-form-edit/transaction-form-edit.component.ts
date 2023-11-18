@@ -90,9 +90,9 @@ export class TransactionFormEditComponent  implements OnInit, OnDestroy{
     const timeWithZone = this.updateTransaction.date;
     this.updateTransaction.date = this.paymentService.getUTCISODateTime(new Date(this.updateTransaction.date));
     this.subscriptionUpdate = this.transactionsService.updateTransaction(this.updateTransaction).subscribe( {
-      next: () =>   this.redirectTo('payments'),
+      next: () => this.redirectTo('payments'),
       error: err => {
-        this.message = err.message
+        this.message = err.message;
         this.updateTransaction.date = timeWithZone;
       }
     });
