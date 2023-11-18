@@ -114,6 +114,26 @@ describe('ValidatorService', () => {
     expect(isDateCorrect).toBe(true);
   })
 
+  it('should check is date correct for correct date without seconds', () => {
+    // given
+    const transaction = new Transaction();
+    transaction.date = '2023-07-27T17:57';
+    // when
+    const isDateCorrect = service.checkIfDateIsValid(transaction.date);
+    // then
+    expect(isDateCorrect).toBe(true);
+  })
+
+  it('should check is date correct for correct date with seconds', () => {
+    // given
+    const transaction = new Transaction();
+    transaction.date = '2023-07-27T17:57:31';
+    // when
+    const isDateCorrect = service.checkIfDateIsValid(transaction.date);
+    // then
+    expect(isDateCorrect).toBe(true);
+  })
+
   it('should check is date incorrect for incorrect month', () => {
     // given
     const transaction = new Transaction();
