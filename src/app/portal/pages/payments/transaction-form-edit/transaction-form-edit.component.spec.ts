@@ -15,6 +15,7 @@ describe('TransactionFormEditComponent', () => {
   let fixture: ComponentFixture<TransactionFormEditComponent>;
   let formChangeServiceMock: jasmine.SpyObj<FormChangeService>;
   let transactionServiceMock: jasmine.SpyObj<TransactionService>;
+
   const getTime = Date.prototype.getTime;
   const getTimezoneOffset = Date.prototype.getTimezoneOffset;
 
