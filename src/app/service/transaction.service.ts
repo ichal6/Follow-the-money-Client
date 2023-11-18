@@ -8,7 +8,7 @@ import {DataService} from './data.service';
 @Injectable({
   providedIn: 'root'
 })
-export class TransactionsService {
+export class TransactionService {
 
   constructor(private http: HttpClient,
               private dataService: DataService) {

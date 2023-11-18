@@ -8,7 +8,7 @@ import {Payee} from '../../../../model/Payee';
 import {PayeeService} from '../../../../service/payee.service';
 import {CategoryService} from '../../../../service/category.service';
 import {FormResetService} from '../../../../service/form-reset.service';
-import {TransactionsService} from '../../../../service/transactions.service';
+import {TransactionService} from '../../../../service/transaction.service';
 import {Router} from '@angular/router';
 import {FormChangeService} from '../../../../service/form-change.service';
 import {PaymentsService} from "../../../../service/payments.service";
@@ -43,7 +43,7 @@ export class TransactionFormAddComponent implements OnInit, OnDestroy {
   constructor(private accountsService: AccountsService,
               private payeeService: PayeeService,
               private categoryService: CategoryService,
-              private transactionsService: TransactionsService,
+              private transactionsService: TransactionService,
               private paymentService: PaymentsService,
               private formResetService: FormResetService,
               private router: Router,

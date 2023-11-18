@@ -6,7 +6,7 @@ import {FormChangeService} from '../../../../service/form-change.service';
 import {Payment} from '../../../../model/Payment';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {spyDataServiceGetEmail} from '../../../../service/common/SpyObjects';
-import {TransactionsService} from '../../../../service/transactions.service';
+import {TransactionService} from '../../../../service/transaction.service';
 import {Observable, Observer} from 'rxjs';
 import {Transaction} from '../../../../model/Transaction';
 
@@ -14,7 +14,7 @@ describe('TransactionFormEditComponent', () => {
   let component: TransactionFormEditComponent;
   let fixture: ComponentFixture<TransactionFormEditComponent>;
   let formChangeServiceMock: jasmine.SpyObj<FormChangeService>;
-  let transactionServiceMock: jasmine.SpyObj<TransactionsService>;
+  let transactionServiceMock: jasmine.SpyObj<TransactionService>;
   const getTime = Date.prototype.getTime;
   const getTimezoneOffset = Date.prototype.getTimezoneOffset;
 
@@ -50,7 +50,7 @@ describe('TransactionFormEditComponent', () => {
         declarations: [TransactionFormEditComponent],
         providers: [
             { provide: FormChangeService, useValue: formChangeServiceMock },
-            { provide: TransactionsService, useValue: transactionServiceMock }
+            { provide: TransactionService, useValue: transactionServiceMock }
         ]
     });
 
@@ -87,7 +87,7 @@ describe('TransactionFormEditComponent', () => {
 
   it('should change date to UTC when click update', () => {
     // given
-    spyOn(TransactionsService.prototype, "updateTransaction")
+    spyOn(TransactionService.prototype, "updateTransaction")
       .and.returnValue(new Observable());
 
     transactionServiceMock.updateTransaction.and.callFake(() => {

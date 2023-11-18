@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormChangeService} from '../../../../service/form-change.service';
-import {TransactionsService} from '../../../../service/transactions.service';
+import {TransactionService} from '../../../../service/transaction.service';
 import {Router} from '@angular/router';
 import {Transaction} from '../../../../model/Transaction';
 import {Subscription} from 'rxjs';
@@ -33,7 +33,7 @@ export class TransactionFormEditComponent  implements OnInit, OnDestroy{
   subscriptionCategories: Subscription;
 
   constructor(public formChangeService: FormChangeService,
-              private transactionsService: TransactionsService,
+              private transactionsService: TransactionService,
               private paymentService: PaymentsService,
               private accountsService: AccountsService,
               private payeesService: PayeeService,

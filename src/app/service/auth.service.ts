@@ -1,9 +1,6 @@
 import {EventEmitter, Injectable } from '@angular/core';
 import {DataService} from './data.service';
 import {CookieService} from 'ngx-cookie-service';
-import {PaymentsService} from './payments.service';
-import {TransactionsService} from './transactions.service';
-import {AnalysisService} from './analysis.service';
 import {catchError} from 'rxjs';
 import {Router} from '@angular/router';
 
@@ -17,9 +14,6 @@ export class AuthService {
 
   constructor(private dataService: DataService,
               private route: Router,
-              private paymentsService: PaymentsService,
-              private transactionsService: TransactionsService,
-              private analysisService: AnalysisService,
               private cookieService: CookieService) { }
 
   authenticate(name: string, password: string): void {

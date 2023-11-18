@@ -4,7 +4,7 @@ import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {RouterTestingModule} from '@angular/router/testing';
 import {FormsModule} from '@angular/forms';
 import {DataService} from '../../../../service/data.service';
-import {TransactionsService} from "../../../../service/transactions.service";
+import {TransactionService} from "../../../../service/transaction.service";
 import {Observable, throwError} from "rxjs";
 
 describe('TransactionFormAddComponent', () => {
@@ -54,7 +54,7 @@ describe('TransactionFormAddComponent', () => {
 
   it('should change date to UTC when click save', () => {
     // given
-    spyOn(TransactionsService.prototype, "addTransaction")
+    spyOn(TransactionService.prototype, "addTransaction")
       .and.returnValue(new Observable());
     // when
     component.onSubmit();
@@ -64,7 +64,7 @@ describe('TransactionFormAddComponent', () => {
 
   it('should change date to LocalDateTime when click save and server throw an error', () => {
     // given
-    spyOn(TransactionsService.prototype, "addTransaction")
+    spyOn(TransactionService.prototype, "addTransaction")
       .and.returnValue(throwError(() => new Error('server is down')));
     // when
     component.onSubmit();
@@ -75,7 +75,7 @@ describe('TransactionFormAddComponent', () => {
   it('should display error message when click save and server throws an error', () => {
     // given
     const error = new Error('Server is down');
-    spyOn(TransactionsService.prototype, "addTransaction")
+    spyOn(TransactionService.prototype, "addTransaction")
       .and.returnValue(throwError(() => error));
     // when
     component.onSubmit();
