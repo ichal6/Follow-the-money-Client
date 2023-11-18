@@ -8,7 +8,7 @@ describe('Transfer', () => {
     // when
     const transfer = Transfer.fromHttp(fromHttp);
     // then
-    expect(transfer.date).toBe('2023-07-27T17:57');
+    expect(transfer.date).toBe('2023-07-27T17:57:00');
   })
 
   it('should not assign id after fromHttp call when payload does not contain id', () => {

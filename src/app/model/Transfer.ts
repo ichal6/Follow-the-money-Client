@@ -12,7 +12,7 @@ export class Transfer {
     newTransfer.accountIdTo = transfer.accountIdTo;
     newTransfer.title = transfer.title;
     newTransfer.value = transfer.value;
-    newTransfer.date = transfer.date.substring(0, 16);
+    newTransfer.date = transfer.date;
     newTransfer.id = transfer.id;
     return newTransfer;
   }

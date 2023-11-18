@@ -59,9 +59,14 @@ export class TransferFormEditComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     this.message = 'Update a transfer...';
+    const timeWithZone = this.updateTransfer.date;
+    this.updateTransfer.date = this.paymentService.getUTCISODateTime(new Date(this.updateTransfer.date));
     this.subscriptionPut = this.transferService.updateTransfer(this.updateTransfer).subscribe( {
-      next: () =>   this.redirectTo('payments'),
-      error: (err) => this.message = err.message
+      next: () => this.redirectTo('payments'),
+      error: (err) => {
+        this.message = err.message;
+        this.updateTransfer.date = timeWithZone;
+      }
     });
   }
 
