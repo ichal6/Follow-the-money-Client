@@ -2,7 +2,7 @@ import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Payment} from '../../../../../model/Payment';
 import {PopupService} from '../../../../../service/popup.service';
 import {Subscription} from 'rxjs';
-import {TransactionsService} from '../../../../../service/transactions.service';
+import {TransactionService} from '../../../../../service/transaction.service';
 import {Router} from '@angular/router';
 import {TransferService} from '../../../../../service/transfer.service';
 import {FormChangeService} from '../../../../../service/form-change.service';
@@ -32,7 +32,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
   deleteSubscriptionTransfer: Subscription;
 
   constructor(private popupService: PopupService,
-              private transactionService: TransactionsService,
+              private transactionService: TransactionService,
               private transferService: TransferService,
               private formChangeService: FormChangeService,
               private router: Router) {

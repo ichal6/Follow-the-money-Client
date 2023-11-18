@@ -1,21 +1,21 @@
 import { TestBed } from '@angular/core/testing';
 
-import { TransactionsService } from './transactions.service';
+import { TransactionService } from './transaction.service';
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 import * as TransactionModelFixture from './fixture/TransationModelFixture';
 import {environment} from '../../environments/environment';
 
 describe('TransactionsService', () => {
-  let service: TransactionsService;
+  let service: TransactionService;
   let httpMock: HttpTestingController;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [ HttpClientTestingModule ],
-      providers: [ TransactionsService ]
+      providers: [ TransactionService ]
     }).compileComponents();
 
-    service = TestBed.inject(TransactionsService);
+    service = TestBed.inject(TransactionService);
     httpMock = TestBed.inject(HttpTestingController);
   });
 

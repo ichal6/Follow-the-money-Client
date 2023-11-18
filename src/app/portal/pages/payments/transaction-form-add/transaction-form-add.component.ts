@@ -8,7 +8,7 @@ import {Payee} from '../../../../model/Payee';
 import {PayeeService} from '../../../../service/payee.service';
 import {CategoryService} from '../../../../service/category.service';
 import {FormResetService} from '../../../../service/form-reset.service';
-import {TransactionsService} from '../../../../service/transactions.service';
+import {TransactionService} from '../../../../service/transaction.service';
 import {Router} from '@angular/router';
 import {FormChangeService} from '../../../../service/form-change.service';
 import {PaymentsService} from "../../../../service/payments.service";
@@ -43,7 +43,7 @@ export class TransactionFormAddComponent implements OnInit, OnDestroy {
   constructor(private accountsService: AccountsService,
               private payeeService: PayeeService,
               private categoryService: CategoryService,
-              private transactionsService: TransactionsService,
+              private transactionsService: TransactionService,
               private paymentService: PaymentsService,
               private formResetService: FormResetService,
               private router: Router,
@@ -165,16 +165,5 @@ export class TransactionFormAddComponent implements OnInit, OnDestroy {
   toTransfer(): void {
     console.log('To transfer active');
     this.formChangeService.changeFormToTransfer();
-  }
-
-  private getLocalISODatetime(): string {
-    const tzOffsetMilliseconds = new Date().getTimezoneOffset() * 60000;
-    const dateAsMilliseconds = Date.now();
-    return new Date(dateAsMilliseconds - tzOffsetMilliseconds).toISOString().slice(0, -5);
-  }
-
-  private getUTCISODateTime(date: Date): string {
-    const dateAsMilliseconds = date.getTime();
-    return new Date(dateAsMilliseconds).toISOString().slice(0, -5);
   }
 }
