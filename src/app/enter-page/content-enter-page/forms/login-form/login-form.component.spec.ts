@@ -31,4 +31,14 @@ describe('LoginFormComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should load credentials for default profile when user enter the login page', () => {
+    // given
+    const email = 'user@user.pl';
+    const password = 'user1';
+
+    // when/then
+    expect(component.email).toBe(email);
+    expect(component.password).toBe(password);
+  });
 });
