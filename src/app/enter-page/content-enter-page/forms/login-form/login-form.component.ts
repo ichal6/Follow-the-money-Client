@@ -17,7 +17,11 @@ export class LoginFormComponent implements OnInit, OnDestroy {
 
   constructor(private authService: AuthService,
               private route: Router,
-              private activatedRoute: ActivatedRoute) { }
+              private activatedRoute: ActivatedRoute) {
+    // Credentials for test account
+    this.email = 'user@user.pl';
+    this.password = 'user1';
+  }
 
   ngOnInit(): void{
     this.subscription = this.authService.authenticationResultEvent.subscribe(
