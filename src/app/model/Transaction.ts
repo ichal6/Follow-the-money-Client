@@ -11,18 +11,6 @@ export class Transaction {
   accountId: number;
   date: string;
 
-  static fromHttp(transaction: Transaction): Transaction {
-    const newTransaction = new Transaction();
-    newTransaction.accountId = transaction.accountId;
-    newTransaction.title = transaction.title;
-    newTransaction.type = (transaction.type === GeneralType.INCOME) ? GeneralType.INCOME : GeneralType.EXPENSE;
-    newTransaction.value = transaction.value;
-    newTransaction.categoryId = transaction.categoryId;
-    newTransaction.payeeId = transaction.payeeId;
-    newTransaction.accountId = transaction.accountId;
-    newTransaction.date = transaction.date;
-    newTransaction.id = transaction.id;
-    return newTransaction;
   static fromHttp(transactionJSON: Transaction): Transaction {
     const transactionTS = new Transaction();
     transactionTS.accountId = transactionJSON.accountId;
