@@ -1,5 +1,5 @@
 import {Component, EventEmitter, OnDestroy, OnInit} from '@angular/core';
-import {GeneralType, Transaction} from '../../../../model/Transaction';
+import {TransactionType, Transaction} from '../../../../model/Transaction';
 import {Subscription} from 'rxjs';
 import {AccountsService} from '../../../../service/accounts.service';
 import {Account} from '../../../../model/Account';
@@ -110,7 +110,7 @@ export class TransactionFormAddComponent implements OnInit, OnDestroy {
   }
 
   getCategoriesForType(): Array<Category> {
-    if (this.newTransaction.type === GeneralType.EXPENSE) {
+    if (this.newTransaction.type === TransactionType.EXPENSE) {
       return this.allCategoriesForExpense;
     } else {
       return this.allCategoriesForIncome;
@@ -123,8 +123,8 @@ export class TransactionFormAddComponent implements OnInit, OnDestroy {
   }
 
   checkIfTypeIsValid(): void {
-    this.isTypeValid = (this.newTransaction.type.toUpperCase() === GeneralType.INCOME
-      || this.newTransaction.type.toUpperCase() === GeneralType.EXPENSE);
+    this.isTypeValid = (this.newTransaction.type.toUpperCase() === TransactionType.INCOME
+      || this.newTransaction.type.toUpperCase() === TransactionType.EXPENSE);
   }
 
   checkIfValueIsValid(): void {

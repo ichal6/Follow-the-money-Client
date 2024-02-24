@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import { ValidatorService } from './validator.service';
-import {GeneralType, Transaction} from '../../model/Transaction';
+import {TransactionType, Transaction} from '../../model/Transaction';
 
 describe('ValidatorService', () => {
   let service: ValidatorService;
@@ -225,7 +225,7 @@ describe('ValidatorService', () => {
   it('should return false for expense type', () => {
     // given
     const transaction = new Transaction();
-    transaction.type = GeneralType.EXPENSE;
+    transaction.type = TransactionType.EXPENSE;
     // when
     const isValid = service.checkIfTypeIsValid(transaction.type);
     // then
@@ -235,7 +235,7 @@ describe('ValidatorService', () => {
   it('should return false for income type', () => {
     // given
     const transaction = new Transaction();
-    transaction.type = GeneralType.INCOME;
+    transaction.type = TransactionType.INCOME;
     // when
     const isValid = service.checkIfTypeIsValid(transaction.type);
     // then
