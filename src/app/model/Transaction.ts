@@ -4,7 +4,7 @@ import {Injectable} from '@angular/core';
 export class Transaction {
   id: number;
   title: string;
-  type: GeneralType;
+  type: TransactionType;
   value: number;
   categoryId: number;
   payeeId: number;
@@ -23,12 +23,22 @@ export class Transaction {
     newTransaction.date = transaction.date;
     newTransaction.id = transaction.id;
     return newTransaction;
+  static fromHttp(transactionJSON: Transaction): Transaction {
+    const transactionTS = new Transaction();
+    transactionTS.accountId = transactionJSON.accountId;
+    transactionTS.title = transactionJSON.title;
+    transactionTS.type = (transactionJSON.type === TransactionType.INCOME) ? TransactionType.INCOME : TransactionType.EXPENSE;
+    transactionTS.value = transactionJSON.value;
+    transactionTS.categoryId = transactionJSON.categoryId;
+    transactionTS.payeeId = transactionJSON.payeeId;
+    transactionTS.accountId = transactionJSON.accountId;
+    transactionTS.date = transactionJSON.date;
+    transactionTS.id = transactionJSON.id;
+    return transactionTS;
   }
 }
 
-
-
-export enum GeneralType {
+export enum TransactionType {
   INCOME = 'INCOME',
   EXPENSE = 'EXPENSE'
 }
