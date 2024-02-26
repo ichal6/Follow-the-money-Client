@@ -7,6 +7,7 @@ export class Transaction {
   type: TransactionType;
   value: number;
   categoryId: number;
+  subcategoryId: number;
   payeeId: number;
   accountId: number;
   date: string;
@@ -18,6 +19,7 @@ export class Transaction {
     transactionTS.type = (transactionJSON.type === TransactionType.INCOME) ? TransactionType.INCOME : TransactionType.EXPENSE;
     transactionTS.value = transactionJSON.value;
     transactionTS.categoryId = transactionJSON.categoryId;
+    transactionTS.subcategoryId = transactionJSON.subcategoryId;
     transactionTS.payeeId = transactionJSON.payeeId;
     transactionTS.accountId = transactionJSON.accountId;
     transactionTS.date = transactionJSON.date;

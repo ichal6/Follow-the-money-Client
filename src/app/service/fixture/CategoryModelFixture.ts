@@ -1,12 +1,20 @@
-import {Category} from '../../model/Category';
+import {Category, Subcategory} from '../../model/Category';
 
 export function getTransportCategory(): Category{
   const category = new Category();
   category.id = 5;
   category.name = 'Transport';
-  category.subcategories = [];
+  category.subcategories = [getTaxiCategory()];
 
   return category;
+}
+
+function getTaxiCategory(): Subcategory {
+  const subcategory = new Subcategory();
+  subcategory.id = 10;
+  subcategory.name = 'Taxi';
+
+  return subcategory;
 }
 
 export function getBonusesCategory(): Category{
