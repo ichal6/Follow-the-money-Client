@@ -1,6 +1,7 @@
 .payment {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-between;
   padding: 15px 20px 15px 20px;
 }
 
@@ -9,19 +10,19 @@ p {
   margin: 0;
 }
 
-.payment-row1, .payment-row2, .payment-row3, .payment-row4, .payment-row5 {
+.payment-row {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   cursor: pointer;
 }
 
-#payment-title, #payment-value {
+.bold-text {
   font-size: 13px;
   font-family: "Poppins Semibold", sans-serif;
 }
 
-#payment-date, #payment-balance, #payment-category, #payment-from, #payment-to {
+.regular-text {
   font-family: "Poppins Regular", sans-serif;
   font-size: 11px;
 }
@@ -31,7 +32,6 @@ p {
   font-family: "Poppins Semibold", sans-serif;
   line-height: 0.2;
 }
-
 
 a {
   cursor: pointer;
@@ -72,4 +72,21 @@ a {
 
 .delete-text {
   color: #F31259 !important;
+}
+
+#right-side {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#dots-row {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 15px;
+}
+
+#center {
+  flex-grow: 1;
+  cursor: pointer;
 }
