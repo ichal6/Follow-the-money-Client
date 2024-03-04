@@ -8,7 +8,7 @@ import {Account} from '../../../../model/Account';
 import {AccountsService} from '../../../../service/accounts.service';
 import {Payee} from '../../../../model/Payee';
 import {PayeeService} from '../../../../service/payee.service';
-import {Category} from '../../../../model/Category';
+import {Category, Subcategory} from '../../../../model/Category';
 import {CategoryService} from '../../../../service/category.service';
 import {ValidatorService} from '../../../../service/common/validator.service';
 import {PaymentsService} from "../../../../service/payments.service";
@@ -132,5 +132,9 @@ export class TransactionFormEditComponent  implements OnInit, OnDestroy{
 
   returnToTransaction() {
     this.formChangeService.changeFormToTransaction();
+  }
+
+  getSubcategories(): Array<Subcategory> {
+    return this.allCategories?.filter(c => c.id == this.updateTransaction.categoryId)?.shift()?.subcategories;
   }
 }

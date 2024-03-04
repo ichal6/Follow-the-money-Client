@@ -45,5 +45,13 @@
     </select>
   </div>
 
+  <div class ="edit-container">
+    <label for="subcategory">Select subcategory:</label>
+    <select class="provide-field form-select" id="subcategory" name="subcategory" [(ngModel)]="updateTransaction.subcategoryId">
+      <option [ngValue]="null">None</option>
+      <option *ngFor="let subcategory of getSubcategories()" [ngValue]="subcategory.id">{{subcategory.name}}</option>
+    </select>
+  </div>
+
   <button id="submit" type="button" class="form-button" (click)="onSubmit()" [disabled]="transactionForm.invalid || !isTransactionValid() ">Update</button>
 </form>

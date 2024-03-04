@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {environment} from '../../environments/environment';
-import {GeneralType, Transaction} from '../model/Transaction';
+import {TransactionType, Transaction} from '../model/Transaction';
 import {DataService} from './data.service';
 
 @Injectable({
@@ -22,7 +22,7 @@ export class TransactionService {
   }
 
   addTransaction(newTransaction: Transaction): Observable<void> {
-    const calculatedValue = (newTransaction.type === GeneralType.EXPENSE) ? 0 - newTransaction.value : newTransaction.value;
+    const calculatedValue = (newTransaction.type === TransactionType.EXPENSE) ? 0 - newTransaction.value : newTransaction.value;
     const transactionToAdd = {
       id: newTransaction.id,
       title: newTransaction.title,
@@ -42,7 +42,7 @@ export class TransactionService {
   }
 
   updateTransaction(transaction: Transaction): Observable<void> {
-    transaction.value = (transaction.type === GeneralType.EXPENSE) ? 0 - transaction.value : transaction.value;
+    transaction.value = (transaction.type === TransactionType.EXPENSE) ? 0 - transaction.value : transaction.value;
     return this.http.put<null>(
       environment.restUrl + '/api/payment/transaction',
       transaction,

@@ -10,6 +10,8 @@ import {TransactionService} from '../../../../service/transaction.service';
 import {Observable, Observer} from 'rxjs';
 import {Transaction} from '../../../../model/Transaction';
 import {getBuyCarTransaction} from "../../../../service/fixture/TransationModelFixture";
+import {getTaxi} from "../../../../service/fixture/TransationModelFixture";
+import {getTransportCategory} from "../../../../service/fixture/CategoryModelFixture";
 import {By} from "@angular/platform-browser";
 
 describe('TransactionFormEditComponent', () => {
@@ -148,5 +150,28 @@ describe('TransactionFormEditComponent', () => {
     // then
     const buttonStatus = fixture.debugElement.query(By.css('#submit'));
     expect(buttonStatus.nativeElement.disabled).toBeTruthy();
+  });
+
+  it('should return correct list of subcategories for the category', () => {
+    // given
+    component.updateTransaction = getTaxi();
+    component.allCategories = [getTransportCategory()];
+    // when
+    const subcategories = component.getSubcategories();
+    // then
+    expect(subcategories).toEqual(getTransportCategory().subcategories);
+  });
+
+  it('should fill dropbox with subcategories', () => {
+    // given
+    component.updateTransaction = getTaxi();
+    component.allCategories = [getTransportCategory()];
+    // when
+    fixture.detectChanges();
+    const options = fixture.debugElement.query(By.css("#subcategory")).nativeElement.options;
+    // then
+    expect(options.length).toEqual(2);
+    expect(options[0].label).toEqual('None');
+    expect(options[1].label).toEqual('Taxi');
   });
 });

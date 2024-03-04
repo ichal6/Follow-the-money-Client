@@ -2,7 +2,12 @@ export const data = [
   {
     "id": 5,
     "name": "Transport",
-    "subcategories": []
+    "subcategories": [
+      {
+        "id": 10,
+        "name": 'Taxi'
+      }
+    ]
   },
   {
     "id": 4,

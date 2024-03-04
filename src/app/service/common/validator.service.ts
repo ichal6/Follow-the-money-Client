@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {GeneralType} from '../../model/Transaction';
+import { TransactionType } from '../../model/Transaction';
 
 @Injectable({
   providedIn: 'root'
@@ -37,8 +37,8 @@ export class ValidatorService {
     if(type == null) {
       return false;
     }
-    return ( type.toUpperCase() === GeneralType.INCOME
-      || type.toUpperCase() === GeneralType.EXPENSE);
+    return ( type.toUpperCase() === TransactionType.INCOME
+      || type.toUpperCase() === TransactionType.EXPENSE);
   }
 
   checkIfValueIsValid(value: number): boolean {
