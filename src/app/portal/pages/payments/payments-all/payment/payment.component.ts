@@ -20,11 +20,11 @@ export class PaymentComponent implements OnInit, OnDestroy {
   @Input()
   backgroundColor: string;
   @Input()
-  first: any;
+  ifFirst: boolean;
   @Input()
-  last: any;
+  isLast: boolean;
   @Input()
-  even: any;
+  isEven: boolean;
   isFullLength: boolean;
   modeDisplayPopup: string;
   coordinates = [];
@@ -41,23 +41,23 @@ export class PaymentComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.isFullLength = false;
-    if (this.first) {
+    if (this.ifFirst) {
       this.border = '10px 10px 0 0';
-    } else if (this.last) {
+    } else if (this.isLast) {
       this.border = '0 0 10px 10px';
     }
-    if (this.even) {
+    if (this.isEven) {
       this.backgroundColor = '#ffffff';
     } else {
       this.backgroundColor = '#F6F6F6';
     }
   }
 
-  toggleIsFullLength(): void {
+  toggleFullLength(): void {
     this.isFullLength = this.isFullLength !== true;
   }
 
-  displayPopup(event): void {
+  displayPopup(event: MouseEvent): void {
     const coordinates = [];
     this.popupService.displayPopupWithSetUserSize(event, coordinates, 25, 105);
     this.coordinates = coordinates;
@@ -72,7 +72,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
     alert('This option is not implement, yet!');
   }
 
-  deleteButton(idPayment): void{
+  deleteButton(idPayment: number): void{
     if (this.payment.isInternal === true){
       this.deleteSubscriptionTransfer = this.transferService.deleteTransfer(idPayment).subscribe(
         next => {
