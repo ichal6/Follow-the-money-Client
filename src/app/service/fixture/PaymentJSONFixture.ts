@@ -8,6 +8,7 @@ export const data = [
     from: 'Savings in sock',
     to: 'MERCEDES-BENZ Poland',
     categoryName: 'transport',
+    subcategoryName: 'Taxi',
     balanceAfter: null
   },
   {

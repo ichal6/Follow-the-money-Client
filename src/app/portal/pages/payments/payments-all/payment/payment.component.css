@@ -17,6 +17,10 @@ p {
   cursor: pointer;
 }
 
+#right-side .payment-row {
+  justify-content: flex-end;
+}
+
 .bold-text {
   font-size: 13px;
   font-family: "Poppins Semibold", sans-serif;

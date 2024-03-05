@@ -1,26 +1,31 @@
 <div class="payment" [style]="{'background-color': backgroundColor, 'border-radius': border}">
-  <div id="left-side" (click)="toggleIsFullLength()">
+  <div id="left-side" (click)="toggleFullLength()">
     <div class="payment-row">
       <p class="bold-text">{{payment.title}}</p>
     </div>
     <div class="payment-row">
       <p class="regular-text">{{payment.date.toLocaleDateString()}}, {{payment.date.toLocaleTimeString()}}</p>
-      <p class="regular-text" *ngIf="payment.balanceAfter">Balance {{payment.balanceAfter}} USD</p>
     </div>
-    <div class="payment-row" *ngIf="payment.categoryName !== null && isFullLength === true">
+    <div class="payment-row" *ngIf="payment.categoryName !== null && isFullLength">
       <p class="regular-text">Category: {{payment.categoryName}}</p>
     </div>
-    <div class="payment-row" *ngIf="isFullLength === true">
+    <div class="payment-row" *ngIf="payment.subcategoryName !== null && isFullLength">
+      <p class="regular-text">Subcategory: {{payment.subcategoryName}}</p>
+    </div>
+    <div class="payment-row" *ngIf="isFullLength">
       <p class="regular-text">From: {{payment.from}}</p>
     </div>
-    <div class="payment-row" *ngIf="isFullLength === true">
+    <div class="payment-row" *ngIf="isFullLength">
       <p class="regular-text">To: {{payment.to}}</p>
     </div>
   </div>
-  <div id="center" (click)="toggleIsFullLength()"></div>
+  <div id="center" (click)="toggleFullLength()"></div>
   <div id="right-side">
-    <div class="payment-row" (click)="toggleIsFullLength()">
+    <div class="payment-row" (click)="toggleFullLength()">
       <p class="bold-text" [ngStyle]="{color: getColor()}">{{payment.value}} USD</p>
+    </div>
+    <div class="payment-row" (click)="toggleFullLength()">
+      <p class="regular-text" *ngIf="payment.balanceAfter">Balance {{payment.balanceAfter}} USD</p>
     </div>
     <div id="dots-row" class="payment-row" *ngIf="isFullLength">
       <p id="dots" (click)="displayPopup($event)">...</p>

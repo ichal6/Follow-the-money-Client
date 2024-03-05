@@ -1,5 +1,5 @@
 import {Payment} from '../../model/Payment';
-
+import {getTransportCategory} from "./CategoryModelFixture";
 
 export function getBuyCarPayment(): Payment{
   const payment = new Payment();
@@ -11,9 +11,14 @@ export function getBuyCarPayment(): Payment{
   payment.to = 'MERCEDES-BENZ Poland';
   payment.from = 'Savings in sock';
   payment.categoryName = 'transport';
+  payment.subcategoryName = getTaxiSubcategoryName();
   payment.balanceAfter = null;
 
   return payment;
+}
+
+function getTaxiSubcategoryName(): string {
+  return getTransportCategory().subcategories.find(s => s.id === 10).name;
 }
 
 export function getBuyAnotherCarPayment(): Payment{
@@ -26,6 +31,7 @@ export function getBuyAnotherCarPayment(): Payment{
   payment.to = 'MERCEDES-BENZ Poland';
   payment.from = 'Savings in sock';
   payment.categoryName = 'transport';
+  payment.subcategoryName = null;
   payment.balanceAfter = null;
 
   return payment;
