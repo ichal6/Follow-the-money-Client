@@ -9,7 +9,7 @@ import {spyDataServiceGetEmail} from '../../../../service/common/SpyObjects';
 import {TransactionService} from '../../../../service/transaction.service';
 import {Observable, Observer} from 'rxjs';
 import {Transaction} from '../../../../model/Transaction';
-import {getBuyCarTransaction} from "../../../../service/fixture/TransationModelFixture";
+import {getBuyCarTransaction, getTaxiWithSubcategory} from "../../../../service/fixture/TransationModelFixture";
 import {getTaxi} from "../../../../service/fixture/TransationModelFixture";
 import {getTransportCategory} from "../../../../service/fixture/CategoryModelFixture";
 import {By} from "@angular/platform-browser";
@@ -173,5 +173,17 @@ describe('TransactionFormEditComponent', () => {
     expect(options.length).toEqual(2);
     expect(options[0].label).toEqual('None');
     expect(options[1].label).toEqual('Taxi');
+  });
+
+  it('should set subcategoryId to null for updateTransaction when user change category', () => {
+    // given
+    component.updateTransaction = getTaxiWithSubcategory();
+    const select: HTMLSelectElement = fixture.debugElement.query(By.css('#category')).nativeElement;
+
+    // when
+    select.dispatchEvent(new Event('change'));
+
+    // then
+    expect(component.updateTransaction.subcategoryId).toBeNull();
   });
 });
