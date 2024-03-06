@@ -1,5 +1,5 @@
 import {TransactionType, Transaction} from '../../model/Transaction';
-import {getTransportCategory} from './CategoryModelFixture';
+import {getTaxiSubcategory, getTransportCategory} from './CategoryModelFixture';
 
 export function getBuyCarTransaction(): Transaction {
   const transaction = new Transaction();
@@ -25,6 +25,13 @@ export function getTaxi(): Transaction {
   transaction.payeeId = 1;
   transaction.categoryId = getTransportCategory().id;
   transaction.date = '2024-02-24T16:15:00';
+
+  return transaction;
+}
+
+export function getTaxiWithSubcategory(): Transaction {
+  const transaction = getTaxi()
+  transaction.subcategoryId = getTaxiSubcategory().id;
 
   return transaction;
 }

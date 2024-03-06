@@ -4,12 +4,12 @@ export function getTransportCategory(): Category{
   const category = new Category();
   category.id = 5;
   category.name = 'Transport';
-  category.subcategories = [getTaxiCategory()];
+  category.subcategories = [getTaxiSubcategory()];
 
   return category;
 }
 
-function getTaxiCategory(): Subcategory {
+export function getTaxiSubcategory(): Subcategory {
   const subcategory = new Subcategory();
   subcategory.id = 10;
   subcategory.name = 'Taxi';

@@ -118,6 +118,10 @@ export class TransactionFormEditComponent  implements OnInit, OnDestroy{
       this.isValueIsValid();
   }
 
+  setNullSubcategoryIdForTransaction(): void {
+    this.updateTransaction.subcategoryId = null;
+  }
+
   isTitleValid(): boolean {
     return this.validator.checkIfTitleIsValid(this.updateTransaction.title)
   }

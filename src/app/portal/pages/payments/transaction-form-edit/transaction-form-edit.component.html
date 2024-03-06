@@ -40,7 +40,8 @@
 
   <div class ="edit-container">
     <label for="category">Select category:</label>
-    <select class="provide-field form-select" id="category" name="category" [(ngModel)]="updateTransaction.categoryId" required>
+    <select class="provide-field form-select" id="category" name="category"
+            [(ngModel)]="updateTransaction.categoryId" (change)="setNullSubcategoryIdForTransaction()" required>
       <option *ngFor="let category of allCategories" [ngValue]="category.id">{{category.name}}</option>
     </select>
   </div>
