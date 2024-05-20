@@ -44,7 +44,7 @@ export class Dashboard{
     const accountsJSON = dashboard.popularAccounts;
     const accountsTS = new Array<Account>();
     for (const account of accountsJSON){
-      accountsTS.push(Account.fromHttp(account));
+      accountsTS.push(Account.fromJavaScript(account));
     }
     return accountsTS;
   }

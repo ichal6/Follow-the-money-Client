@@ -1,8 +1,6 @@
-import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
-import {Subscription} from 'rxjs';
+import {Component, Input, OnInit} from '@angular/core';
 import {AccountsService} from '../../../../service/accounts.service';
 import {Router} from '@angular/router';
-import {FormResetService} from '../../../../service/form-reset.service';
 import {Account, AccountType} from '../../../../model/Account';
 
 @Component({
@@ -10,58 +8,48 @@ import {Account, AccountType} from '../../../../model/Account';
   templateUrl: './accounts-form-edit.component.html',
   styleUrls: ['./accounts-form-edit.component.css']
 })
-export class AccountsFormEditComponent implements OnInit, OnDestroy {
+export class AccountsFormEditComponent implements OnInit {
   @Input()
   updatedAccount: Account;
 
   updatedAccountForm: Account;
   message: string;
 
-  @Output()
-  dataChangedEvent = new EventEmitter();
-
   isNameValid = false;
   isTypeValid = false;
   isBalanceValid = false;
 
-  accountResetSubscription: Subscription;
-
   constructor(private accountsService: AccountsService,
-              private router: Router,
-              private formResetService: FormResetService) { }
+              private router: Router) { }
 
   ngOnInit(): void {
     this.initializeForm();
-    this.accountResetSubscription = this.formResetService.resetAccountFormEvent.subscribe(
-      account => {
-        this.updatedAccount = account;
-        this.initializeForm();
-      }
-    );
   }
 
-  initializeForm(): void {
-    this.updatedAccountForm = Object.assign({}, this.updatedAccount);
+  private initializeForm(): void {
+    this.updatedAccountForm = Account.fromJavaScript(
+      {
+        id: this.updatedAccount.id,
+        name: this.updatedAccount.name,
+        accountType: this.updatedAccount.accountType,
+        startingBalance: this.updatedAccount.startingBalance,
+        currentBalance: this.updatedAccount.currentBalance}
+    );
     this.checkIfNameIsValid();
     this.checkIfTypeIsValid();
     this.checkIfBalanceIsValid();
   }
 
-  ngOnDestroy(): void {
-    this.accountResetSubscription.unsubscribe();
-  }
-
   onSubmit(): void {
     this.message = 'Updating account...';
-    this.accountsService.updateAccount(this.updatedAccountForm).subscribe(
-      (account) => {
-        this.dataChangedEvent.emit();
-        this.redirectTo('accounts');
-      },
-      (error) => {
-        this.message = error.error;
-      }
-    );
+    this.editAccount();
+  }
+
+  private editAccount(): void {
+    this.accountsService.updateAccount(this.updatedAccountForm).subscribe({
+      next: () => this.redirectTo('accounts'),
+      error: error => this.message = error.message
+    });
   }
 
   checkIfNameIsValid(): void {

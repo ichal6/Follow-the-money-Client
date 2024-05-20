@@ -5,7 +5,7 @@ export class Account {
   startingBalance: number;
   currentBalance: number;
 
-  static fromHttp(account): Account {
+  static fromJavaScript(account: AccountJS): Account {
     const newAccount = new Account();
     newAccount._id = account.id;
     newAccount._name = account.name;
@@ -49,6 +49,14 @@ export class Account {
   isNull(): boolean {
     return false;
   }
+}
+
+export interface AccountJS {
+  id: number;
+  name: string;
+  accountType: AccountType;
+  startingBalance: number;
+  currentBalance: number;
 }
 
 export class NoAccount extends Account {
