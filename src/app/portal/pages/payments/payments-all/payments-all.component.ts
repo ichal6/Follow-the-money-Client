@@ -56,7 +56,9 @@ export class PaymentsAllComponent implements OnInit, OnDestroy {
     const htmlElement = event.target as HTMLInputElement;
     const searchPhrase = htmlElement.value;
 
-    this.displayPayments = this.allPayments.filter(p => p.title.search(new RegExp(searchPhrase, 'i')) != -1);
+    this.displayPayments = this.allPayments
+      .filter(p => p.title.search(new RegExp(searchPhrase, 'i')) != -1)
+      .map(p => Payment.copy(p));
   }
 
   ngOnDestroy(): void {

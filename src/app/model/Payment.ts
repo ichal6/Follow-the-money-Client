@@ -24,6 +24,21 @@ export class Payment {
     newPaymentTS.balanceAfter = paymentJS.balanceAfter;
     return newPaymentTS;
   }
+
+  static copy(oldPayment: Payment): Payment {
+    const newPayment = new Payment();
+    newPayment.isInternal = oldPayment.isInternal;
+    newPayment.id = oldPayment.id;
+    newPayment.value = oldPayment.value;
+    newPayment.date = new Date(oldPayment.date);
+    newPayment.title = oldPayment.title;
+    newPayment.from = oldPayment.from;
+    newPayment.to = oldPayment.to;
+    newPayment.categoryName = oldPayment.categoryName;
+    newPayment.subcategoryName = oldPayment.subcategoryName
+    newPayment.balanceAfter = oldPayment.balanceAfter;
+    return newPayment;
+  }
 }
 
 export interface PaymentJS {
