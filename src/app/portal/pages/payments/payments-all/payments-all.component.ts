@@ -16,6 +16,7 @@ export class PaymentsAllComponent implements OnInit, OnDestroy {
   public account: Account;
   public noAccount: NoAccount;
   public periodInDays: number;
+  public searchPhrase: string;
   private subscribePayment: Subscription;
   private subscribeAccount: Subscription;
 
@@ -26,6 +27,7 @@ export class PaymentsAllComponent implements OnInit, OnDestroy {
     this.noAccount = new NoAccount();
     this.account = this.noAccount;
     this.periodInDays = 0;
+    this.searchPhrase = '';
     this.requestAccounts();
     this.requestPayments();
   }

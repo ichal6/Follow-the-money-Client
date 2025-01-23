@@ -1,13 +1,13 @@
 <h1>Your payments</h1>
 <div class="payments-container">
-  <div class="parameter1">
+  <div class="parameters">
     <label for="account">Select account: </label>
     <select class="account-select" name="account" id="account" [(ngModel)]="account" (change)="requestPayments()" #accountSelect >
       <option [ngValue]="noAccount" >{{noAccount.name}}</option>
       <option *ngFor="let account of allAccounts" [ngValue]="account">{{account.name}}</option>
     </select>
   </div>
-  <div class="parameter2">
+  <div class="parameters">
     <label for="period">Period: </label>
     <select class="period-select" name="period" id="period" [(ngModel)]="periodInDays" (change)="requestPayments()" #periodSelect="ngModel">
       <option value="0">Whole time</option>
@@ -16,6 +16,15 @@
       <option value="90">Last 3 months</option>
       <option value="365">Last year</option>
     </select>
+  </div>
+  <div class="parameters" id="search">
+    <label for="search">Search: </label>
+    <input
+      id="input-search"
+      name="search"
+      type="search"
+      placeholder="Search on the website"
+      [(ngModel)]="searchPhrase">
   </div>
   <div class="payments">
     <app-payment *ngFor="let payment of payments first as isFirst; last as isLast; even as isEven"
