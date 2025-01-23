@@ -11,7 +11,8 @@ import {Account, NoAccount} from '../../../../model/Account';
   styleUrls: ['./payments-all.component.css']
 })
 export class PaymentsAllComponent implements OnInit, OnDestroy {
-  public payments: Array<Payment>;
+  public displayPayments: Array<Payment>;
+  public allPayments: Array<Payment>;
   public allAccounts: Array<Account>;
   public account: Account;
   public noAccount: NoAccount;
@@ -42,10 +43,20 @@ export class PaymentsAllComponent implements OnInit, OnDestroy {
 
   requestPayments(): void {
     this.subscribePayment = this.paymentsService.getPayments(this.account.id, this.periodInDays).subscribe({
-      next: (res) => this.payments = res,
+      next: (res) => {
+        this.allPayments = res;
+        this.displayPayments = [...res];
+        },
       error: (err) => console.log('problem with getting the payments: ', err),
       complete: () => console.log('Completed fetch all payments')
     });
+  }
+
+  filterResult(event: Event) {
+    const htmlElement = event.target as HTMLInputElement;
+    const searchPhrase = htmlElement.value;
+
+    this.displayPayments = this.allPayments.filter(p => p.title.search(new RegExp(searchPhrase, 'i')) != -1);
   }
 
   ngOnDestroy(): void {
