@@ -61,6 +61,21 @@ describe('PaymentsAllComponent', () => {
     expect(component.displayPayments[1].title).toBe('buy another car');
   });
 
+  it('should filter payments by from name based on search phrase', () => {
+    // Given
+    const searchEvent = {
+      target: {value: 'Savings in sock'}
+    } as unknown as Event;
+
+    // When
+    component.filterResult(searchEvent);
+
+    // Then
+    expect(component.displayPayments.length).toBe(2);
+    expect(component.displayPayments[0].from).toBe('Savings in sock');
+    expect(component.displayPayments[1].from).toBe('Savings in sock');
+  });
+
   it('should filter by European date format (DD.MM.YYYY)', () => {
     // Given
     const searchEvent = {

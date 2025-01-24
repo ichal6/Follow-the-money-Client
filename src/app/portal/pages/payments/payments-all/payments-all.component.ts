@@ -64,7 +64,7 @@ export class PaymentsAllComponent implements OnInit, OnDestroy {
         const {monthNormalized, dayNormalized} = this.removeLeadingZeros(month, day);
 
         return words.every(word => {
-          if (this.searchTextInTitle(payment, word)) {
+          if (this.searchTextInPayment(payment, word)) {
             return true;
           }
 
@@ -168,8 +168,9 @@ export class PaymentsAllComponent implements OnInit, OnDestroy {
     return /^(0?[1-9]|[12]\d|3[01])[.-]?(?:(?:0?(?:[1-9]|0)|1[0-2])(?:[.-]\d{4})?)?$/;
   }
 
-  private searchTextInTitle(payment: Payment, word: string) {
-    return payment.title.toLowerCase().includes(word);
+  private searchTextInPayment(payment: Payment, word: string) {
+    return payment.title.toLowerCase().includes(word) ||
+      payment.from.toLowerCase().includes(word);
   }
 
   private removeLeadingZeros(month: string, day: string) {
