@@ -170,7 +170,9 @@ export class PaymentsAllComponent implements OnInit, OnDestroy {
 
   private searchTextInPayment(payment: Payment, word: string) {
     return payment.title.toLowerCase().includes(word) ||
-      payment.from.toLowerCase().includes(word);
+      payment.from.toLowerCase().includes(word) ||
+      payment.to.toLowerCase().includes(word) ||
+      payment.categoryName?.toLowerCase().includes(word);
   }
 
   private removeLeadingZeros(month: string, day: string) {

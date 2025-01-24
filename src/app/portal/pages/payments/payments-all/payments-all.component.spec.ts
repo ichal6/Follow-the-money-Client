@@ -76,6 +76,38 @@ describe('PaymentsAllComponent', () => {
     expect(component.displayPayments[1].from).toBe('Savings in sock');
   });
 
+  it('should filter payments by to name based on search phrase', () => {
+    // Given
+    const searchEvent = {
+      target: {value: 'MERCEDES-BENZ Poland'}
+    } as unknown as Event;
+
+    // When
+    component.filterResult(searchEvent);
+
+    // Then
+    expect(component.displayPayments.length).toBe(2);
+    expect(component.displayPayments[0].to).toBe('MERCEDES-BENZ Poland');
+    expect(component.displayPayments[1].to).toBe('MERCEDES-BENZ Poland');
+  });
+
+  it('should filter payments by categoryName name based on search phrase', () => {
+    // Given
+    const categoryName = getBuyCarPayment().categoryName;
+
+    const searchEvent = {
+      target: {value: categoryName}
+    } as unknown as Event;
+
+    // When
+    component.filterResult(searchEvent);
+
+    // Then
+    expect(component.displayPayments.length).toBe(2);
+    expect(component.displayPayments[0].categoryName).toBe(categoryName);
+    expect(component.displayPayments[1].categoryName).toBe(categoryName);
+  });
+
   it('should filter by European date format (DD.MM.YYYY)', () => {
     // Given
     const searchEvent = {
