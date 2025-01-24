@@ -54,11 +54,14 @@ export class PaymentsAllComponent implements OnInit, OnDestroy {
 
   filterResult(event: Event) {
     const htmlElement = event.target as HTMLInputElement;
-    const searchPhrase = htmlElement.value;
+    const searchPhrase = htmlElement.value.toLowerCase();
+    const words = searchPhrase.split(' ').filter(word => word.trim() !== '');
 
     this.displayPayments = this.allPayments
-      .filter(p => p.title.search(new RegExp(searchPhrase, 'i')) != -1)
-      .map(p => Payment.copy(p));
+      .filter(payment =>
+        words.every(word => payment.title.toLowerCase().includes(word))
+      )
+      .map(payment => Payment.copy(payment));
   }
 
   ngOnDestroy(): void {
