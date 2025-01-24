@@ -108,6 +108,22 @@ describe('PaymentsAllComponent', () => {
     expect(component.displayPayments[1].categoryName).toBe(categoryName);
   });
 
+  it('should filter payments by subcategoryName name based on search phrase', () => {
+    // Given
+    const subcategoryName = getBuyCarPayment().subcategoryName;
+
+    const searchEvent = {
+      target: {value: subcategoryName}
+    } as unknown as Event;
+
+    // When
+    component.filterResult(searchEvent);
+
+    // Then
+    expect(component.displayPayments.length).toBe(1);
+    expect(component.displayPayments[0].subcategoryName).toBe(subcategoryName);
+  });
+
   it('should filter by European date format (DD.MM.YYYY)', () => {
     // Given
     const searchEvent = {

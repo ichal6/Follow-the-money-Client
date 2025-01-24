@@ -163,7 +163,7 @@ export class PaymentsAllComponent implements OnInit, OnDestroy {
     return !searchMonth || searchMonth === '';
   }
 
-// Handle partial date inputs (D.M or DD.MM or DD.MM.YYYY or D.MM or DD.M)
+  // Handle partial date inputs (D.M or DD.MM or DD.MM.YYYY or D.MM or DD.M)
   private getRegexpToHandlePartialDate() {
     return /^(0?[1-9]|[12]\d|3[01])[.-]?(?:(?:0?(?:[1-9]|0)|1[0-2])(?:[.-]\d{4})?)?$/;
   }
@@ -172,7 +172,8 @@ export class PaymentsAllComponent implements OnInit, OnDestroy {
     return payment.title.toLowerCase().includes(word) ||
       payment.from.toLowerCase().includes(word) ||
       payment.to.toLowerCase().includes(word) ||
-      payment.categoryName?.toLowerCase().includes(word);
+      payment.categoryName?.toLowerCase().includes(word) ||
+      payment.subcategoryName?.toLowerCase().includes(word);
   }
 
   private removeLeadingZeros(month: string, day: string) {
