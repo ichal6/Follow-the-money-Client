@@ -61,37 +61,32 @@ export class PaymentsAllComponent implements OnInit, OnDestroy {
       .filter(payment => {
         const dateParts = payment.date.toISOString().split('T')[0].split('-'); // Extract year, month, day
         const [year, month, day] = dateParts;
-        // Remove leading zeros for flexible matching
-        const unpadMonth = month.replace(/^0+/, '');
-        const unpadDay = day.replace(/^0+/, '');
+        const {monthNormalized, dayNormalized} = this.removeLeadingZeros(month, day);
 
         return words.every(word => {
-          // Check for regular text search in title
-          if (payment.title.toLowerCase().includes(word)) {
+          if (this.searchTextInTitle(payment, word)) {
             return true;
           }
 
           // Handle partial date inputs (D.M or DD.MM or DD.MM.YYYY or D.MM or DD.M)
-          if (/^(0?[1-9]|[12]\d|3[01])[.-]?(?:(?:0?(?:[1-9]|0)|1[0-2])(?:[.-]\d{4})?)?$/.test(word)) {
+          if (this.getRegexpToHandlePartialDate().test(word)) {
             const parts = word.split(/[-.]/)
             const [searchDay, searchMonth, searchYear] = parts;
-            const searchDayUnpad = searchDay.replace(/^0+/, '');
-            const searchMonthUnpad = searchMonth ? searchMonth.replace(/^0+/, '') : '';
+            const searchDayNormalized = searchDay.replace(/^0+/, '');
+            const searchMonthNormalized = searchMonth ? searchMonth.replace(/^0+/, '') : '';
 
-            // If only day is provided with separator (e.g., "7.")
-            if (!searchMonth || searchMonth === '') {
-              return unpadDay === searchDayUnpad;
+            if (this.isOnlyDayIsProvided(searchMonth)) {
+              return dayNormalized === searchDayNormalized;
             }
 
-            // If day and partial/complete month is provided (e.g., "7.2" or "7.12")
-            if (searchMonth && !searchYear) {
-              return unpadDay === searchDayUnpad && unpadMonth.startsWith(searchMonthUnpad);
+            if (this.isDayAndPartialOrCompleteMonthProvided(searchMonth, searchYear)) {
+              return dayNormalized === searchDayNormalized && monthNormalized.startsWith(searchMonthNormalized);
             }
 
             // If day, month and partial/complete year is provided (e.g., "7.2.2" or "7.2.2023")
             if (searchYear) {
-              return unpadDay === searchDayUnpad &&
-                unpadMonth === searchMonthUnpad &&
+              return dayNormalized === searchDayNormalized &&
+                monthNormalized === searchMonthNormalized &&
                 year.startsWith(searchYear);
             }
           }
@@ -101,59 +96,86 @@ export class PaymentsAllComponent implements OnInit, OnDestroy {
           if (yearPattern.test(word)) {
             const searchYear = word.substring(0, 4);
 
-            // If it's just the year (with or without separator), match it
-            if (word === searchYear || word === searchYear + '-' || word === searchYear + '.') {
+            if (this.isYearWithOrWithoutSeparator(word, searchYear)) {
               return year === searchYear;
             }
 
             // If there's more after the year, try to match month pattern
-            if (word.length > 4) {
+            if (this.isMoreThanOnlyYear(word)) {
               const separator = word.charAt(4);
               const remainingPart = word.substring(5);
 
-              // If nothing after separator, match the year
-              if (remainingPart === '') {
-                return year === searchYear;
-              }
-
-              // Split remaining part to check for month and day
               const [searchMonth, searchDay] = remainingPart.split(separator);
-              const searchMonthUnpad = searchMonth ? searchMonth.replace(/^0+/, '') : '';
-              const searchDayUnpad = searchDay ? searchDay.replace(/^0+/, '') : '';
+              const searchMonthNormalized = searchMonth ? searchMonth.replace(/^0+/, '') : '';
+              const searchDayNormalized = searchDay ? searchDay.replace(/^0+/, '') : '';
 
               // Handle year and month
               if (!searchDay) {
-                return year === searchYear && unpadMonth.startsWith(searchMonthUnpad || '');
+                return year === searchYear && monthNormalized.startsWith(searchMonthNormalized || '');
               }
 
               // Handle year, month and partial day
               return year === searchYear &&
-                unpadMonth === searchMonthUnpad &&
-                (searchDayUnpad === '' || unpadDay.startsWith(searchDayUnpad));
+                monthNormalized === searchMonthNormalized &&
+                (searchDayNormalized === '' || dayNormalized.startsWith(searchDayNormalized));
             }
           }
 
-          // Handle M.D.YYYY format
-          if (/^([1-9]|0?[1-9]|1[0-2])[.-]([1-9]|0?[1-9]|[12]\d|3[01])[.-]\d{4}$/.test(word)) {
+          if (this.getRegexForM_D_YYYY().test(word)) {
             const parts = word.split(/[-.]/)
             const [searchMonth, searchDay, searchYear] = parts;
-            const searchMonthUnpad = searchMonth.replace(/^0+/, '');
-            const searchDayUnpad = searchDay.replace(/^0+/, '');
+            const searchMonthNormalized = searchMonth.replace(/^0+/, '');
+            const searchDayNormalized = searchDay.replace(/^0+/, '');
 
             return year === searchYear &&
-              unpadMonth === searchMonthUnpad &&
-              unpadDay === searchDayUnpad;
+              monthNormalized === searchMonthNormalized &&
+              dayNormalized === searchDayNormalized;
           }
 
           // Check for individual date parts
           return year.includes(word) ||
-            unpadMonth === word ||
+            monthNormalized === word ||
             month === word ||
-            unpadDay === word ||
+            dayNormalized === word ||
             day === word;
         });
       })
       .map(payment => Payment.copy(payment));
+  }
+
+  private getRegexForM_D_YYYY() {
+    return /^([1-9]|0?[1-9]|1[0-2])[.-]([1-9]|0?[1-9]|[12]\d|3[01])[.-]\d{4}$/;
+  }
+
+  private isMoreThanOnlyYear(word: string) {
+    return word.length > 4;
+  }
+
+  private isYearWithOrWithoutSeparator(word: string, searchYear: string) {
+    return word === searchYear || word === searchYear + '-' || word === searchYear + '.';
+  }
+
+  private isDayAndPartialOrCompleteMonthProvided(searchMonth: string, searchYear: string) {
+    return searchMonth && !searchYear;
+  }
+
+  private isOnlyDayIsProvided(searchMonth: string) {
+    return !searchMonth || searchMonth === '';
+  }
+
+// Handle partial date inputs (D.M or DD.MM or DD.MM.YYYY or D.MM or DD.M)
+  private getRegexpToHandlePartialDate() {
+    return /^(0?[1-9]|[12]\d|3[01])[.-]?(?:(?:0?(?:[1-9]|0)|1[0-2])(?:[.-]\d{4})?)?$/;
+  }
+
+  private searchTextInTitle(payment: Payment, word: string) {
+    return payment.title.toLowerCase().includes(word);
+  }
+
+  private removeLeadingZeros(month: string, day: string) {
+    const unpadMonth = month.replace(/^0+/, '');
+    const unpadDay = day.replace(/^0+/, '');
+    return {monthNormalized: unpadMonth, dayNormalized: unpadDay};
   }
 
   ngOnDestroy(): void {
