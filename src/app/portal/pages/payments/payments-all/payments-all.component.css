@@ -23,17 +23,21 @@ label, select, option{
   margin-right: 50px;
 }
 
-.parameter1, .parameter2, .payments {
+.parameters, .payments {
   margin-top: 15px;
   margin-bottom: 15px;
 }
 
-select {
+select, #input-search {
   padding: 10px 30px 10px 10px;
   border: none;
   background-color: #ffffff;
   border-radius: 10px;
   margin-left: 10px;
+}
+
+#input-search {
+  width: 300px;
 }
 
 @media only screen and (max-width: 1100px) {

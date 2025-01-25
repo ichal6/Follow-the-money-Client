@@ -41,7 +41,9 @@ export class PaymentComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.isFullLength = false;
-    if (this.ifFirst) {
+    if(this.ifFirst && this.isLast) {
+      this.border = '10px 10px 10px 10px';
+    } else if (this.ifFirst) {
       this.border = '10px 10px 0 0';
     } else if (this.isLast) {
       this.border = '0 0 10px 10px';

@@ -47,3 +47,19 @@ export function getCashDepositSeptember(): Payment{
 
   return payment;
 }
+
+export function getMonthlySalary(): Payment{
+  const payment = new Payment();
+  payment.isInternal = false;
+  payment.id = 4;
+  payment.value = 5000.0;
+  payment.date = new Date('2022-05-15T10:00:00.000+00:00');
+  payment.title = 'Monthly Salary';
+  payment.from = 'Tech Corp';
+  payment.to = 'My Account';
+  payment.categoryName = 'income';
+  payment.subcategoryName = 'salary';
+  payment.balanceAfter = null;
+
+  return payment;
+}
