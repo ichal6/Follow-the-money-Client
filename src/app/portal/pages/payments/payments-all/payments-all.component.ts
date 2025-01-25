@@ -57,10 +57,17 @@ export class PaymentsAllComponent implements OnInit, OnDestroy {
   }
 
   filterResult(event: Event) {
+    const words = this.processSearchPhrase(event);
+    this.filterPaymentsWithSearchTerms(words);
+  }
+
+  private processSearchPhrase(event: Event) {
     const htmlElement = event.target as HTMLInputElement;
     const searchPhrase = htmlElement.value.trim().toLowerCase();
-    const words = searchPhrase.split(' ').filter(word => word !== '');
+    return searchPhrase.split(' ').filter(word => word !== '');
+  }
 
+  private filterPaymentsWithSearchTerms(words: string[]) {
     this.displayPayments = this.allPayments
       .filter(payment => {
         const dateParts: DateParts = this.dateMatcherService.extractDateParts(payment.date);
