@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
+import {CommonModule, NgOptimizedImage} from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
 import {MainPortalLayoutComponent} from './shared-components/main-portal-layout/main-portal-layout.component';
 import {DashboardComponent} from './pages/dashboard/dashboard.component';
@@ -49,6 +49,7 @@ import {MultiSelectModule} from 'primeng/multiselect';
 import { SelectTimePeriodComponent } from './pages/analysis/select-time-period/select-time-period.component';
 import { TransactionFormEditComponent } from './pages/payments/transaction-form-edit/transaction-form-edit.component';
 import { TransferFormEditComponent } from './pages/payments/transfer-form-edit/transfer-form-edit.component';
+import { AddNewElementComponent } from './shared-components/add-new-element/add-new-element.component';
 
 const routes: Routes = [
   {
@@ -176,7 +177,8 @@ const routes: Routes = [
     FinancialTableComponent,
     SelectTimePeriodComponent,
     TransactionFormEditComponent,
-    TransferFormEditComponent
+    TransferFormEditComponent,
+    AddNewElementComponent
   ],
   imports: [
     CommonModule,
@@ -188,7 +190,8 @@ const routes: Routes = [
     ProgressBarModule,
     SliderModule,
     DropdownModule,
-    MultiSelectModule
+    MultiSelectModule,
+    NgOptimizedImage
   ],
   exports:
     [RouterModule, AddPayeeComponent, EditPayeeComponent, PayeeAllComponent]
