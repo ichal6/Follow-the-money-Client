@@ -1,6 +1,5 @@
 import {Component, EventEmitter, Output} from '@angular/core';
 import {FormChangeService} from "../../../service/form-change.service";
-import {Payment} from "../../../model/Payment";
 
 @Component({
   selector: 'app-add-new-element',
