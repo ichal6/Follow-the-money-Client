@@ -1,10 +1,12 @@
 <div class="payments-content">
-  <app-payments-all></app-payments-all>
+  <app-payments-all/>
   <app-add-new-element (addNewElement)="addPayment()"/>
-  <div *ngIf="displayAdd" id="modify-payments">
-    <app-transaction-form-add *ngIf="this.formChangeService.formAction === 'transaction'"></app-transaction-form-add>
-    <app-transaction-form-edit *ngIf="this.formChangeService.formAction === 'edit-transaction'" />
-    <app-transfer-form-add *ngIf="this.formChangeService.formAction === 'transfer'"></app-transfer-form-add>
-    <app-transfer-form-edit *ngIf="this.formChangeService.formAction === 'edit-transfer'" />
+  <div *ngIf="displayAdd && !formChangeService.formAction.includes('edit')" class="modify-payments">
+    <app-transaction-form-add *ngIf="this.formChangeService.formAction === 'transaction'"/>
+    <app-transfer-form-add *ngIf="this.formChangeService.formAction === 'transfer'"/>
+  </div>
+  <div class="modify-payments" *ngIf="formChangeService.formAction.includes('edit')">
+    <app-transaction-form-edit *ngIf="this.formChangeService.formAction === 'edit-transaction'"/>
+    <app-transfer-form-edit *ngIf="this.formChangeService.formAction === 'edit-transfer'"/>
   </div>
 </div>
