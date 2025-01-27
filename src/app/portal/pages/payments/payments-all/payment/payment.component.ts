@@ -92,6 +92,10 @@ export class PaymentComponent implements OnInit, OnDestroy {
     }
   }
 
+  scrollToTop(): void {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
   editAction() {
     if (this.payment.isInternal) {
       this.formChangeService.changeFormToEditTransfer(this.payment);
@@ -99,6 +103,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
       this.formChangeService.changeFormToEditTransaction(this.payment);
     }
     this.togglePopup();
+    this.scrollToTop();
   }
 
   ngOnDestroy(): void {

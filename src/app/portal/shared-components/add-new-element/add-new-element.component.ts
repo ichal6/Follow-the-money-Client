@@ -20,6 +20,10 @@ export class AddNewElementComponent {
   add() {
     this.addNewElement.emit();
     this.isAdd = this.isAdd !== true;
+    this.scrollToTop();
   }
 
+  scrollToTop(): void {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 }
