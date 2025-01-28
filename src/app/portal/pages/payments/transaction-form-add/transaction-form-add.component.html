@@ -23,7 +23,7 @@
   </select>
   <select class="form-select" id="category" name="category" [(ngModel)]="newTransaction.categoryId" (change)="checkIfCategoryIdIsValid()" required>
     <option [ngValue]="null" [disabled]="true" >Select category</option>
-    <option *ngFor="let category of getCategoriesForType()" [ngValue]="category.id">{{category.name}}</option>
+    <option *ngFor="let category of getCategories()" [ngValue]="category.id">{{category.name}}</option>
   </select>
   <input type="datetime-local" class="form-input" id="date" placeholder="Date" name="date" [(ngModel)]="newTransaction.date" (change)="checkIfDateIsValid()" #dateField="ngModel" required>
   <p *ngIf="!isDateValid && dateField.touched" class="message">Date should be in format DD.MM.YYYY</p>
