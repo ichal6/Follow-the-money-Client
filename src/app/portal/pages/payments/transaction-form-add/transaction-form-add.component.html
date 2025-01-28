@@ -1,31 +1,114 @@
-<app-payment-type-select ></app-payment-type-select>
+<div id="main-container">
+  <app-payment-type-select/>
 
-<form class="transaction-form" #transactionForm="ngForm">
-  <p class="message" *ngIf="message">{{message}}</p>
-  <select class="form-select" id="account-from" name="account-from" [(ngModel)]="newTransaction.accountId" (change)="checkIfAccountIdIsValid()" #accountIdField="ngModel" required>
-    <option [ngValue]="null" [disabled]="true" >Select account for transaction</option>
-    <option *ngFor="let account of allAccounts" [ngValue]="account.id">{{account.name}}</option>
-  </select>
-  <p class="message" *ngIf="!isAccountIdValid && accountIdField.touched">You have to choose the account</p>
-  <select class="form-select" id="type" name="type" [(ngModel)]="newTransaction.type" (change)="checkIfTypeIsValid()" #typeField="ngModel" required>
-    <option [ngValue]="null" [disabled]="true">Select transaction type</option>
-    <option value = "INCOME">INCOME</option>
-    <option value = "EXPENSE">EXPENSE</option>
-  </select>
-  <input type="text" class="form-input" id="title" placeholder="Transaction title" name="title" [(ngModel)]="newTransaction.title" (change)="checkIfTitleIsValid()" #titleField="ngModel" required>
-  <p class="message" *ngIf="!isTitleValid && titleField.touched">Title has to be at least 3 characters long</p>
-  <p class="message" *ngIf="!isTypeValid && typeField.touched">You have to choose the transaction type</p>
-  <input type="number" class="form-input" id="value" placeholder="Transaction value (USD)" name="value" [(ngModel)]="newTransaction.value" (change)="checkIfValueIsValid()" #valueField="ngModel" required>
-  <p class="message" *ngIf="!isValueValid && valueField.touched">Value can't be empty or contain signs other than '.'. Must be a positive number.</p>
-  <select class="form-select" id="payee" name="payee" [(ngModel)]="newTransaction.payeeId" (change)="checkIfPayeeIdIsValid()" required>
-    <option [ngValue]="null" [disabled]="true" >Select payee</option>
-    <option *ngFor="let payee of getPayees()" [ngValue]="payee.id">{{payee.name}}</option>
-  </select>
-  <select class="form-select" id="category" name="category" [(ngModel)]="newTransaction.categoryId" (change)="checkIfCategoryIdIsValid()" required>
-    <option [ngValue]="null" [disabled]="true" >Select category</option>
-    <option *ngFor="let category of getCategories()" [ngValue]="category.id">{{category.name}}</option>
-  </select>
-  <input type="datetime-local" class="form-input" id="date" placeholder="Date" name="date" [(ngModel)]="newTransaction.date" (change)="checkIfDateIsValid()" #dateField="ngModel" required>
-  <p *ngIf="!isDateValid && dateField.touched" class="message">Date should be in format DD.MM.YYYY</p>
-  <button type="button" class="form-button" (click)="onSubmit()" [disabled]="transactionForm.invalid || !isTitleValid || !isAccountIdValid || !isTypeValid || !isCategoryIdValid || !isPayeeIdValid || !isValueValid || !isDateValid ">Save</button>
-</form>
+  <form class="transaction-form" #transactionForm="ngForm">
+    <button type="button" class="form-button cancel-button" (click)="initializeNewTransaction()">Reset form</button>
+    <p class="message" *ngIf="message">{{message}}</p>
+
+    <div class="edit-container">
+      <label for="title">Change title:</label>
+      <input type="text" class="form-input" id="title" placeholder="Transaction title" name="title"
+             [(ngModel)]="newTransaction.title"
+             #titleField="ngModel"
+             required>
+    </div>
+    <p class="message" *ngIf="!this.checkIfTitleIsValid() && titleField.touched">
+      Title has to be at least 3 characters long
+    </p>
+
+    <div class="edit-container">
+      <label for="datetime">Select date:</label>
+      <input type="datetime-local" step="1" class="form-input" id="datetime" name="date" placeholder="Please provide a date"
+             [(ngModel)]="newTransaction.date"
+             #dateTimeField="ngModel"
+             required>
+    </div>
+    <p class="message" *ngIf="!dateTimeField.valid && !this.checkIfDateIsValid() && dateTimeField.touched">
+      Please should provide correct date
+    </p>
+
+    <div class="edit-container">
+      <label for="type">Transaction type:</label>
+      <select class="form-select" id="type" name="type"
+              [(ngModel)]="newTransaction.type"
+              [ngStyle]="getSelectStyles(newTransaction.type)"
+              #typeField="ngModel"
+              required>
+        <option class="disabled-option" [disabled]="true" [ngValue]="null">Select one ↓</option>
+        <option value = "INCOME">INCOME</option>
+        <option value = "EXPENSE">EXPENSE</option>
+      </select>
+    </div>
+    <p class="message" *ngIf="!typeField.valid && !this.checkIfTypeIsValid() && typeField.touched">
+      Please should provide correct type
+    </p>
+
+    <div class="edit-container">
+      <label for="value">Provide value:</label>
+      <input type="number" class="provide-field form-input" id="value" placeholder="Transaction value (USD)" name="value"
+             [(ngModel)]="newTransaction.value"
+             #valueField="ngModel"
+             required>
+    </div>
+    <p class="message" *ngIf="!this.checkIfValueIsValid() && valueField.touched">
+      Value can't be empty or contain signs other than '.'. Must be a positive number.
+    </p>
+
+    <div class="edit-container">
+      <label for="account">Account:</label>
+      <select class="provide-field form-select" id="account" name="account-from"
+              [(ngModel)]="newTransaction.accountId"
+              [ngStyle]="getSelectStyles(newTransaction.accountId)"
+              #accountIdField="ngModel"
+              required>
+        <option [disabled]="true" [ngValue]="null">Select one ↓</option>
+        <option *ngFor="let account of allAccounts" [ngValue]="account.id">{{account.name}}</option>
+      </select>
+    </div>
+    <p class="message" *ngIf="!accountIdField.valid && !this.checkIfAccountIdIsValid() && accountIdField.touched">
+      Please should provide correct account
+    </p>
+
+
+    <div class="edit-container">
+      <label for="payee">Payee:</label>
+      <select class="provide-field form-select" id="payee" name="payee"
+              [(ngModel)]="newTransaction.payeeId"
+              [ngStyle]="getSelectStyles(newTransaction.payeeId)"
+              #payeeIdField="ngModel"
+              required>
+        <option [disabled]="true" [ngValue]="null">Select one ↓</option>
+        <option *ngFor="let payee of allPayees" [ngValue]="payee.id">{{payee.name}}</option>
+      </select>
+    </div>
+    <p class="message" *ngIf="!payeeIdField.valid && !this.checkIfPayeeIdIsValid() && payeeIdField.touched">
+      Please should provide correct payee
+    </p>
+
+    <div class ="edit-container">
+      <label for="category">Category:</label>
+      <select class="provide-field form-select" id="category" name="category"
+              [(ngModel)]="newTransaction.categoryId"
+              [ngStyle]="getSelectStyles(newTransaction.categoryId)"
+              (change)="setNullSubcategoryIdForTransaction()"
+              #categoryIdField="ngModel"
+              required>
+        <option [disabled]="true" [ngValue]="null">Select one ↓</option>
+        <option *ngFor="let category of allCategories" [ngValue]="category.id">{{category.name}}</option>
+      </select>
+    </div>
+    <p class="message" *ngIf="!categoryIdField.valid && !this.checkIfCategoryIdIsValid() && categoryIdField.touched">
+      Please should provide correct category
+    </p>
+
+    <div class ="edit-container">
+      <label for="subcategory">Select subcategory:</label>
+      <select class="provide-field form-select" id="subcategory" name="subcategory" [(ngModel)]="newTransaction.subcategoryId">
+        <option [ngValue]="null">None</option>
+        <option *ngFor="let subcategory of getSubcategories()" [ngValue]="subcategory.id">{{subcategory.name}}</option>
+      </select>
+    </div>
+
+    <button id="submit" type="button" class="form-button" (click)="onSubmit()" [disabled]="transactionForm.invalid || !checkTransactionValidity()">Save</button>
+  </form>
+</div>

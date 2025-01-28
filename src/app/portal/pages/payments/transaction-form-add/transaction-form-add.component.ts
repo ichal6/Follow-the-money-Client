@@ -3,7 +3,7 @@ import {Transaction} from '../../../../model/Transaction';
 import {Subscription} from 'rxjs';
 import {AccountsService} from '../../../../service/accounts.service';
 import {Account} from '../../../../model/Account';
-import {Category} from '../../../../model/Category';
+import {Category, Subcategory} from '../../../../model/Category';
 import {Payee} from '../../../../model/Payee';
 import {PayeeService} from '../../../../service/payee.service';
 import {CategoryService} from '../../../../service/category.service';
@@ -15,7 +15,7 @@ import {ValidatorService} from "../../../../service/common/validator.service";
 @Component({
   selector: 'app-transaction-form-add',
   templateUrl: './transaction-form-add.component.html',
-  styleUrls: ['./transaction-form-add.component.css']
+  styleUrls: ['./transaction-form-add.component.css', '../transaction-form-edit/transaction-form-edit.component.css']
 })
 export class TransactionFormAddComponent implements OnInit, OnDestroy {
   newTransaction: Transaction;
@@ -23,14 +23,6 @@ export class TransactionFormAddComponent implements OnInit, OnDestroy {
   allAccounts: Array<Account>;
   allCategories: Array<Category>;
   allPayees: Array<Payee>;
-
-  isAccountIdValid = false;
-  isTypeValid = false;
-  isValueValid = false;
-  isDateValid = false;
-  isTitleValid = false;
-  isPayeeIdValid = false;
-  isCategoryIdValid = false;
 
   subscriptionAccounts: Subscription;
   subscriptionPayees: Subscription;
@@ -46,20 +38,22 @@ export class TransactionFormAddComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.initializeNewTransaction();
-    this.checkIfDateIsValid();
 
     this.loadAccounts();
     this.loadPayees();
     this.loadCategories();
   }
 
-  private initializeNewTransaction() {
+  initializeNewTransaction() {
     this.newTransaction = new Transaction();
     this.newTransaction.accountId = null;
     this.newTransaction.payeeId = null;
     this.newTransaction.categoryId = null;
+    this.newTransaction.subcategoryId = null;
     this.newTransaction.type = null;
     this.newTransaction.date = this.paymentService.getLocalISODatetime();
+
+    this.checkIfDateIsValid();
   }
 
   private loadCategories(): void {
@@ -116,39 +110,60 @@ export class TransactionFormAddComponent implements OnInit, OnDestroy {
     return this.allCategories;
   }
 
-  checkIfAccountIdIsValid(): void {
-    this.isAccountIdValid = this.newTransaction.accountId != null &&
+  checkIfAccountIdIsValid(): boolean {
+    return this.newTransaction.accountId != null &&
       !isNaN(Number(this.newTransaction.accountId.toString()));
   }
 
-  checkIfTypeIsValid(): void {
-    this.isTypeValid = this.validator.checkIfTypeIsValid(this.newTransaction.type);
+  checkIfTypeIsValid(): boolean {
+    return this.validator.checkIfTypeIsValid(this.newTransaction.type);
   }
 
-  checkIfValueIsValid(): void {
-    this.isValueValid = this.validator.checkIfValueIsValid(this.newTransaction.value);
+  checkIfValueIsValid(): boolean {
+    return this.validator.checkIfValueIsValid(this.newTransaction.value);
   }
 
-  checkIfDateIsValid(): void {
-    this.isDateValid = this.validator.checkIfDateIsValid(this.newTransaction.date);
+  checkIfDateIsValid(): boolean {
+    return  this.validator.checkIfDateIsValid(this.newTransaction.date);
   }
 
-  checkIfTitleIsValid(): void {
-    this.isTitleValid = this.validator.checkIfTitleIsValid(this.newTransaction.title);
+  checkIfTitleIsValid(): boolean {
+    return this.validator.checkIfTitleIsValid(this.newTransaction.title);
   }
 
-  checkIfCategoryIdIsValid(): void {
-    this.isCategoryIdValid = this.newTransaction.categoryId != null &&
+  checkIfCategoryIdIsValid(): boolean {
+    return  this.newTransaction.categoryId != null &&
       !isNaN(Number(this.newTransaction.categoryId.toString()));
   }
 
-  checkIfPayeeIdIsValid(): void {
-    this.isPayeeIdValid = this.newTransaction.payeeId != null &&
+  checkIfPayeeIdIsValid(): boolean {
+    return  this.newTransaction.payeeId != null &&
       !isNaN(Number(this.newTransaction.payeeId.toString()));
   }
 
   private redirectTo(uri: string): void {
     this.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
       this.router.navigate([uri]));
+  }
+
+  setNullSubcategoryIdForTransaction(): void {
+    this.newTransaction.subcategoryId = null;
+  }
+
+  getSubcategories(): Array<Subcategory> {
+    return this.allCategories?.filter(c => c.id == this.newTransaction.categoryId)?.shift()?.subcategories;
+  }
+
+  checkTransactionValidity(): boolean {
+    return this.checkIfTitleIsValid() &&
+      this.checkIfDateIsValid() &&
+      this.validator.checkIfTypeIsValid(this.newTransaction.type) &&
+      this.checkIfValueIsValid();
+  }
+
+  getSelectStyles(value:string | number | null) {
+    return {
+      color: value ? '#404040' : '#A0A0A1',
+    }
   }
 }
