@@ -5,7 +5,11 @@ import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {RouterTestingModule} from '@angular/router/testing';
 import {FormsModule} from '@angular/forms';
 import {Payment} from '../../../../../model/Payment';
-import {getBuyAnotherCarPayment, getBuyCarPayment} from '../../../../../service/fixture/PaymentModelFixture';
+import {
+  getBuyAnotherCarPayment,
+  getBuyCarPayment,
+  getCashDepositSeptember
+} from '../../../../../service/fixture/PaymentModelFixture';
 
 describe('PaymentComponent', () => {
   let component: PaymentComponent;
@@ -73,4 +77,56 @@ describe('PaymentComponent', () => {
     // assert
     expect(debugElement).toBeNull();
   });
+
+  it('should toggle popup visibility', () => {
+    // arrange
+    component.modeDisplayPopup = 'none';
+
+    // act
+    component.togglePopup();
+
+    // assert
+    expect(component.modeDisplayPopup).toBe('block');
+
+    // act
+    component.togglePopup();
+
+    // assert
+    expect(component.modeDisplayPopup).toBe('none');
+  });
+
+  it('should scroll to top of the page', () => {
+    // arrange
+    const spy = spyOn(window, 'scrollTo');
+
+    // act
+    component.scrollToTop();
+
+    // assert
+    // We need to ignore TypeScript error here because the spy mock doesn't have
+    // proper type definitions for scrollTo parameters, but we know the implementation is correct
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    expect(spy).toHaveBeenCalledWith({top: 0, behavior: 'smooth'});
+  });
+
+  it('should close popup and scroll to top when editAction is called', () => {
+    // arrange
+    const toggleSpy = spyOn(component, 'togglePopup');
+    const scrollSpy = spyOn(component, 'scrollToTop');
+    component.payment = getCashDepositSeptember();
+    const formChangeServiceSpy = spyOn(
+      component['formChangeService'],
+      'changeFormToEditTransfer'
+    );
+
+    // act
+    component.editAction();
+
+    // assert
+    expect(toggleSpy).toHaveBeenCalled();
+    expect(scrollSpy).toHaveBeenCalled();
+    expect(formChangeServiceSpy).toHaveBeenCalledWith(component.payment);
+  });
+
 });

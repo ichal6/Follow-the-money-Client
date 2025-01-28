@@ -18,4 +18,37 @@ describe('AddNewElementComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should emit addNewElement event and toggle isAdd on add()', () => {
+    // Arrange
+    const emitSpy = spyOn(component.addNewElement, 'emit');
+
+    // Act
+    component.add();
+
+    // Assert
+    expect(emitSpy).toHaveBeenCalled();
+    expect(component.isAdd).toBe(false);
+
+    // Act
+    component.add();
+
+    // Assert
+    expect(component.isAdd).toBe(true);
+  });
+
+  it('should scroll to top of the page on add()', () => {
+    // Arrange
+    const spy = spyOn(window, 'scrollTo');
+
+    // Act
+    component.add();
+
+    // Assert
+    // We need to ignore TypeScript error here because the spy mock doesn't have
+    // proper type definitions for scrollTo parameters, but we know the implementation is correct
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    expect(spy).toHaveBeenCalledWith({top: 0, behavior: 'smooth'});
+  });
 });
