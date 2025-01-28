@@ -63,15 +63,11 @@ export class PaymentComponent implements OnInit, OnDestroy {
     const coordinates = [];
     this.popupService.displayPopupWithSetUserSize(event, coordinates, 25, 105);
     this.coordinates = coordinates;
-    if (this.modeDisplayPopup === 'none') {
-      this.modeDisplayPopup = 'block';
-    } else {
-      this.modeDisplayPopup = 'none';
-    }
+    this.togglePopup();
   }
 
-  displayInfo(): void {
-    alert('This option is not implement, yet!');
+  togglePopup(): void {
+    this.modeDisplayPopup = this.modeDisplayPopup === 'none' ? 'block' : 'none';
   }
 
   deleteButton(idPayment: number): void{
@@ -96,12 +92,18 @@ export class PaymentComponent implements OnInit, OnDestroy {
     }
   }
 
+  scrollToTop(): void {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
   editAction() {
     if (this.payment.isInternal) {
       this.formChangeService.changeFormToEditTransfer(this.payment);
     } else{
       this.formChangeService.changeFormToEditTransaction(this.payment);
     }
+    this.togglePopup();
+    this.scrollToTop();
   }
 
   ngOnDestroy(): void {
