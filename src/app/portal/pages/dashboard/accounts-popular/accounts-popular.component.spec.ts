@@ -6,10 +6,13 @@ import {RouterTestingModule} from '@angular/router/testing';
 import {FormsModule} from '@angular/forms';
 import {Account, AccountType} from '../../../../model/Account';
 import {Dashboard} from '../../../../model/Dashboard';
+import {DebugElement} from "@angular/core";
+import {By} from "@angular/platform-browser";
 
 describe('AccountsPopularComponent', () => {
   let component: AccountsPopularComponent;
   let fixture: ComponentFixture<AccountsPopularComponent>;
+  let debugElement: DebugElement;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -27,6 +30,7 @@ describe('AccountsPopularComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(AccountsPopularComponent);
     component = fixture.componentInstance;
+    debugElement = fixture.debugElement;
 
     const expectedAccount = new Account();
     expectedAccount.accountType = AccountType.BANK;
@@ -39,5 +43,25 @@ describe('AccountsPopularComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should verify if the icon is loaded from the given URL', (done: DoneFn) => {
+    // arrange
+    const imageInput = debugElement.query(By.css('input[type="image"]')).nativeElement;
+    const iconUrl = imageInput.src;
+
+    const img = new Image();
+    img.src = iconUrl;
+    // act & assert
+    img.onload = () => {
+      expect(img.complete).toBeTrue();
+      expect(img.naturalWidth).toBeGreaterThan(0);
+      done();
+    };
+
+    img.onerror = () => {
+      fail(`Image failed to load from URL: ${iconUrl}`);
+      done();
+    };
   });
 });
