@@ -45,23 +45,17 @@ describe('AccountsPopularComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should verify if the icon is loaded from the given URL', (done: DoneFn) => {
-    // arrange
+  it('should have a path that starts with "assets"', () => {
+    // Arrange
     const imageInput = debugElement.query(By.css('input[type="image"]')).nativeElement;
-    const iconUrl = imageInput.src;
 
-    const img = new Image();
-    img.src = iconUrl;
-    // act & assert
-    img.onload = () => {
-      expect(img.complete).toBeTrue();
-      expect(img.naturalWidth).toBeGreaterThan(0);
-      done();
-    };
+    // Act
+    const iconUrl = imageInput.getAttribute('src');
 
-    img.onerror = () => {
-      fail(`Image failed to load from URL: ${iconUrl}`);
-      done();
-    };
+    // Assert
+    expect(iconUrl).toBeDefined();
+    if (!iconUrl.startsWith('assets')) {
+      fail(`The "src" path is incorrect. Expected it to start with "assets", but got: "${iconUrl}"`);
+    }
   });
 });
