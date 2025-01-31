@@ -8,6 +8,7 @@ import {FormChangeService} from '../../../service/form-change.service';
 })
 export class PaymentsComponent implements OnInit, OnDestroy {
   public displayAdd: boolean;
+  private isBeenEdited: boolean;
   private readonly TABLET_SIZE_WIDTH: number = 1100;
 
   constructor(public formChangeService: FormChangeService) { }
@@ -15,6 +16,7 @@ export class PaymentsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.formChangeService.formAction = 'transaction';
     this.displayAdd = window.innerWidth > this.TABLET_SIZE_WIDTH;
+    this.isBeenEdited = false;
   }
 
   ngOnDestroy(): void {
@@ -23,10 +25,12 @@ export class PaymentsComponent implements OnInit, OnDestroy {
 
   addPayment() {
     this.displayAdd = this.displayAdd !== true;
+    this.isBeenEdited = this.isBeenEdited !== true;
   }
 
   @HostListener('window:resize', ['$event'])
   onWindowResize() {
-    this.displayAdd = window.innerWidth > this.TABLET_SIZE_WIDTH;
+    if(!this.isBeenEdited)
+      this.displayAdd = window.innerWidth > this.TABLET_SIZE_WIDTH;
   }
 }

@@ -112,4 +112,107 @@ describe('PaymentsComponent', () => {
     // Assert
     expect(component.displayAdd).toBeTrue();
   });
+
+  it('should set formAction to "transaction" and displayAdd based on window width on initialization', () => {
+    // Arrange
+    const largeWidth = 1200;
+    spyOnProperty(window, 'innerWidth').and.returnValue(largeWidth);
+
+    // Act
+    component.ngOnInit();
+
+    // Assert
+    expect(component.formChangeService.formAction).toBe('transaction');
+    expect(component.displayAdd).toBeTrue();
+  });
+
+  it('should set formAction to "add" on destruction', () => {
+    // Act
+    component.ngOnDestroy();
+
+    // Assert
+    expect(component.formChangeService.formAction).toBe('add');
+  });
+
+
+  it('should update displayAdd based on window width on resize if not being edited', () => {
+    // Arrange
+    const largeWidth = 1200;
+    const smallWidth = 800;
+    const spy = spyOnProperty(window, 'innerWidth').and.returnValue(largeWidth);
+
+    // Act
+    component.onWindowResize();
+
+    // Assert
+    expect(component.displayAdd).toBeTrue();
+
+    // Arrange
+    spy.and.returnValue(smallWidth);
+
+    // Act
+    component.onWindowResize();
+
+    // Assert
+    expect(component.displayAdd).toBeFalse();
+  });
+
+  it('should not update displayAdd on resize if being edited', () => {
+    // Arrange
+    const initialDisplayAdd = component.displayAdd;
+
+    // Act
+    component.onWindowResize();
+
+    // Assert
+    expect(component.displayAdd).toBe(initialDisplayAdd);
+  });
+
+  it('should keep the form visible when window is resized after clicking Add Transaction on a device with less than 1100px', () => {
+    // Arrange
+    const smallWidth = 800;
+    spyOnProperty(window, 'innerWidth').and.returnValue(smallWidth);
+    component.ngOnInit();
+    component.addPayment(); // Simulate clicking Add Transaction
+
+    // Act
+    component.onWindowResize();
+
+    // Assert
+    expect(component.displayAdd).toBeTrue();
+  });
+
+  it('should keep displayAdd true after resizing to large width', () => {
+    // Arrange
+    const smallWidth = 800;
+    const largeWidth = 1200;
+    const spy = spyOnProperty(window, 'innerWidth').and.returnValue(smallWidth);
+    component.ngOnInit();
+
+    // Act
+    component.addPayment(); // Simulate clicking Add Transaction
+    spy.and.returnValue(largeWidth);
+    component.onWindowResize();
+
+    // Assert
+    expect(component.displayAdd).toBeTrue();
+  });
+
+  it('should keep displayAdd true after resizing height', () => {
+    // Arrange
+    const smallWidth = 800;
+    const smallHeight = 1200;
+    const largeHeight = 1200;
+    spyOnProperty(window, 'innerWidth').and.returnValue(smallWidth);
+    const spy = spyOnProperty(window, 'innerHeight').and.returnValue(smallHeight);
+    component.ngOnInit();
+
+    // Act
+    component.addPayment(); // Simulate clicking Add Transaction
+    spy.and.returnValue(largeHeight);
+    component.onWindowResize();
+
+    // Assert
+    expect(component.displayAdd).toBeTrue();
+  });
 });
