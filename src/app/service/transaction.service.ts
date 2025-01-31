@@ -22,18 +22,12 @@ export class TransactionService {
   }
 
   addTransaction(newTransaction: Transaction): Observable<void> {
-    const calculatedValue = this.calculateValue(newTransaction);
-    const transactionToAdd = {
-      id: newTransaction.id,
-      title: newTransaction.title,
-      type: newTransaction.type,
-      value: calculatedValue,
-      categoryId: newTransaction.categoryId,
-      subcategoryId: newTransaction.subcategoryId,
-      payeeId: newTransaction.payeeId,
-      accountId: newTransaction.accountId,
-      date: newTransaction.date};
-    return this.http.post<void>(environment.restUrl + '/api/payment/transaction/' + this.dataService.getEmail(), transactionToAdd , {withCredentials : true});
+    newTransaction.value = this.calculateValue(newTransaction);
+    return this.http.post<void>(
+      environment.restUrl + '/api/payment/transaction/' + this.dataService.getEmail(),
+      newTransaction ,
+      {withCredentials : true}
+    );
   }
 
   deleteTransaction(idTransaction): Observable<Transaction>{
