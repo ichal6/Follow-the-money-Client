@@ -29,6 +29,7 @@ export class TransactionService {
       type: newTransaction.type,
       value: calculatedValue,
       categoryId: newTransaction.categoryId,
+      subcategoryId: newTransaction.subcategoryId,
       payeeId: newTransaction.payeeId,
       accountId: newTransaction.accountId,
       date: newTransaction.date};

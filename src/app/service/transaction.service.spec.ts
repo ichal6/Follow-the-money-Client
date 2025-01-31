@@ -103,4 +103,34 @@ describe('TransactionService', () => {
     );
     expect(req.request.body.value).toBe(TransactionModelFixture.getBuyCarTransaction().value);
   });
+
+  it('should send POST request with subcategoryId when adding a new transaction', () => {
+    const newTransaction = TransactionModelFixture.getBuyCarTransaction();
+    newTransaction.subcategoryId = 123;
+    service.addTransaction(newTransaction).subscribe(
+      response => {
+        expect(response).toBeNull();
+      });
+
+    const req = httpMock.expectOne(
+      environment.restUrl + '/api/payment/transaction/' + dataService.getEmail()
+    );
+    expect(req.request.method).toBe('POST');
+    expect(req.request.body.subcategoryId).toBe(123);
+  });
+
+  it('should send POST request without subcategoryId when adding a new transaction', () => {
+    const newTransaction = TransactionModelFixture.getBuyCarTransaction();
+    newTransaction.subcategoryId = null;
+    service.addTransaction(newTransaction).subscribe(
+      response => {
+        expect(response).toBeNull();
+      });
+
+    const req = httpMock.expectOne(
+      environment.restUrl + '/api/payment/transaction/' + dataService.getEmail()
+    );
+    expect(req.request.method).toBe('POST');
+    expect(req.request.body.subcategoryId).toBeNull();
+  });
 });
