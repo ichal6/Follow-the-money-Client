@@ -10,7 +10,7 @@
 }
 
 #title, #datetime, #type, .provide-field {
-  color: #404040 !important;
+  color: #404040;
   text-align: center;
   padding: 5px;
   width: 70%;

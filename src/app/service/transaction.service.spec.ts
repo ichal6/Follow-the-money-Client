@@ -4,9 +4,12 @@ import { TransactionService } from './transaction.service';
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 import * as TransactionModelFixture from './fixture/TransationModelFixture';
 import {environment} from '../../environments/environment';
+import { DataService } from './data.service';
+import {TransactionType} from "../model/Transaction";
 
 describe('TransactionService', () => {
   let service: TransactionService;
+  let dataService: DataService;
   let httpMock: HttpTestingController;
 
   beforeEach(() => {
@@ -16,7 +19,10 @@ describe('TransactionService', () => {
     }).compileComponents();
 
     service = TestBed.inject(TransactionService);
+    dataService = TestBed.inject(DataService);
     httpMock = TestBed.inject(HttpTestingController);
+
+    spyOn(dataService, 'getEmail').and.returnValue('email@example.pl');
   });
 
   afterEach(() => {
@@ -28,22 +34,124 @@ describe('TransactionService', () => {
   });
 
   it('should sent PUT request when try edit Transaction', () =>{
-    service.updateTransaction(TransactionModelFixture.getBuyCarTransaction()).subscribe(
+    // Arrange
+    const transaction = TransactionModelFixture.getBuyCarTransaction();
+
+    // Act / Assert
+    service.updateTransaction(transaction).subscribe(
       response => {
         expect(response).toBeNull();
       });
-
     const req = httpMock.expectOne(environment.restUrl + '/api/payment/transaction');
     expect(req.request.method).toBe('PUT');
-  })
+  });
 
-  it('should add sign to value before sent', () =>{
-    service.updateTransaction(TransactionModelFixture.getBuyCarTransaction()).subscribe(
+  it('should correctly calculate value for EXPENSE transaction when updating', () => {
+    // Arrange
+    const updatedTransaction = TransactionModelFixture.getBuyCarTransaction();
+
+    // Act / Assert
+    service.updateTransaction(updatedTransaction).subscribe(
       response => {
         expect(response).toBeNull();
       });
 
     const req = httpMock.expectOne(environment.restUrl + '/api/payment/transaction');
     expect(req.request.body.value).toBe(TransactionModelFixture.getBuyCarTransaction().value * -1);
-  })
+  });
+
+  it('should correctly calculate value for INCOME transaction when updating', () => {
+    // Arrange
+    const updatedTransaction = TransactionModelFixture.getBuyCarTransaction();
+    updatedTransaction.type = TransactionType.INCOME;
+
+    // Act / Assert
+    service.updateTransaction(updatedTransaction).subscribe(
+      response => {
+        expect(response).toBeNull();
+      });
+
+    const req = httpMock.expectOne(environment.restUrl + '/api/payment/transaction');
+    expect(req.request.body.value).toBe(TransactionModelFixture.getBuyCarTransaction().value);
+  });
+
+  it('should send POST request when adding a new transaction', () => {
+    // Arrange
+    const newTransaction = TransactionModelFixture.getBuyCarTransaction();
+
+    // Act / Assert
+    service.addTransaction(newTransaction).subscribe(
+      response => {
+        expect(response).toBeNull();
+      });
+    const req = httpMock.expectOne(environment.restUrl + '/api/payment/transaction/' + dataService.getEmail());
+    expect(req.request.method).toBe('POST');
+  });
+
+  it('should correctly calculate value for EXPENSE transaction', () => {
+    // Arrange
+    const newTransaction = TransactionModelFixture.getBuyCarTransaction();
+
+    // Act / Assert
+    service.addTransaction(newTransaction).subscribe(
+      response => {
+        expect(response).toBeNull();
+      });
+
+    const req = httpMock.expectOne(
+      environment.restUrl + '/api/payment/transaction/' + dataService.getEmail()
+    );
+    expect(req.request.body.value).toBe(TransactionModelFixture.getBuyCarTransaction().value * -1);
+  });
+
+  it('should correctly calculate value for INCOME transaction', () => {
+    // Arrange
+    const newTransaction = TransactionModelFixture.getBuyCarTransaction();
+    newTransaction.type = TransactionType.INCOME;
+
+    // Act / Assert
+    service.addTransaction(newTransaction).subscribe(
+      response => {
+        expect(response).toBeNull();
+      });
+
+    const req = httpMock.expectOne(
+      environment.restUrl + '/api/payment/transaction/' + dataService.getEmail()
+    );
+    expect(req.request.body.value).toBe(TransactionModelFixture.getBuyCarTransaction().value);
+  });
+
+  it('should send POST request with subcategoryId when adding a new transaction', () => {
+    // Arrange
+    const newTransaction = TransactionModelFixture.getBuyCarTransaction();
+    newTransaction.subcategoryId = 123;
+
+    // Act / Assert
+    service.addTransaction(newTransaction).subscribe(
+      response => {
+        expect(response).toBeNull();
+      });
+    const req = httpMock.expectOne(
+      environment.restUrl + '/api/payment/transaction/' + dataService.getEmail()
+    );
+    expect(req.request.method).toBe('POST');
+    expect(req.request.body.subcategoryId).toBe(123);
+  });
+
+  it('should send POST request without subcategoryId when adding a new transaction', () => {
+    // Arrange
+    const newTransaction = TransactionModelFixture.getBuyCarTransaction();
+    newTransaction.subcategoryId = null;
+
+    // Act / Assert
+    service.addTransaction(newTransaction).subscribe(
+      response => {
+        expect(response).toBeNull();
+      });
+    const req = httpMock.expectOne(
+      environment.restUrl + '/api/payment/transaction/' + dataService.getEmail()
+    );
+    expect(req.request.method).toBe('POST');
+    expect(req.request.body.subcategoryId).toBeNull();
+  });
 });
