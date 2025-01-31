@@ -4,9 +4,12 @@ import { TransactionService } from './transaction.service';
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 import * as TransactionModelFixture from './fixture/TransationModelFixture';
 import {environment} from '../../environments/environment';
+import { DataService } from './data.service';
+import {TransactionType} from "../model/Transaction";
 
 describe('TransactionService', () => {
   let service: TransactionService;
+  let dataService: DataService;
   let httpMock: HttpTestingController;
 
   beforeEach(() => {
@@ -16,7 +19,10 @@ describe('TransactionService', () => {
     }).compileComponents();
 
     service = TestBed.inject(TransactionService);
+    dataService = TestBed.inject(DataService);
     httpMock = TestBed.inject(HttpTestingController);
+
+    spyOn(dataService, 'getEmail').and.returnValue('email@example.pl');
   });
 
   afterEach(() => {
@@ -35,7 +41,7 @@ describe('TransactionService', () => {
 
     const req = httpMock.expectOne(environment.restUrl + '/api/payment/transaction');
     expect(req.request.method).toBe('PUT');
-  })
+  });
 
   it('should add sign to value before sent', () =>{
     service.updateTransaction(TransactionModelFixture.getBuyCarTransaction()).subscribe(
@@ -45,5 +51,44 @@ describe('TransactionService', () => {
 
     const req = httpMock.expectOne(environment.restUrl + '/api/payment/transaction');
     expect(req.request.body.value).toBe(TransactionModelFixture.getBuyCarTransaction().value * -1);
-  })
+  });
+
+
+  it('should send POST request when adding a new transaction', () => {
+    const newTransaction = TransactionModelFixture.getBuyCarTransaction();
+    service.addTransaction(newTransaction).subscribe(
+      response => {
+        expect(response).toBeNull();
+      });
+
+    const req = httpMock.expectOne(environment.restUrl + '/api/payment/transaction/' + dataService.getEmail());
+    expect(req.request.method).toBe('POST');
+  });
+
+  it('should correctly calculate value for EXPENSE transaction', () => {
+    const newTransaction = TransactionModelFixture.getBuyCarTransaction();
+    service.addTransaction(newTransaction).subscribe(
+      response => {
+        expect(response).toBeNull();
+      });
+
+    const req = httpMock.expectOne(
+      environment.restUrl + '/api/payment/transaction/' + dataService.getEmail()
+    );
+    expect(req.request.body.value).toBe(newTransaction.value * -1);
+  });
+
+  it('should correctly calculate value for INCOME transaction', () => {
+    const newTransaction = TransactionModelFixture.getBuyCarTransaction();
+    newTransaction.type = TransactionType.INCOME;
+    service.addTransaction(newTransaction).subscribe(
+      response => {
+        expect(response).toBeNull();
+      });
+
+    const req = httpMock.expectOne(
+      environment.restUrl + '/api/payment/transaction/' + dataService.getEmail()
+    );
+    expect(req.request.body.value).toBe(newTransaction.value);
+  });
 });
