@@ -43,8 +43,9 @@ describe('TransactionService', () => {
     expect(req.request.method).toBe('PUT');
   });
 
-  it('should add sign to value before sent', () =>{
-    service.updateTransaction(TransactionModelFixture.getBuyCarTransaction()).subscribe(
+  it('should correctly calculate value for EXPENSE transaction when updating', () => {
+    const updatedTransaction = TransactionModelFixture.getBuyCarTransaction();
+    service.updateTransaction(updatedTransaction).subscribe(
       response => {
         expect(response).toBeNull();
       });
@@ -53,6 +54,17 @@ describe('TransactionService', () => {
     expect(req.request.body.value).toBe(TransactionModelFixture.getBuyCarTransaction().value * -1);
   });
 
+  it('should correctly calculate value for INCOME transaction when updating', () => {
+    const updatedTransaction = TransactionModelFixture.getBuyCarTransaction();
+    updatedTransaction.type = TransactionType.INCOME;
+    service.updateTransaction(updatedTransaction).subscribe(
+      response => {
+        expect(response).toBeNull();
+      });
+
+    const req = httpMock.expectOne(environment.restUrl + '/api/payment/transaction');
+    expect(req.request.body.value).toBe(TransactionModelFixture.getBuyCarTransaction().value);
+  });
 
   it('should send POST request when adding a new transaction', () => {
     const newTransaction = TransactionModelFixture.getBuyCarTransaction();
@@ -75,7 +87,7 @@ describe('TransactionService', () => {
     const req = httpMock.expectOne(
       environment.restUrl + '/api/payment/transaction/' + dataService.getEmail()
     );
-    expect(req.request.body.value).toBe(newTransaction.value * -1);
+    expect(req.request.body.value).toBe(TransactionModelFixture.getBuyCarTransaction().value * -1);
   });
 
   it('should correctly calculate value for INCOME transaction', () => {
@@ -89,6 +101,6 @@ describe('TransactionService', () => {
     const req = httpMock.expectOne(
       environment.restUrl + '/api/payment/transaction/' + dataService.getEmail()
     );
-    expect(req.request.body.value).toBe(newTransaction.value);
+    expect(req.request.body.value).toBe(TransactionModelFixture.getBuyCarTransaction().value);
   });
 });
