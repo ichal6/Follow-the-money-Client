@@ -22,7 +22,7 @@ export class TransactionService {
   }
 
   addTransaction(newTransaction: Transaction): Observable<void> {
-    const calculatedValue = (newTransaction.type === TransactionType.EXPENSE) ? 0 - newTransaction.value : newTransaction.value;
+    const calculatedValue = this.calculateValue(newTransaction);
     const transactionToAdd = {
       id: newTransaction.id,
       title: newTransaction.title,
@@ -42,11 +42,15 @@ export class TransactionService {
   }
 
   updateTransaction(transaction: Transaction): Observable<void> {
-    transaction.value = (transaction.type === TransactionType.EXPENSE) ? 0 - transaction.value : transaction.value;
+    transaction.value = this.calculateValue(transaction);
     return this.http.put<null>(
       environment.restUrl + '/api/payment/transaction',
       transaction,
       {withCredentials: true}
     );
+  }
+
+  private calculateValue(transaction: Transaction): number {
+    return (transaction.type === TransactionType.EXPENSE) ? 0 - transaction.value : transaction.value;
   }
 }
