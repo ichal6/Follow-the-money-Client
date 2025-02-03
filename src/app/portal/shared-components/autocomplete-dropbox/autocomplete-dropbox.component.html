@@ -1,0 +1,13 @@
+<div>
+  <input class="form-select provide-field" id="car" #searchInput placeholder="Select one ↓" type="text" autocomplete="off" (click)="showSearches = true">
+</div>
+<div class="card" [hidden]="!showSearches">
+  <div>
+    <div *ngFor="let element of searchedElements; trackBy: trackById" (click)="setElement(element)" class="search-result">
+      {{element.name}}
+    </div>
+  </div>
+  <p class="search" *ngIf="searchedElements && searchedElements.length <= 0 && !isSearching">No Element found</p>
+  <p class="search" [hidden]="!isSearching">Searching...</p>
+</div>
+

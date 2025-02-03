@@ -166,4 +166,8 @@ export class TransactionFormAddComponent implements OnInit, OnDestroy {
       color: value ? '#404040' : '#A0A0A1',
     }
   }
+
+  handlePayeeIdEvent($event: { id: number }) {
+    this.newTransaction.payeeId = $event.id;
+  }
 }

@@ -85,4 +85,8 @@ export class PaymentsAllComponent implements OnInit, OnDestroy {
     this.subscribePayment.unsubscribe();
     this.subscribeAccount.unsubscribe();
   }
+
+  handleCarNameEvent($event: { name: string }) {
+    console.log($event.name);
+  }
 }

@@ -50,6 +50,7 @@ import { SelectTimePeriodComponent } from './pages/analysis/select-time-period/s
 import { TransactionFormEditComponent } from './pages/payments/transaction-form-edit/transaction-form-edit.component';
 import { TransferFormEditComponent } from './pages/payments/transfer-form-edit/transfer-form-edit.component';
 import { AddNewElementComponent } from './shared-components/add-new-element/add-new-element.component';
+import { AutocompleteDropboxComponent } from './shared-components/autocomplete-dropbox/autocomplete-dropbox.component';
 
 const routes: Routes = [
   {
@@ -178,7 +179,8 @@ const routes: Routes = [
     SelectTimePeriodComponent,
     TransactionFormEditComponent,
     TransferFormEditComponent,
-    AddNewElementComponent
+    AddNewElementComponent,
+    AutocompleteDropboxComponent
   ],
   imports: [
     CommonModule,

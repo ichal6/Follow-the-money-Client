@@ -1,0 +1,17 @@
+.form-select {
+  background-color: transparent;
+  border: none;
+  color: #A0A0A1;
+  font-family: "Poppins Medium", sans-serif;
+  font-size: 16px;
+  border-bottom: 1px solid #A0A0A1;
+  margin: 30px 0 30px;
+  padding-bottom: 15px;
+}
+
+.provide-field {
+  color: #404040;
+  text-align: center;
+  padding: 5px;
+  width: 100%;
+}

@@ -72,18 +72,25 @@
 
     <div class="edit-container">
       <label for="payee">Payee:</label>
-      <select class="provide-field form-select" id="payee" name="payee"
-              [(ngModel)]="newTransaction.payeeId"
-              [ngStyle]="getSelectStyles(newTransaction.payeeId)"
-              #payeeIdField="ngModel"
-              required>
-        <option [disabled]="true" [ngValue]="null">Select one ↓</option>
-        <option *ngFor="let payee of allPayees" [ngValue]="payee.id">{{payee.name}}</option>
-      </select>
+<!--      <select class="provide-field form-select" id="payee" name="payee"-->
+<!--              [(ngModel)]="newTransaction.payeeId"-->
+<!--              [ngStyle]="getSelectStyles(newTransaction.payeeId)"-->
+<!--              #payeeIdField="ngModel"-->
+<!--              required>-->
+<!--        <option [disabled]="true" [ngValue]="null">Select one ↓</option>-->
+<!--        <option *ngFor="let payee of allPayees" [ngValue]="payee.id">{{payee.name}}</option>-->
+<!--      </select>-->
+      <app-autocomplete-dropbox
+        id="payee"
+        style="width: 70%;"
+        name="payee"
+        [elements]="allPayees"
+        (setElementEvent)="handlePayeeIdEvent($event)"
+      />
     </div>
-    <p class="message" *ngIf="!payeeIdField.valid && !this.checkIfPayeeIdIsValid() && payeeIdField.touched">
-      Please should provide correct payee
-    </p>
+<!--    <p class="message" *ngIf="!payeeIdField.valid && !this.checkIfPayeeIdIsValid() && payeeIdField.touched">-->
+<!--      Please should provide correct payee-->
+<!--    </p>-->
 
     <div class ="edit-container">
       <label for="category">Category:</label>
