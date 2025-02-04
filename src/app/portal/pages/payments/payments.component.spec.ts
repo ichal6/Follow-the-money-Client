@@ -215,4 +215,13 @@ describe('PaymentsComponent', () => {
     // Assert
     expect(component.displayAdd).toBeTrue();
   });
+
+  it('should pass custom height and width to app-add-new-element', () => {
+    // Act
+    const addNewElement = fixture.nativeElement.querySelector('app-add-new-element');
+
+    // Assert
+    expect(addNewElement.height).toBe(74);
+    expect(addNewElement.width).toBe(74);
+  });
 });

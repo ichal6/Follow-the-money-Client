@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {FormChangeService} from "../../../service/form-change.service";
 
 @Component({
@@ -9,6 +9,8 @@ import {FormChangeService} from "../../../service/form-change.service";
 export class AddNewElementComponent {
   formChangeService: FormChangeService;
   @Output() addNewElement = new EventEmitter<never>();
+  @Input() height: number;
+  @Input() width: number;
   isAdd: boolean;
 
   constructor(formChangeService: FormChangeService) {

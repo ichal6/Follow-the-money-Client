@@ -51,4 +51,19 @@ describe('AddNewElementComponent', () => {
     // @ts-ignore
     expect(spy).toHaveBeenCalledWith({top: 0, behavior: 'smooth'});
   });
+
+  it('should set height and width correctly', () => {
+    //Arrange
+    component.height = 100;
+    component.width = 100;
+    fixture.detectChanges();
+
+    //Act
+    const compiled = fixture.nativeElement;
+    const imgElement = compiled.querySelector('img');
+
+    //Assert
+    expect(imgElement.height).toBe(100);
+    expect(imgElement.width).toBe(100);
+  });
 });

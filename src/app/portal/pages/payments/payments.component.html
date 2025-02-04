@@ -1,6 +1,6 @@
 <div class="payments-content">
   <app-payments-all/>
-  <app-add-new-element (addNewElement)="addPayment()"/>
+  <app-add-new-element [height]="74" [width]="74" (addNewElement)="addPayment()"/>
   <div *ngIf="displayAdd && !formChangeService.formAction.includes('edit')" class="modify-payments">
     <app-transaction-form-add *ngIf="this.formChangeService.formAction === 'transaction'"/>
     <app-transfer-form-add *ngIf="this.formChangeService.formAction === 'transfer'"/>
