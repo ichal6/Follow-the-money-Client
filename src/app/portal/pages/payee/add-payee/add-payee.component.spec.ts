@@ -36,7 +36,7 @@ describe('AddPayeeComponent', () => {
     spyOn(component['payeeService'], 'createNewPayee').and.returnValue(throwError(errorResponse));
 
     // Act
-    component.savePayee();
+    component.onSubmit();
 
     // Assert
     expect(component.message).toBe('Error message');
@@ -49,10 +49,65 @@ describe('AddPayeeComponent', () => {
     spyOn(component, 'redirectTo');
 
     // Act
-    component.savePayee();
+    component.onSubmit();
 
     // Assert
     expect(component.redirectTo).toHaveBeenCalledWith('payee');
-    expect(component.message).toBeUndefined();
+    expect(component.message).toBe('Saving new payee...');
+  });
+
+  it('should set isNameValid to true when name is valid', () => {
+    // Arrange
+    component.newPayee.name = 'Valid Name';
+
+    // Act
+    component.checkIfNameIsValid();
+
+    // Assert
+    expect(component.isNameValid).toBe(true);
+  });
+
+  it('should set isNameValid to false when name is too short', () => {
+    // Arrange
+    component.newPayee.name = 'No';
+
+    // Act
+    component.checkIfNameIsValid();
+
+    // Assert
+    expect(component.isNameValid).toBe(false);
+  });
+
+  it('should set isNameValid to false when name is empty', () => {
+    // Arrange
+    component.newPayee.name = '';
+
+    // Act
+    component.checkIfNameIsValid();
+
+    // Assert
+    expect(component.isNameValid).toBe(false);
+  });
+
+  it('should set isNameValid to false when name is null', () => {
+    // Arrange
+    component.newPayee.name = null;
+
+    // Act
+    component.checkIfNameIsValid();
+
+    // Assert
+    expect(component.isNameValid).toBe(false);
+  });
+
+  it('should set isNameValid to false when name is undefined', () => {
+    // Arrange
+    component.newPayee.name = undefined;
+
+    // Act
+    component.checkIfNameIsValid();
+
+    // Assert
+    expect(component.isNameValid).toBe(false);
   });
 });
