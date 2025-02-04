@@ -69,9 +69,9 @@
       Please should provide correct account
     </p>
 
-
     <div class="edit-container">
       <label for="payee">Payee:</label>
+      <app-add-new-element [height]="48" [width]="48"/>
       <select class="provide-field form-select" id="payee" name="payee"
               [(ngModel)]="newTransaction.payeeId"
               [ngStyle]="getSelectStyles(newTransaction.payeeId)"
@@ -87,6 +87,7 @@
 
     <div class ="edit-container">
       <label for="category">Category:</label>
+      <app-add-new-element [height]="48" [width]="48"/>
       <select class="provide-field form-select" id="category" name="category"
               [(ngModel)]="newTransaction.categoryId"
               [ngStyle]="getSelectStyles(newTransaction.categoryId)"
@@ -102,7 +103,8 @@
     </p>
 
     <div class ="edit-container">
-      <label for="subcategory">Select subcategory:</label>
+      <label for="subcategory">Subcategory:</label>
+      <app-add-new-element [height]="48" [width]="48"/>
       <select class="provide-field form-select" id="subcategory" name="subcategory" [(ngModel)]="newTransaction.subcategoryId">
         <option [ngValue]="null">None</option>
         <option *ngFor="let subcategory of getSubcategories()" [ngValue]="subcategory.id">{{subcategory.name}}</option>
