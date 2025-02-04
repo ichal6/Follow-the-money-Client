@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {Payee} from '../../../../model/Payee';
 import {PayeeService} from '../../../../service/payee.service';
@@ -38,11 +38,8 @@ export class AddPayeeComponent implements OnInit {
   }
 
   checkIfNameIsValid(): void {
-    if (this.newPayee.name) {
-      this.isNameValid = this.newPayee.name.trim().length >= 3;
-    } else {
-      this.isNameValid = false;
-    }
+    const name = this.newPayee.name?.trim();
+    this.isNameValid = name ? name.length >= 3 : false;
   }
 
   redirectTo(uri: string): void {
