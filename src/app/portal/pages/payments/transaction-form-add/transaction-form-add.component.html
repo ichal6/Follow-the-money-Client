@@ -1,6 +1,7 @@
 <div id="main-container">
   <app-payment-type-select/>
 
+  <app-add-payee *ngIf="activeAddPayee"/>
   <form class="transaction-form" #transactionForm="ngForm">
     <button type="button" class="form-button cancel-button" (click)="initializeNewTransaction()">Reset form</button>
     <p class="message" *ngIf="message">{{message}}</p>
@@ -71,7 +72,7 @@
 
     <div class="edit-container">
       <label for="payee">Payee:</label>
-      <app-add-new-element [height]="48" [width]="48"/>
+      <app-add-new-element (addNewElement)="addPayee()" [height]="48" [width]="48"/>
       <select class="provide-field form-select" id="payee" name="payee"
               [(ngModel)]="newTransaction.payeeId"
               [ngStyle]="getSelectStyles(newTransaction.payeeId)"

@@ -28,6 +28,8 @@ export class TransactionFormAddComponent implements OnInit, OnDestroy {
   subscriptionPayees: Subscription;
   subscriptionCategories: Subscription;
 
+  activeAddPayee: boolean;
+
   constructor(private accountsService: AccountsService,
               private payeeService: PayeeService,
               private categoryService: CategoryService,
@@ -165,5 +167,9 @@ export class TransactionFormAddComponent implements OnInit, OnDestroy {
     return {
       color: value ? '#404040' : '#A0A0A1',
     }
+  }
+
+  addPayee() {
+    this.activeAddPayee = !this.activeAddPayee;
   }
 }
