@@ -46,14 +46,12 @@ describe('AddPayeeComponent', () => {
     // Arrange
     const payee = { id: 1, name: 'Test Payee' };
     spyOn(component['payeeService'], 'createNewPayee').and.returnValue(of(payee));
-    spyOn(component.dataChangedEvent, 'emit');
     spyOn(component, 'redirectTo');
 
     // Act
     component.saveCategory();
 
     // Assert
-    expect(component.dataChangedEvent.emit).toHaveBeenCalled();
     expect(component.redirectTo).toHaveBeenCalledWith('payee');
     expect(component.message).toBeUndefined();
   });

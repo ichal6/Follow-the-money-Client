@@ -11,13 +11,9 @@ import {PayeeService} from '../../../../service/payee.service';
 export class AddPayeeComponent implements OnInit {
 
   newPayee: Payee;
-  allPayees: Array<Payee>;
   message: string;
 
-  dataChangedEvent = new EventEmitter();
-
   isNameValid = false;
-  isVisible = false;
 
   constructor(private payeeService: PayeeService,
               private router: Router) { }
@@ -32,16 +28,14 @@ export class AddPayeeComponent implements OnInit {
   }
 
   saveCategory(): void {
-    this.payeeService.createNewPayee(this.newPayee).subscribe(
-      (payee) => {
-        this.dataChangedEvent.emit();
+    this.payeeService.createNewPayee(this.newPayee).subscribe({
+      next: () => {
         this.redirectTo('payee');
       },
-      (error) => {
-        this.message = error.error;
-        console.log(error);
+      error: (err) => {
+        this.message = err.error;
       }
-    );
+    });
   }
 
   checkIfNameIsValid(): void {
