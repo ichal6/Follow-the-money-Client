@@ -9,7 +9,6 @@ import {PayeeService} from '../../../../service/payee.service';
   styleUrls: ['./add-payee.component.css']
 })
 export class AddPayeeComponent implements OnInit {
-
   newPayee: Payee;
   message: string;
 
@@ -24,10 +23,10 @@ export class AddPayeeComponent implements OnInit {
 
   onSubmit(): void {
     this.message = 'Saving new payee...';
-    this.saveCategory();
+    this.savePayee();
   }
 
-  saveCategory(): void {
+  private savePayee(): void {
     this.payeeService.createNewPayee(this.newPayee).subscribe({
       next: () => {
         this.redirectTo('payee');

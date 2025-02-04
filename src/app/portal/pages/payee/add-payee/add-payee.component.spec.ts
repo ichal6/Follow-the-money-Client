@@ -36,7 +36,7 @@ describe('AddPayeeComponent', () => {
     spyOn(component['payeeService'], 'createNewPayee').and.returnValue(throwError(errorResponse));
 
     // Act
-    component.saveCategory();
+    component.savePayee();
 
     // Assert
     expect(component.message).toBe('Error message');
@@ -49,7 +49,7 @@ describe('AddPayeeComponent', () => {
     spyOn(component, 'redirectTo');
 
     // Act
-    component.saveCategory();
+    component.savePayee();
 
     // Assert
     expect(component.redirectTo).toHaveBeenCalledWith('payee');
