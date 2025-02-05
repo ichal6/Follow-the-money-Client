@@ -5,7 +5,8 @@ import {EventService} from '../../../../service/event.service';
 @Component({
   selector: 'app-chart',
   templateUrl: './chart.component.html',
-  styleUrls: ['./chart.component.css']
+  styleUrls: ['./chart.component.css'],
+  standalone: false
 })
 export class ChartComponent implements OnInit {
   @Input()

@@ -8,7 +8,8 @@ import {EventService} from '../../../service/event.service';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  styleUrls: ['./dashboard.component.css'],
+  standalone: false
 })
 export class DashboardComponent implements OnInit , OnDestroy{
   public dashboard = new Dashboard();

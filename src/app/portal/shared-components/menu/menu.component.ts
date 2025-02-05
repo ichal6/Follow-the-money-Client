@@ -5,7 +5,8 @@ import {AuthService} from '../../../service/auth.service';
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.css']
+  styleUrls: ['./menu.component.css'],
+  standalone: false
 })
 export class MenuComponent implements OnInit, AfterViewInit {
   private selectedHref: string;

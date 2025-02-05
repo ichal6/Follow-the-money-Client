@@ -9,7 +9,8 @@ import {Router} from '@angular/router';
 @Component({
   selector: 'app-category-box',
   templateUrl: './category-box.component.html',
-  styleUrls: ['./category-box.component.css']
+  styleUrls: ['./category-box.component.css'],
+  standalone: false
 })
 export class CategoryBoxComponent implements OnInit, OnDestroy {
   static count = 0;

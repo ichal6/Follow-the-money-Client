@@ -7,7 +7,8 @@ import {FormChangeService} from '../../../../service/form-change.service';
 @Component({
   selector: 'app-category-edit',
   templateUrl: './edit-category.component.html',
-  styleUrls: ['./edit-category.component.css']
+  styleUrls: ['./edit-category.component.css'],
+  standalone: false
 })
 export class EditCategoryComponent implements OnInit {
   @Input()

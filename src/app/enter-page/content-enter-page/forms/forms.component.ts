@@ -4,7 +4,8 @@ import {Router} from '@angular/router';
 @Component({
   selector: 'app-forms',
   templateUrl: './forms.component.html',
-  styleUrls: ['./forms.component.css']
+  styleUrls: ['./forms.component.css'],
+  standalone: false
 })
 export class FormsComponent {
 

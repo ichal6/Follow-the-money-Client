@@ -4,7 +4,8 @@ import {Activity} from '../../../../../model/Activity';
 @Component({
   selector: 'app-single-activity',
   templateUrl: './single-activity.component.html',
-  styleUrls: ['./single-activity.component.css']
+  styleUrls: ['./single-activity.component.css'],
+  standalone: false
 })
 export class SingleActivityComponent implements OnInit {
 

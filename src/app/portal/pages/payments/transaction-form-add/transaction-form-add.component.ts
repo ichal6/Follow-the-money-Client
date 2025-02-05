@@ -15,7 +15,8 @@ import {ValidatorService} from "../../../../service/common/validator.service";
 @Component({
   selector: 'app-transaction-form-add',
   templateUrl: './transaction-form-add.component.html',
-  styleUrls: ['./transaction-form-add.component.css', '../transaction-form-edit/transaction-form-edit.component.css']
+  styleUrls: ['./transaction-form-add.component.css', '../transaction-form-edit/transaction-form-edit.component.css'],
+  standalone: false
 })
 export class TransactionFormAddComponent implements OnInit, OnDestroy {
   newTransaction: Transaction;

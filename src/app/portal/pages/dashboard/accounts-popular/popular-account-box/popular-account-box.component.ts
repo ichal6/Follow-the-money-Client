@@ -4,7 +4,8 @@ import {Account, AccountType} from '../../../../../model/Account';
 @Component({
   selector: 'app-popular-account-box',
   templateUrl: './popular-account-box.component.html',
-  styleUrls: ['./popular-account-box.component.css']
+  styleUrls: ['./popular-account-box.component.css'],
+  standalone: false
 })
 export class PopularAccountBoxComponent implements OnInit {
   static count = 0;

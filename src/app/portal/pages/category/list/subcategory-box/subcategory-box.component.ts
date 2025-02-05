@@ -9,7 +9,8 @@ import {Router} from '@angular/router';
 @Component({
   selector: 'app-subcategory-box',
   templateUrl: './subcategory-box.component.html',
-  styleUrls: ['./subcategory-box.component.css']
+  styleUrls: ['./subcategory-box.component.css'],
+  standalone: false
 })
 export class SubcategoryBoxComponent implements OnInit, OnDestroy {
   modeDisplayPopup: string;

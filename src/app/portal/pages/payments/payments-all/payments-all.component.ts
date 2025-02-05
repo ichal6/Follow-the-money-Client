@@ -10,7 +10,8 @@ import {DateMatcherService, DateParts} from "../../../../service/utils/date-matc
 @Component({
   selector: 'app-payments-all',
   templateUrl: './payments-all.component.html',
-  styleUrls: ['./payments-all.component.css']
+  styleUrls: ['./payments-all.component.css'],
+  standalone: false
 })
 export class PaymentsAllComponent implements OnInit, OnDestroy {
   public displayPayments: Array<Payment>;

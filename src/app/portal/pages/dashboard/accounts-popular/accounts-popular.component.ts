@@ -5,7 +5,8 @@ import {Router} from '@angular/router';
 @Component({
   selector: 'app-accounts-popular',
   templateUrl: './accounts-popular.component.html',
-  styleUrls: ['./accounts-popular.component.css']
+  styleUrls: ['./accounts-popular.component.css'],
+  standalone: false
 })
 export class AccountsPopularComponent {
   @Input()

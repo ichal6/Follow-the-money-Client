@@ -11,7 +11,8 @@ import {PaymentsService} from "../../../../service/payments.service";
 @Component({
   selector: 'app-transfer-form-add',
   templateUrl: './transfer-form-add.component.html',
-  styleUrls: ['./transfer-form-add.component.css', '../transaction-form-add/transaction-form-add.component.css']
+  styleUrls: ['./transfer-form-add.component.css', '../transaction-form-add/transaction-form-add.component.css'],
+  standalone: false
 })
 export class TransferFormAddComponent implements OnInit, OnDestroy {
   newTransfer: Transfer;
