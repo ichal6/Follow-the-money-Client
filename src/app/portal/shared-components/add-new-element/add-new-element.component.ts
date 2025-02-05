@@ -4,7 +4,8 @@ import {FormChangeService} from "../../../service/form-change.service";
 @Component({
   selector: 'app-add-new-element',
   templateUrl: './add-new-element.component.html',
-  styleUrls: ['./add-new-element.component.css']
+  styleUrls: ['./add-new-element.component.css'],
+  standalone: false
 })
 export class AddNewElementComponent {
   formChangeService: FormChangeService;

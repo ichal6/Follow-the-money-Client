@@ -6,7 +6,8 @@ import {PayeeService} from '../../../../service/payee.service';
 @Component({
   selector: 'app-payee-all',
   templateUrl: './payee-all.component.html',
-  styleUrls: ['./payee-all.component.css']
+  styleUrls: ['./payee-all.component.css'],
+  standalone: false
 })
 export class PayeeAllComponent implements OnInit, OnDestroy {
   payees = new Array<Payee>();

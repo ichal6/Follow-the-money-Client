@@ -6,7 +6,8 @@ import {AnalysisTableRow} from '../../../../model/AnalysisTableRow';
 @Component({
   selector: 'app-financial-table',
   templateUrl: './financial-table.component.html',
-  styleUrls: ['./financial-table.component.css']
+  styleUrls: ['./financial-table.component.css'],
+  standalone: false
 })
 export class FinancialTableComponent  implements OnInit, OnDestroy {
   private subscribeTableContent: Subscription;

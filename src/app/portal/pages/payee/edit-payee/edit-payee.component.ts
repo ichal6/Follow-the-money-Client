@@ -7,7 +7,8 @@ import {PayeeService} from '../../../../service/payee.service';
 @Component({
   selector: 'app-edit-payee',
   templateUrl: './edit-payee.component.html',
-  styleUrls: ['./edit-payee.component.css']
+  styleUrls: ['./edit-payee.component.css'],
+  standalone: false
 })
 export class EditPayeeComponent implements OnInit {
 

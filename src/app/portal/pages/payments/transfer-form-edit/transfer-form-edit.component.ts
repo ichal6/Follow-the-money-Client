@@ -14,7 +14,8 @@ import {PaymentsService} from "../../../../service/payments.service";
   selector: 'app-transfer-form-edit',
   templateUrl: './transfer-form-edit.component.html',
   styleUrls: ['./transfer-form-edit.component.css', '../transaction-form-add/transaction-form-add.component.css',
-    '../transaction-form-edit/transaction-form-edit.component.css']
+    '../transaction-form-edit/transaction-form-edit.component.css'],
+  standalone: false
 })
 export class TransferFormEditComponent implements OnInit, OnDestroy {
   message: string;

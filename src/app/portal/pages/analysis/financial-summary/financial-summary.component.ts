@@ -8,7 +8,8 @@ import {AnalysisBuilder} from "../../../../model/AnalysisBuilder";
 @Component({
   selector: 'app-financial-summary',
   templateUrl: './financial-summary.component.html',
-  styleUrls: ['./financial-summary.component.css']
+  styleUrls: ['./financial-summary.component.css'],
+  standalone: false
 })
 export class FinancialSummaryComponent implements OnInit, OnDestroy{
   private readonly maxDisplay = 15;

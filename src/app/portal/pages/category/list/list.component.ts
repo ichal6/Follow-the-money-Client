@@ -5,7 +5,8 @@ import {CategoryService} from '../../../../service/category.service';
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.css']
+  styleUrls: ['./list.component.css'],
+  standalone: false
 })
 export class ListComponent {
   categories = new Array<Category>();
