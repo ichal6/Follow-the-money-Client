@@ -7,7 +7,8 @@ import {Payee} from "../../../model/Payee";
 @Component({
   selector: 'app-autocomplete-dropbox',
   templateUrl: './autocomplete-dropbox.component.html',
-  styleUrls: ['./autocomplete-dropbox.component.css']
+  styleUrls: ['./autocomplete-dropbox.component.css'],
+  standalone: false
 })
 export class AutocompleteDropboxComponent implements AfterViewInit {
   @ViewChild('searchInput') searchInput: ElementRef;
