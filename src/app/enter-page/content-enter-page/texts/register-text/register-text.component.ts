@@ -4,7 +4,8 @@ import {Router} from '@angular/router';
 @Component({
   selector: 'app-register-text',
   templateUrl: './register-text.component.html',
-  styleUrls: ['./register-text.component.css']
+  styleUrls: ['./register-text.component.css'],
+  standalone: false
 })
 export class RegisterTextComponent {
 

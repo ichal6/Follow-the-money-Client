@@ -7,7 +7,8 @@ import {FormChangeService} from '../../../service/form-change.service';
 @Component({
   selector: 'app-accounts',
   templateUrl: './accounts.component.html',
-  styleUrls: ['./accounts.component.css']
+  styleUrls: ['./accounts.component.css'],
+  standalone: false
 })
 export class AccountsComponent implements OnInit, OnDestroy {
   public accounts: Array<Account>;

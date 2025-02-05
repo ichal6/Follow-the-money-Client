@@ -6,7 +6,8 @@ import {Subscription} from 'rxjs';
 @Component({
   selector: 'app-login',
   templateUrl: './enter-page.component.html',
-  styleUrls: ['./enter-page.component.css']
+  styleUrls: ['./enter-page.component.css'],
+  standalone: false
 })
 export class EnterPageComponent implements OnInit, OnDestroy {
   isDisplay: boolean;

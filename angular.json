@@ -97,21 +97,21 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ftmClient:build"
+            "buildTarget": "ftmClient:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "ftmClient:build:production"
+              "buildTarget": "ftmClient:build:production"
             },
             "development": {
-              "browserTarget": "ftmClient:build:development"
+              "buildTarget": "ftmClient:build:development"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ftmClient:build"
+            "buildTarget": "ftmClient:build"
           }
         },
         "test": {
