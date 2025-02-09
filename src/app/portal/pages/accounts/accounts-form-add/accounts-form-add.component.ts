@@ -8,7 +8,8 @@ import {FormResetService} from '../../../../service/form-reset.service';
 @Component({
   selector: 'app-accounts-form-add',
   templateUrl: './accounts-form-add.component.html',
-  styleUrls: ['./accounts-form-add.component.css']
+  styleUrls: ['./accounts-form-add.component.css'],
+  standalone: false
 })
 export class AccountsFormAddComponent implements OnInit, OnDestroy {
   newAccount: Account;

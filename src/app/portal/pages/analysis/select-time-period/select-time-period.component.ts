@@ -3,7 +3,8 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 @Component({
   selector: 'app-select-time-period',
   templateUrl: './select-time-period.component.html',
-  styleUrls: ['./select-time-period.component.css']
+  styleUrls: ['./select-time-period.component.css'],
+  standalone: false
 })
 export class SelectTimePeriodComponent implements OnInit{
   public periodInDays: string;

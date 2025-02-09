@@ -9,7 +9,8 @@ import {Subscription} from 'rxjs';
 @Component({
   selector: 'app-single-box-payee',
   templateUrl: './single-box-payee.component.html',
-  styleUrls: ['./single-box-payee.component.css']
+  styleUrls: ['./single-box-payee.component.css'],
+  standalone: false
 })
 export class SingleBoxPayeeComponent implements OnInit, OnDestroy {
   static count = 0;

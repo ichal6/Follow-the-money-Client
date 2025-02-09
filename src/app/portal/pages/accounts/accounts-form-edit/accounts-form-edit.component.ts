@@ -8,7 +8,8 @@ import {Account, AccountType} from '../../../../model/Account';
 @Component({
   selector: 'app-accounts-form-edit',
   templateUrl: './accounts-form-edit.component.html',
-  styleUrls: ['./accounts-form-edit.component.css']
+  styleUrls: ['./accounts-form-edit.component.css'],
+  standalone: false
 })
 export class AccountsFormEditComponent implements OnInit, OnDestroy {
   @Input()

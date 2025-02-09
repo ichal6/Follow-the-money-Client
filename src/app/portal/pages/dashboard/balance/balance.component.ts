@@ -4,7 +4,8 @@ import {Dashboard} from '../../../../model/Dashboard';
 @Component({
   selector: 'app-balance',
   templateUrl: './balance.component.html',
-  styleUrls: ['./balance.component.css']
+  styleUrls: ['./balance.component.css'],
+  standalone: false
 })
 export class BalanceComponent {
   @Input()

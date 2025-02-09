@@ -8,7 +8,8 @@ import {Router} from '@angular/router';
 @Component({
   selector: 'app-account-box',
   templateUrl: './account-box.component.html',
-  styleUrls: ['./account-box.component.css']
+  styleUrls: ['./account-box.component.css'],
+  standalone: false
 })
 export class AccountBoxComponent implements OnInit {
   static count = 0;

@@ -4,7 +4,8 @@ import {FormChangeService} from '../../../../service/form-change.service';
 @Component({
   selector: 'app-payment-type-select',
   templateUrl: './payment-type-select.component.html',
-  styleUrls: ['./payment-type-select.component.css']
+  styleUrls: ['./payment-type-select.component.css'],
+  standalone: false
 })
 export class PaymentTypeSelectComponent implements OnInit {
   private _defaultOption: string;

@@ -10,7 +10,8 @@ import {FormChangeService} from '../../../../../service/form-change.service';
 @Component({
   selector: 'app-payment',
   templateUrl: './payment.component.html',
-  styleUrls: ['./payment.component.css']
+  styleUrls: ['./payment.component.css'],
+  standalone: false
 })
 export class PaymentComponent implements OnInit, OnDestroy {
   @Input()

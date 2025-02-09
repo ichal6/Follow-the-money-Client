@@ -6,7 +6,8 @@ import {PayeeService} from '../../../../service/payee.service';
 @Component({
   selector: 'app-add-payee',
   templateUrl: './add-payee.component.html',
-  styleUrls: ['./add-payee.component.css']
+  styleUrls: ['./add-payee.component.css'],
+  standalone: false
 })
 export class AddPayeeComponent implements OnInit {
   newPayee: Payee;

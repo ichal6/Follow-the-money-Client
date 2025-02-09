@@ -17,7 +17,8 @@ import {PaymentsService} from "../../../../service/payments.service";
 @Component({
   selector: 'app-transaction-form-edit',
   templateUrl: './transaction-form-edit.component.html',
-  styleUrls: ['./transaction-form-edit.component.css', '../transaction-form-add/transaction-form-add.component.css']
+  styleUrls: ['./transaction-form-edit.component.css', '../transaction-form-add/transaction-form-add.component.css'],
+  standalone: false
 })
 export class TransactionFormEditComponent  implements OnInit, OnDestroy{
   message: string;

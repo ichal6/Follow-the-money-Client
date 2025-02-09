@@ -6,7 +6,8 @@ import {CategoryService} from '../../../../service/category.service';
 @Component({
   selector: 'app-category-add',
   templateUrl: './add-category.component.html',
-  styleUrls: ['./add-category.component.css']
+  styleUrls: ['./add-category.component.css'],
+  standalone: false
 })
 export class AddCategoryComponent implements OnInit {
 

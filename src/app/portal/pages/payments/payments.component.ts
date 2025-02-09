@@ -4,7 +4,8 @@ import {FormChangeService} from '../../../service/form-change.service';
 @Component({
   selector: 'app-payments',
   templateUrl: './payments.component.html',
-  styleUrls: ['./payments.component.css']
+  styleUrls: ['./payments.component.css'],
+  standalone: false
 })
 export class PaymentsComponent implements OnInit, OnDestroy {
   public displayAdd: boolean;

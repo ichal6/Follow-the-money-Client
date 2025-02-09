@@ -8,7 +8,8 @@ import {User} from '../../../../model/User';
 @Component({
   selector: 'app-register-form',
   templateUrl: './register-form.component.html',
-  styleUrls: ['./register-form.component.css']
+  styleUrls: ['./register-form.component.css'],
+  standalone: false
 })
 export class RegisterFormComponent implements OnDestroy {
   message = '';

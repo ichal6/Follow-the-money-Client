@@ -4,7 +4,8 @@ import {Router} from '@angular/router';
 @Component({
   selector: 'app-login-text',
   templateUrl: './login-text.component.html',
-  styleUrls: ['./login-text.component.css']
+  styleUrls: ['./login-text.component.css'],
+  standalone: false
 })
 export class LoginTextComponent {
 
