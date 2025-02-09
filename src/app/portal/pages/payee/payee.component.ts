@@ -9,7 +9,7 @@ import {PayeeAllComponent} from "./payee-all/payee-all.component";
   standalone: false
 })
 export class PayeeComponent {
-  @ViewChild(PayeeAllComponent)
+  @ViewChild('addNewPayee')
   payeeAllComponent: PayeeAllComponent;
 
   constructor(public formChangeService: FormChangeService) { }

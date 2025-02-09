@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {Transaction} from '../../../../model/Transaction';
 import {Subscription} from 'rxjs';
 import {AccountsService} from '../../../../service/accounts.service';
@@ -11,6 +11,7 @@ import {TransactionService} from '../../../../service/transaction.service';
 import {Router} from '@angular/router';
 import {PaymentsService} from "../../../../service/payments.service";
 import {ValidatorService} from "../../../../service/common/validator.service";
+import {AddNewElementComponent} from "../../../shared-components/add-new-element/add-new-element.component";
 
 @Component({
   selector: 'app-transaction-form-add',
@@ -30,6 +31,9 @@ export class TransactionFormAddComponent implements OnInit, OnDestroy {
   subscriptionCategories: Subscription;
 
   activeAddPayee: boolean;
+
+  @ViewChild(AddNewElementComponent)
+  addNewElementComponent: AddNewElementComponent;
 
   constructor(private accountsService: AccountsService,
               private payeeService: PayeeService,
@@ -174,8 +178,10 @@ export class TransactionFormAddComponent implements OnInit, OnDestroy {
     this.activeAddPayee = !this.activeAddPayee;
   }
 
-  reloadPayees($event: boolean) {
+  handleSavedTry($event: boolean) {
     if($event) {
+      this.activeAddPayee = false;
+      this.addNewElementComponent.close();
       this.loadPayees();
     } else {
       this.message = 'Error while adding new payee';

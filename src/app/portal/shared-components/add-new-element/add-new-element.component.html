@@ -1,4 +1,4 @@
 <a><img ngSrc="assets/icons/add-new/plus-button.svg" alt="add button"
-        *ngIf="isAdd" (click)="add()" [height]="height" [width]="width"></a>
+        *ngIf="isAdding" (click)="add()" [height]="height" [width]="width"></a>
 <a><img ngSrc="assets/icons/add-new/exit-button.svg" alt="add button"
-        *ngIf="!isAdd" (click)="add()" [height]="height" [width]="width"></a>
+        *ngIf="!isAdding" (click)="add()" [height]="height" [width]="width"></a>

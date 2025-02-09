@@ -28,13 +28,13 @@ describe('AddNewElementComponent', () => {
 
     // Assert
     expect(emitSpy).toHaveBeenCalled();
-    expect(component.isAdd).toBe(false);
+    expect(component.isAdding).toBe(false);
 
     // Act
     component.add();
 
     // Assert
-    expect(component.isAdd).toBe(true);
+    expect(component.isAdding).toBe(true);
   });
 
   it('should scroll to top of the page on add()', () => {

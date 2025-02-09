@@ -12,17 +12,21 @@ export class AddNewElementComponent {
   @Output() addNewElement = new EventEmitter<never>();
   @Input() height: number;
   @Input() width: number;
-  isAdd: boolean;
+  isAdding: boolean;
 
   constructor(formChangeService: FormChangeService) {
     this.formChangeService = formChangeService;
-    this.isAdd = true;
+    this.isAdding = true;
   }
 
   add() {
     this.addNewElement.emit();
-    this.isAdd = this.isAdd !== true;
+    this.isAdding = this.isAdding !== true;
     this.scrollToTop();
+  }
+
+  close() {
+    this.isAdding = true;
   }
 
   scrollToTop(): void {
