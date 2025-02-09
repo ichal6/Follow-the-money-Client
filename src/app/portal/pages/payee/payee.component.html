@@ -6,7 +6,7 @@
     </div>
   </div>
   <div class="wrapper-bottom">
-    <app-add-payee *ngIf="this.formChangeService.formAction === 'add'"></app-add-payee>
+    <app-add-payee (savedPayee)="handleSavedTry($event)" *ngIf="this.formChangeService.formAction === 'add'"></app-add-payee>
     <app-edit-payee *ngIf="this.formChangeService.formAction === 'edit'"
                        [updatePayee]="formChangeService.payee"
                        ></app-edit-payee>

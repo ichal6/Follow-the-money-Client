@@ -11,24 +11,26 @@ import {PayeeService} from '../../../../service/payee.service';
 })
 export class PayeeAllComponent implements OnInit, OnDestroy {
   payees = new Array<Payee>();
-  subscription: Subscription;
+  getPayeesSubscription: Subscription;
 
   constructor(private payeeService: PayeeService) { }
 
   ngOnInit(): void {
-    this.subscription = this.payeeService.getPayees().subscribe(
-      payeesFromServer => {
+    this.loadPayees()
+  }
+
+  loadPayees(): void {
+     this.getPayeesSubscription = this.payeeService.getPayees().subscribe({
+      next: payeesFromServer => {
         this.payees = payeesFromServer;
       },
-      error => {
-        console.log('Problem with server side', error);
+      error: err => {
+        console.log('Problem with server side', err.error);
       }
-    );
+    });
   }
 
   ngOnDestroy(): void {
-    if (this.subscription != null){
-      this.subscription.unsubscribe();
-    }
+    this.getPayeesSubscription?.unsubscribe();
   }
 }

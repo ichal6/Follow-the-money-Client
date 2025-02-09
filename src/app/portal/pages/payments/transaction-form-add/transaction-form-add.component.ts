@@ -173,4 +173,12 @@ export class TransactionFormAddComponent implements OnInit, OnDestroy {
   addPayee() {
     this.activeAddPayee = !this.activeAddPayee;
   }
+
+  reloadPayees($event: boolean) {
+    if($event) {
+      this.loadPayees();
+    } else {
+      this.message = 'Error while adding new payee';
+    }
+  }
 }

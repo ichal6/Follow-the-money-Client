@@ -1,7 +1,7 @@
 <div id="main-container">
   <app-payment-type-select/>
 
-  <app-add-payee *ngIf="activeAddPayee"/>
+  <app-add-payee (savedPayee)="reloadPayees($event)"  *ngIf="activeAddPayee"/>
   <form class="transaction-form" #transactionForm="ngForm">
     <button type="button" class="form-button cancel-button" (click)="initializeNewTransaction()">Reset form</button>
     <p class="message" *ngIf="message">{{message}}</p>

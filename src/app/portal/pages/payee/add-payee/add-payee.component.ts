@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Output, OutputEmitterRef} from '@angular/core';
 import {Router} from '@angular/router';
 import {Payee} from '../../../../model/Payee';
 import {PayeeService} from '../../../../service/payee.service';
@@ -12,11 +12,14 @@ import {PayeeService} from '../../../../service/payee.service';
 export class AddPayeeComponent implements OnInit {
   newPayee: Payee;
   message: string;
+  @Output() savedPayee: OutputEmitterRef<boolean>;
 
   isNameValid = false;
 
   constructor(private payeeService: PayeeService,
-              private router: Router) { }
+              private router: Router) {
+    this.savedPayee = new OutputEmitterRef<boolean>();
+  }
 
   ngOnInit(): void {
     this.newPayee = new Payee();
@@ -30,10 +33,13 @@ export class AddPayeeComponent implements OnInit {
   private savePayee(): void {
     this.payeeService.createNewPayee(this.newPayee).subscribe({
       next: () => {
-        this.redirectTo('payee');
+        //this.redirectTo('payee');
+        this.savedPayee.emit(true);
+        this.message = '';
       },
       error: (err) => {
         this.message = err.error;
+        this.savedPayee.emit(false);
       }
     });
   }
