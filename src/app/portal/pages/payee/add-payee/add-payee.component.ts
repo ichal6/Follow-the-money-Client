@@ -33,7 +33,6 @@ export class AddPayeeComponent implements OnInit {
   private savePayee(): void {
     this.payeeService.createNewPayee(this.newPayee).subscribe({
       next: () => {
-        //this.redirectTo('payee');
         this.savedPayee.emit(true);
         this.message = '';
       },
