@@ -13,7 +13,7 @@
   color: #FFFFFF;
   border: none;
   border-radius: 20px 0 0 20px;
-  width: 60px;
+  width: 100px;
   height: 50px;
   background-color: #0BD1B8;
 }
@@ -40,5 +40,11 @@
   #install {
     left: 80px;
     align-self: flex-start;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  #install {
+    left: 250px;
   }
 }
