@@ -8,7 +8,6 @@ describe('AppComponent', () => {
   let mockInstallDiv: HTMLElement;
   let mockInstallButton: HTMLElement;
 
-  // Mock BeforeInstallPromptEvent
   const mockBeforeInstallPromptEvent: BeforeInstallPromptEvent = {
     platforms: ['web'],
     userChoice: Promise.resolve({ outcome: 'accepted', platform: 'web' }),
@@ -27,11 +26,9 @@ describe('AppComponent', () => {
     fixture = TestBed.createComponent(AppComponent);
     component = fixture.componentInstance;
 
-    // Create mock elements
     mockInstallDiv = document.createElement('div');
     mockInstallButton = document.createElement('button');
 
-    // Setup spies for document.getElementById
     spyOn(document, 'getElementById').and.callFake((id: string) => {
       if (id === 'install') return mockInstallDiv;
       if (id === 'install-button') return mockInstallButton;
@@ -46,55 +43,63 @@ describe('AppComponent', () => {
   });
 
   it('should initialize installDiv on ngOnInit', () => {
+    // Arrange
     component.ngOnInit();
-    expect(component.installDiv).toBe(mockInstallDiv);
+
+    // Act
+    const result = component.installDiv;
+
+    // Assert
+    expect(result).toBe(mockInstallDiv);
   });
 
   it('should handle beforeinstallprompt event and set up install button', fakeAsync(() => {
+    // Arrange
     const event = mockBeforeInstallPromptEvent;
     spyOn(event, 'preventDefault');
 
-    // Trigger ngAfterViewInit
+    // Act
     component.ngAfterViewInit();
-
-    // Directly emit the mock event
     component['beforeInstallPromptSubject'].next(event);
 
+    // Assert
     expect(event.preventDefault).toHaveBeenCalled();
     expect(component.deferredPrompt).toBe(event);
     expect(document.getElementById).toHaveBeenCalledWith('install-button');
   }));
 
   it('should hide install div when closePrompt is called', () => {
+    // Arrange
     component.ngOnInit();
+
+    // Act
     component.closePrompt();
+
+    // Assert
     expect(component.installDiv?.style.display).toBe('none');
   });
 
   it('should handle install button click through event listener', fakeAsync(() => {
-    // Setup
+    // Arrange
     component.ngAfterViewInit();
     const event = mockBeforeInstallPromptEvent;
     spyOn(event, 'prompt').and.returnValue(Promise.resolve());
     spyOn(console, 'log');
 
-    // Simulate beforeinstallprompt event
+    // Act
     window.dispatchEvent(Object.assign(new Event('beforeinstallprompt'), event));
-
-    // Trigger the click event
     mockInstallButton.click();
     tick();
 
+    // Assert
     expect(event.prompt).toHaveBeenCalled();
-
-    // Wait for userChoice promise to resolve
     tick();
     expect(console.log).toHaveBeenCalledWith('User accepted the install prompt');
     expect(component.deferredPrompt).toBeNull();
   }));
 
   it('should handle prompt error through event listener', fakeAsync(() => {
-    // Setup
+    // Arrange
     component.ngAfterViewInit();
     const errorEvent = {
       ...mockBeforeInstallPromptEvent,
@@ -102,25 +107,25 @@ describe('AppComponent', () => {
     };
     spyOn(console, 'error');
 
-    // Simulate beforeinstallprompt event
+    // Act
     window.dispatchEvent(Object.assign(new Event('beforeinstallprompt'), errorEvent));
-
-    // Trigger the click event
     mockInstallButton.click();
     tick();
 
+    // Assert
     expect(console.error).toHaveBeenCalledWith('Error during prompt:', 'Test Error');
   }));
 
   it('should not trigger prompt when deferredPrompt is null', fakeAsync(() => {
-    // Setup
+    // Arrange
     component.ngAfterViewInit();
     spyOn(console, 'log');
 
-    // Trigger the click event without setting up deferredPrompt
+    // Act
     mockInstallButton.click();
     tick();
 
+    // Assert
     expect(console.log).not.toHaveBeenCalled();
   }));
 });
