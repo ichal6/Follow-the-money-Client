@@ -144,4 +144,16 @@ describe('AppComponent', () => {
     expect(component.closePrompt).toHaveBeenCalled();
     expect(component.deferredPrompt).toBeNull();
   }));
+
+  it('should not initialize installDiv if app is running as PWA', () => {
+    // Arrange
+    spyOn(window, 'matchMedia').and.returnValue({ matches: true } as MediaQueryList);
+    component.ngOnInit();
+
+    // Act
+    const result = component.installDiv;
+
+    // Assert
+    expect(result?.style.display).toBe('none');
+  });
 });

@@ -24,6 +24,9 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.installDiv = document.getElementById('install');
+    if (window.matchMedia('(display-mode: standalone)').matches && this.installDiv) {
+      this.installDiv.style.display = 'none';
+    }
   }
 
   ngAfterViewInit() {
