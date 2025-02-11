@@ -126,4 +126,22 @@ describe('AppComponent', () => {
     // Assert
     expect(console.log).not.toHaveBeenCalled();
   }));
+
+  it('should set to none install Div after show install popup', fakeAsync(() => {
+    // Arrange
+    component.ngOnInit();
+    component.deferredPrompt = {
+      ...mockBeforeInstallPromptEvent,
+      userChoice: Promise.resolve({ outcome: 'accepted', platform: 'web' })
+    };
+    spyOn(component, 'closePrompt');
+
+    // Act
+    component['handleUserInstallChoice']();
+    tick();
+
+    // Assert
+    expect(component.closePrompt).toHaveBeenCalled();
+    expect(component.deferredPrompt).toBeNull();
+  }));
 });

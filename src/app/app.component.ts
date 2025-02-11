@@ -63,6 +63,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   private handleUserInstallChoice() {
     this.deferredPrompt.userChoice.then((choiceResult) => {
       console.log(`User ${choiceResult.outcome} the install prompt`);
+      this.closePrompt();
       this.deferredPrompt = null;
     });
   }
