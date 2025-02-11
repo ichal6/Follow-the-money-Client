@@ -5,6 +5,7 @@
   top: 10px;
   align-self: center;
   width: auto;
+  z-index: 999;
 }
 
 #install-button {
@@ -46,5 +47,18 @@
 @media screen and (min-width: 800px) {
   #install {
     left: 250px;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  #install {
+    top: 600px;
+    left: 60px;
+  }
+}
+
+@media screen and (min-height: 900px) {
+  #install {
+    top: 800px;
   }
 }
