@@ -32,6 +32,7 @@ describe('AppComponent', () => {
       if (id === 'install-button') return mockInstallButton;
       return null;
     });
+    localStorage.clear();
 
     fixture.detectChanges();
   });
@@ -71,7 +72,7 @@ describe('AppComponent', () => {
     component.ngOnInit();
 
     // Act
-    component.closePrompt();
+    component.closePrompt('dismissed');
 
     // Assert
     expect(component.installDiv?.style.display).toBe('none');
@@ -156,4 +157,92 @@ describe('AppComponent', () => {
     // Assert
     expect(result?.style.display).toBe('none');
   });
+
+  it('should hide install div if user previously dismissed', () => {
+    // Arrange
+    localStorage.setItem('installPromptChoice', 'dismissed');
+
+    // Act
+    component.ngOnInit();
+
+    // Assert
+    expect(mockInstallDiv.style.display).toBe('none');
+  });
+
+  it('should not hide install div if user has not made a choice', () => {
+    // Arrange
+    const initialDisplay = mockInstallDiv.style.display;
+
+    // Act
+    component.ngOnInit();
+
+    // Assert
+    expect(mockInstallDiv.style.display).toBe(initialDisplay);
+  });
+
+  it('should set localStorage when closePrompt is called', () => {
+    // Arrange
+    const expectedValue = 'dismissed';
+
+    // Act
+    component.closePrompt('dismissed');
+
+    // Assert
+    expect(localStorage.getItem('installPromptChoice')).toBe(expectedValue);
+    expect(mockInstallDiv.style.display).toBe('none');
+  });
+
+  it('should set localStorage when user accepts install prompt', fakeAsync(() => {
+    // Arrange
+    const expectedOutcome = 'accepted';
+    component.deferredPrompt = {
+      ...mockBeforeInstallPromptEvent,
+      userChoice: Promise.resolve({ outcome: expectedOutcome, platform: 'web' })
+    };
+
+    // Act
+    component['handleUserInstallChoice']();
+    tick();
+
+    // Assert
+    expect(localStorage.getItem('installPromptChoice')).toBe(expectedOutcome);
+    expect(mockInstallDiv.style.display).toBe('none');
+  }));
+
+  it('should set localStorage when user dismisses install prompt', fakeAsync(() => {
+    // Arrange
+    const expectedOutcome = 'dismissed';
+    component.deferredPrompt = {
+      ...mockBeforeInstallPromptEvent,
+      userChoice: Promise.resolve({ outcome: expectedOutcome, platform: 'web' })
+    };
+
+    // Act
+    component['handleUserInstallChoice']();
+    tick();
+
+    // Assert
+    expect(localStorage.getItem('installPromptChoice')).toBe(expectedOutcome);
+    expect(mockInstallDiv.style.display).toBe('none');
+  }));
+
+  it('should handle full install prompt workflow', fakeAsync(() => {
+    // Arrange
+    const expectedOutcome = 'accepted';
+    component.deferredPrompt = {
+      ...mockBeforeInstallPromptEvent,
+      userChoice: Promise.resolve({ outcome: expectedOutcome, platform: 'web' })
+    };
+    spyOn(console, 'log');
+
+    // Act
+    component['handleUserInstallChoice']();
+    tick();
+
+    // Assert
+    expect(localStorage.getItem('installPromptChoice')).toBe(expectedOutcome);
+    expect(component.deferredPrompt).toBeNull();
+    expect(mockInstallDiv.style.display).toBe('none');
+    expect(console.log).toHaveBeenCalledWith(`User ${expectedOutcome} the install prompt`);
+  }));
 });

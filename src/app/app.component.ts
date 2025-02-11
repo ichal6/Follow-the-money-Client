@@ -27,6 +27,11 @@ export class AppComponent implements OnInit, AfterViewInit {
     if (window.matchMedia('(display-mode: standalone)').matches && this.installDiv) {
       this.installDiv.style.display = 'none';
     }
+
+    const userChoice = localStorage.getItem('installPromptChoice');
+    if (userChoice && this.installDiv && userChoice === 'dismissed') {
+      this.installDiv.style.display = 'none';
+    }
   }
 
   ngAfterViewInit() {
@@ -41,9 +46,10 @@ export class AppComponent implements OnInit, AfterViewInit {
     });
   }
 
-  closePrompt() {
+  closePrompt(status: 'accepted' | 'dismissed') {
     if(this.installDiv)
       this.installDiv.style.display = 'none';
+    localStorage.setItem('installPromptChoice', status);
   }
 
   private showInstallPromotion() {
@@ -66,7 +72,8 @@ export class AppComponent implements OnInit, AfterViewInit {
   private handleUserInstallChoice() {
     this.deferredPrompt.userChoice.then((choiceResult) => {
       console.log(`User ${choiceResult.outcome} the install prompt`);
-      this.closePrompt();
+      localStorage.setItem('installPromptChoice', choiceResult.outcome);
+      this.closePrompt(choiceResult.outcome);
       this.deferredPrompt = null;
     });
   }
