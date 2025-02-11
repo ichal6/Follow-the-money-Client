@@ -1,1 +1,18 @@
+#install {
+  display: flex;
+  flex-direction: row;
+  position: fixed;
+  top: 10px;
+  align-self: center;
+  width: auto;
+}
 
+#app {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#app > *:not(#install)  {
+  width: 100%;
+}

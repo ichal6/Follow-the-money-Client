@@ -1,4 +1,13 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
+
+interface BeforeInstallPromptEvent extends Event {
+  readonly platforms: string[];
+  readonly userChoice: Promise<{
+    outcome: 'accepted' | 'dismissed';
+    platform: string;
+  }>;
+  prompt(): Promise<void>;
+}
 
 @Component({
   selector: 'app-root',
@@ -6,41 +15,57 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./app.component.css'],
   standalone: false
 })
-export class AppComponent implements OnInit {
-  title = 'ftmClient';
-
-  deferredPrompt: any;
+export class AppComponent implements OnInit, AfterViewInit {
+  deferredPrompt: BeforeInstallPromptEvent | null = null;
+  installButton :HTMLElement | null = null;
+  installDiv :HTMLElement | null = null;
 
   ngOnInit() {
-    window.addEventListener('beforeinstallprompt', (event) => {
-      // Prevent the mini-infobar from appearing on mobile
+    this.installDiv = document.getElementById('install');
+  }
+
+  ngAfterViewInit() {
+    window.addEventListener('beforeinstallprompt', (event: BeforeInstallPromptEvent) => {
       event.preventDefault();
-      // Stash the event so it can be triggered later.
       this.deferredPrompt = event;
-      // Update UI notify the user they can install the PWA
       this.showInstallPromotion();
     });
   }
 
-  showInstallPromotion() {
-    // Logic to show the install promotion to the user
-    const installButton = document.getElementById('install-button');
-    if (installButton) {
-      installButton.style.display = 'block';
-      installButton.addEventListener('click', () => {
-        // Show the install prompt
-        this.deferredPrompt.prompt();
-        // Wait for the user to respond to the prompt
-        this.deferredPrompt.userChoice.then((choiceResult) => {
-          if (choiceResult.outcome === 'accepted') {
-            console.log('User accepted the install prompt');
-          } else {
-            console.log('User dismissed the install prompt');
-          }
-          // Clear the deferredPrompt variable, since it can only be used once.
-          this.deferredPrompt = null;
-        });
+  closePrompt() {
+    if(this.installDiv)
+      this.installDiv.style.display = 'none';
+  }
+
+  private showInstallPromotion() {
+    this.installButton = document.getElementById('install-button');
+    if (!this.installButton)
+      return;
+
+    this.addInstallButtonClickListener();
+  }
+
+  private addInstallButtonClickListener() {
+    this.installButton.addEventListener('click', () => {
+      if (!this.deferredPrompt)
+        return;
+      this.promptInstallOption();
+      this.handleUserInstallChoice();
+    });
+  }
+
+  private handleUserInstallChoice() {
+    this.deferredPrompt.userChoice.then((choiceResult) => {
+      console.log(`User ${choiceResult.outcome} the install prompt`);
+      this.deferredPrompt = null;
+    });
+  }
+
+  private promptInstallOption() {
+    this.deferredPrompt.prompt()
+      .then(() => { })
+      .catch((error) => {
+        console.error('Error during prompt:', error);
       });
-    }
   }
 }
