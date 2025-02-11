@@ -1,6 +1,7 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {Subject} from "rxjs";
 
-interface BeforeInstallPromptEvent extends Event {
+export interface BeforeInstallPromptEvent extends Event {
   readonly platforms: string[];
   readonly userChoice: Promise<{
     outcome: 'accepted' | 'dismissed';
@@ -19,6 +20,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   deferredPrompt: BeforeInstallPromptEvent | null = null;
   installButton :HTMLElement | null = null;
   installDiv :HTMLElement | null = null;
+  private beforeInstallPromptSubject = new Subject<BeforeInstallPromptEvent>();
 
   ngOnInit() {
     this.installDiv = document.getElementById('install');
@@ -26,6 +28,10 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     window.addEventListener('beforeinstallprompt', (event: BeforeInstallPromptEvent) => {
+      this.beforeInstallPromptSubject.next(event);
+    });
+
+    this.beforeInstallPromptSubject.subscribe((event: BeforeInstallPromptEvent) => {
       event.preventDefault();
       this.deferredPrompt = event;
       this.showInstallPromotion();
