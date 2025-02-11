@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { provideHttpClient, provideHttpClientTesting } from '@angular/common/http/testing';
 import { HttpClient } from '@angular/common/http';
 
 describe('Manifest Icons', () => {
@@ -8,7 +8,7 @@ describe('Manifest Icons', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule]
+      providers: [provideHttpClient(), provideHttpClientTesting()]
     });
 
     httpClient = TestBed.inject(HttpClient);
@@ -27,7 +27,7 @@ describe('Manifest Icons', () => {
       { src: 'assets/icons/pwa/icon-512x512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable any' }
     ];
 
-    httpClient.get('/assets/manifest.webmanifest').subscribe((manifest: any) => {
+    httpClient.get('/assets/manifest.webmanifest').subscribe((manifest: Manifest) => {
       expect(manifest.icons).toEqual(expectedIcons);
     });
 
@@ -39,4 +39,15 @@ describe('Manifest Icons', () => {
   afterEach(() => {
     httpTestingController.verify();
   });
+
+  interface Icon {
+    src: string;
+    sizes: string;
+    type: string;
+    purpose: string;
+  }
+
+  interface Manifest {
+    icons: Icon[];
+  }
 });
