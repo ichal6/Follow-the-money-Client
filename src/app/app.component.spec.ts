@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import {ComponentFixture, TestBed, fakeAsync, tick, flush} from '@angular/core/testing';
 import { AppComponent, BeforeInstallPromptEvent } from './app.component';
 
 describe('AppComponent', () => {
@@ -113,6 +113,9 @@ describe('AppComponent', () => {
 
     // Assert
     expect(console.error).toHaveBeenCalledWith('Error during prompt:', 'Test Error');
+
+    // Clean up
+    flush(); // Ensure all pending asynchronous activities are completed
   }));
 
   it('should not trigger prompt when deferredPrompt is null', fakeAsync(() => {
@@ -256,4 +259,45 @@ describe('AppComponent', () => {
     // Assert
     expect(component['beforeInstallPromptSubject'].unsubscribe).toHaveBeenCalled();
   });
+
+  it('should add the beforeinstallprompt event listener in ngAfterViewInit', () => {
+    // Arrange
+    spyOn(window, 'addEventListener').and.callThrough();
+
+    // Act
+    component.ngAfterViewInit();
+
+    // Assert
+    expect(window.addEventListener).toHaveBeenCalledWith(
+      'beforeinstallprompt',
+      jasmine.any(Function)
+    );
+  });
+
+  it('should remove the beforeinstallprompt event listener in ngOnDestroy', () => {
+    // Arrange
+    spyOn(window, 'removeEventListener').and.callThrough();
+    component.ngAfterViewInit();
+
+    // Act
+    component.ngOnDestroy();
+
+    // Assert
+    expect(window.removeEventListener).toHaveBeenCalledWith(
+      'beforeinstallprompt',
+      jasmine.any(Function)
+    );
+  });
+
+  it('should not trigger the event listener after component destruction', fakeAsync(() => {
+    // Arrange
+    component.ngAfterViewInit();
+    component.ngOnDestroy();
+
+    // Act & Assert
+    expect(() => {
+      window.dispatchEvent(new Event('beforeinstallprompt'));
+      tick();
+    }).not.toThrow();
+  }));
 });

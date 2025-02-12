@@ -17,17 +17,26 @@ export interface BeforeInstallPromptEvent extends Event {
   standalone: false
 })
 export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
-  deferredPrompt: BeforeInstallPromptEvent | null = null;
-  installButton :HTMLElement | null = null;
-  installDiv :HTMLElement | null = null;
-  private beforeInstallPromptSubject = new Subject<BeforeInstallPromptEvent>();
+  deferredPrompt: BeforeInstallPromptEvent | null;
+  installButton: HTMLElement | null;
+  installDiv: HTMLElement | null;
+  private beforeInstallPromptSubject: Subject<BeforeInstallPromptEvent>;
+  private beforeInstallPromptHandler = (event: BeforeInstallPromptEvent) => {
+    this.beforeInstallPromptSubject.next(event);
+  };
+
+  constructor() {
+    this.deferredPrompt = null;
+    this.installButton = null;
+    this.installDiv = null;
+    this.beforeInstallPromptSubject = new Subject<BeforeInstallPromptEvent>();
+  }
 
   ngOnInit() {
     this.installDiv = document.getElementById('install');
     if (window.matchMedia('(display-mode: standalone)').matches && this.installDiv) {
       this.installDiv.style.display = 'none';
     }
-
     const userChoice = localStorage.getItem('installPromptChoice');
     if (userChoice && this.installDiv && userChoice === 'dismissed') {
       this.installDiv.style.display = 'none';
@@ -35,9 +44,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit() {
-    window.addEventListener('beforeinstallprompt', (event: BeforeInstallPromptEvent) => {
-      this.beforeInstallPromptSubject.next(event);
-    });
+    window.addEventListener('beforeinstallprompt', this.beforeInstallPromptHandler);
 
     this.beforeInstallPromptSubject.subscribe((event: BeforeInstallPromptEvent) => {
       event.preventDefault();
@@ -47,7 +54,10 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.beforeInstallPromptSubject?.unsubscribe();
+    window.removeEventListener('beforeinstallprompt', this.beforeInstallPromptHandler);
+    if (this.beforeInstallPromptSubject && !this.beforeInstallPromptSubject.closed) {
+      this.beforeInstallPromptSubject.unsubscribe();
+    }
   }
 
   closePrompt(status: 'accepted' | 'dismissed') {
