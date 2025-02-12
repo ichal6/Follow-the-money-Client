@@ -1,0 +1,145 @@
+{
+  "configVersion": 1,
+  "timestamp": 1739361822355,
+  "index": "/Follow-the-money-Client/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/Follow-the-money-Client/favicon.ico",
+        "/Follow-the-money-Client/index.html",
+        "/Follow-the-money-Client/main.d8ff80998300c964.js",
+        "/Follow-the-money-Client/manifest.webmanifest",
+        "/Follow-the-money-Client/polyfills.20a1e13956f8097b.js",
+        "/Follow-the-money-Client/runtime.a62b7c8479480b96.js",
+        "/Follow-the-money-Client/styles.eae72988cd519eb0.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/Follow-the-money-Client/Poppins-Bold.3b6def8cef97005c.ttf",
+        "/Follow-the-money-Client/Poppins-Medium.98591b8ee50c8033.ttf",
+        "/Follow-the-money-Client/Poppins-Regular.e3fe7ebf149d0933.ttf",
+        "/Follow-the-money-Client/Poppins-SemiBold.ba60cfd693c39204.ttf",
+        "/Follow-the-money-Client/arrow-select.e8d45e05a2bede6b.svg",
+        "/Follow-the-money-Client/assets/fonts/Poppins-Bold.ttf",
+        "/Follow-the-money-Client/assets/fonts/Poppins-Medium.ttf",
+        "/Follow-the-money-Client/assets/fonts/Poppins-Regular.ttf",
+        "/Follow-the-money-Client/assets/fonts/Poppins-SemiBold.ttf",
+        "/Follow-the-money-Client/assets/icons/add-new/exit-button.svg",
+        "/Follow-the-money-Client/assets/icons/add-new/plus-button.svg",
+        "/Follow-the-money-Client/assets/icons/arrow-select.svg",
+        "/Follow-the-money-Client/assets/icons/dashboard/bank-type.png",
+        "/Follow-the-money-Client/assets/icons/dashboard/loan-type.png",
+        "/Follow-the-money-Client/assets/icons/dashboard/wallet-type.png",
+        "/Follow-the-money-Client/assets/icons/header/icon-logout.svg",
+        "/Follow-the-money-Client/assets/icons/header/icon-profile.svg",
+        "/Follow-the-money-Client/assets/icons/login-email.svg",
+        "/Follow-the-money-Client/assets/icons/login-password.svg",
+        "/Follow-the-money-Client/assets/icons/logo-with-text-black.svg",
+        "/Follow-the-money-Client/assets/icons/logo-with-text.svg",
+        "/Follow-the-money-Client/assets/icons/logo.svg",
+        "/Follow-the-money-Client/assets/icons/navigation/icon-accounts.svg",
+        "/Follow-the-money-Client/assets/icons/navigation/icon-analysis.svg",
+        "/Follow-the-money-Client/assets/icons/navigation/icon-categories.svg",
+        "/Follow-the-money-Client/assets/icons/navigation/icon-charts.svg",
+        "/Follow-the-money-Client/assets/icons/navigation/icon-dashboard.svg",
+        "/Follow-the-money-Client/assets/icons/navigation/icon-payees.svg",
+        "/Follow-the-money-Client/assets/icons/navigation/icon-payments.svg",
+        "/Follow-the-money-Client/assets/icons/pwa/icon-128x128.png",
+        "/Follow-the-money-Client/assets/icons/pwa/icon-144x144.png",
+        "/Follow-the-money-Client/assets/icons/pwa/icon-152x152.png",
+        "/Follow-the-money-Client/assets/icons/pwa/icon-192x192.png",
+        "/Follow-the-money-Client/assets/icons/pwa/icon-384x384.png",
+        "/Follow-the-money-Client/assets/icons/pwa/icon-512x512.png",
+        "/Follow-the-money-Client/assets/icons/pwa/icon-72x72.png",
+        "/Follow-the-money-Client/assets/icons/pwa/icon-96x96.png",
+        "/Follow-the-money-Client/assets/img/background-desktop-dots.png",
+        "/Follow-the-money-Client/assets/img/background-mobile-dots.png",
+        "/Follow-the-money-Client/assets/img/background-tablet-dots.png"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "/Follow-the-money-Client/Poppins-Bold.3b6def8cef97005c.ttf": "b9b65c039a1f10a5cb5e0726c6e7e18e98a8e517",
+    "/Follow-the-money-Client/Poppins-Medium.98591b8ee50c8033.ttf": "af7058373acbcf383dd114b8f9bbfb9faafd79eb",
+    "/Follow-the-money-Client/Poppins-Regular.e3fe7ebf149d0933.ttf": "01d319c533f62ea29f03b5df8adfd4d93d2d2a38",
+    "/Follow-the-money-Client/Poppins-SemiBold.ba60cfd693c39204.ttf": "20b39c8b480c946b084d6aa09f12bf10b2ec5aa6",
+    "/Follow-the-money-Client/arrow-select.e8d45e05a2bede6b.svg": "d21220a0329e0917203a80c87f4ad58f630fbca4",
+    "/Follow-the-money-Client/assets/fonts/Poppins-Bold.ttf": "b9b65c039a1f10a5cb5e0726c6e7e18e98a8e517",
+    "/Follow-the-money-Client/assets/fonts/Poppins-Medium.ttf": "af7058373acbcf383dd114b8f9bbfb9faafd79eb",
+    "/Follow-the-money-Client/assets/fonts/Poppins-Regular.ttf": "01d319c533f62ea29f03b5df8adfd4d93d2d2a38",
+    "/Follow-the-money-Client/assets/fonts/Poppins-SemiBold.ttf": "20b39c8b480c946b084d6aa09f12bf10b2ec5aa6",
+    "/Follow-the-money-Client/assets/icons/add-new/exit-button.svg": "666d6a37f021a34eaf3f1229cd6ac9a6d829487a",
+    "/Follow-the-money-Client/assets/icons/add-new/plus-button.svg": "f1c10ad8d58d04d06e37a0d1d750d275f3a6e764",
+    "/Follow-the-money-Client/assets/icons/arrow-select.svg": "d21220a0329e0917203a80c87f4ad58f630fbca4",
+    "/Follow-the-money-Client/assets/icons/dashboard/bank-type.png": "a9bd511fa710bfb5c02f23c1aea84718cf67ec31",
+    "/Follow-the-money-Client/assets/icons/dashboard/loan-type.png": "60f807c39933362db4cb251d8b1e1ff4510f1bc0",
+    "/Follow-the-money-Client/assets/icons/dashboard/wallet-type.png": "424a36b13c337c38b1a714a839a583c65f22da4d",
+    "/Follow-the-money-Client/assets/icons/header/icon-logout.svg": "52b61a33fd88f823f655b4fa50298ccd4da37375",
+    "/Follow-the-money-Client/assets/icons/header/icon-profile.svg": "935cfa5d6b7fa1b52be9c4ec9805577adce51c4d",
+    "/Follow-the-money-Client/assets/icons/login-email.svg": "2707444f253cef759317b3de214f3848333c6fe9",
+    "/Follow-the-money-Client/assets/icons/login-password.svg": "f026d5c73f46dd93e61016ce5b951cc2b6f3b194",
+    "/Follow-the-money-Client/assets/icons/logo-with-text-black.svg": "4bd18e90931026ab093eba1c3bb8e3e5b78c5b9f",
+    "/Follow-the-money-Client/assets/icons/logo-with-text.svg": "74e261fc99e7550d5d07696d9a97ed84a212a31a",
+    "/Follow-the-money-Client/assets/icons/logo.svg": "9b7457123df491e46769257e745a1c82f1e06d29",
+    "/Follow-the-money-Client/assets/icons/navigation/icon-accounts.svg": "d6532e4bbd860f3f213ff91494339c900292e135",
+    "/Follow-the-money-Client/assets/icons/navigation/icon-analysis.svg": "fa52d56b64be244ef7aa7f703dcc87a8f6980763",
+    "/Follow-the-money-Client/assets/icons/navigation/icon-categories.svg": "a2073307a8d2b23ad61c4ccbe013020569a70491",
+    "/Follow-the-money-Client/assets/icons/navigation/icon-charts.svg": "fa52d56b64be244ef7aa7f703dcc87a8f6980763",
+    "/Follow-the-money-Client/assets/icons/navigation/icon-dashboard.svg": "5e0a2e1227a67d2c23865cd57d02e8377d10fed0",
+    "/Follow-the-money-Client/assets/icons/navigation/icon-payees.svg": "292d2df353a6ae9e4ec2b37d4c5ffefe4bbc779e",
+    "/Follow-the-money-Client/assets/icons/navigation/icon-payments.svg": "d09cfae935f7d48493704713e61220d5c6b90c78",
+    "/Follow-the-money-Client/assets/icons/pwa/icon-128x128.png": "563631d2bd55cf8882d501cf9a72a24367ba2b66",
+    "/Follow-the-money-Client/assets/icons/pwa/icon-144x144.png": "2b97b8829e964eec219bb0be0b062dc1da249f9e",
+    "/Follow-the-money-Client/assets/icons/pwa/icon-152x152.png": "e223e406495fd1b2b5daadc57fe6e5df3c8f6369",
+    "/Follow-the-money-Client/assets/icons/pwa/icon-192x192.png": "85ca3488ec1702e401bad6998a135431bda2e33b",
+    "/Follow-the-money-Client/assets/icons/pwa/icon-384x384.png": "3bd785cdee45e134585d90b974de4382c4adca3a",
+    "/Follow-the-money-Client/assets/icons/pwa/icon-512x512.png": "1587042d3a10de723d2e8626e23fa3b69d3b7dd7",
+    "/Follow-the-money-Client/assets/icons/pwa/icon-72x72.png": "e0525c413015289010ab5442f352cffd64ec69a7",
+    "/Follow-the-money-Client/assets/icons/pwa/icon-96x96.png": "02dcd217c04c6bad6ac10c3d2880ca5261570fc4",
+    "/Follow-the-money-Client/assets/img/background-desktop-dots.png": "18712000c487fcad92abe7f1d448b436a785e533",
+    "/Follow-the-money-Client/assets/img/background-mobile-dots.png": "b662a2c7235168d0ea619724dcbe9a3fdbbd6e17",
+    "/Follow-the-money-Client/assets/img/background-tablet-dots.png": "dd6b4a635861c54e416d858bd4d4760e878aa672",
+    "/Follow-the-money-Client/favicon.ico": "d449689966ca3dde827b435907545f37a5b865d8",
+    "/Follow-the-money-Client/index.html": "ad9dfec3d2476d76a44ca6d55ee623568e040a4b",
+    "/Follow-the-money-Client/main.d8ff80998300c964.js": "59f66c09640b6a87cca4ea9d80b2b73fbf783a90",
+    "/Follow-the-money-Client/manifest.webmanifest": "f58ee485a3df74c39db334dfc7a5799c33557ba0",
+    "/Follow-the-money-Client/polyfills.20a1e13956f8097b.js": "7b486f62c54bdf3e1242602e8af5c973a59bbdbd",
+    "/Follow-the-money-Client/runtime.a62b7c8479480b96.js": "46a2077c9f2fe868fd1bfad85756da9e1054ce44",
+    "/Follow-the-money-Client/styles.eae72988cd519eb0.css": "a36c1c732510cc4b48afc5a654029d0a45deab76"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ],
+  "navigationRequestStrategy": "performance"
+}
