@@ -245,4 +245,15 @@ describe('AppComponent', () => {
     expect(mockInstallDiv.style.display).toBe('none');
     expect(console.log).toHaveBeenCalledWith(`User ${expectedOutcome} the install prompt`);
   }));
+
+  it('should unsubscribe from beforeInstallPromptSubject on ngOnDestroy', () => {
+    // Arrange
+    spyOn(component['beforeInstallPromptSubject'], 'unsubscribe');
+
+    // Act
+    component.ngOnDestroy();
+
+    // Assert
+    expect(component['beforeInstallPromptSubject'].unsubscribe).toHaveBeenCalled();
+  });
 });

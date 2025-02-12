@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
 import {Subject} from "rxjs";
 
 export interface BeforeInstallPromptEvent extends Event {
@@ -16,7 +16,7 @@ export interface BeforeInstallPromptEvent extends Event {
   styleUrls: ['./app.component.css'],
   standalone: false
 })
-export class AppComponent implements OnInit, AfterViewInit {
+export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   deferredPrompt: BeforeInstallPromptEvent | null = null;
   installButton :HTMLElement | null = null;
   installDiv :HTMLElement | null = null;
@@ -44,6 +44,10 @@ export class AppComponent implements OnInit, AfterViewInit {
       this.deferredPrompt = event;
       this.showInstallPromotion();
     });
+  }
+
+  ngOnDestroy() {
+    this.beforeInstallPromptSubject?.unsubscribe();
   }
 
   closePrompt(status: 'accepted' | 'dismissed') {
