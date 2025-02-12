@@ -1,3 +1,14 @@
+/* Main div app */
+#app {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#app > *:not(#install)  {
+  width: 100%;
+}
+/* Install section */
 #install {
   display: flex;
   flex-direction: row;
@@ -8,9 +19,14 @@
   z-index: 999;
 }
 
+.button {
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
 #install-button {
-  font-family: "Poppins Regular", sans-serif;
-  font-size: 16px;
+  font-family: "Poppins Bold", sans-serif;
+  font-size: 15px;
   color: #FFFFFF;
   border: none;
   border-radius: 20px 0 0 20px;
@@ -19,22 +35,26 @@
   background-color: #0BD1B8;
 }
 
+#install-button:hover {
+  background-color: #12dcc3;
+  font-size: 16px;
+  transition: all 1s;
+}
+
 #close-install-button {
   border: none;
   border-radius: 0 20px 20px 0;
   width: 35px;
   height: 50px;
   background-color: #F31259;
+  color: #F4F3F9;
 }
 
-#app {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-}
-
-#app > *:not(#install)  {
-  width: 100%;
+#close-install-button:hover {
+  background-color: #FA236A;
+  font-size: 16px;
+  transition: all 1s;
+  color: #4B486E;
 }
 
 @media screen and (min-width: 550px) {
@@ -44,6 +64,7 @@
   }
 }
 
+/* View for Tablet and Mobile */
 @media screen and (min-width: 800px) {
   #install {
     left: 250px;
