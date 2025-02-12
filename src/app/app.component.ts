@@ -20,16 +20,17 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   deferredPrompt: BeforeInstallPromptEvent | null;
   installButton: HTMLElement | null;
   installDiv: HTMLElement | null;
-  private beforeInstallPromptSubject: Subject<BeforeInstallPromptEvent>;
-  private beforeInstallPromptHandler = (event: BeforeInstallPromptEvent) => {
-    this.beforeInstallPromptSubject.next(event);
-  };
+  private readonly beforeInstallPromptSubject: Subject<BeforeInstallPromptEvent>;
+  private readonly beforeInstallPromptHandler: EventListenerOrEventListenerObject;
 
   constructor() {
     this.deferredPrompt = null;
     this.installButton = null;
     this.installDiv = null;
     this.beforeInstallPromptSubject = new Subject<BeforeInstallPromptEvent>();
+    this.beforeInstallPromptHandler = (event: BeforeInstallPromptEvent) => {
+      this.beforeInstallPromptSubject.next(event);
+    };
   }
 
   ngOnInit() {
