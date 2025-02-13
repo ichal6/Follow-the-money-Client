@@ -1,5 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 import {AppComponent} from './app.component';
 import {EnterPageComponent} from './enter-page/enter-page.component';
@@ -13,6 +14,7 @@ import {EnterPageModule} from './enter-page/enter-page.module';
 import {AuthRouteGuardService} from './service/auth-route-guard.service';
 import { PayeeComponent } from './portal/pages/payee/payee.component';
 import { WaitComponent } from './enter-page/wait/wait.component';
+import { environment } from '../environments/environment';
 
 const routes: Routes = [
   {path: 'login', component: EnterPageComponent},
@@ -35,7 +37,13 @@ const routes: Routes = [
     RouterModule.forRoot(routes, { }),
     PortalModule,
     NgChartsModule,
-    EnterPageModule
+    EnterPageModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
